@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import { FiArrowUpRight } from "react-icons/fi";
-import { HoveredLink, Menu, MenuItem } from "../ui/navbar-menu";
+import {  Menu, MenuItem } from "../ui/navbar-menu";
 import { menuItems } from "./menuItems";
 import MobileNav from "./MobileNav";
 

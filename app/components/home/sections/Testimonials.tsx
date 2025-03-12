@@ -56,7 +56,7 @@ const Testimonials: React.FC = () => {
                   </figure>
       <div className="container">
         <div className="mb-[30px] lg:mb-[80px]">
-      <h2 className="text-2xl leading-none">Testimonials</h2>
+      <h2 className="text-xl leading-none">Testimonials</h2>
       </div>
       <Swiper
         modules={[Pagination]}
