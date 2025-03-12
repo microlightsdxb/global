@@ -64,20 +64,20 @@ const Counter: React.FC<CounterProps> = ({ end, label }) => {
 
 const AboutSec = () => {
   return (
-    <section className="pt-[60px] lg:pt-[90px] 2xl:pt-[120px] ">
+    <section className="pb-[60px] lg:pb-[0px] pt-[60px] lg:pt-[90px] 2xl:pt-[120px] ">
       <div className="container">
-        <div className="grid grid-cols-2 gap-[40px]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-[40px]">
           <div>
-            <div className="overflow-hidden">
+            <div className="overflow-hidden mb-[30px] lg:mb-[100px]">
             <motion.h2   initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: false, amount: 0.5 }} className="text-xl text-primary mb-[100px]">
+          viewport={{ once: false, amount: 0.5 }} className="text-xl text-primary ">
              
               About Microlights
             </motion.h2>
             </div>
-            <motion.figure className="h-[750px] overflow-hidden relative" initial={{ opacity: 0, y: -50 }}
+            <motion.figure className="h-[250px] lg:h-[750px] overflow-hidden relative" initial={{ opacity: 0, y: -50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: false, amount: 0.5 }}>
@@ -97,7 +97,7 @@ const AboutSec = () => {
             <h3 className="text-lg text-[#7D7D7D]">
               Comprehensive Lighting Solutions Tailored for Every Space
             </h3>
-            <hr className="mt-[30px] mb-[80px]" />
+            <hr className="mt-[30px] mb-[30px] lg:mb-[80px]" />
             <p>
               In 2002, Microlights Limited, a lighting company based in the West
               of England manufacturing luminaires and related components,
@@ -121,7 +121,7 @@ const AboutSec = () => {
                 <FiArrowUpRight className="text-[22px] text-[#7D7D7D] group-hover:scale-125 transition-all ease-in-out duration-500 " />
               </Link>
             </div>
-            <div className="grid grid-cols-3 justify-center gap-[30px] text-center mt-[80px]">
+            <div className="grid grid-cols-3 justify-center gap-[15px] lg:gap-[30px] text-center mt-[30px] lg:mt-[80px]">
               <Counter end={25} label="Years of Expertise" />
               <Counter end={250} label="Projects Completed" />
               <Counter end={100} label="Happy Clients" />

@@ -55,12 +55,12 @@ const Testimonials: React.FC = () => {
                     <Image src={'/assets/img/banner/testimonial.jpg'} width={1900} height={900} alt="bnr" className="w-full h-full absolute object-center object-cover" />
                   </figure>
       <div className="container">
-        <div className="mb-[80px]">
+        <div className="mb-[30px] lg:mb-[80px]">
       <h2 className="text-2xl leading-none">Testimonials</h2>
       </div>
       <Swiper
         modules={[Pagination]}
-        slidesPerView={1.2}
+        slidesPerView={1}
         spaceBetween={20}
         loop= {true}
         pagination={{ clickable: true }}

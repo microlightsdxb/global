@@ -9,7 +9,7 @@ import {motion} from 'framer-motion';
 
 const Footer = () => {
   return (
-    <footer className="pt-[120px] pb-[40px]">
+    <footer className="pt-[60px] lh:pt-[120px] pb-[40px]">
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8"   >
           <motion.div className="flex" initial={{opacity: 0, y: -50}}
@@ -58,7 +58,7 @@ const Footer = () => {
           whileInView={{opacity: 1, y: 0}}
           transition={{delay: 0, duration: 0.5}}
           viewport={{once: false, amount: 0.5}}>
-            <div className="flex justify-between items-center bg-primary p-[35px] mb-[90px]">
+            <div className="flex justify-between items-center bg-primary p-[20px] lg:p-[35px] mb-[30px] lg:mb-[90px]">
               <span className="text-lg text-white">Download Brochure</span>
               <div className="flex">
                 <Link

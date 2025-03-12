@@ -11,7 +11,7 @@ import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 /* import { ChevronLeft, ChevronRight } from "lucide-react"; */
 import {motion} from 'framer-motion';
 
-const slideVariant = {
+/* const slideVariant = {
   hidden: { opacity: 0, y: 50 },
   visible: (i: number) => ({
     opacity: 1,
@@ -19,7 +19,7 @@ const slideVariant = {
     transition: { delay: i * 0.2, duration: 0.6, ease: "easeOut" },
   }),
 };
-
+ */
 
 
 
@@ -99,11 +99,15 @@ const RecentProjects: React.FC = () => {
           </div>
         </div>
 
-        <div className="relative">
+        <div className="relative overflow-hidden">
+          <motion.div initial={{opacity: 0, x: -50}}
+          whileInView={{opacity: 1, x: 0}}
+          transition={{duration: 0.5}}
+          viewport={{once: false, amount: 0.5}}>
           {/* Swiper Carousel */}
           <Swiper
             modules={[Navigation]}
-            slidesPerView={1.2}
+            slidesPerView={1}
             spaceBetween={40}
             navigation={{
               prevEl: prevRef.current,
@@ -115,13 +119,9 @@ const RecentProjects: React.FC = () => {
             }}
             className=""
           >
-            {projects.map((project, i) => (
+            {projects.map((project) => (
               <SwiperSlide key={project.id}>
-                <motion.div className="overflow-hidden"   initial="hidden"
-                whileInView="visible"
-                viewport={{ once: false, amount: 0.5 }}
-                variants={slideVariant}
-                custom={i}>
+                <div className="overflow-hidden" >
                   <div className="hdrsc">
                     <div className="flex justify-between items-center border-b border-primary/10 pb-[14px]">
                       <h3 className="text-lg font-normal leading-none text-primary">
@@ -153,10 +153,11 @@ const RecentProjects: React.FC = () => {
                     alt={project.name}
                     className="w-full object-cover"
                   />
-                </motion.div>
+                </div>
               </SwiperSlide>
             ))}
           </Swiper>
+          </motion.div>
         </div>
       </div>
     </section>

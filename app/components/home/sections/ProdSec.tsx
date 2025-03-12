@@ -27,7 +27,7 @@ const ProdSec = () => {
             Products
           </motion.h2>
         </div>
-        <div className="grid grid-cols-3 gap-[40px]"
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-[40px]"
         >
           {[
             { id: 1, img: "prd-1.jpg", hoverImg: "hvr-1.jpg", title: "Indoor" },

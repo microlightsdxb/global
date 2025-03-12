@@ -113,7 +113,7 @@ const HeroSection = () => {
       ref={triggerRef}
       suppressHydrationWarning
     >
-      <div className="absolute bottom-[150px] w-full z-10">
+      <div className="absolute bottom-[80px] lg:bottom-[150px] w-full z-10">
         <div className="container flex justify-end">
         <span className="text-[15px] text-white whitespace-nowrap font-light">
             <span className="font-medium "> {`0${currentSlide}`}</span> - {`0${totalSlides}`}
@@ -134,18 +134,18 @@ const HeroSection = () => {
               <div className="container h-full">
                 <div className="h-full relative">
                   <div
-                    className="title absolute bottom-[150px] transition-all ease-in-out flex flex-col"
+                    className="title absolute bottom-[80px] lg:bottom-[150px] transition-all ease-in-out flex flex-col"
 
                   >
-                    <div className="overflow-hidden mb-[30px]">
+                    <div className="overflow-hidden mb-[20px] lg:mb-[30px]">
                       <motion.h1 initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: false, amount: 0.5 }} className="text-2xl text-white leading-none font-custom font-normal w-[70%] ">
+          viewport={{ once: false, amount: 0.5 }} className="text-2xl text-white leading-none font-custom font-normal lg:w-[70%] ">
                         {project.title}
                       </motion.h1>
                     </div>
-                    <div className="overflow-hidden mb-[50px]">
+                    <div className="overflow-hidden mb-[30px] lg:mb-[50px]">
                       <motion.p initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
