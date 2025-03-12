@@ -34,7 +34,7 @@ const ProcessTimeline: React.FC = () => {
           end: "+=2000 top",
           scrub: 1,
           pin: true,
-          markers: true,
+          // markers: true,
           anticipatePin: 1, // Reduce pinning glitches
         },
       });

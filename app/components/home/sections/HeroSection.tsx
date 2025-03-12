@@ -54,7 +54,7 @@ const HeroSection = () => {
           end: `${totalSlides * 200}% top`,
           scrub: 1,
           pin: true,
-          markers: true,
+          // markers: true,
           onUpdate: (self) => {
             const index = Math.round(self.progress * (totalSlides - 1)) + 1;
             const progress = Math.min(Math.max(self.progress, 0), 1);
