@@ -54,7 +54,7 @@ const Counter: React.FC<CounterProps> = ({ end, label }) => {
   return (
     <div
       ref={ref}
-      className="text-left not-last:border-r not-last:border-[#7D7D7D] w-full"
+      className="text-left not-last:border-r not-last:border-[#7D7D7D] w-full pr-2"
     >
       <p className="text-lg font-normal text-primary leading-none">{count}+</p>
       <p className="text-gray-600 text-sm">{label}</p>
@@ -68,7 +68,7 @@ const AboutSec = () => {
       <div className="container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-[40px]">
           <div>
-            <div className="overflow-hidden mb-[30px] lg:mb-[100px]">
+            <div className="overflow-hidden mb-[30px] lg:mb-[50px] 2xl:mb-[100px]">
             <motion.h2   initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
@@ -97,7 +97,7 @@ const AboutSec = () => {
             <h3 className="text-lg text-[#7D7D7D]">
               Comprehensive Lighting Solutions Tailored for Every Space
             </h3>
-            <hr className="mt-[30px] mb-[30px] lg:mb-[80px]" />
+            <hr className="mt-[30px] mb-[30px] lg:xl-[50px] 2xl:mb-[80px]" />
             <p>
               In 2002, Microlights Limited, a lighting company based in the West
               of England manufacturing luminaires and related components,
@@ -112,7 +112,7 @@ const AboutSec = () => {
               for over 22 years, and is proud of the long standing relationships
               it has with many of its clients.
             </p>
-            <div className="flex mt-[50px]">
+            <div className="flex mt-[30px] 2xl:mt-[50px]">
               <Link
                 href={"/"}
                 className="flex gap-[20px] items-center border-t border-primary text-sm text-primary border-solid leaing-none pt-[12px] cursor-pointer group"

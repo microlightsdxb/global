@@ -33,10 +33,10 @@
     @apply px-[15px] mx-auto;
   }
   .section-spacing {
-    @apply py-[60px] lg:py-[90px] xl:py-[120px];
+    @apply py-[60px] lg:py-[90px] xl:py-[100px] 2xl:py-[120px];
   }
   .left-spacing {
-    @apply pl-[15px] lg:pl-[calc((100%-930px)/2)] xl:pl-[calc((100%-1110px)/2)] 2xl:pl-[calc((100%-95rem)/2)];
+    @apply pl-[15px] lg:pl-[calc((100%-930px)/2)] xl:pl-[calc((100%-79rem)/2)] 2xl:pl-[calc((100%-95rem)/2)];
 }
 .transition-500 {
   @apply duration-500 transition-all ease-in-out

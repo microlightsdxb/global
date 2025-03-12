@@ -5,23 +5,17 @@
     },
     {
       title:"Products",
-      url:"#",
+      url:"#"/* 
       children:[
         {
           title:"Product 1",
           url:"#"
         }
-      ]
+      ] */
     },
     {
       title:"Services",
       url:"#",
-      children:[
-        {
-          title:"Service 1",
-          url:"#"
-        }
-      ]
     },
     {
       title:"Industries",
