@@ -8,6 +8,13 @@ import { HoveredLink, Menu, MenuItem } from "../ui/navbar-menu";
 import { menuItems } from "./menuItems";
 import MobileNav from "./MobileNav";
 
+// Define the type for menu items
+type MenuItemType = {
+  title: string;
+  url: string;
+  children?: { title: string; url: string }[]; // `children` is optional
+};
+
 const Header = () => {
   const [active, setActive] = useState<string | null>(null);
 
@@ -29,16 +36,17 @@ const Header = () => {
         {/* Navigation Menu */}
         <div className="flex items-center gap-[150px]">
           <Menu setActive={setActive}>
-            {menuItems.map((menuItem, index) => (
+            {menuItems.map((menuItem: MenuItemType, index) => (
               <MenuItem
                 key={index}
                 setActive={setActive}
                 active={active}
                 url={menuItem.url}
                 item={menuItem.title}
-                nomenu={!menuItem.children} // If no submenu, set nomenu=true
+                nomenu={!menuItem.children?.length} // If no submenu, set `nomenu=true`
               >
-                {menuItem.children && menuItem.children.length > 0 && (
+                {/* Render submenus only if `children` exist */}
+                {menuItem.children?.length ? (
                   <div className="grid grid-cols-1">
                     {menuItem.children.map((item, subIndex) => (
                       <HoveredLink href={item.url} key={subIndex}>
@@ -50,7 +58,7 @@ const Header = () => {
                       </HoveredLink>
                     ))}
                   </div>
-                )}
+                ) : null}
               </MenuItem>
             ))}
           </Menu>
