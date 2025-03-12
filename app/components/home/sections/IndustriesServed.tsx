@@ -88,7 +88,10 @@ const IndustriesServed = () => {
       <div className="contntbrd">
         <div className="container">
           <div className="oveflow-hidden">
-          <h2  className="text-xl mb-[60px]" >Industries Served</h2>
+          <motion.h2   initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: false, amount: 0.5 }}  className="text-xl mb-[60px]" >Industries Served</motion.h2>
           </div>
           <div className="bomsx grid grid-cols-3 ">
             {industies.map((industry, i) => (

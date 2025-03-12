@@ -5,6 +5,7 @@ import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import Image from "next/image";
+import {motion} from 'framer-motion';
 
 interface Testimonial {
   id: number;
@@ -12,6 +13,16 @@ interface Testimonial {
   name: string;
   company: string;
 }
+
+const slideVariant = {
+  hidden: { opacity: 0, y: 50 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.2, duration: 0.6, ease: "easeOut" },
+  }),
+};
+
 
 const testimonials: Testimonial[] = [
   {
@@ -59,9 +70,13 @@ const Testimonials: React.FC = () => {
         }}
         className="tsmnls"
       >
-        {testimonials.map((testimonial) => (
+        {testimonials.map((testimonial, i) => (
           <SwiperSlide key={testimonial.id}>
-            <div className="pt-[40px] relative before:absolute before:h-[1px] before:w-full before:top-0 before:bg-white itms">
+            <motion.div className="pt-[40px] relative before:absolute before:h-[1px] before:w-full before:top-0 before:bg-white itms"   initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.5 }}
+                variants={slideVariant}
+                custom={i}>
               <p className="text-sm leading-relaxed text-[#B8B8B8]" dangerouslySetInnerHTML={{__html: testimonial.text}} />
            
               <div className="flex items-center gap-[15px] mt-[40px]">
@@ -71,7 +86,7 @@ const Testimonials: React.FC = () => {
                   <p className="text-sm text-[#B8B8B8] text-[17px]">{testimonial.company}</p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </SwiperSlide>
         ))}
       </Swiper>

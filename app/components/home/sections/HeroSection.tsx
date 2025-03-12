@@ -7,6 +7,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import c01web2 from "@/public/assets/img/home/slide1.jpg";
 import Link from "next/link";
 import { FiArrowUpRight } from "react-icons/fi";
+import {motion} from "framer-motion";
 
 
 
@@ -54,7 +55,7 @@ const HeroSection = () => {
           end: `${totalSlides * 200}% top`,
           scrub: 1,
           pin: true,
-          markers: true,
+        /*   markers: true, */
           onUpdate: (self) => {
             const index = Math.round(self.progress * (totalSlides - 1)) + 1;
             const progress = Math.min(Math.max(self.progress, 0), 1);
@@ -89,41 +90,7 @@ const HeroSection = () => {
             opacity: 0.5,
             duration: 0.8,
           }, `slide${index}`)
-       /*    .fromTo(`.slide:nth-child(${index + 1}) .title h1`, {
-            x: '-100px',
-            opacity: 0.5,
-            duration: 0.8,
-          }, {
-            x: '0px',
-            opacity: 0.5,
-          }, `slide${index}`) */
-        
-       /*  */
-        /*   .to(`.slide:nth-child(${index + 1}) .content-box`, {
-            right: "0",
-            duration: 1,
-            ease: "power2.inOut"
-          }, `slide${index}`) */
-        /*   .fromTo(`.slide:nth-child(${index + 1}) .gradient-overlay`, {
-            backgroundColor: 'hsla(0%,0%,0%,0)',
-            backgroundImage: `
-            radial-gradient(at 99% 19%, hsla(0%,0%,0%,0) 0px, transparent 80%),
-            radial-gradient(at 0% 100%, hsla(0%,0%,0%,0) 0px, transparent 80%),
-            radial-gradient(at 100% 75%, hsla(0%,0%,0%,0) 0px, transparent 30%),
-            radial-gradient(at 34% 0%, hsla(0%,0%,0%,0) 0px, transparent 30%)
-          `}, {
-            backgroundColor: 'hsla(0%,0%,0%,0)',
-            backgroundImage: `
-            radial-gradient(at 99% 19%, hsla(0%,0%,0%,0.60) 0px, transparent 80%),
-            radial-gradient(at 0% 100%, hsla(0%,0%,0%,0) 0px, transparent 80%),
-            radial-gradient(at 100% 75%, hsla(0%,0%,0%,0.60) 0px, transparent 80%),
-            radial-gradient(at 34% 0%, hsla(0%,0%,0%,0.60) 0px, transparent 80%)
-          `,
-            duration: 1,
-            ease: "power2.inOut"
-          }, `slide${index}`);
- */
-        // If not the last slide, add horizontal scroll
+       
         if (index < projects.length - 1) {
           masterTl.to(sectionRef.current, {
             x: `-${(index + 1) * 100}vw`,
@@ -133,47 +100,12 @@ const HeroSection = () => {
         }
       });
 
-      // Initial load animation for the main title and tags
-   /*    gsap.from('.slide:first-child .title h1', {
-        y: 100,
-        opacity: 0,
-        duration: 1,
-        ease: "power2.out",
-        delay: 4.2
-      }); */
-      
-      // Keep the animation for other slides unchanged
-     /*  gsap.from('.slide:not(:first-child) .title h1', {
-        y: 100,
-        opacity: 0,
-        duration: 1,
-        ease: "power2.out",
-        delay: 0.5
-      });
-
-      gsap.from('.slide:first-child .title .flex p', {
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: "power2.out",
-        delay: 4.7
-      });
-      gsap.from('.slide:not(:first-child) .title .flex p', {
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: "power2.out",
-        delay: 0.8
-      });
- */
+  
       return () => {
         ScrollTrigger.getAll().forEach(masterTl => masterTl.kill());
       };
     }
   }, [totalSlides]);
-
 
   return (
     <section
@@ -206,18 +138,29 @@ const HeroSection = () => {
 
                   >
                     <div className="overflow-hidden mb-[30px]">
-                      <h1 className="text-2xl text-white leading-none font-custom font-normal w-[70%] ">
+                      <motion.h1 initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: false, amount: 0.5 }} className="text-2xl text-white leading-none font-custom font-normal w-[70%] ">
                         {project.title}
-                      </h1>
+                      </motion.h1>
                     </div>
                     <div className="overflow-hidden mb-[50px]">
-                      <p className="text-lg text-white leading-tight font-custom font-light">
+                      <motion.p initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          viewport={{ once: false, amount: 0.5 }} className="text-lg text-white leading-tight font-custom font-light">
                         {project.subtitle}
-                      </p>
+                      </motion.p>
                     </div>
-                    <div className="flex">
+                    <div className="overflow-hidden">
+                    <motion.div className="flex" initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          viewport={{ once: false, amount: 0.5 }}>
                     <Link href={'/'} className="flex gap-[20px] items-center border-t border-white text-sm text-white border-solid leaing-none pt-[12px]">Explore <FiArrowUpRight className="text-[22px] text-white" />
-                    </Link></div>
+                    </Link></motion.div>
+                  </div>
                   </div>
                  
                 </div>

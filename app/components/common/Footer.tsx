@@ -1,15 +1,21 @@
+'use client'
 import Image from "next/image";
 import Link from "next/link";
 import { FaLinkedin, FaInstagram } from "react-icons/fa";
 /* import { BsWhatsapp } from "react-icons/bs"; */
 import { FiArrowUpRight } from "react-icons/fi";
+import {motion} from 'framer-motion';
+
 
 const Footer = () => {
   return (
     <footer className="pt-[120px] pb-[40px]">
       <div className="container">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="flex">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8"   >
+          <motion.div className="flex" initial={{opacity: 0, y: -50}}
+          whileInView={{opacity: 1, y: 0}}
+          transition={{delay: 0, duration: 0.5}}
+          viewport={{once: false, amount: 0.5}}>
             {/* Quick Links */}
             <div className="w-1/2">
               <h3 className="text-lg text-primary mb-[35px] leading-none">Quick Links</h3>
@@ -47,8 +53,11 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-          </div>
-          <div className="">
+          </motion.div>
+          <motion.div className="" initial={{opacity: 0, y: -50}}
+          whileInView={{opacity: 1, y: 0}}
+          transition={{delay: 0, duration: 0.5}}
+          viewport={{once: false, amount: 0.5}}>
             <div className="flex justify-between items-center bg-primary p-[35px] mb-[90px]">
               <span className="text-lg text-white">Download Brochure</span>
               <div className="flex">
@@ -82,7 +91,7 @@ const Footer = () => {
               </Link>
             </div>
             {/* sdfv */}
-          </div>
+          </motion.div>
         </div>
 
         {/*   <Link href="#" className="text-green-500 text-3xl mt-4 md:mt-0 fixed">
