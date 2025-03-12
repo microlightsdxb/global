@@ -81,7 +81,10 @@ const IndustriesServed = () => {
   
   return (
     <>
-    <section className="section-spacing text-white bg-black h-[150vh]">
+    <section className="section-spacing relative text-white h-[150vh] overflow-hidden">
+      <figure className="absolute bg-primary w-full h-full inset-0 -z-10">
+        <Image src={'/assets/img/banner/industry.jpg'} width={1900} height={900} alt="bnr" className="w-full h-full absolute object-center object-cover" />
+      </figure>
       <div className="contntbrd">
         <div className="container">
           <div className="oveflow-hidden">

@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import Image from "next/image";
 
 interface Testimonial {
   id: number;
@@ -38,7 +39,10 @@ const testimonials: Testimonial[] = [
 
 const Testimonials: React.FC = () => {
   return (
-    <section className="section-spacing bg-primary text-white">
+    <section className="section-spacing relative text-white">
+          <figure className="absolute bg-primary w-full h-full inset-0 -z-10">
+                    <Image src={'/assets/img/banner/testimonial.jpg'} width={1900} height={900} alt="bnr" className="w-full h-full absolute object-center object-cover" />
+                  </figure>
       <div className="container">
         <div className="mb-[80px]">
       <h2 className="text-2xl leading-none">Testimonials</h2>

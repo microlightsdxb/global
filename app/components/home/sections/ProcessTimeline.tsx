@@ -2,6 +2,7 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -50,6 +51,9 @@ const ProcessTimeline: React.FC = () => {
       className="mt-[-90px] -z-10 relative bg-primary pt-[210px] pb-[60px] lg:pb-[90px] 2xl:pb-[120px] text-white overflow-x-hidden h-screen"   ref={containerRef2}
     
     >
+         <figure className="absolute bg-primary w-full h-full inset-0 -z-10">
+              <Image src={'/assets/img/banner/process.jpg'} width={1900} height={900} alt="bnr" className="w-full h-full absolute object-center object-cover" />
+            </figure>
       <div className="container">
         <div className="overflow-hidden mb-[80px]" >
         <h2 className="text-xl ">

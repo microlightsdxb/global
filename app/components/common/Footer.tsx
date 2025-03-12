@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { FaLinkedin, FaInstagram } from "react-icons/fa";
 /* import { BsWhatsapp } from "react-icons/bs"; */
@@ -60,20 +61,18 @@ const Footer = () => {
               </div>
             </div>
 
-            <div className="flex flex-col md:flex-row justify-between items-center mt-10 border-b pt-6">
-              <div className="flex space-x-4">
-                <Link href="#" className="text-black text-2xl">
-                  <FaLinkedin />
+            <div className="flex flex-col md:flex-row justify-between items-center mt-10 border-b pb-[30px]">
+              <div className="flex space-x-[10px]">
+                <Link href="#" className="text-white bg-primary rounded-full text-center flex justify-center items-center w-[40px] h-[40px]">
+                  <FaLinkedin size={18}/>
                 </Link>
-                <Link href="#" className="text-black text-2xl">
-                  <FaInstagram />
+                <Link href="#" className="text-white bg-primary rounded-full text-center flex justify-center items-center  w-[40px] h-[40px]">
+                  <FaInstagram size={18}/>
                 </Link>
               </div>
 
               <div className="flex space-x-6 mt-4 md:mt-0">
-                <img src="/ce-logo.png" alt="CE" className="h-6" />
-                <img src="/rohs-logo.png" alt="RoHS" className="h-6" />
-                <img src="/cb-logo.png" alt="CB" className="h-6" />
+              <Image src={'/assets/img/icons/fticons.svg'} width={150} height={30} className="w-auto" alt="ftr"/>
               </div>
             </div>
             <div className="text-primary/50 text-center mt-6 text-[13px]">
