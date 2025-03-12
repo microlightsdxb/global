@@ -1,16 +1,68 @@
 @import "tailwindcss";
 
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #000000;
+  --font: #555555;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-primary: var(--primary);
+  --color-font: var(--font);
+  --font-sans: "Parkinsans", sans-serif;
+
+
+  --text-2xl: clamp(2.5rem, 5vw, 3.75rem); /* 40px - 60px */
+  --text-xl: clamp(2rem, 4.5vw, 3.4375rem); /* 32px - 55px */
+  --text-lg: clamp(1.5rem, 3vw, 1.875rem); /* 24px - 30px */
+  --text-sm: clamp(1rem, 2vw, 1.125rem); /* 16px - 18px */
+  --text-xs: clamp(0.875rem, 1.8vw, 1.0625rem); /* 14px - 17px */
+
+  --breakpoint-2xl: 96.875rem;
+
+  --container-2xl: 95rem;
 }
+
+
+
+  .container {
+    @apply px-[15px] mx-auto;
+  }
+  .section-spacing {
+    @apply py-[60px] lg:py-[90px] xl:py-[120px];
+  }
+  .left-spacing {
+    @apply pl-[15px] lg:pl-[calc((100%-930px)/2)] xl:pl-[calc((100%-1110px)/2)] 2xl:pl-[calc((100%-95rem)/2)];
+}
+.transition-500 {
+  @apply duration-500 transition-all ease-in-out
+}
+.tsmnls .swiper-pagination {
+  @apply relative text-left mt-[3rem];
+
+}
+.tsmnls .swiper-pagination span.swiper-pagination-bullet {
+    @apply bg-[#D9D9D9]/35 opacity-100
+    
+}
+.tsmnls .swiper-pagination span.swiper-pagination-bullet-active {
+    @apply bg-[#D9D9D9]
+    
+}
+.tsmnls .swiper-slide .itms::before {
+  @apply transition-all duration-500 ease-in-out
+}
+.tsmnls .swiper-slide-active .itms::before {
+  @apply h-[3px]
+}
+/* 
+  .left-spacing {
+    @apply pl-[15px] lg:pl-[calc((100%-930px)/2)] xl:pl-[calc((100%-1110px)/2)] xxl:pl-[calc((100%-1390px)/2)] xxxl:pl-[calc((100%-1620px)/2)] ;
+  } */
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -18,9 +70,13 @@
     --foreground: #ededed;
   }
 }
-
+p:not(:last-child) {
+  @apply mb-3
+}
 body {
   background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--font);
+  font-family: var(--font-sans);
+  @apply text-sm;
+
 }
