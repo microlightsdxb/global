@@ -85,7 +85,7 @@ const HeroSection = () => {
               scale: 1.2,
           }, `slide${index}`)
           .to(`.slide:nth-child(${index + 1}) .title`, {
-            x: '60px',
+            x: '30px',
             opacity: 0.5,
             duration: 0.8,
           }, `slide${index}`)
