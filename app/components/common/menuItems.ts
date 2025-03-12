@@ -1,4 +1,9 @@
-  export const menuItems = [
+export type MenuItem = {
+  title: string;
+  url: string;
+  children?: MenuItem[]; // Make 'children' optional
+};
+export const menuItems: MenuItem[] = [
     {
       title:"About",
       url:"#",
