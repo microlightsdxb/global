@@ -1,14 +1,21 @@
+'use client'
+import Image from "next/image";
 import Link from "next/link";
 import { FaLinkedin, FaInstagram } from "react-icons/fa";
 /* import { BsWhatsapp } from "react-icons/bs"; */
 import { FiArrowUpRight } from "react-icons/fi";
+import {motion} from 'framer-motion';
+
 
 const Footer = () => {
   return (
-    <footer className="pt-[120px] pb-[40px]">
+    <footer className="pt-[60px] lh:pt-[120px] pb-[40px]">
       <div className="container">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="flex">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8"   >
+          <motion.div className="flex" initial={{opacity: 0, y: -50}}
+          whileInView={{opacity: 1, y: 0}}
+          transition={{delay: 0, duration: 0.5}}
+          viewport={{once: false, amount: 0.5}}>
             {/* Quick Links */}
             <div className="w-1/2">
               <h3 className="text-lg text-primary mb-[35px] leading-none">Quick Links</h3>
@@ -46,9 +53,12 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-          </div>
-          <div className="">
-            <div className="flex justify-between items-center bg-primary p-[35px] mb-[90px]">
+          </motion.div>
+          <motion.div className="" initial={{opacity: 0, y: -50}}
+          whileInView={{opacity: 1, y: 0}}
+          transition={{delay: 0, duration: 0.5}}
+          viewport={{once: false, amount: 0.5}}>
+            <div className="flex justify-between items-center bg-primary p-[20px] lg:p-[35px] mb-[30px] lg:mb-[90px]">
               <span className="text-lg text-white">Download Brochure</span>
               <div className="flex">
                 <Link
@@ -60,20 +70,18 @@ const Footer = () => {
               </div>
             </div>
 
-            <div className="flex flex-col md:flex-row justify-between items-center mt-10 border-b pt-6">
-              <div className="flex space-x-4">
-                <Link href="#" className="text-black text-2xl">
-                  <FaLinkedin />
+            <div className="flex flex-col md:flex-row justify-between items-center mt-10 border-b pb-[30px]">
+              <div className="flex space-x-[10px]">
+                <Link href="#" className="text-white bg-primary rounded-full text-center flex justify-center items-center w-[40px] h-[40px]">
+                  <FaLinkedin size={18}/>
                 </Link>
-                <Link href="#" className="text-black text-2xl">
-                  <FaInstagram />
+                <Link href="#" className="text-white bg-primary rounded-full text-center flex justify-center items-center  w-[40px] h-[40px]">
+                  <FaInstagram size={18}/>
                 </Link>
               </div>
 
               <div className="flex space-x-6 mt-4 md:mt-0">
-                <img src="/ce-logo.png" alt="CE" className="h-6" />
-                <img src="/rohs-logo.png" alt="RoHS" className="h-6" />
-                <img src="/cb-logo.png" alt="CB" className="h-6" />
+              <Image src={'/assets/img/icons/fticons.svg'} width={150} height={30} className="w-auto" alt="ftr"/>
               </div>
             </div>
             <div className="text-primary/50 text-center mt-6 text-[13px]">
@@ -83,7 +91,7 @@ const Footer = () => {
               </Link>
             </div>
             {/* sdfv */}
-          </div>
+          </motion.div>
         </div>
 
         {/*   <Link href="#" className="text-green-500 text-3xl mt-4 md:mt-0 fixed">

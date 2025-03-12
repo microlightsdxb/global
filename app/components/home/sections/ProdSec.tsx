@@ -18,20 +18,25 @@ const ProdSec = () => {
     <section className="section-spacing">
       <div className="container">
         <div className="overflow-hidden">
-          <h2 className="text-xl leading-none mb-[50px] text-primary">
+          <motion.h2
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: false, amount: 0.5 }}
+          className="text-xl leading-none mb-[50px] text-primary">
             Products
-          </h2>
+          </motion.h2>
         </div>
-        <div className="grid grid-cols-3"
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-[40px]"
         >
           {[
             { id: 1, img: "prd-1.jpg", hoverImg: "hvr-1.jpg", title: "Indoor" },
             { id: 2, img: "prd-2.jpg", hoverImg: "hvr-1.jpg", title: "Outdoor" },
             { id: 3, img: "prd-3.jpg", hoverImg: "hvr-1.jpg", title: "Industrial" },
           ].map((product, i) => (
-            <div key={product.id}>
+            <div key={product.id} className="relative last:before:hidden before:content-[] before:absolute before:h-full before:w-[1px] before:bg-primary/10 before:right-[-20px] ">
               <motion.div
-                className="prditm group cursor-pointer"
+                className="prditm group cursor-pointer "
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.5 }}
