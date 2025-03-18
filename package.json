@@ -6,21 +6,28 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "create-admin": "ts-node --project tsconfig.scripts.json scripts/create-admin.ts"
   },
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
+    "bcryptjs": "^3.0.2",
+    "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.4.10",
     "gsap": "^3.12.7",
+    "jose": "^6.0.10",
     "lenis": "^1.2.3",
     "lucide-react": "^0.479.0",
+    "mongoose": "^8.12.1",
     "motion": "^12.5.0",
     "next": "15.2.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
     "swiper": "^11.2.5",
-    "tailwind-merge": "^3.0.2"
+    "tailwind-merge": "^3.0.2",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
