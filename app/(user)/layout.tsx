@@ -1,12 +1,10 @@
 import type { Metadata } from "next";
 import { Parkinsans } from "next/font/google"; // Import ParkinSans
-import "./globals.css";
-/* import Header from "./componennts/common/Header"; */
-
-
-import Footer from "../components/common/Footer";
-import Header from "../components/common/Header";
+import "../globals.css";
 import SmoothScroll from "../components/common/SmoothScroll";
+import Header from "../components/common/Header";
+import Footer from "../components/common/Footer";
+/* import Header from "./componennts/common/Header"; */
 
 const parkinSans = Parkinsans({
   variable: "--font-parkin-sans",
@@ -26,10 +24,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${parkinSans.variable} antialiased`}>
-        <SmoothScroll/>
-      <Header/>
+        <SmoothScroll />
+        <Header />
         {children}
-        <Footer/>
+        <Footer />
       </body>
     </html>
   );
