@@ -10,7 +10,8 @@ declare global {
     | undefined;
 }
 
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/microlights";
+const MONGODB_URI = process.env.NEXT_PUBLIC_MONGODB_URI || "mongodb://127.0.0.1:27017/microlights";
+
 
 if (!MONGODB_URI) {
   throw new Error("Please add your MONGODB_URI to .env.local");
