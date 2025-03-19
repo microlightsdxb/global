@@ -3,8 +3,8 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req:NextRequest) {
     try {
-        const {name,client,industry,scope,location,description} = await req.json();
-        const project = await Project.create({name,client,industry,scope,location,description});
+        const {name,client,industry,scope,location,description,images,thumbnail} = await req.json();
+        const project = await Project.create({name,client,industry,scope,location,description,images,thumbnail});
         if(project){
             return NextResponse.json({message: "Project added successfully"},{status: 200});
         }
@@ -21,8 +21,8 @@ export async function PATCH(req:NextRequest) {
     try {
         const {searchParams} = new URL(req.url);
         const id = searchParams.get("id");
-        const {name,client,industry,scope,location,description} = await req.json();
-        const project = await Project.findByIdAndUpdate(id,{name,client,industry,scope,location,description});
+        const {name,client,industry,scope,location,description,images,thumbnail} = await req.json();
+        const project = await Project.findByIdAndUpdate(id,{name,client,industry,scope,location,description,images,thumbnail});
         if(project){
             return NextResponse.json({message: "Project updated successfully"},{status: 200});
         }
@@ -59,5 +59,25 @@ export async function GET(req:NextRequest) {
     } catch (error) {
         console.log("Error in fetching projects",error);
         return NextResponse.json({message: "Error in fetching projects"},{status: 500});
+    }
+}
+
+export async function DELETE(req:NextRequest) {
+    try {
+        const {searchParams} = new URL(req.url);
+        const id = searchParams.get("id");
+        if(id){
+            const project = await Project.findByIdAndDelete(id);
+            if(project){
+                return NextResponse.json({message: "Project deleted successfully"},{status: 200});
+            }else{
+                return NextResponse.json({message: "Error in deleting project"},{status: 500});
+            }
+        }else{
+            return NextResponse.json({message: "Error in deleting project"},{status: 500});
+        }   
+    } catch (error) {
+        console.log("Error in deleting project",error);
+        return NextResponse.json({message: "Error in deleting project"},{status: 500});
     }
 }

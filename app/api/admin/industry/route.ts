@@ -1,6 +1,8 @@
 import Industry from "@/models/Industry";
 import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
+import Project from "@/models/Project";
+import mongoose from "mongoose";
 
 export async function GET(req:NextRequest) {
     try {
@@ -34,36 +36,65 @@ export async function POST(req:NextRequest) {
 }
 
 export async function PATCH(req:NextRequest) {
+    const session = await mongoose.startSession();
     try {
         await connectDB();
         const searchParams = req.nextUrl.searchParams;
         const id = searchParams.get("id");
-        const { name } = await req.json();
-        const industry = await Industry.findByIdAndUpdate(id, { name }, { new: true });
+        session.startTransaction();
+        const { name,oldName } = await req.json();
+        const projects = await Project.find();
+        projects.map(async (project) => {
+            if(project.industry === oldName){
+                await Project.findByIdAndUpdate(project._id, { industry: name }, { new: true });
+            }
+        });
+        const industry = await Industry.findByIdAndUpdate(id, { name,oldName }, { new: true });
         if(industry){
+            await session.commitTransaction();
             return NextResponse.json({ message: "Industry updated successfully" }, { status: 200 });
         }else{
+            await session.abortTransaction();
             return NextResponse.json({ message: "Error updating industry" }, { status: 500 });
         }
     } catch (error) {
         console.log(error)
+        await session.abortTransaction();
         return NextResponse.json({ message: "Error updating industry" }, { status: 500 });
+    }finally{
+        await session.endSession();
     }
 }
 
 export async function DELETE(req:NextRequest) {
+    const session = await mongoose.startSession();
     try {
         await connectDB();
         const searchParams = req.nextUrl.searchParams;
         const id = searchParams.get("id");
+        session.startTransaction();
+        const deletedIndustry = await Industry.findById(id);
+        if(deletedIndustry){
+            const projects = await Project.find();
+            projects.map(async (project) => {
+                if(project.industry === deletedIndustry.name){
+                    await Project.findByIdAndUpdate(project._id, { industry: "" }, { new: true });
+                }
+            });
+        }
         const industry = await Industry.findByIdAndDelete(id);
         if(industry){
+            await session.commitTransaction();
             return NextResponse.json({ message: "Industry deleted successfully" }, { status: 200 });
         }else{
+            await session.abortTransaction();
             return NextResponse.json({ message: "Error deleted industry" }, { status: 500 });
         }
     } catch (error) {
         console.log(error)
+        await session.abortTransaction();
         return NextResponse.json({ message: "Error deleted industry" }, { status: 500 });
+    }finally{
+        await session.endSession();
     }
 }

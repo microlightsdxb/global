@@ -19,6 +19,8 @@ import { useRouter } from "next/navigation";
 
 export default function Projects() {
 
+  const [oldIndustry, setOldIndustry] = useState<string>("");
+  const [oldLocation, setOldLocation] = useState<string>("");
   const [industry, setIndustry] = useState<string>("");
   const [location, setLocation] = useState<string>("");
   const [projectList, setProjectList] = useState<{_id: string, name: string, client: string, industry: string, scope: string, location: string, description: string}[]>([]);
@@ -80,12 +82,13 @@ export default function Projects() {
     try {
       const response = await fetch(`/api/admin/industry?id=${id}`,{
         method: "PATCH",
-        body: JSON.stringify({ name: industry }),
+        body: JSON.stringify({ name: industry ,  oldName: oldIndustry }),
       });
       if(response.ok) {
         const data = await response.json();
         alert(data.message);
         handleFetchIndustry();
+        setOldIndustry("");
       }else{
         const data = await response.json();
         alert(data.message);
@@ -153,12 +156,13 @@ export default function Projects() {
     try {
       const response = await fetch(`/api/admin/location?id=${id}`,{
         method: "PATCH",
-        body: JSON.stringify({ name: location }),
+        body: JSON.stringify({ name: location, oldName: oldLocation }),
       });
       if(response.ok) {
         const data = await response.json();
         alert(data.message);
         handleFetchLocation();
+        setOldLocation("");
       }else{
         const data = await response.json();
         alert(data.message);
@@ -186,6 +190,24 @@ export default function Projects() {
     }
   }
 
+  const handleDeleteProject = async(id: string) => {
+    try {
+      const response = await fetch(`/api/admin/project?id=${id}`,{
+        method: "DELETE",
+      });
+      if(response.ok) {
+        const data = await response.json();
+        alert(data.message);
+        handleFetchProjects();
+      }else{
+        const data = await response.json();
+        alert(data.message);
+      }
+    } catch (error) {
+      console.log("Error deleting project", error);
+    }
+  }
+
   useEffect(()=>{
     handleFetchProjects();
     handleFetchIndustry();
@@ -195,7 +217,7 @@ export default function Projects() {
   return (
     <div className="h-screen grid grid-cols-2 gap-5">
       <div className="flex flex-col gap-2 h-screen">
-        <div className="h-1/2 w-full p-2 border-2 border-gray-300 rounded-md">
+        <div className="h-1/2 w-full p-2 border-2 border-gray-300 rounded-md overflow-y-auto">
           <div className="flex justify-between border-b-2 pb-2">
             <Label className="text-sm font-bold">Industry</Label>
             <Dialog>
@@ -220,7 +242,7 @@ export default function Projects() {
               </div>
               <div className="flex gap-5">
               <Dialog>
-              <DialogTrigger onClick={()=>setIndustry(item.name)}><MdEdit/></DialogTrigger>
+              <DialogTrigger onClick={()=>{setIndustry(item.name); setOldIndustry(item.name)}}><MdEdit/></DialogTrigger>
               <DialogContent>
                 <DialogHeader>
                   <DialogTitle>Edit Industry</DialogTitle>
@@ -258,7 +280,7 @@ export default function Projects() {
         </div>
 
 
-        <div className="h-1/2 w-full p-2 border-2 border-gray-300 rounded-md">
+        <div className="h-1/2 w-full p-2 border-2 border-gray-300 rounded-md overflow-y-auto">
           <div className="flex justify-between border-b-2 pb-2">
             <Label className="text-sm font-bold">Location</Label>
             <Dialog>
@@ -285,7 +307,7 @@ export default function Projects() {
               </div>
               <div className="flex gap-5">
               <Dialog>
-                <DialogTrigger onClick={()=>setLocation(item.name)}><MdEdit/></DialogTrigger>
+                <DialogTrigger onClick={()=>{setLocation(item.name); setOldLocation(item.name)}}><MdEdit/></DialogTrigger>
                 <DialogContent>
                   <DialogHeader>
                     <DialogTitle>Edit Location</DialogTitle>
@@ -326,12 +348,12 @@ export default function Projects() {
 
       </div>
 
-      <div className="h-screen w-full p-2 border-2 border-gray-300 rounded-md">
+      <div className="h-screen w-full p-2 border-2 border-gray-300 rounded-md overflow-y-auto">
         <div className="flex justify-between border-b-2 pb-2">
           <Label className="text-sm font-bold">Projects</Label>
           <Button onClick={()=>router.push("/admin/projects/add")}>Add Project</Button>
         </div>
-        <div className="mt-2">
+        <div className="mt-2 flex flex-col gap-2">
           {projectList.map((item)=>(
             <div className="flex justify-between border p-1 items-center rounded-md" key={item._id}>
             <div>
@@ -339,7 +361,21 @@ export default function Projects() {
             </div>
             <div className="flex gap-5">
               <MdEdit onClick={()=>router.push(`/admin/projects/edit/${item._id}`)}/>
-              <MdDelete />
+              
+              <Dialog>
+              <DialogTrigger><MdDelete/></DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle>Are you sure?</DialogTitle>
+                </DialogHeader>
+                <div className="flex gap-2">
+                  <DialogClose className="bg-black text-white px-2 py-1 rounded-md">No</DialogClose>
+                  <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={()=>handleDeleteProject(item._id)}>Yes</DialogClose>
+                </div>
+
+              </DialogContent>
+
+            </Dialog>
             </div>
           </div>
           ))}

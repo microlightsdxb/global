@@ -17,6 +17,8 @@ import { useForm, Controller } from "react-hook-form";
 import { Button } from '@/components/ui/button'
 import { useRouter } from 'next/navigation'
 import { useParams } from 'next/navigation'
+import { ImageUploader } from '@/components/ui/image-uploader'
+import Image from 'next/image';
 
 interface ProjectFormProps {
     name: string;
@@ -25,18 +27,21 @@ interface ProjectFormProps {
     scope: string;
     location: string;
     description: string;
+    images: string[];
+    thumbnail: string;
 }
 
 
-const ProjectForm = ({editMode}:{editMode?:boolean}) => {
+const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
 
     const router = useRouter();
-    const {id} = useParams();
+    const { id } = useParams();
 
     const [industryList, setIndustryList] = useState<{ name: string }[]>([]);
     const [locationList, setLocationList] = useState<{ name: string }[]>([]);
+    const [imageUrls, setImageUrls] = useState<string[]>([]);
 
-    const { register, handleSubmit, setValue,control, formState: { errors } } = useForm<ProjectFormProps>();
+    const { register, handleSubmit, setValue, watch,control, formState: { errors } } = useForm<ProjectFormProps>();
 
     const handleAddProject = async (data: ProjectFormProps) => {
         try {
@@ -57,16 +62,18 @@ const ProjectForm = ({editMode}:{editMode?:boolean}) => {
     const fetchProjectData = async () => {
         try {
             const response = await fetch(`/api/admin/project?id=${id}`);
-            if(response.ok){
+            if (response.ok) {
                 const data = await response.json();
                 setValue("name", data.data.name);
                 setValue("client", data.data.client);
                 setValue("industry", data.data.industry);
                 setValue("scope", data.data.scope);
-                console.log(data.data.location)
+                setValue("thumbnail", data.data.thumbnail);
+                setValue("images", data.data.images);
+                setImageUrls(data.data.images);
                 setValue("location", data.data.location);
                 setValue("description", data.data.description);
-            }else{
+            } else {
                 const data = await response.json();
                 alert(data.message);
             }
@@ -102,18 +109,38 @@ const ProjectForm = ({editMode}:{editMode?:boolean}) => {
     }
 
     useEffect(() => {
-        fetchIndustry().then(()=>fetchLocation().then(()=>((editMode) ? fetchProjectData() : null)));
+        fetchIndustry().then(() => fetchLocation().then(() => ((editMode) ? fetchProjectData() : null)));
     }, []);
+
+    const handleImageUpload = async (uploadedUrl: string) => {
+        setImageUrls((prev) => [...prev, uploadedUrl]);
+        setValue("images", [...imageUrls, uploadedUrl]);
+      };
+
+      const handleRemoveImage = (indexToRemove: number) => {
+        setImageUrls((prev) => prev.filter((_, index) => index !== indexToRemove));
+        setValue(
+          "images",
+          imageUrls.filter((_, index) => index !== indexToRemove)
+        );
+      };
 
 
     return (
         <div className='flex flex-col gap-5'>
             <h1 className='text-lg font-bold'>{editMode ? "Edit Project" : "Add Project"}</h1>
             <form className='flex flex-col gap-5 border p-2 rounded-md' onSubmit={handleSubmit(handleAddProject)}>
-                <div className='flex flex-col gap-2'>
-                    <Label className='pl-3'>Name</Label>
-                    <Input type='text' placeholder='Project Name' {...register("name", { required: "Name is required" })} />
-                    {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
+                <div className='grid grid-cols-2 gap-2'>
+                    <div>
+                        <Label className='pl-3'>Name</Label>
+                        <Input type='text' placeholder='Project Name' {...register("name", { required: "Name is required" })} />
+                        {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
+                    </div>
+                    <div>
+                        <Label className='pl-3'>Thumbnail</Label>
+                        <ImageUploader onChange={(url)=>setValue("thumbnail",url)} value={watch("thumbnail")} />
+                        {errors.thumbnail && <p className='text-red-500'>{errors.thumbnail.message}</p>}
+                    </div>
                 </div>
                 <div className='flex flex-col gap-2'>
                     <Label className='pl-3'>Client</Label>
@@ -186,9 +213,38 @@ const ProjectForm = ({editMode}:{editMode?:boolean}) => {
                     }} />
                     {errors.description && <p className='text-red-500'>{errors.description.message}</p>}
                 </div>
+
+                <div>
+                    <Label className="block text-sm font-medium text-gray-700">Gallery</Label>
+                    <div className="mt-2">
+                        <ImageUploader onChange={handleImageUpload} deleteAfterUpload={true} />
+                    </div>
+                    <div className="mt-4 grid grid-cols-3 gap-4">
+                        {imageUrls.map((url, index) => (
+                            <div key={index} className="relative h-40">
+                                <Image
+                                    src={url}
+                                    alt={`Uploaded image ${index + 1}`}
+                                    className="h-full w-full object-cover rounded-lg"
+                                    width={100}
+                                    height={100}
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => handleRemoveImage(index)}
+                                    className="absolute top-2 right-2 bg-red-500 text-white p-1 rounded-full hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500"
+                                >
+                                    ×
+                                </button>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
                 <div className='flex justify-center'>
                     <Button type='submit'>Submit</Button>
                 </div>
+
             </form>
         </div>
     )
