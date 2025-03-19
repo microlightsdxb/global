@@ -32,7 +32,7 @@ const Mission: React.FC<FrameworkSectionProps> = ({
 
               {data.map((framework) => (
                 <div key={framework.id}>
-                  <Image src={framework.icon} alt=""   height={75}></Image>
+                  <Image src={framework.icon} alt=""   className="h-[45px] md:h-[45px] lg:h-[45px] xl:h-[75px] w-auto"></Image>
                   <div className="border-b-1 border-[#fff]  mt-[20px] md:mt-[40px] mb-[20px] md:mb-[44px] "></div>
                   <h3 className="text-xl text-white mb-[11px]">{framework.title}</h3>
                   <p className="text-white text-sm font-light">{framework.dec}</p>
