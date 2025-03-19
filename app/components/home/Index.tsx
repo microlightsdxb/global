@@ -20,7 +20,7 @@ const Index = () => {
     <>
   <HeroSection/>
     <ProdSec/>
-  
+
    <IndustriesServed/>
     <AboutSec/>
     <ProcessTimeline/>
