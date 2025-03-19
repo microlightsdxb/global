@@ -4,9 +4,9 @@ import "./globals.css";
 /* import Header from "./componennts/common/Header"; */
 
 
-import Footer from "./components/common/Footer";
-import Header from "./components/common/Header";
-import SmoothScroll from "./components/common/SmoothScroll";
+import Footer from "../components/common/Footer";
+import Header from "../components/common/Header";
+import SmoothScroll from "../components/common/SmoothScroll";
 
 const parkinSans = Parkinsans({
   variable: "--font-parkin-sans",
