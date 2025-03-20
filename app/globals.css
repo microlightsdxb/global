@@ -52,6 +52,8 @@
   --text-lg: clamp(1.5rem, 3vw, 1.875rem); /* 24px - 30px */
   --text-sm: clamp(1rem, 2vw, 1.125rem); /* 16px - 18px */
   --text-xs: clamp(0.875rem, 1.8vw, 1.0625rem); /* 14px - 17px */
+  --text-25: clamp(1.2rem, 3vw, 1.563rem);
+  --text-40: clamp(1.8rem, 3vw, 2.5rem);
 
   --breakpoint-2xl: 96.875rem;
 
@@ -125,6 +127,24 @@
   .container {
     @apply px-[15px] mx-auto;
   }
+  .pb-150 {
+    @apply pb-[50px] lg:pb-[60px] xl:pb-[80px] 2xl:pb-[150px];
+  }
+  .pt-100 {
+    @apply pt-[50px] lg:pt-[60px] xl:pt-[80px] 2xl:pt-[100px];
+  }
+  .pb-100 {
+    @apply pb-[50px] lg:pb-[60px] xl:pb-[80px] 2xl:pb-[100px];
+  }
+  .py-100 {
+    @apply py-[50px] lg:py-[60px] xl:py-[80px] 2xl:py-[100px];
+  }
+  .py-90 {
+    @apply py-[40px] lg:py-[50px] xl:py-[70px] 2xl:py-[90px];
+  }
+  .py-70 {
+    @apply py-[10px] lg:py-[30px] xl:py-[50px] 2xl:py-[70px];
+  }
   .section-spacing {
     @apply py-[60px] lg:py-[90px] xl:py-[100px] 2xl:py-[120px];
   }
@@ -180,6 +200,7 @@ body {
   @apply text-sm;
 
 }
+.pmargin0 p{margin-bottom: 0px !important;}
 
 .dark {
   --background: oklch(0.129 0.042 264.695);
@@ -223,3 +244,16 @@ body {
     @apply bg-background text-foreground;
   }
 }
+.thumpslider .swiper-slide{height: 134px !important;}
+.pmargin0 p{margin-bottom: 0px !important;}
+.befst{position: relative;}
+.befst::before{content: '';
+  position: absolute;
+  width: 200%;
+  left: -222px;
+  height: 100%;
+  background: #3e3e3e85;}
+  .befst .descd {
+    opacity: 1;
+    height: auto;
+  }
