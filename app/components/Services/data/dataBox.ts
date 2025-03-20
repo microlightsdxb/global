@@ -2,6 +2,53 @@ import { assets } from "@/public/assets/assets";
 
 
 
+export const banner = {
+  data: [
+    {
+      id: 1,
+      title: "Microlights House of Design",
+      image: assets.serbanner.src,
+      dec: [
+        "For the past 25 years, Microlights has been a tried and tested partner in the lighting industry across the GCC region, Europe, and Asia. From inception, Microlights has been a beacon of innovation, dedicated to meeting the unique needs of our clients by providing quality lighting products, value-added solutions, with a commitment to sustainability.",
+        "Our experienced in-house design team, combined with our meticulous technical and project management experts, ensures the delivery of state-of-the-art lighting solutions. We cater to the Retail, Hospitality, Commercial, Residential, and Industrial sectors, offering Smart Lighting Solutions, professional on-site inspections, wireless Bluetooth dimming control solutions, and comprehensive after-sales support."
+      ]
+    }
+  ]
+};
+export const design = {
+  data: [
+    {
+      id: 1,
+      title: "Design Process",
+      dec: [
+        "Our in-house design team consists of skilled professionals who are both lighting designers and engineers who are able to offer lighting design services as a separate package for your projects. Our design team is able to work closely with you to ensure that the lighting design aspect of your project aligns with your requirements, is visually appealing, and is value-engineered.",
+       ]
+    }
+  ]
+};
+export const vision = {
+  data: [
+    {
+      id: 1,
+      title: "Our Mission ",
+      dec: "Lighting the Way Forward. Our mission is to stay unique and innovative, taking care of lighting projects while ensuring customer satisfaction, we aim to be the hub of lighting and technical knowledge.",
+      icon:assets.mission,
+    } ,
+    {
+      id: 2,
+      title: "Our Vision",
+      dec: "Our vision is to be the go-to destination for your lighting needs, providing sustainable solutions and instilling confidence in our customers.",
+      icon: assets.vission,
+    } ,
+    {
+      id: 3,
+      title: "Our Values",
+      dec: "Teamwork, Passionate, Innovative, Integrity, Listen to our customers.",
+      icon: assets.values,
+    }
+  ],
+};
+
 export const whymicolights = {
   title: "Why Microlights",
   data: [

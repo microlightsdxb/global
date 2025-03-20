@@ -6,7 +6,6 @@ interface FrameworkItem {
   id: number;
   title: string;
   dec: string[];
-  icon: string;
 }
 
 interface FrameworkSectionProps {
@@ -28,7 +27,6 @@ const Introducing: React.FC<FrameworkSectionProps> = ({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-[40px]">
               <div>
                 <h2 className="text-xl text-black mb-[45px] md:mb-[57px] leading-[1.3]">{framework.title}</h2>
-                <Image src={framework.icon} alt=""></Image>
               </div>
               <div>
 

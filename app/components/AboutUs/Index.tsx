@@ -6,9 +6,7 @@ import Introducing from "./sections/Introducing";
 import Mission from "./sections/Mission";
 import WhyMicolights from "./sections/WhyMicolights";
 
-import { vision } from "./data/vision"
-import { whymicolights } from "./data/whymicolights"
-import { intro } from "./data/intro"
+import {banner,intro,whymicolights,vision} from "./data/dataBox"
 
 
 
@@ -16,7 +14,7 @@ const Index = () => {
   return (
     <>
       <div className="headerpadding"> </div>
-        <Imgbanner />
+        <Imgbanner data={banner.data} />
       <Introducing data={intro.data} />
       <Mission data={vision.data} />
       <WhyMicolights title={whymicolights.title}  data={whymicolights.data} />
