@@ -5,7 +5,7 @@ import Imgbanner from "../common/Imgbanner";
 import Introducing from "./sections/Introducing";
 import Conceptual from "./sections/Conceptual";
 
-import { banner,design ,whymicolights} from "./data/dataBox"
+import { banner,design } from "./data/dataBox"
 import ImageSec from "./sections/ImageSec";
 
 
