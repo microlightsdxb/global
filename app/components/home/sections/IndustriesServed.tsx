@@ -80,7 +80,7 @@ const IndustriesServed = () => {
   }, []) */
   
   return (
-    <>
+    <div>
     <section className="section-spacing relative text-white h-[170vh] lg:h-[133vh] 2xl:h-[150vh] overflow-hidden">
       <figure className="absolute bg-primary w-full h-full inset-0 -z-10">
         <Image src={'/assets/img/banner/industry.jpg'} width={1900} height={900} alt="bnr" className="w-full h-full absolute object-center object-cover" />
@@ -116,7 +116,7 @@ const IndustriesServed = () => {
         </div>
       </div>
     </section>
-    </>
+    </div>
   );
 };
 

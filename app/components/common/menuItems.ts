@@ -10,7 +10,7 @@ export const menuItems: MenuItem[] = [
     },
     {
       title:"Products",
-      url:"#"
+      url:"/products"
      /*  children:[
         {
           title:"Product 1",

@@ -24,7 +24,7 @@ const WhyMicolights: React.FC<FrameworkSectionProps> = ({
 
 }) => {
   return (
-    <>
+    <div>
       <section className="bg-[#f2f2f2]">
         <div className="container">
           <div className=" py-[60px] lg:py-[90px] xl:py-[120px] 2xl:py-[151px]  ">
@@ -61,7 +61,7 @@ const WhyMicolights: React.FC<FrameworkSectionProps> = ({
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 };
 

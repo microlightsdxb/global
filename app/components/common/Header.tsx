@@ -24,6 +24,7 @@ const Header = () => {
       <div className="container-fluid left-spacing pr-[47px] lg:flex items-center justify-between gap-20 hidden">
         {/* Logo Section */}
         <div className="logo-sec">
+          <Link href="/">
           <Image
             src="/assets/img/logo.svg"
             alt="Logo"
@@ -31,6 +32,7 @@ const Header = () => {
             width={100}
             height={250}
           />
+          </Link>
         </div>
 
         {/* Navigation Menu */}

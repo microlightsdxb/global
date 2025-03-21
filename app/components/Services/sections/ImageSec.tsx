@@ -10,7 +10,7 @@ import { assets } from "@/public/assets/assets";
 const ImageSec = () => {
 
   return (
-    <>
+    <div>
       <div className="container">
       <figure className="relative w-full h-full   flex pb-150">
                                 <Image
@@ -21,7 +21,7 @@ const ImageSec = () => {
                               </figure>
                          </div>
 
-    </>
+    </div>
   );
 };
 

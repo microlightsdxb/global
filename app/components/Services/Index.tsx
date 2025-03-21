@@ -12,13 +12,13 @@ import ImageSec from "./sections/ImageSec";
 
 const Index = () => {
   return (
-    <>
+    <div>
       <div className="headerpadding"> </div>
         <Imgbanner data={banner.data}/>
       <Introducing data={design.data} />
       <ImageSec />
-       <Conceptual  />
-    </>
+      <Conceptual  />
+    </div>
   );
 };
 

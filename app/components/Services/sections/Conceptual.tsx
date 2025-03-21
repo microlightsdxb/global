@@ -14,10 +14,10 @@ const Conceptual = () => {
   const [hoveredId, setHoveredId] = useState<number | null>(null);
 
   return (
-    <>
-      <section className="bg-[#000] overflow-hidden relative pb-100">
-        <div className="container  ">
-          <div >
+    <div>
+      <section className="bg-[#000] overflow-hidden relative">
+        <div className="container">
+          <div>
             <div className="grid grid-cols-1 md:grid-cols-2 ">
             <div className="py-70">
       {items.map((item) => {
@@ -66,10 +66,7 @@ const Conceptual = () => {
           </div>
         </div>
       </section>
-      <div className="container  ">
-        <div className="border-b border-black pb-100"> </div>
-      </div>
-    </>
+    </div>
   );
 };
 
