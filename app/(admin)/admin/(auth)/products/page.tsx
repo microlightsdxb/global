@@ -1,9 +1,8 @@
+import ProductListing from "@/app/components/AdminProduct/ProductListing";
 import React from "react";
 
 export default function Products() {
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <h1 className="text-3xl font-bold">Products</h1>
-    </div>
+    <ProductListing/>
   );
 }

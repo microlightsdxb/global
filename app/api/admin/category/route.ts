@@ -4,7 +4,7 @@ import Blog from "@/models/Blog";
 import mongoose from "mongoose";
 import Category from "@/models/Category";
 
-export async function GET(req:NextRequest) {
+export async function GET() {
     try {
         await connectDB();
         const category = await Category.find();
