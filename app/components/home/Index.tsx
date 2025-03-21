@@ -17,7 +17,7 @@ import IndustriesServed from './sections/IndustriesServed'
 
 const Index = () => {
   return (
-    <>
+    <div>
   <HeroSection/>
     <ProdSec/>
 
@@ -26,7 +26,7 @@ const Index = () => {
     <ProcessTimeline/>
     <RecentProjects/>
     <Testimonials/>
-    </>
+    </div>
   )
 }
 

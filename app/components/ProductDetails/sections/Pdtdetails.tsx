@@ -7,38 +7,22 @@ import { Swiper as SwiperClass } from "swiper/types";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
+import Image from "next/image";
+import Link from "next/link";
 
-import { assets } from "@/public/assets/assets";
-import Image, { StaticImageData } from "next/image";
-
-interface Project {
-  id: number;
-  image: string | StaticImageData;
+interface ProductProps {
+  data:{
+    name: string;
+    thumbnail: string;
+    wattage: string;
+    lumen: string;
+    images: string[];
+    type: string;
+    file: string;
+  }
 }
 
-const projects: Project[] = [
-  {
-    id: 1,
-    image: assets.appolo_slide,
-  },
-  {
-    id: 2,
-    image: assets.appolo_slide,
-  },
-  {
-    id: 3,
-    image: assets.eddi,
-  },
-  {
-    id: 4,
-    image: assets.appolo_slide,
-  },
-  {
-    id: 5,
-    image: assets.eddig,
-  },
-];
-const Pdtdetails = () => {
+const Pdtdetails = ({data}: {data: ProductProps}) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperClass | null>(null);
   return (
     <section className="">
@@ -56,14 +40,16 @@ const Pdtdetails = () => {
                   thumbs={{ swiper: thumbsSwiper }}
                   className="w-full h-[400px] md:h-[500px] lg:h-[590px]"
                 >
-                  {projects.map((project) => (
-                    <SwiperSlide key={project.id} className="h-full flex">
+                  {data?.data?.images?.map((image: string,index: number) => (
+                    <SwiperSlide key={index} className="h-full flex">
                       <div className="overflow-hidden w-full h-full flex">
                         <figure className="relative w-full h-full py-90 border border-[#00000010] flex">
                           <Image
                             className="object-contain w-full h-full"
-                            src={project.image}
+                            src={image}
                             alt="Apollo"
+                            width={100}
+                            height={100}
                           />
                         </figure>
                       </div>
@@ -80,13 +66,15 @@ const Pdtdetails = () => {
                   watchSlidesProgress
                   className="w-full mt-4 thumpslider"
                 >
-                  {projects.map((project) => (
-                    <SwiperSlide key={project.id} className="cursor-pointer  ">
+                  {data?.data?.images?.map((image: string,index: number) => (
+                    <SwiperSlide key={index} className="cursor-pointer  ">
                       <div className="border-1 flex border-[#00000010] p-4 hover:border-primary transition-all duration-300 min-h-full">
                         <Image
                           className="  h-full   m-auto"
-                          src={project.image}
+                          src={image}
                           alt="Apollo"
+                          width={100}
+                          height={100}
                         />
                       </div>
                     </SwiperSlide>
@@ -98,25 +86,25 @@ const Pdtdetails = () => {
               <div className="flex flex-col gap-30 justify-between">
               <div>
               <div>
-                 <h1 className="text-lg text-black leading-[1.4] mb-4 md:mb-10">Apollo </h1>
+                 <h1 className="text-lg text-black leading-[1.4] mb-4 md:mb-10">{data?.data?.name} </h1>
               </div>
               <div className="border-b border-[#00000010] pb-5">
                 <p>Type</p>
-                <p className="text-25 text-black">Downllight</p>
+                <p className="text-25 text-black">{data?.data?.type}</p>
               </div>
               <div className="border-b border-[#00000010] pb-5 pt-4">
                 <p>Wattage</p>
-                <p className="text-25 text-black">12W</p>
+                <p className="text-25 text-black">{data?.data?.wattage}</p>
               </div>
               <div className="border-b border-[#00000010] pb-5 pt-4">
                 <p>Lumen</p>
-                <p className="text-25 text-black">3000Lm</p>
+                <p className="text-25 text-black">{data?.data?.lumen}</p>
               </div>
               </div>
 
-            <div className="px-7 py-4 bg-black text-white w-fit">
+            <Link href={data?.data?.file || "#"} target="_blank"><div className="px-7 py-4 bg-black text-white w-fit">
             Download Datasheet
-            </div>
+            </div></Link>
               </div>
             </div>
           </div>

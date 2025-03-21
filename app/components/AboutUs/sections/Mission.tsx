@@ -23,7 +23,7 @@ const Mission: React.FC<FrameworkSectionProps> = ({
 }) => {
 
   return (
-    <>
+    <div>
     <Image src={assets.bnsc} alt=""></Image>
     <section style={{background: `url(${assets.bgstabt.src})`, backgroundPositionY: '-6px'}}>
       <div className="container">
@@ -42,7 +42,7 @@ const Mission: React.FC<FrameworkSectionProps> = ({
        </div>
       </div>
       </section>
-    </>
+    </div>
   );
 };
 

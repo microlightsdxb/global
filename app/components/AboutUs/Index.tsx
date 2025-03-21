@@ -12,13 +12,13 @@ import {banner,intro,whymicolights,vision} from "./data/dataBox"
 
 const Index = () => {
   return (
-    <>
+    <div>
       <div className="headerpadding"> </div>
         <Imgbanner data={banner.data} />
       <Introducing data={intro.data} />
       <Mission data={vision.data} />
       <WhyMicolights title={whymicolights.title}  data={whymicolights.data} />
-    </>
+    </div>
   );
 };
 

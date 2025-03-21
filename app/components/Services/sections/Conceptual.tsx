@@ -14,7 +14,7 @@ const Conceptual = () => {
   const [hoveredId, setHoveredId] = useState<number | null>(null);
 
   return (
-    <>
+    <div>
       <section className="bg-[#000] overflow-hidden relative">
         <div className="container">
           <div>
@@ -66,7 +66,7 @@ const Conceptual = () => {
           </div>
         </div>
       </section>
-    </>
+    </div>
   );
 };
 
