@@ -70,6 +70,10 @@ import blogimg9 from "./img/blog/blogimg9.jpg";
 import blogimg10 from "./img/blog/blogimg10.jpg";
 import blogimg11 from "./img/blog/blogimg11.jpg";
 import blogimg12 from "./img/blog/blogimg12.jpg";
+import dtaildimg from "./img/blog/dtaildimg.jpg";
+import lin from "./img/icons/lin.svg";
+import insta from "./img/icons/insta.svg";
+
 
 
 
@@ -79,6 +83,9 @@ import blogimg12 from "./img/blog/blogimg12.jpg";
 
 
 export const assets = {
+  lin,
+  insta,
+  dtaildimg,
   blogimg7,
   blogimg9,
   blogimg10,

@@ -1,14 +1,13 @@
 import React from "react";
 import Banner from "./sections/Banner";
-import Bloglist from "./sections/Bloglist";
-import { blogdetails ,categories} from "./data/dataBox"
+import Blogdetails from "./sections/Blogdetails";
 const Index = () => {
   return (
     <>
       <div className="headerpadding"> </div>
 
       <Banner />
-      <Bloglist data={blogdetails} categories={categories} />
+      <Blogdetails    />
 
 
 

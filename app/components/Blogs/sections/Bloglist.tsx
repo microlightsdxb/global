@@ -15,7 +15,7 @@ interface FrameworkSectionProps {
   data: FrameworkItem[];
 }
 
-const TeamList: React.FC<FrameworkSectionProps> = ({ data, categories }) => {
+const Bloglist: React.FC<FrameworkSectionProps> = ({ data, categories }) => {
   const [activeTab, setActiveTab] = useState("View All");
 
   const filteredData =
@@ -74,4 +74,4 @@ const TeamList: React.FC<FrameworkSectionProps> = ({ data, categories }) => {
   );
 };
 
-export default TeamList;
+export default Bloglist;
