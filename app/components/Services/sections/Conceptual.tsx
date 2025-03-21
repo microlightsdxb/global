@@ -15,9 +15,9 @@ const Conceptual = () => {
 
   return (
     <>
-      <section className="bg-[#000] overflow-hidden relative">
-        <div className="container">
-          <div>
+      <section className="bg-[#000] overflow-hidden relative pb-100">
+        <div className="container  ">
+          <div >
             <div className="grid grid-cols-1 md:grid-cols-2 ">
             <div className="py-70">
       {items.map((item) => {
@@ -38,7 +38,7 @@ const Conceptual = () => {
               <div className="flex flex-col ">
                 <p className="text-white text-lg">{item.title}</p>
                 <div
-                  className={`descd transition-all duration-500 ease-in-out transform ${
+                  className={`descd transition-all duration-100 ease-in-out transform ${
                     isHovered || isInitiallyActive ? "opacity-100 h-auto translate-y-0" : "opacity-0 h-0 translate-y-5"
                   }`}
                 >
@@ -66,6 +66,9 @@ const Conceptual = () => {
           </div>
         </div>
       </section>
+      <div className="container  ">
+        <div className="border-b border-black pb-100"> </div>
+      </div>
     </>
   );
 };

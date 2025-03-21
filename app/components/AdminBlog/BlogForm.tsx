@@ -105,7 +105,7 @@ const BlogForm = ({ editMode }: { editMode?: boolean }) => {
         <div className='flex flex-col gap-5'>
             <h1 className='text-lg font-bold'>{editMode ? "Edit Blog" : "Add Blog"}</h1>
             <form className='flex flex-col gap-5 border p-2 rounded-md' onSubmit={handleSubmit(handleAddBlog)}>
-                
+
                     <div>
                         <Label className='pl-3'>Title</Label>
                         <Input type='text' placeholder='Title' {...register("title", { required: "Title is required" })} />
@@ -139,7 +139,7 @@ const BlogForm = ({ editMode }: { editMode?: boolean }) => {
                     {errors.category && <p className="text-red-500">{errors.category.message}</p>}
 
                 </div>
-                
+
 
                 <div>
                         <Label className='pl-3'>Image</Label>
