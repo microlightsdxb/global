@@ -21,11 +21,113 @@ import arrright from "./img/icons/arrrt.svg"
 import serbanner from "./img/aboutus/serbanner.jpg";
 import serimg from "./img/aboutus/serimg.jpg";
 import sersec from "./img/aboutus/sersec.jpg";
+import icons1 from "./img/products/icons1.svg";
+import icons2 from "./img/products/icons2.svg";
+import icons3 from "./img/products/icons3.svg";
+import icons4 from "./img/products/icons4.svg";
+import icons5 from "./img/products/icons5.svg";
+import arrdn from "./img/icons/arrdn.svg";
+import iconback from "./img/icons/iconback.svg";
+import pjt1 from "./img/projects/pjt1.jpg";
+import pjt2 from "./img/projects/pjt2.jpg";
+import pjt3 from "./img/projects/pjt3.jpg";
+import pjt4 from "./img/projects/pjt4.jpg";
+import pjt5 from "./img/projects/pjt5.jpg";
+import pjt6 from "./img/projects/pjt6.jpg";
+import pjt7 from "./img/projects/pjt7.jpg";
+import pjtslide1 from "./img/projects/pjtslide1.jpg";
+import pjtslide2 from "./img/projects/pjtslide2.jpg";
+import pjtslide3 from "./img/projects/pjtslide3.jpg";
+import pjtslide4 from "./img/projects/pjtslide4.jpg";
+import cbanner from "./img/contactus/contactbanner.jpg";
+import mapuae from "./img/icons/mapuae.jpg";
+import md from "./img/team/md.png";
+import MusheerAhmed from "./img/team/MusheerAhmed.png";
+import WillieCentano from "./img/team/WillieCentano.png";
+import RyanBeglar from "./img/team/RyanBeglar.png";
+import LorraineBeglar from "./img/team/LorraineBeglar.png";
+import DorotaLarronde from "./img/team/DorotaLarronde.png";
+import GodfreyPinto from "./img/team/GodfreyPinto.png";
+import KatelynDodds from "./img/team/KatelynDodds.png";
+import AnitaKurien from "./img/team/AnitaKurien.png";
+import DarrenNightscales from "./img/team/DarrenNightscales.png";
+import GeorgeCutinho from "./img/team/GeorgeCutinho.png";
+import RehanaShaik from "./img/team/RehanaShaik.png";
+import AhmedFarag from "./img/team/AhmedFarag.png";
+import AdrianPlacino from "./img/team/AdrianPlacino.png";
+import ZahwaKhan from "./img/team/ZahwaKhan.png";
+import SusanthaWijewardhana from "./img/team/SusanthaWijewardhana.png";
+import SaadSiddiqui from "./img/team/SaadSiddiqui.png";
+import blogimg1 from "./img/blog/blogimg1.jpg";
+import blogimg2 from "./img/blog/blogimg2.jpg";
+import blogimg3 from "./img/blog/blogimg3.jpg";
+import blogimg4 from "./img/blog/blogimg4.jpg";
+import blogimg5 from "./img/blog/blogimg5.jpg";
+import blogimg6 from "./img/blog/blogimg6.jpg";
+import blogimg7 from "./img/blog/blogimg7.jpg";
+import blogimg8 from "./img/blog/blogimg8.jpg";
+import blogimg9 from "./img/blog/blogimg9.jpg";
+import blogimg10 from "./img/blog/blogimg10.jpg";
+import blogimg11 from "./img/blog/blogimg11.jpg";
+import blogimg12 from "./img/blog/blogimg12.jpg";
+
+
+
+
 
 
 
 
 export const assets = {
+  blogimg7,
+  blogimg9,
+  blogimg10,
+  blogimg12,
+  blogimg11,
+  blogimg8,
+  blogimg1,
+  blogimg2,
+  blogimg3,
+  blogimg4,
+  blogimg5,
+  blogimg6,
+  MusheerAhmed,
+  WillieCentano,
+  RyanBeglar,
+  LorraineBeglar,
+  DorotaLarronde,
+  GodfreyPinto,
+  KatelynDodds,
+  AnitaKurien,
+  DarrenNightscales,
+  GeorgeCutinho,
+  RehanaShaik,
+  AhmedFarag,
+  AdrianPlacino,
+  ZahwaKhan,
+  SusanthaWijewardhana,
+  SaadSiddiqui,
+  md,
+  mapuae,
+  cbanner,
+  pjtslide1,
+  pjtslide2,
+  pjtslide3,
+  pjtslide4,
+  pjt1,
+  pjt2,
+  pjt3,
+  pjt4,
+  pjt5,
+  pjt6,
+  pjt7,
+  iconback,
+  arrdn,
+  icons1,
+  icons2,
+  icons3,
+  icons4,
+  icons5,
   serbanner,
   serimg,
   sersec,
