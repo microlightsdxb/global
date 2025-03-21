@@ -288,3 +288,5 @@ body {
     .teammem:nth-child(odd) .evecont img{
       height: 100%;
     }
+    .bgst{background-position: right !important;
+    background-repeat: no-repeat !important;}

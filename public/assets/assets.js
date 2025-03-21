@@ -73,6 +73,16 @@ import blogimg12 from "./img/blog/blogimg12.jpg";
 import dtaildimg from "./img/blog/dtaildimg.jpg";
 import lin from "./img/icons/lin.svg";
 import insta from "./img/icons/insta.svg";
+import macrogreenleaf from "./img/sustainability/macro-green-leaf.jpg";
+import prac1 from "./img/sustainability/prac1.svg";
+import prac2 from "./img/sustainability/prac2.svg";
+import prac3 from "./img/sustainability/prac3.svg";
+import prac4 from "./img/sustainability/prac4.svg";
+import cer1 from "./img/sustainability/cer1.svg";
+import cer2 from "./img/sustainability/cer2.svg";
+import cer3 from "./img/sustainability/cer3.svg";
+import sufe from "./img/sustainability/sufe.jpg";
+import fbanner from "./img/sustainability/fbanner.jpg";
 
 
 
@@ -83,6 +93,16 @@ import insta from "./img/icons/insta.svg";
 
 
 export const assets = {
+  fbanner,
+  prac1,
+  prac2,
+  prac3,
+  prac4,
+  cer1,
+  cer2,
+  cer3,
+  sufe,
+  macrogreenleaf,
   lin,
   insta,
   dtaildimg,
