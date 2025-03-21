@@ -133,7 +133,7 @@ export default function Blogs() {
     }
   }
 
-  useEffect(()=>{
+  useEffect(()=>{ 
     handleFetchCategory();
     handleFetchBlogs();
   },[])

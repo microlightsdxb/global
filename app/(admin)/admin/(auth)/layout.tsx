@@ -1,3 +1,4 @@
+
 import {
   HomeIcon,
   NewspaperIcon,
@@ -13,7 +14,7 @@ import ClientSideLink from "../client-side-link";
 const navItems = [
   { name: "Home", href: "/admin", icon: HomeIcon },
   { name: "About", href: "/admin/about", icon: UserGroupIcon },
-  { name: "Products", href: "/admin/products", icon: PresentationChartBarIcon },
+  { name: "Products", href: "#", icon: PresentationChartBarIcon,children:[{name:"Type & Category",href:"/admin/products/type"},{name:"Products",href:"/admin/products"}] },
   { name: "Services", href: "/admin/services", icon: EnvelopeIcon },
   { name: "Industries", href: "/admin/industries", icon: BriefcaseIcon },
   { name: "Projects", href: "/admin/projects", icon: CheckBadgeIcon },
@@ -32,10 +33,17 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           </div>
           <nav className="space-y-1">
             {navItems.map((item) => {
-              const Icon = item.icon;
-              return (
-                <ClientSideLink key={item.href} href={item.href} name={item.name} icon={<Icon className="h-5 w-5" />} />
-              );
+              if(item.children){
+                const Icon = item.icon;
+                return (
+                  <ClientSideLink key={item.href} href={item.href} name={item.name} icon={<Icon className="h-5 w-5" />} className="" children={item.children}/>
+                );
+              }else{
+                const Icon = item.icon;
+                return (
+                  <ClientSideLink key={item.href} href={item.href} name={item.name} icon={<Icon className="h-5 w-5" />} />
+                );
+              }
             })}
           </nav>
         </div>
