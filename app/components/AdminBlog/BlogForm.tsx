@@ -18,7 +18,6 @@ import { Button } from '@/components/ui/button'
 import { useRouter } from 'next/navigation'
 import { useParams } from 'next/navigation'
 import { ImageUploader } from '@/components/ui/image-uploader'
-import Image from 'next/image';
 
 interface BlogFormProps {
     title: string;

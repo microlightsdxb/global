@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { ForwardRefExoticComponent, RefAttributes, SVGProps, useState } from "react";
+import { useState } from "react";
 
 interface ClientSideLinkProps {
   href: string;

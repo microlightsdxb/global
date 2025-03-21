@@ -4,7 +4,7 @@ import connectDB from "@/lib/mongodb";
 import mongoose from "mongoose";
 import Project from "@/models/Project";
 
-export async function GET(req:NextRequest) {
+export async function GET() {
     try {
         await connectDB();
         const location = await Location.find();

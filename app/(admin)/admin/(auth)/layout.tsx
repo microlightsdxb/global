@@ -36,7 +36,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               if(item.children){
                 const Icon = item.icon;
                 return (
-                  <ClientSideLink key={item.href} href={item.href} name={item.name} icon={<Icon className="h-5 w-5" />} className="" children={item.children}/>
+                  <ClientSideLink key={item.href} href={item.href} name={item.name} icon={<Icon className="h-5 w-5" />} className="">
+                    {item.children}
+                  </ClientSideLink>
                 );
               }else{
                 const Icon = item.icon;

@@ -27,7 +27,6 @@ import {
 import {
     Sheet,
     SheetContent,
-    SheetDescription,
     SheetHeader,
     SheetTitle,
     SheetTrigger,
@@ -162,7 +161,7 @@ const ProductForm = ({ editMode }: { editMode?: boolean }) => {
         setSpecificationItems([]);
     }
 
-    const handleEditSpecification = (index: number) => {
+    const handleEditSpecification = () => {
         setSpecifications((prev) => prev.map((item, index) => index === selectedSpecification ? { ...item, name: specificationName } : item));
         setSpecificationName("");
     }
@@ -407,7 +406,7 @@ const ProductForm = ({ editMode }: { editMode?: boolean }) => {
                                                     </Dialog>
                                                 </div>
                                                 {specificationItems.map((item,itemIdex) => (
-                                                    <div className='flex justify-between border p-2 rounded-md gap-2 relative'>
+                                                    <div className='flex justify-between border p-2 rounded-md gap-2 relative' key={itemIdex}>
                                                         
                                                         <Dialog>
                                                         <DialogTrigger onClick={()=>{setEditItemId(itemIdex);setItemTitle(item.title);setItemValue(item.value);}}><MdEdit className='absolute top-1 right-10'/></DialogTrigger>
@@ -463,7 +462,7 @@ const ProductForm = ({ editMode }: { editMode?: boolean }) => {
                                                 </div>
 
                                             </DialogHeader>
-                                            <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={()=>handleEditSpecification(index)}>Save</DialogClose>
+                                            <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={handleEditSpecification}>Save</DialogClose>
                                         </DialogContent>
 
                                     </Dialog>

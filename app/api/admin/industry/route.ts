@@ -4,7 +4,7 @@ import connectDB from "@/lib/mongodb";
 import Project from "@/models/Project";
 import mongoose from "mongoose";
 
-export async function GET(req:NextRequest) {
+export async function GET() {
     try {
         await connectDB();
         const industry = await Industry.find();
