@@ -64,7 +64,7 @@ const Pdtdetails = ({data}: {data: ProductProps}) => {
                   slidesPerView={6} // Adjust based on the number of thumbnails
                   spaceBetween={10}
                   watchSlidesProgress
-                  className="w-full mt-4 thumpslider"
+                  className="w-full mt-4 thumpslider productthumb"
                 >
                   {data?.data?.images?.map((image: string,index: number) => (
                     <SwiperSlide key={index} className="cursor-pointer  ">

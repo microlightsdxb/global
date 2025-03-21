@@ -38,7 +38,7 @@ const Conceptual = () => {
               <div className="flex flex-col ">
                 <p className="text-white text-lg">{item.title}</p>
                 <div
-                  className={`descd transition-all duration-500 ease-in-out transform ${
+                  className={`descd transition-all duration-100 ease-in-out transform ${
                     isHovered || isInitiallyActive ? "opacity-100 h-auto translate-y-0" : "opacity-0 h-0 translate-y-5"
                   }`}
                 >
