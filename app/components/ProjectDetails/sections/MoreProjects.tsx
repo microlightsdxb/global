@@ -1,50 +1,66 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import { FiArrowUpRight } from "react-icons/fi";
 import Link from "next/link";
 
 
 
-
-
-
 interface FrameworkItem {
-  id: number;
-  name: string;
-  category: string;
-  location: string;
-  image: StaticImageData;
+  data:{
+    id: number;
+    name: string;
+    category: string;
+    location: string;
+    thumbnail: string;
+    industry: string;
+  }[]
 }
 
 interface FrameworkSectionProps {
-  data: FrameworkItem[];
+  data: FrameworkItem;
+  industry: string;
 }
 
 const MoreProjects: React.FC<FrameworkSectionProps> = ({
   data,
-
+  industry
 }) => {
+
+  const [filteredData, setFilteredData] = useState<{ id: number; name: string; category: string; location: string; thumbnail: string; industry: string; }[]>([]);
+
+  useEffect(() => {
+    if(data?.data){
+      setFilteredData(()=>data?.data?.filter((item:{industry:string})=>item?.industry === industry).sort(()=>Math.random() - 0.5).slice(0,2))
+    }
+  }, [data,industry])
+
+  useEffect(() => {
+    console.log(filteredData)
+  }, [filteredData])
+
   return (
     <section className=" ">
       <div className="container border-b border-[#000000]">
-        <h2 className="text-xl text-black mb-[45px] md:mb-[57px] leading-[1.3]">More From Retail</h2>
+        <h2 className="text-xl text-black mb-[45px] md:mb-[57px] leading-[1.3]">More From {industry}</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-[40px]">
-      {data.map((project) => (
-        <div key={project.id}>
+      {filteredData.map((project,index) => (
+        <div key={index}>
           <div className="mb-10">
             <figure className="h-[325px] md:h-[380px]  lg:h-[425px] xl:h-[475px] w-full">
               <Image
                 className="h-full w-full object-cover object-center"
-                src={project.image}
+                src={project.thumbnail}
                 alt={project.name}
+                width={400}
+                height={400}
               />
             </figure>
           </div>
           <div className="flex items-center justify-between border-b border-[#00000010] pb-3">
             <div className="flex gap-5">
-              <p>{project.category}</p> <p>-</p> <p>{project.location}</p>
+              <p>{project.industry}</p> <p>-</p> <p>{project.location}</p>
             </div>
             <div>
               <div className="flex group-hover:flex transition-all ease-in-out duration-500 justify-end">
