@@ -1,8 +1,10 @@
+import connectDB from "@/lib/mongodb";
 import Blog from "@/models/Blog";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req:NextRequest) {
     try {
+        await connectDB();
         const {title,content,image,category} = await req.json();
         const blog = await Blog.create({title,content,image,category});
         if(blog){
@@ -19,6 +21,7 @@ export async function POST(req:NextRequest) {
 
 export async function PATCH(req:NextRequest) {
     try {
+        await connectDB();
         const {searchParams} = new URL(req.url);
         const id = searchParams.get("id");
         const {title,content,image,category} = await req.json();
@@ -37,6 +40,7 @@ export async function PATCH(req:NextRequest) {
 
 export async function GET(req:NextRequest) {
     try {
+        await connectDB();
         const {searchParams} = new URL(req.url);
         const id = searchParams.get("id");
         if(id){
@@ -64,6 +68,7 @@ export async function GET(req:NextRequest) {
 
 export async function DELETE(req:NextRequest) {
     try {
+        await connectDB();
         const {searchParams} = new URL(req.url);
         const id = searchParams.get("id");
         if(id){
