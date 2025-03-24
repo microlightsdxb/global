@@ -9,66 +9,71 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 
 import Image from "next/image";
+import { motion } from "framer-motion";
 
-
-
-const Pjctslider = ({data}:{data:{data:{images:string[]}}}) => {
+const Pjctslider = ({ data }: { data: { data: { images: string[] } } }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperClass | null>(null);
   return (
     <section className="">
-              <div className="relative">
-                {/* Main Swiper */}
-                <Swiper
-                  modules={[Navigation, Thumbs]}
-                  slidesPerView={1}
-                  spaceBetween={40}
-                  navigation={false}
-                  thumbs={{ swiper: thumbsSwiper }}
-                  className="w-full h-[400px] md:h-[500px] lg:h-[825px] overlayslider"
-                >
-                  {data?.data?.images?.map((project:string,index:number) => (
-                    <SwiperSlide key={index} className="h-full flex">
-                      <div className="overflow-hidden w-full h-full flex">
-                        <figure className="relative w-full h-full    flex">
-                          <Image
-                            className="object-cover w-full h-full"
-                            src={project}
-                            alt="Apollo"
-                            width={1000}
-                            height={1000}
-                          />
-                        </figure>
-                      </div>
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
-
-        {/* Thumbnail Swiper */}
-        <div className="absolute bottom-0 w-full">
-                <Swiper
-                  onSwiper={setThumbsSwiper}
-                  modules={[Thumbs]}
-                  slidesPerView={6} // Adjust based on the number of thumbnails
-                  spaceBetween={10}
-                  watchSlidesProgress
-                  className="w-full mt-4 thumpslider fullslider"
-                >
-                  {data?.data?.images?.map((project:string,index:number) => (
-                    <SwiperSlide key={index} className="cursor-pointer  ">
-                      <div className="border-1 flex  mb-4 transition-all duration-300 min-h-full">
-                        <Image
-                          className="  h-full   m-auto"
-                          src={project}
-                          alt="Apollo"
-                          width={1000}
-                          height={1000}
-                        />
-                      </div>
-                    </SwiperSlide>
-                  ))}
+      <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: false, amount: 0.5 }}
+      >
+        <div className="relative">
+          <Swiper
+            modules={[Navigation, Thumbs]}
+            slidesPerView={1}
+            spaceBetween={40}
+            navigation={false}
+            thumbs={{ swiper: thumbsSwiper }}
+            className="w-full h-[400px] md:h-[500px] lg:h-[825px] overlayslider"
+          >
+            {data?.data?.images?.map((project: string, index: number) => (
+              <SwiperSlide key={index} className="h-full flex">
+                <div className="overflow-hidden w-full h-full flex">
+                  <figure className="relative w-full h-full    flex">
+                    <Image
+                      className="object-cover w-full h-full"
+                      src={project}
+                      alt="Apollo"
+                      width={1000}
+                      height={1000}
+                    />
+                  </figure>
+                </div>
+              </SwiperSlide>
+            ))}
           </Swiper>
+
+          {/* Thumbnail Swiper */}
+          <div className="absolute bottom-0 w-full">
+            <Swiper
+              onSwiper={setThumbsSwiper}
+              modules={[Thumbs]}
+              slidesPerView={6} // Adjust based on the number of thumbnails
+              spaceBetween={10}
+              watchSlidesProgress
+              className="w-full mt-4 thumpslider fullslider"
+            >
+              {data?.data?.images?.map((project: string, index: number) => (
+                <SwiperSlide key={index} className="cursor-pointer  ">
+                  <div className="border-1 flex  mb-4 transition-all duration-300 min-h-full">
+                    <Image
+                      className="  h-full   m-auto"
+                      src={project}
+                      alt="Apollo"
+                      width={1000}
+                      height={1000}
+                    />
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
-              </div>
+        </div>
+      </motion.div>
     </section>
   );
 };

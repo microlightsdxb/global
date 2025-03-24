@@ -2,10 +2,10 @@ import React from "react";
 
 
 import Imgbanner from "../common/Imgbanner";
-import Introducing from "./sections/Introducing";
 
 import { banner,design,consultationData } from "./data/dataBox"
 import Strength from "./sections/Strength";
+import Introducing from "../common/Introducing";
 
 
 

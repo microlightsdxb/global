@@ -2,11 +2,11 @@ import React from "react";
 
 
 import Imgbanner from "../common/Imgbanner";
-import Introducing from "./sections/Introducing";
 import Conceptual from "./sections/Conceptual";
 
 import { banner,design } from "./data/dataBox"
 import ImageSec from "./sections/ImageSec";
+import Introducing from "../common/Introducing";
 
 
 
