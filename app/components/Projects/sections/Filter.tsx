@@ -3,17 +3,28 @@ import { assets } from "@/public/assets/assets";
 import React from "react";
 
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 
 const Filter = ({industryData, locationData, setIndustrySelected, setLocationSelected, industrySelected, locationSelected}: {industryData: {data:{name:string}[], setIndustrySelected: (name: string)=>void, industrySelected: string}, locationData: {data:{name:string}[], setLocationSelected: (name: string)=>void, locationSelected: string}, setIndustrySelected: (name: string)=>void, setLocationSelected: (name: string)=>void, industrySelected: string, locationSelected: string}) => {
   return (
     <section className="py-100">
       <div className="container">
-        <div>
+        <div><motion.div
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: false, amount: 0.5 }}>
           <h2 className="text-2xl text-black mb-[15px] md:mb-[28px] leading-[1.3]">
             Projects
           </h2>
+          </motion.div>
         </div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: false, amount: 0.5 }}>
         <div className="block md:flex bg-black p-6 md:p-10 pt-5 items-center">
           <div className="w-full md:w-4/5">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-[40px]">
@@ -65,7 +76,8 @@ const Filter = ({industryData, locationData, setIndustrySelected, setLocationSel
               </button>
             </div>
           </div>
-        </div>
+          </div>
+          </motion.div>
       </div>
     </section>
   );

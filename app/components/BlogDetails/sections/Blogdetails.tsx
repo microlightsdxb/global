@@ -1,9 +1,10 @@
 "use client";
-import React    from "react";
+import React from "react";
 import Image, { StaticImageData } from "next/image";
 import { assets } from "@/public/assets/assets";
-import { blogdetails ,categories} from "../data/dataBox"
+import { blogdetails, categories } from "../data/dataBox";
 import Bloglist from "./Bloglist";
+import { motion } from "framer-motion";
 
 interface FrameworkItem {
   id: number;
@@ -16,45 +17,107 @@ interface FrameworkSectionProps {
 }
 
 const Blogdetails: React.FC<FrameworkSectionProps> = ({ data }) => {
-
-
   return (
     <>
       <section className="ptc-120 pbc-135  ">
         <div className="container">
           <div className="lg:flex gap-5 lg:gap-10 xl:gap-[70px]">
             <div className="lg:w-4/6 xl:w-7/9">
-            {data.map((framework) => (
-          <div key={framework.id}>
-              <div>
-                <figure className="    w-full h-full ">
-                  <Image
-                    src={framework.image}
-                    alt="bnr"
-                    className="w-full h-full  "
-                  />
-                </figure>
-              </div>
-                <div className="font-[300] mt-2 md:mt-4 lg:mt-12 pt-4 leading-[1.7]">
-                {framework.dec.map((paragraph, index) => (
-              <p key={index} >{paragraph}</p>
-            ))}
-                </div>
-              </div>
-                ))}
+              {data.map((framework, index) => (
+                <motion.div
+                  key={framework.id}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                  viewport={{ once: true }}
+                >
+                  <motion.figure
+                    className="w-full h-full"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3, delay: 0.3 }}
+                    viewport={{ once: true }}
+                  >
+                    <Image
+                      src={framework.image}
+                      alt="bnr"
+                      className="w-full h-full"
+                    />
+                  </motion.figure>
+
+                  <motion.div
+                    className="font-[300] mt-2 md:mt-4 lg:mt-12 pt-4 leading-[1.7]"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.5 }}
+                    viewport={{ once: true }}
+                  >
+                    {framework.dec.map((paragraph, index) => (
+                      <motion.p
+                        key={index}
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4, delay: index * 0.2 }}
+                        viewport={{ once: true }}
+                      >
+                        {paragraph}
+                      </motion.p>
+                    ))}
+                  </motion.div>
+                </motion.div>
+              ))}
             </div>
-            <div className="lg:w-2/6 xl:w-2/9">
+            <motion.div
+              className="lg:w-2/6 xl:w-2/9"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
               <div className="pmargin0">
-                <p>Share</p>
-                <div className="flex gap-3 mt-5">
+                <motion.p
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  viewport={{ once: true }}
+                >
+                  Share
+                </motion.p>
 
-                <div className="w-10 h-10 bg-black flex justify-center items-center rounded-3xl"><Image src={assets.lin} alt=""></Image></div>
-                <div className="w-10 h-10 bg-black flex justify-center items-center rounded-3xl"><Image src={assets.insta} alt=""></Image></div>
-                </div>
+                <motion.div
+                  className="flex gap-3 mt-5"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  viewport={{ once: true }}
+                >
+                  <motion.div
+                    className="w-10 h-10 bg-black flex justify-center items-center rounded-3xl"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Image src={assets.lin} alt="LinkedIn" />
+                  </motion.div>
+
+                  <motion.div
+                    className="w-10 h-10 bg-black flex justify-center items-center rounded-3xl"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Image src={assets.insta} alt="Instagram" />
+                  </motion.div>
+                </motion.div>
               </div>
 
-         <Bloglist data={blogdetails} categories={categories} />
-            </div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                viewport={{ once: true }}
+              >
+                <Bloglist data={blogdetails} categories={categories} />
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>
