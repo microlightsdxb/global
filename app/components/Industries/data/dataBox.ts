@@ -7,7 +7,7 @@ export const banner = {
     {
       id: 1,
       title: "Project Management",
-      image: assets.serbanner.src,
+      image: assets.hallwayhotel.src,
 
     }
   ]

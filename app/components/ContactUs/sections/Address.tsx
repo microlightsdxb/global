@@ -76,7 +76,7 @@ const Address = () => {
 
   const [activeTab, setActiveTab] = useState("tb-1");
   return (
-    <section className="pt-30 pb-100 ">
+    <section className="pt-10 md:pt-20 lg:pt-30 pb-100 ">
       <div className="container">
         <div className="pb-5 md:pb-6 lg:pb-[58px]  ">
           <h2 className="text-xl text-black  leading-[1.3] max-w-[26ch]">
@@ -85,7 +85,7 @@ const Address = () => {
         </div>
         <div>
       {/* Tabs */}
-      <div className="flex gap-3 md:gap-10 border-b mb-4 md:mb-30 lg:mb-[47px]">
+      <div className="flex gap-3 md:gap-10 border-b mb-4 md:mb-30 lg:mb-[60px]">
         {tabs.map((tab) => (
           <div
             key={tab.id}
@@ -100,7 +100,7 @@ const Address = () => {
       </div>
 
       {/* Tab Content */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-[40px]">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-[40px]">
         {locations[activeTab].map((location) => (
           <div key={location.id}>
             <div className="mb-5">

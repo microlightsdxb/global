@@ -58,7 +58,7 @@ const Longimg = ({ }) => {
     <section className="relative">
       <div className="container" ref={nextContainerRef}></div>
       <div>
-      <div className="bg-[#F1F6F0] lg:h-[200px] xl:h-[250px] 2xl:h-[300px] absolute w-full"></div>
+      <div className="bg-[#F1F6F0] lg:h-[100px] xl:h-[150px] 2xl:h-[174px] absolute w-full"></div>
 
 <div     style={{ width: isSmallScreen ? "" : divWidth }}
     className={`ml-auto relative${

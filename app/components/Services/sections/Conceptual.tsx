@@ -27,18 +27,18 @@ const Conceptual = () => {
         return (
           <div
             key={item.id}
-            className={`flex items-center gap-5 pmargin0 py-10 border-b border-[#595959] justify-between pr-[60px] transition-all duration-300
+            className={`flex items-center gap-5 pmargin0 py-10 border-b border-[#595959] justify-between pr-0 md:pr-[20px] xl:pr-[60px] transition-all duration-300
             ${isHovered || isInitiallyActive ? "befst  scale-[1.02]" : "scale-100"}`}
             onMouseEnter={() => setHoveredId(item.id)}
             onMouseLeave={() => setHoveredId(null)}
           >
             <div className="flex items-center gap-5">
               <p className={`text-2xl leading-[1] text-40 transition-all duration-500 ease-in-out
-              ${isHovered || isInitiallyActive ? "translate-x-2" : "translate-x-0"}`}>{item.number}</p>
+              `}>{item.number}</p>
               <div className="flex flex-col ">
                 <p className="text-white text-lg">{item.title}</p>
                 <div
-                  className={`descd transition-all duration-100 ease-in-out transform ${
+                  className={`descd transition-all duration-100 ease-in-out transform mt-3 ${
                     isHovered || isInitiallyActive ? "opacity-100 h-auto translate-y-0" : "opacity-0 h-0 translate-y-5"
                   }`}
                 >
@@ -46,7 +46,7 @@ const Conceptual = () => {
                 </div>
               </div>
             </div>
-            <div className="min-w-[38px] min-h-[25px]">
+            <div className="min-w-[38px] min-h-[25px] hidden md:block">
               <Image src={item.icon} alt="" width={38} height={25} />
             </div>
           </div>

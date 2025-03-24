@@ -12,7 +12,7 @@ const Banner = ({}) => {
             </div>
           </div>
           <div className="w-full lg:w-1/2">
-            <p className="text-2xl text-black">
+            <p className="text-2xl text-black leading-[1.18]">
             5 Eye Catching Lighting Solution Examples
             </p>
           </div>

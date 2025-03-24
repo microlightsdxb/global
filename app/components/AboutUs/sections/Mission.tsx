@@ -27,8 +27,8 @@ const Mission: React.FC<FrameworkSectionProps> = ({
     <Image src={assets.bnsc} alt=""></Image>
     <section style={{background: `url(${assets.bgstabt.src})`, backgroundPositionY: '-6px'}}>
       <div className="container">
-        <div className=" py-[60px] lg:py-[90px] xl:py-[120px] 2xl:py-[151px]  ">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-[40px]">
+        <div className=" py-[50px] lg:py-[90px] xl:py-[120px] 2xl:py-[151px]  ">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-[40px] ">
 
               {data.map((framework) => (
                 <div key={framework.id}>

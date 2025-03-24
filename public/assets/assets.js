@@ -83,7 +83,7 @@ import cer2 from "./img/sustainability/cer2.svg";
 import cer3 from "./img/sustainability/cer3.svg";
 import sufe from "./img/sustainability/sufe.jpg";
 import fbanner from "./img/sustainability/fbanner.jpg";
-
+import hallwayhotel from "./img/aboutus/hallway-hotel.jpg";
 
 
 
@@ -93,6 +93,7 @@ import fbanner from "./img/sustainability/fbanner.jpg";
 
 
 export const assets = {
+  hallwayhotel,
   fbanner,
   prac1,
   prac2,

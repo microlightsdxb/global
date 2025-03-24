@@ -36,7 +36,7 @@ const Banner: React.FC<FrameworkSectionProps> = ({
         >
           <div className="container relative z-1">
             <div className="  pt-[190px] md:pt-[240px] lg:pt-[290px]  ">
-              <h1 className="text-white text-[100px] md:text-[150px]  xl:text-[250px] 2xl:text-[300px] leading-[1] md:leading-[.7]">{framework.title}</h1>
+              <h1 className="select-none pointer-events-none text-white text-[100px] md:text-[150px]  xl:text-[250px] 2xl:text-[300px] leading-[1] md:leading-[.7]">{framework.title}</h1>
             </div>
           </div>
         </div>

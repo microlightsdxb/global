@@ -32,7 +32,7 @@ const Bloglist: React.FC<FrameworkSectionProps> = ({ data }) => {
           <div className=" ">
             {filteredData.map((member, index) => (
               <div key={index} >
-                <div className="evecont h-[300px] overflow-hidden"  >
+                <div className="evecont h-[200px]  sm:h-[300px] lg:h-[200px] overflow-hidden"  >
                   <Image
                     src={member.image}
                     alt={member.category}
@@ -44,7 +44,7 @@ const Bloglist: React.FC<FrameworkSectionProps> = ({ data }) => {
                     {member.title}
                   </p>
                 </div>
-                <div className="flex justify-between items-center pmargin0 pt-5 pb-8 border-b mb-5 md:mb-10">
+                <div className="flex justify-between items-center pmargin0 pt-2 pb-8 border-b mb-5 md:mb-10">
                   <p className="text-[15px]">{member.category}</p>
                   <p className="text-[15px]">{member.date}</p>
                 </div>
