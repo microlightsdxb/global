@@ -1,4 +1,5 @@
 "use client";
+import { motion } from "motion/react";
 import Link from "next/link";
 import React from "react";
 import { FiArrowUpRight } from "react-icons/fi";
@@ -7,12 +8,17 @@ const Address = () => {
   return (
     <section  >
       <div className="container">
+      <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            viewport={{ once: true }}
+          >
         <div className=" border-b border-black pb-100">
         <div className="bg-black text-white py-16 px-4 md:px-16">
           <h2 className="text-3xl md:text-lg  mb-6 lg:mb-10">Reach Out</h2>
 
           <form className="space-y-6">
-            {/* Name, Phone, Email Fields */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="relative">
                 <label className="text-[#ffffff50] block mb-2">Name</label>
@@ -59,7 +65,8 @@ const Address = () => {
             </button>
           </form>
         </div>
-        </div>
+          </div>
+          </motion.div>
       </div>
     </section>
   );

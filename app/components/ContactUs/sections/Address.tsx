@@ -3,6 +3,7 @@ import { assets } from "@/public/assets/assets";
 import React, { useState } from "react";
 import Image from "next/image";
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
+import {motion} from "framer-motion";
 
 
 const tabs = [
@@ -79,12 +80,23 @@ const Address = () => {
     <section className="pt-10 md:pt-20 lg:pt-30 pb-100 ">
       <div className="container">
         <div className="pb-5 md:pb-6 lg:pb-[58px]  ">
-          <h2 className="text-xl text-black  leading-[1.3] max-w-[26ch]">
+        <motion.h2
+            className="text-xl text-black  leading-[1.3] max-w-[26ch]"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: false, amount: 0.5 }}
+          >
             Do You Have a Project in Mind? Get In Touch!
-          </h2>
+          </motion.h2>
         </div>
         <div>
-      {/* Tabs */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            viewport={{ once: true }}
+          >
       <div className="flex gap-3 md:gap-10 border-b mb-4 md:mb-30 lg:mb-[60px]">
         {tabs.map((tab) => (
           <div
@@ -97,9 +109,8 @@ const Address = () => {
             <p>{tab.label}</p>
           </div>
         ))}
-      </div>
+            </div>
 
-      {/* Tab Content */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-[40px]">
         {locations[activeTab].map((location) => (
           <div key={location.id}>
@@ -121,6 +132,7 @@ const Address = () => {
           </div>
         ))}
           </div>
+          </motion.div>
 
 
     </div>

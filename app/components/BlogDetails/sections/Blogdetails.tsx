@@ -5,6 +5,7 @@ import { assets } from "@/public/assets/assets";
 import {categories} from "../data/dataBox"
 import Bloglist from "./Bloglist";
 import parse from "html-react-parser";
+import { motion } from "framer-motion";
 
 interface FrameworkItem {
   data:{
@@ -58,18 +59,57 @@ const Blogdetails: React.FC<FrameworkSectionProps> = ({ data, recentBlogData }) 
               </div>
                 
             </div>
-            <div className="lg:w-2/6 xl:w-2/9">
+            <motion.div
+              className="lg:w-2/6 xl:w-2/9"
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
               <div className="pmargin0">
-                <p>Share</p>
-                <div className="flex gap-3 mt-5">
+                <motion.p
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  viewport={{ once: true }}
+                >
+                  Share
+                </motion.p>
 
-                <div className="w-10 h-10 bg-black flex justify-center items-center rounded-3xl"><Image src={assets.lin} alt=""></Image></div>
-                <div className="w-10 h-10 bg-black flex justify-center items-center rounded-3xl"><Image src={assets.insta} alt=""></Image></div>
-                </div>
+                <motion.div
+                  className="flex gap-3 mt-5"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  viewport={{ once: true }}
+                >
+                  <motion.div
+                    className="w-10 h-10 bg-black flex justify-center items-center rounded-3xl"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Image src={assets.lin} alt="LinkedIn" />
+                  </motion.div>
+
+                  <motion.div
+                    className="w-10 h-10 bg-black flex justify-center items-center rounded-3xl"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Image src={assets.insta} alt="Instagram" />
+                  </motion.div>
+                </motion.div>
               </div>
 
-         <Bloglist data={recentBlogData} categories={categories} />
-            </div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                viewport={{ once: true }}
+              >
+                <Bloglist data={recentBlogData} categories={categories} />
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>
