@@ -1,47 +1,62 @@
 "use client";
-import React    from "react";
-import Image, { StaticImageData } from "next/image";
+import React from "react";
+import Image from "next/image";
 import { assets } from "@/public/assets/assets";
-import { blogdetails ,categories} from "../data/dataBox"
+import {categories} from "../data/dataBox"
 import Bloglist from "./Bloglist";
+import parse from "html-react-parser";
 
 interface FrameworkItem {
-  id: number;
-  dec: string[];
-  image: StaticImageData;
+  data:{
+    _id:string,
+    title:string,
+    image:string,
+    content:string,
+    category:string,
+    createdAt:string,
+  }
 }
+
+interface RecentBlogItem {
+    _id:string,
+    title:string,
+    image:string,
+    category:string,
+    createdAt:string,
+  }
 
 interface FrameworkSectionProps {
-  data: FrameworkItem[];
+  data: FrameworkItem;
+  recentBlogData: RecentBlogItem[];
 }
 
-const Blogdetails: React.FC<FrameworkSectionProps> = ({ data }) => {
-
-
+const Blogdetails: React.FC<FrameworkSectionProps> = ({ data, recentBlogData }) => {
   return (
     <>
       <section className="ptc-120 pbc-135  ">
         <div className="container">
           <div className="lg:flex gap-5 lg:gap-10 xl:gap-[70px]">
             <div className="lg:w-4/6 xl:w-7/9">
-            {data.map((framework) => (
-          <div key={framework.id}>
+            
+          <div>
               <div>
-                <figure className="    w-full h-full ">
+                <figure className="w-full h-full ">
                   <Image
-                    src={framework.image}
+                    src={data?.data?.image}
                     alt="bnr"
-                    className="w-full h-full  "
+                    className="w-full h-full"
+                    width={500}
+                    height={500}
                   />
                 </figure>
               </div>
                 <div className="font-[300] mt-2 md:mt-4 lg:mt-12 pt-4 leading-[1.7]">
-                {framework.dec.map((paragraph, index) => (
-              <p key={index} >{paragraph}</p>
-            ))}
+                
+              {parse(data?.data?.content || "")}
+            
                 </div>
               </div>
-                ))}
+                
             </div>
             <div className="lg:w-2/6 xl:w-2/9">
               <div className="pmargin0">
@@ -53,7 +68,7 @@ const Blogdetails: React.FC<FrameworkSectionProps> = ({ data }) => {
                 </div>
               </div>
 
-         <Bloglist data={blogdetails} categories={categories} />
+         <Bloglist data={recentBlogData} categories={categories} />
             </div>
           </div>
         </div>

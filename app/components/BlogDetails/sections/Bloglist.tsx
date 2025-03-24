@@ -1,26 +1,30 @@
 "use client";
 import React from "react";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
+import moment from "moment";
 
-interface FrameworkItem {
-  category: string;
-  id: number;
-  title: string;
-  date: string;
-  image: StaticImageData;
-}
+interface RecentBlogItem {
+    _id:string,
+    title:string,
+    image:string,
+    category:string,
+    createdAt:string,
+  }
+
 
 interface FrameworkSectionProps {
   categories: string[];
-  data: FrameworkItem[];
+  data: RecentBlogItem[];
 }
 
 const Bloglist: React.FC<FrameworkSectionProps> = ({ data }) => {
 
-  const filteredData =  data
-        .filter((member) => member)
-        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-        .slice(0, 3);
+  // const filteredData =  data
+  //       .filter((member) => member)
+  //       .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  //       .slice(0, 3);
+
+  console.log(data)
 
   return (
     <>
@@ -30,13 +34,15 @@ const Bloglist: React.FC<FrameworkSectionProps> = ({ data }) => {
             <p className="text-lg text-black pt-4 lg:pt-8 pb-4 lg:pb-6 border-t border-black mt-5 md:mt-12">Recent Blogs</p>
             </div>
           <div className=" ">
-            {filteredData.map((member, index) => (
+            {data?.map((member, index) => (
               <div key={index} >
                 <div className="evecont h-[200px]  sm:h-[300px] lg:h-[200px] overflow-hidden"  >
                   <Image
                     src={member.image}
                     alt={member.category}
                     className="w-full h-auto object-center object-cover"
+                    width={500}
+                    height={500}
                   />
                 </div>
                 <div className="pt-2 md:pt-3 lg:pt-4 ">
@@ -46,7 +52,7 @@ const Bloglist: React.FC<FrameworkSectionProps> = ({ data }) => {
                 </div>
                 <div className="flex justify-between items-center pmargin0 pt-2 pb-8 border-b mb-5 md:mb-10">
                   <p className="text-[15px]">{member.category}</p>
-                  <p className="text-[15px]">{member.date}</p>
+                  <p className="text-[15px]">{moment(member.createdAt).format("ll")}</p>
                 </div>
               </div>
             ))}

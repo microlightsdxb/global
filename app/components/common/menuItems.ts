@@ -28,7 +28,7 @@ export const menuItems: MenuItem[] = [
     },
     {
       title:"Projects",
-      url:"#",
+      url:"/projects",
     },
     {
       title:"Sustainability",
@@ -36,6 +36,6 @@ export const menuItems: MenuItem[] = [
     },
     {
       title:"Blogs",
-      url:"#",
+      url:"/blogs",
     },
   ]

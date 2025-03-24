@@ -1,4 +1,4 @@
-import Index from "../../components/BlogDetails/Index";
+import Index from "../../../components/BlogDetails/Index";
 
 
 export default function Home() {
