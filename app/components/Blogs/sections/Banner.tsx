@@ -4,7 +4,7 @@ const Banner = ({}) => {
   return (
     <section className="ptc-213 pb-100 relative bg-[#f8f8f8] overflow-hidden">
       <div className="container ">
-        <div className="lg:flex">
+        <div className="lg:flex items-center">
           <div className="w-full lg:w-1/2 mb-5 lg:mb-0">
             <p className="text-2xl text-black">Blogs</p>
           </div>

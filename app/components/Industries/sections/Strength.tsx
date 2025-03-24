@@ -26,10 +26,10 @@ const Strength: React.FC<FrameworkSectionProps> = ({
     <>
     <section className="bg-[#f2f2f2]">
       <div className="container ">
-        <div className="pt-100 pb-10  ">
+        <div className="pt-[50px] lg:pt-[60px] xl:pt-[80px] 2xl:pt-[150px] pb-10  ">
         <div className="space-y-10">
       {data.map((item) => (
-        <div key={item.id} className="group mb-[55px] md:mb-0 last:mb-[40px]">
+        <div key={item.id} className="group mb-[70px] md:mb-0 last:mb-[40px]">
           {/* Icon Section */}
           <div className="w-[85px] h-[85px] p-4 md:p-0 md:w-[115px] md:h-[115px] group-hover:bg-black rounded-full border border-[#00000015] flex justify-center items-center bg-[#f2f2f2] relative z-1">
             <Image src={item.icon} alt="" />

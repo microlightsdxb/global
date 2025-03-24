@@ -25,7 +25,7 @@ const Bloglist: React.FC<FrameworkSectionProps> = ({ data, categories }) => {
 
   return (
     <>
-      <section className="ptc-130 pb-10  ">
+      <section className="pt-20 pbc-120">
         <div className="container">
           <div className="flex flex-wrap gap-3 md:gap-6 lg:gap-10 border-b">
         {categories.map((category) => (
@@ -43,7 +43,7 @@ const Bloglist: React.FC<FrameworkSectionProps> = ({ data, categories }) => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 team-grid gap-x-5 lg:gap-x-10">
             {filteredData.map((member, index) => (
-              <div key={index} className="teammem mt-10 lg:-20 xl:mt-30">
+              <div key={index} className="teammem mt-10 lg:mt-20 xl:mt-20">
                 <div className="evecont">
                   <Image
                     src={member.image}

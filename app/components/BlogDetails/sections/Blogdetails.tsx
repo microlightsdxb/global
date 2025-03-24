@@ -20,10 +20,10 @@ const Blogdetails: React.FC<FrameworkSectionProps> = ({ data }) => {
 
   return (
     <>
-      <section className="ptc-130 pb-10  ">
+      <section className="ptc-120 pbc-135  ">
         <div className="container">
-          <div className="lg:flex gap-5 lg :gap-10 xl:gap-[70px]">
-            <div className="lg:w-4/6">
+          <div className="lg:flex gap-5 lg:gap-10 xl:gap-[70px]">
+            <div className="lg:w-4/6 xl:w-7/9">
             {data.map((framework) => (
           <div key={framework.id}>
               <div>
@@ -35,7 +35,7 @@ const Blogdetails: React.FC<FrameworkSectionProps> = ({ data }) => {
                   />
                 </figure>
               </div>
-                <div className="font-[300] mt-2 md:mt-4 lg:mt-12 pt-4">
+                <div className="font-[300] mt-2 md:mt-4 lg:mt-12 pt-4 leading-[1.7]">
                 {framework.dec.map((paragraph, index) => (
               <p key={index} >{paragraph}</p>
             ))}
@@ -43,7 +43,7 @@ const Blogdetails: React.FC<FrameworkSectionProps> = ({ data }) => {
               </div>
                 ))}
             </div>
-            <div className="lg:w-2/6">
+            <div className="lg:w-2/6 xl:w-2/9">
               <div className="pmargin0">
                 <p>Share</p>
                 <div className="flex gap-3 mt-5">

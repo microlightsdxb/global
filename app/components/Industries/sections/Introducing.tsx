@@ -18,7 +18,7 @@ const Introducing: React.FC<FrameworkSectionProps> = ({
 
 }) => {
   return (
-    <section className="section-spacing ">
+    <section className="py-90 ">
       <div className="container">
 
         {data.map((framework) => (

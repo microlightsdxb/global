@@ -24,7 +24,7 @@ const OurFuture: React.FC<FrameworkSectionProps> = ({
 
   return (
     <>
-      <section className="py-100  ">
+      <section className="pt-100  ">
         <div className="container">
           <div>
             <div className="text-center  mb-6 md md:mb-10 lg:mb-18">
@@ -36,7 +36,7 @@ const OurFuture: React.FC<FrameworkSectionProps> = ({
                 sustainability initiatives
               </p>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-15 lg:gap-[50px] 2xl:gap-[83px]">
+            <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-5 lg:gap-[50px] 2xl:gap-[83px]">
               <div className="   ">
                 <Image src={assets.sufe} alt="" />
               </div>

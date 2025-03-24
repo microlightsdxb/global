@@ -25,22 +25,22 @@ interface FrameworkSectionProps {
       <h2 className="text-xl text-black leading-[1.3] max-w-[22ch] mb-3 md:mb-4">
         {title}
       </h2>
-      <p className="font-[300]">
+      <p className="font-[300] max-w-[105ch] leading-[1.7]">
         {description}
       </p>
-      <div className="bg-[#052500] p-12 mt-9">
+      <div className="bg-[#052500] p-5 mt-9 md:p-15 ">
         <h3 className="text-40 text-white mb-3">Sustainability Practices</h3>
-        <p className="text-[#B8B8B8] font-[300]">
+        <p className="text-[#B8B8B8] font-[300] ">
           We integrate sustainability across all aspects of our operations:
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-0 md:gap-3 lg:gap-[4] xl:gap-[40px] mt-6 lg:mt-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-0 md:gap-3 lg:gap-[4] xl:gap-[40px] mt-10 lg:mt-10">
           {data.map((practice) => (
-            <div key={practice.id} className="mb-8 md:mb-5 lg:mb-0">
+            <div key={practice.id} className="mb-10 md:mb-5 lg:mb-0">
                <Image src={practice.image} alt={practice.title} />
-              <div className="border-t border-white mt-10 "></div>
-              <div className="pt-8">
-                <h4 className="text-lg text-white mb-6 leading-[1.2]">{practice.title}</h4>
-                <p className="text-[#B8B8B8] font-[300]">{practice.description}</p>
+              <div className="border-t border-white mt-5 md:mt-10 "></div>
+              <div className="pt-3 md:pt-8">
+                <h4 className="text-lg text-white mb-3 md:mb-6 leading-[1.3]">{practice.title}</h4>
+                <p className="text-[#B8B8B8] font-[300] leading-[1.7]">{practice.description}</p>
               </div>
             </div>
           ))}
