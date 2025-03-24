@@ -2,6 +2,7 @@
 import { assets } from "@/public/assets/assets";
 import React,{useEffect,useState,useRef} from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 const Longimg = ({ }) => {
 
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -63,8 +64,13 @@ const Longimg = ({ }) => {
 <div     style={{ width: isSmallScreen ? "" : divWidth }}
     className={`ml-auto relative${
       isSmallScreen ? "container mx-auto " : ""
-    } custom-class`}>
+            } custom-class`}>
+          <motion.div initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.5 }}>
   <Image src={assets.macrogreenleaf} alt="" layout="responsive" />
+</motion.div>
 </div>
       </div>
     </section>

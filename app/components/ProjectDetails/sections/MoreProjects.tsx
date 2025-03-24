@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { FiArrowUpRight } from "react-icons/fi";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 
 
@@ -43,10 +44,20 @@ const MoreProjects: React.FC<FrameworkSectionProps> = ({
   return (
     <section className=" ">
       <div className="container border-b border-[#000000]">
-        <h2 className="text-xl text-black mb-[45px] md:mb-[57px] leading-[1.3]">More From {industry}</h2>
+      <motion.h2 className="text-xl text-black mb-[45px] md:mb-[57px] leading-[1.3]"
+          initial={{ opacity: 0, x: -50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: false, amount: 0.5 }}>
+         More From {industry}</motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-[40px]">
       {filteredData.map((project,index) => (
-        <div key={index}>
+           <motion.div
+           key={index}
+           initial={{ opacity: 0, y: 50 }}
+           animate={{ opacity: 1, y: 0 }}
+           transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
+         >
           <div className="mb-10">
             <figure className="h-[325px] md:h-[380px]  lg:h-[425px] xl:h-[475px] w-full">
               <Image
@@ -76,7 +87,7 @@ const MoreProjects: React.FC<FrameworkSectionProps> = ({
           <div className="mt-4 mb-4 md:mb-6 xl:mb-20">
             <h2 className="text-lg text-black leading-[1.4]">{project.name}</h2>
           </div>
-        </div>
+        </motion.div>
       ))}
     </div>
       </div>
