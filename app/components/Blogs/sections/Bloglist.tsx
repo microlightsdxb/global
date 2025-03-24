@@ -51,6 +51,17 @@ const Bloglist: React.FC<FrameworkSectionProps> = ({ data, categories }) => {
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
     >
+      <motion.div
+          className={`p-2 cursor-pointer relative top-[2px] text-black transition-all duration-500 ${
+            activeTab === "View All" ? "border-b-3 border-black" : "border-b-3 border-transparent"
+          }`}
+          onClick={() => setActiveTab("View All")}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          transition={{ duration: 0.2 }}
+          >
+            <p>View All</p>
+          </motion.div>
       {categories?.data?.map((category) => (
         <motion.div
           key={category.name}
