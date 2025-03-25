@@ -6,9 +6,10 @@ const Banner = ({}) => {
   return (
     <section className="ptc-130 pb-100 relative bg-[#f8f8f8] overflow-hidden">
       <div className="container ">
-        <div className="w-1/2">
-          <h1 className="text-2xl text-black mb-2 md:mb-4 leading-[1.2]">
-            Word from the MD
+        <div className="flex flex-col-reverse md:flex-row">
+          <div className="w-full md:w-1/2">
+            <h1 className="text-2xl text-black mb-2 md:mb-4 leading-[1.2]">
+              Word from the MD
           </h1>
           <p className="font-[300] ">
             I started my career with Microlights as Regional Sales Manager in
@@ -37,8 +38,9 @@ const Banner = ({}) => {
             <p>Managing Director</p>
           </div>
         </div>
-        <div className="absolute top-0 right-0">
-          <Image src={assets.md} alt=""></Image>
+        <div className="md:absolute top-0 md:top-[23%] xl:top-0 right-0 mb-5 md:mb-0 md:w-[50%] lg:w-[50%] ">
+          <Image src={assets.md} alt=""  ></Image>
+        </div>
         </div>
       </div>
     </section>
