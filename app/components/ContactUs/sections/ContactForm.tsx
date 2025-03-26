@@ -1,10 +1,41 @@
 "use client";
+import { contactSchema } from "@/app/(user)/schemas/contactShema";
 import { motion } from "motion/react";
-import Link from "next/link";
 import React from "react";
+import { useForm } from "react-hook-form";
 import { FiArrowUpRight } from "react-icons/fi";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {toast} from "sonner"
 
-const Address = () => {
+interface ContactFormProps {
+  name: string;
+  phone: string;
+  email: string;
+  message: string;
+}
+
+export default function ContactForm() {
+
+  const { register, handleSubmit, formState: { errors },reset } = useForm<ContactFormProps>({resolver:zodResolver(contactSchema)});
+
+  const onSubmit = async(data: ContactFormProps) => {
+    try {
+      const response = await fetch("/api/admin/contact/enquiry",{
+        method:"POST",
+        body:JSON.stringify(data)
+      })
+      if(response.ok){
+        toast.success("Thank you for your message, we will get back to you soon.")
+        reset()
+      }else{
+        toast.error("Sorry, something went wrong. Please try again later.")
+      }
+    } catch (error) {
+      console.log("Error sending message",error)
+      toast.error("Sorry, something went wrong. Please try again later.")
+    }
+  }
+
   return (
     <section  >
       <div className="container">
@@ -18,51 +49,58 @@ const Address = () => {
         <div className="bg-black text-white py-16 px-4 md:px-16">
           <h2 className="text-3xl md:text-lg  mb-6 lg:mb-10">Reach Out</h2>
 
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="relative">
                 <label className="text-[#ffffff50] block mb-2">Name</label>
                 <input
                   type="text"
+                  {...register("name")}
                   className="w-full bg-black border-b border-[#ffffff50] focus:outline-none focus:border-white  text-white"
                 />
+                {errors.name && <p className="text-red-500">{errors.name.message}</p>}
               </div>
               <div className="relative">
                 <label className="text-[#ffffff50] block mb-2">Phone</label>
                 <input
                   type="text"
+                  {...register("phone")}
                   className="w-full bg-black border-b border-[#ffffff50] focus:outline-none focus:border-white  text-white"
                 />
+                {errors.phone && <p className="text-red-500">{errors.phone.message}</p>}
               </div>
               <div className="relative">
                 <label className="text-[#ffffff50] block mb-2">Email</label>
                 <input
                   type="email"
+                  {...register("email")}
                   className="w-full bg-black border-b border-[#ffffff50] focus:outline-none focus:border-white  text-white"
                 />
+                {errors.email && <p className="text-red-500">{errors.email.message}</p>}
               </div>
             </div>
 
             {/* Message Field */}
             <div className="relative">
               <label className="text-[#ffffff50] block mb-2">Message</label>
-              <textarea className="w-full bg-black border-b border-[#ffffff50] focus:outline-none focus:border-white  text-white h-24 md:h-35 resize-none"></textarea>
+              <textarea {...register("message")} className="w-full bg-black border-b border-[#ffffff50] focus:outline-none focus:border-white  text-white h-24 md:h-35 resize-none"></textarea>
+              {errors.message && <p className="text-red-500">{errors.message.message}</p>}
             </div>
 
             {/* Send Button */}
-            <button
-              type="submit"
+            <div
+              
               className="flex items-center gap-2   mt-6 md:mt-[81px] transition duration-300"
             >
               <div className="flex">
-                <Link
-                  href={"/"}
+                <button
+                 type="submit"
                   className="flex gap-[20px] items-center border-t border-white text-sm text-white border-solid leaing-none pt-[12px]"
                 >
                   Send <FiArrowUpRight className="text-[22px] text-white" />
-                </Link>
+                </button>
               </div>
-            </button>
+            </div>
           </form>
         </div>
           </div>
@@ -72,4 +110,5 @@ const Address = () => {
   );
 };
 
-export default Address;
+
+

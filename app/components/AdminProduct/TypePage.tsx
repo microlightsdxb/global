@@ -208,8 +208,8 @@ const TypePage = () => {
                 </div>
                 <div className="mt-2 flex flex-col gap-2 h-[80%] overflow-y-auto">
                     {typeList.map((item) => (
-                        <div className="flex justify-between border p-1 items-center rounded-md" key={item._id}>
-                            <div>
+                        <div className="flex justify-between border p-1 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300" key={item._id}>
+                            <div className='text-sm'>
                                 {item.type}
                             </div>
                             <div className="flex gap-5">

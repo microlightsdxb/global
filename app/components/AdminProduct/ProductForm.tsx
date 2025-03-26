@@ -244,28 +244,28 @@ const ProductForm = ({ editMode }: { editMode?: boolean }) => {
             <form className='flex flex-col gap-5 border p-2 rounded-md' onSubmit={handleSubmit(handleAddProduct)}>
                 <div className='grid grid-cols-2 gap-2'>
                     <div>
-                        <Label className='pl-3'>Name</Label>
+                        <Label className='pl-3 font-bold'>Name</Label>
                         <Input type='text' placeholder='Product Name' {...register("name", { required: "Name is required" })} />
                         {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
                     </div>
                     <div>
-                        <Label className='pl-3'>Thumbnail</Label>
-                        <ImageUploader onChange={(url) => setValue("thumbnail", url)} value={watch("thumbnail")} />
+                        <Label className='pl-3 font-bold'>Thumbnail</Label>
+                        <ImageUploader onChange={(url) => setValue("thumbnail", url)} value={watch("thumbnail")}/>
                         {errors.thumbnail && <p className='text-red-500'>{errors.thumbnail.message}</p>}
                     </div>
                 </div>
                 <div className='flex flex-col gap-2'>
-                    <Label className='pl-3'>Wattage</Label>
+                    <Label className='pl-3 font-bold'>Wattage</Label>
                     <Input type='text' placeholder='Wattage' {...register("wattage", { required: "Wattage is required" })} />
                     {errors.wattage && <p className='text-red-500'>{errors.wattage.message}</p>}
                 </div>
                 <div className='flex flex-col gap-2'>
-                    <Label className='pl-3'>Lumen</Label>
+                    <Label className='pl-3 font-bold'>Lumen</Label>
                     <Input type='text' placeholder='Lumen' {...register("lumen", { required: "Lumen is required" })} />
                     {errors.lumen && <p className='text-red-500'>{errors.lumen.message}</p>}
                 </div>
                 <div className='flex flex-col gap-2'>
-                    <Label className='pl-3'>Type</Label>
+                    <Label className='pl-3 font-bold'>Type</Label>
                     <Controller
                         name="type"
                         control={control}
@@ -294,7 +294,7 @@ const ProductForm = ({ editMode }: { editMode?: boolean }) => {
                 </div>
 
                 <div className='flex flex-col gap-2'>
-                    <Label className='pl-3'>Category</Label>
+                    <Label className='pl-3 font-bold'>Category</Label>
                     <Controller
                         name="category"
                         control={control}
@@ -323,12 +323,12 @@ const ProductForm = ({ editMode }: { editMode?: boolean }) => {
                 </div>
 
                 <div className='flex flex-col gap-2'>
-                    <Label className='pl-3'>Data Sheet</Label>
+                    <Label className='pl-3 font-bold'>Data Sheet</Label>
                     <FileUploader onChange={(url)=>setValue("file",url)} value={watch("file")}/>
                 </div>
 
                 <div>
-                    <Label className="block text-sm font-medium text-gray-700">Gallery</Label>
+                    <Label className="block text-sm font-bold text-gray-700">Gallery</Label>
                     <div className="mt-2">
                         <ImageUploader onChange={handleImageUpload} deleteAfterUpload={true} />
                     </div>
@@ -356,7 +356,7 @@ const ProductForm = ({ editMode }: { editMode?: boolean }) => {
 
                 <div className='flex flex-col gap-2'>
                     <div className='flex gap-2'>
-                        <Label className='pl-3'>Specifications</Label>
+                        <Label className='pl-3 font-bold'>Specifications</Label>
                         <Dialog>
                             <DialogTrigger><FaPlusCircle /></DialogTrigger>
                             <DialogContent>
@@ -434,17 +434,17 @@ const ProductForm = ({ editMode }: { editMode?: boolean }) => {
 
 
                                                         <div>
-                                                            <Label className='text-sm'>Title</Label>
+                                                            <Label className='text-sm font-bold'>Title</Label>
                                                             <Input type='text' value={item.title} readOnly />
                                                         </div>
                                                         <div>
-                                                            <Label className='text-sm'>Value</Label>
+                                                            <Label className='text-sm font-bold'>Value</Label>
                                                             <Input type='text' value={item.value} readOnly />
                                                         </div>
                                                     </div>
                                                 ))}
 
-                                                <DialogClose onClick={handleSetSpecification}>Confirm</DialogClose>
+                                                <DialogClose onClick={handleSetSpecification} className='bg-black text-white px-2 py-1 rounded-md'>Confirm</DialogClose>
                                             </SheetHeader>
                                         </SheetContent>
                                     </Sheet>

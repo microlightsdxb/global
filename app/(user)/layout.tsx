@@ -5,6 +5,7 @@ import SmoothScroll from "../components/common/SmoothScroll";
 import Header from "../components/common/Header";
 import Footer from "../components/common/Footer";
 /* import Header from "./componennts/common/Header"; */
+import { Toaster } from "@/components/ui/sonner"
 
 const parkinSans = Parkinsans({
   variable: "--font-parkin-sans",
@@ -27,6 +28,7 @@ export default function RootLayout({
         <SmoothScroll />
         <Header />
         {children}
+        <Toaster />
         <Footer />
       </body>
     </html>

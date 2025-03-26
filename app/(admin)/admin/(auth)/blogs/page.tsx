@@ -140,7 +140,7 @@ export default function Blogs() {
 
   return (
     <div className="h-screen grid grid-cols-1 gap-5">
-        <div className="h-full w-full p-2 border-2 border-gray-300 rounded-md overflow-y-auto">
+        <div className="h-full w-full p-2 border-2 border-gray-300 rounded-md overflow-y-hidden">
           <div className="flex justify-between border-b-2 pb-2">
             <Label className="text-sm font-bold">Category</Label>
             <Dialog>
@@ -157,9 +157,9 @@ export default function Blogs() {
 
             </Dialog>
           </div>
-          <div className="mt-2 flex flex-col gap-2">
+          <div className="mt-2 flex flex-col gap-2 overflow-y-scroll h-full">
             {categoryList.map((item)=>(
-              <div className="flex justify-between border p-1 items-center rounded-md" key={item._id}>
+              <div className="flex justify-between border p-1 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300" key={item._id}>
               <div>
                 {item.name}
               </div>
@@ -168,9 +168,9 @@ export default function Blogs() {
               <DialogTrigger onClick={()=>{setCategory(item.name); setOldCategory(item.name)}}><MdEdit/></DialogTrigger>
               <DialogContent>
                 <DialogHeader>
-                  <DialogTitle>Edit Industry</DialogTitle>
+                  <DialogTitle>Edit Category</DialogTitle>
                   <DialogDescription>
-                    <Input type="text" placeholder="Industry Name" value={category} onChange={(e) => setCategory(e.target.value)} />
+                    <Input type="text" placeholder="Category Name" value={category} onChange={(e) => setCategory(e.target.value)} />
                   </DialogDescription>
                 </DialogHeader>
                 <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={()=>handleEditCategory(item._id)}>Save</DialogClose>
@@ -205,17 +205,17 @@ export default function Blogs() {
 
 
 
-      <div className="h-full w-full p-2 border-2 border-gray-300 rounded-md overflow-y-auto">
+      <div className="h-full w-full p-2 border-2 border-gray-300 rounded-md overflow-y-hidden">
         <div className="flex justify-between border-b-2 pb-2">
           <Label className="text-sm font-bold">Blogs</Label>
           <Button onClick={()=>router.push("/admin/blogs/add")}>Add Blog</Button>
         </div>
-        <div className="mt-2 flex flex-col gap-2">
+        <div className="mt-2 flex flex-col gap-2 overflow-y-scroll h-full">
           {blogList.map((item)=>(
-            <div className="flex justify-between border p-1 items-center rounded-md" key={item._id}>
-            <div>
-              <div className="flex gap-2 items-center">
-                <Image src={item.image} alt={item.title} width={50} height={50}/>
+            <div className="flex justify-between border p-1 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300 h-32" key={item._id}>
+            <div className="h-full">
+              <div className="flex gap-2 items-center h-full">
+                <Image src={item.image} alt={item.title} width={100} height={100} className="h-full object-cover"/>
                 {item.title}
               </div>
             </div>

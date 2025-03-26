@@ -51,11 +51,11 @@ const ProductListing = () => {
             <h1 className='text-md font-bold'>Products</h1>
             <Link href={"/admin/products/add"}><Button>Add Product</Button></Link>
         </div>
-        <div className='flex flex-col gap-2'>
+        <div className='flex flex-col gap-2 overflow-y-auto h-screen'>
             {products.map((product,index)=>(
-                <div key={index} className='flex justify-between border p-2 rounded-md items-center'>
-                    <div className='flex gap-5 items-center'>
-                        <Image src={product.thumbnail} alt={product.name} width={100} height={100} />
+                <div key={index} className='flex justify-between border p-2 rounded-md items-center h-32 shadow-md hover:shadow-lg transition-all duration-300'>
+                    <div className='flex gap-5 items-center h-full'>
+                        <Image src={product.thumbnail} alt={product.name} width={100} height={100} className='h-full  object-cover' />
                     <div>{product.name}</div>
                 </div>
                 <div className='flex gap-5'>

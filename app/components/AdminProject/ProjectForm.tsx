@@ -132,23 +132,23 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
             <form className='flex flex-col gap-5 border p-2 rounded-md' onSubmit={handleSubmit(handleAddProject)}>
                 <div className='grid grid-cols-2 gap-2'>
                     <div>
-                        <Label className='pl-3'>Name</Label>
+                        <Label className='pl-3 font-bold'>Name</Label>
                         <Input type='text' placeholder='Project Name' {...register("name", { required: "Name is required" })} />
                         {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
                     </div>
                     <div>
-                        <Label className='pl-3'>Thumbnail</Label>
+                        <Label className='pl-3 font-bold'>Thumbnail</Label>
                         <ImageUploader onChange={(url)=>setValue("thumbnail",url)} value={watch("thumbnail")} />
                         {errors.thumbnail && <p className='text-red-500'>{errors.thumbnail.message}</p>}
                     </div>
                 </div>
                 <div className='flex flex-col gap-2'>
-                    <Label className='pl-3'>Client</Label>
+                    <Label className='pl-3 font-bold'>Client</Label>
                     <Input type='text' placeholder='Client Name' {...register("client", { required: "Client is required" })} />
                     {errors.client && <p className='text-red-500'>{errors.client.message}</p>}
                 </div>
                 <div className='flex flex-col gap-2'>
-                    <Label className='pl-3'>Industry</Label>
+                    <Label className='pl-3 font-bold'>Industry</Label>
                     <Controller
                         name="industry"
                         control={control}
@@ -176,12 +176,12 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
 
                 </div>
                 <div className='flex flex-col gap-2'>
-                    <Label className='pl-3'>Scope</Label>
+                    <Label className='pl-3 font-bold'>Scope</Label>
                     <Input type='text' placeholder='Scope' {...register("scope", { required: "Scope is required" })} />
                     {errors.scope && <p className='text-red-500'>{errors.scope.message}</p>}
                 </div>
                 <div className='flex flex-col gap-2'>
-                    <Label className='pl-3'>Location</Label>
+                    <Label className='pl-3 font-bold'>Location</Label>
                     <Controller
                         name="location"
                         control={control}
@@ -208,6 +208,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                     {errors.location && <p className="text-red-500">{errors.location.message}</p>}
                 </div>
                 <div>
+                <Label className='pl-3 font-bold'>Description</Label>
                     <Controller name="description" control={control} rules={{ required: "Description is required" }} render={({ field }) => {
                         return <ReactQuill theme="snow" value={field.value} onChange={field.onChange} />
                     }} />
@@ -215,7 +216,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                 </div>
 
                 <div>
-                    <Label className="block text-sm font-medium text-gray-700">Gallery</Label>
+                    <Label className="block text-sm font-bold text-gray-700">Gallery</Label>
                     <div className="mt-2">
                         <ImageUploader onChange={handleImageUpload} deleteAfterUpload={true} />
                     </div>

@@ -217,7 +217,7 @@ export default function Projects() {
   return (
     <div className="h-screen grid grid-cols-2 gap-5">
       <div className="flex flex-col gap-2 h-screen">
-        <div className="h-1/2 w-full p-2 border-2 border-gray-300 rounded-md overflow-y-auto">
+        <div className="h-1/2 w-full p-2 border-2 border-gray-300 rounded-md overflow-y-hidden">
           <div className="flex justify-between border-b-2 pb-2">
             <Label className="text-sm font-bold">Industry</Label>
             <Dialog>
@@ -234,9 +234,9 @@ export default function Projects() {
 
             </Dialog>
           </div>
-          <div className="mt-2 flex flex-col gap-2">
+          <div className="mt-2 flex flex-col gap-2 overflow-y-scroll h-full">
             {industryList.map((item)=>(
-              <div className="flex justify-between border p-1 items-center rounded-md" key={item._id}>
+              <div className="flex justify-between border p-1 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300" key={item._id}>
               <div>
                 {item.name}
               </div>
@@ -280,7 +280,7 @@ export default function Projects() {
         </div>
 
 
-        <div className="h-1/2 w-full p-2 border-2 border-gray-300 rounded-md overflow-y-auto">
+        <div className="h-1/2 w-full p-2 border-2 border-gray-300 rounded-md overflow-y-hidden">
           <div className="flex justify-between border-b-2 pb-2">
             <Label className="text-sm font-bold">Location</Label>
             <Dialog>
@@ -297,11 +297,11 @@ export default function Projects() {
 
             </Dialog>
           </div>
-          <div className="">
+          <div className="h-full">
 
-          <div className="mt-2 flex flex-col gap-2">
+          <div className="mt-2 flex flex-col gap-2 overflow-y-scroll h-full">
           {locationList.map((item)=>(
-              <div className="flex justify-between border p-1 items-center rounded-md" key={item._id}>
+              <div className="flex justify-between border p-1 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300" key={item._id}>
               <div>
                 {item.name}
               </div>
@@ -348,14 +348,14 @@ export default function Projects() {
 
       </div>
 
-      <div className="h-screen w-full p-2 border-2 border-gray-300 rounded-md overflow-y-auto">
+      <div className="h-screen w-full p-2 border-2 border-gray-300 rounded-md overflow-y-hidden">
         <div className="flex justify-between border-b-2 pb-2">
           <Label className="text-sm font-bold">Projects</Label>
           <Button onClick={()=>router.push("/admin/projects/add")}>Add Project</Button>
         </div>
-        <div className="mt-2 flex flex-col gap-2">
+        <div className="mt-2 flex flex-col gap-2 overflow-y-scroll h-full">
           {projectList.map((item)=>(
-            <div className="flex justify-between border p-1 items-center rounded-md" key={item._id}>
+            <div className="flex justify-between border p-1 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300" key={item._id}>
             <div>
               {item.name}
             </div>
