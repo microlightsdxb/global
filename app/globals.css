@@ -259,7 +259,7 @@ body {
     @apply bg-background text-foreground;
   }
 }
-.thumpslider.productthumb .swiper-slide{height: 134px !important;}
+.thumpslider.productthumb .swiper-slide{height: 115px !important;width: 115px !important; }
 .pmargin0 p{margin-bottom: 0px !important;}
 .befst{position: relative;}
 .befst::before{content: '';

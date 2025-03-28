@@ -54,7 +54,7 @@ const Address = ({data}:{data:AddressProps}) => {
         {data?.data?.map((tab:{region:string},index:number) => (
           <div
             key={index}
-            className={`p-2 cursor-pointer relative top-[2px] text-black ${
+            className={`p-[10px] pl-0 pb-[20px] cursor-pointer relative top-[2px] text-black ${
               activeTab === index ? "border-b-3 border-black" : ""
             }`}
             onClick={() => setActiveTab(index)}
@@ -79,9 +79,10 @@ const Address = ({data}:{data:AddressProps}) => {
               <p className="font-[600] text-black">Mob: {location.mobile}</p>
             </div>
             <p className="font-[600] text-black">Email: {location.email}</p>
-            <div className="mt-5">
+            <div className="mt-5"   style={{ filter: "grayscale(100%)" }}>
               {/* <Image src={location.map} alt="Map" /> */}
               {parse(location.mapIframe || "")}
+
             </div>
           </div>
         ))}

@@ -38,26 +38,26 @@ const Blogdetails: React.FC<FrameworkSectionProps> = ({ data, recentBlogData }) 
         <div className="container">
           <div className="lg:flex gap-5 lg:gap-10 xl:gap-[70px]">
             <div className="lg:w-4/6 xl:w-7/9">
-            
+
           <div>
               <div>
-                <figure className="w-full h-full ">
+                <figure className="w-full h-[300px]   md:h-[400px]   lg:h-[600px] overflow-hidden ">
                   <Image
                     src={data?.data?.image}
                     alt="bnr"
-                    className="w-full h-full"
+                    className=" w-full   object-cover"
                     width={500}
                     height={500}
                   />
                 </figure>
               </div>
                 <div className="font-[300] mt-2 md:mt-4 lg:mt-12 pt-4 leading-[1.7]">
-                
+
               {parse(data?.data?.content || "")}
-            
+
                 </div>
               </div>
-                
+
             </div>
             <motion.div
               className="lg:w-2/6 xl:w-2/9"

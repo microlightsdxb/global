@@ -36,13 +36,13 @@ const Introducing: React.FC<FrameworkSectionProps> = ({
           viewport={{ once: false, amount: 0.5 }}
                   className="text-xl text-black mb-[45px] md:mb-[57px] leading-[1.3]">{framework.title}</motion.h2>
                   <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                viewport={{ once: true }}
-              >
-                  <Image src={framework.icon} alt="" ></Image>
-                  </motion.div>
+  initial={{ opacity: 0, x: -50 }}
+  animate={{ opacity: 1, x: [0, 10, -10, 0] }} // Moves back and forth
+  transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
+>
+  <Image src={framework.icon} alt="" />
+</motion.div>
+
                 </div>
               <div>
 

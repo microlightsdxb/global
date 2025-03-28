@@ -1,26 +1,21 @@
 "use client";
 import { assets } from "@/public/assets/assets";
-import React,{useState} from "react";
-import Image from "next/image";
+import React, { useState } from "react";
+import Image, { StaticImageData } from "next/image";
 
 interface FrameworkItem {
   id: number;
   title: string;
   description: string;
+  image: StaticImageData;
 }
 
 interface FrameworkSectionProps {
   data: FrameworkItem[];
 }
 
-
-
-const OurFuture: React.FC<FrameworkSectionProps> = ({
-  data,
-
-}) => {
-  const [activeIndex, setActiveIndex] = useState<number | null>(1);
-
+const OurFuture: React.FC<FrameworkSectionProps> = ({ data }) => {
+  const [activeIndex, setActiveIndex] = useState(1);
 
   return (
     <>
@@ -38,35 +33,49 @@ const OurFuture: React.FC<FrameworkSectionProps> = ({
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-5 lg:gap-[50px] 2xl:gap-[83px]">
               <div className="   ">
-                <Image src={assets.sufe} alt="" />
+                <Image
+                  src={data[activeIndex]?.image || assets.sufe}
+                  alt=""
+                  className="transition-all duration-500 ease-in-out w-full h-full"
+                />
               </div>
               <div className="border-y border-[#00000010]">
-      {data.map((item, index) => (
-        <div
-          key={item.id}
-          className={`py-5 lg:py-10 border-b border-[#00000010] pmargin0 transition-all duration-300 ${
-            activeIndex === index ? "bg-[#F1F6F0]" : ""
-          }`}
-          onMouseEnter={() => setActiveIndex(index)}
-        >
-          <div className={`border-l-4  ${
-                  activeIndex === index ? " border-[#000]" : "border-[transparent]"
-                }`}>
-            <div className="ps-5 md:ps-10 lg:ps-13">
-              <p className="text-lg text-black leading-[1.4]">{item.title}</p>
-              <p
-                className={`text-[#555555]  detailsec transition-opacity duration-300 ${
-                  activeIndex === index ? "opacity-100 visible h-full pt-5" : "opacity-0 invisible h-0"
-                }`}
-              >
-                {item.description}
-              </p>
+                {data.map((item, index) => (
+                  <div
+                    key={item.id}
+                    className={`py-5 lg:py-10 border-b border-[#00000010] pmargin0 transition-all duration-300 ${
+                      activeIndex === index ? "bg-[#F1F6F0]" : ""
+                    }`}
+                    onMouseEnter={() => setActiveIndex(index)}
+                  >
+                    <div
+                      className={`border-l-4  ${
+                        activeIndex === index
+                          ? " border-[#000]"
+                          : "border-[transparent]"
+                      }`}
+                    >
+                      <div className="ps-5 md:ps-10 lg:ps-13">
+                        <p className="text-lg text-black leading-[1.4]">
+                          {item.title}
+                        </p>
+                        <p
+                          className={`text-[#555555]  detailsec transition-opacity duration-300 ${
+                            activeIndex === index
+                              ? "opacity-100 visible h-full pt-5"
+                              : "opacity-0 invisible h-0"
+                          }`}
+                        >
+                          {item.description}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        </div>
-      ))}
-    </div>
-            </div>
+
+
           </div>
         </div>
       </section>

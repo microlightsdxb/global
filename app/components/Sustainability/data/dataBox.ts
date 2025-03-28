@@ -36,25 +36,30 @@ export const sustainabilityData = {
 export const items = [
     {
       id: 1,
-      title: "Carbon Reduction Targets",
+    title: "Carbon Reduction Targets",
+      image: assets.blogimg2,
       description:
         "Continuing to innovate in waste reduction, we plan to achieve zero waste to landfill across all our manufacturing sites.",
     },
     {
       id: 2,
       title: "Waste Minimization",
+      image: assets.sufe,
       description:
         "Continuing to innovate in waste reduction, we plan to achieve zero waste to landfill across all our manufacturing sites.",
     },
     {
       id: 3,
       title: "Green Technology Innovation",
+      image: assets.blogimg3,
       description:
         "Continuing to innovate in waste reduction, we plan to achieve zero waste to landfill across all our manufacturing sites.",
     },
     {
       id: 4,
       title: "Supply Chain Sustainability",
+
+      image: assets.blogimg4,
       description:
         "Continuing to innovate in waste reduction, we plan to achieve zero waste to landfill across all our manufacturing sites.",
     },

@@ -67,8 +67,8 @@ const Pdtdetails = ({data}: {data: ProductProps}) => {
                   className="w-full mt-4 thumpslider productthumb"
                 >
                   {data?.data?.images?.map((image: string,index: number) => (
-                    <SwiperSlide key={index} className="cursor-pointer  ">
-                      <div className="border-1 flex border-[#00000010] p-4 hover:border-primary transition-all duration-300 min-h-full">
+                    <SwiperSlide key={index} className="cursor-pointer  "  >
+                      <div className=" p-5 border-1 flex border-[#00000010]   hover:border-primary transition-all duration-300 min-h-full">
                         <Image
                           className="  h-full   m-auto"
                           src={image}
@@ -86,19 +86,19 @@ const Pdtdetails = ({data}: {data: ProductProps}) => {
               <div className="flex flex-col gap-30 justify-between">
               <div>
               <div>
-                 <h1 className="text-lg text-black leading-[1.4] mb-4 md:mb-10">{data?.data?.name} </h1>
+                 <h1 className="text-xl text-black leading-[1.4] mb-4 md:mb-10">{data?.data?.name} </h1>
               </div>
               <div className="border-b border-[#00000010] pb-5">
                 <p>Type</p>
-                <p className="text-25 text-black">{data?.data?.type}</p>
+                <p className="text-25 text-black font-[500]">{data?.data?.type}</p>
               </div>
               <div className="border-b border-[#00000010] pb-5 pt-4">
                 <p>Wattage</p>
-                <p className="text-25 text-black">{data?.data?.wattage}</p>
+                <p className="text-25 text-black font-[500]">{data?.data?.wattage}</p>
               </div>
               <div className="border-b border-[#00000010] pb-5 pt-4">
                 <p>Lumen</p>
-                <p className="text-25 text-black">{data?.data?.lumen}</p>
+                <p className="text-25 text-black font-[500]">{data?.data?.lumen}</p>
               </div>
               </div>
 

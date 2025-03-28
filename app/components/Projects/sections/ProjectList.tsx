@@ -41,17 +41,22 @@ const ProjectList: React.FC<FrameworkSectionProps> = ({
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: false, amount: 0.5 }}>
-          <div className="mb-10">
-            <figure className="h-[325px] md:h-[380px]  lg:h-[425px] xl:h-[475px] w-full">
-              <Image
-                className="h-full w-full object-cover object-center"
-                src={project.thumbnail}
-                alt={project.name}
-                width={100}
-                height={100}
-              />
-            </figure>
+            viewport={{ once: false, amount: 0.5 }}
+          className="group">
+          <div className="mb-10 ">
+          <figure className="h-[325px] md:h-[380px] lg:h-[425px] xl:h-[475px] w-full overflow-hidden">
+  <motion.div
+    className="h-full w-full"
+  >
+    <Image
+      className="h-full w-full object-cover object-center   group-hover:scale-[1.1] transition-all ease-in-out duration-500"
+      src={project.thumbnail}
+      alt={project.name}
+      width={100}
+      height={100}
+    />
+  </motion.div>
+</figure>
           </div>
           <div className="flex items-center justify-between border-b border-[#00000010] pb-3">
             <div className="flex gap-5">
@@ -61,9 +66,9 @@ const ProjectList: React.FC<FrameworkSectionProps> = ({
               <div className="flex group-hover:flex transition-all ease-in-out duration-500 justify-end">
                 <div
 
-                  className="flex gap-[20px] items-center justify-end text-white border-t border-black text-sm w-[61px] border-solid leading-none pt-[12px] cursor-pointer group"
+                        className="flex gap-[20px] items-center justify-end text-white border-t border-black text-sm w-[61px] border-solid leading-none pt-[12px] cursor-pointer group-hover:text-black group-hover:border-black"
                 >
-                  <FiArrowUpRight className="text-[22px] text-[#7D7D7D] group-hover:scale-125 transition-all ease-in-out duration-500" />
+                  <FiArrowUpRight className="text-[22px] text-[#7D7D7D] group-hover:text-black group-hover: scale-125 transition-all ease-in-out duration-500" />
                 </div>
               </div>
             </div>
