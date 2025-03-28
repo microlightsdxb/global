@@ -13,7 +13,7 @@ interface FrameworkSectionProps {
       id:number
     }[]
   };
-  data:{   
+  data:{
     data:{
     image:string,
     category:string,
@@ -65,9 +65,7 @@ const Bloglist: React.FC<FrameworkSectionProps> = ({ data, categories }) => {
       {categories?.data?.map((category) => (
         <motion.div
           key={category.name}
-          className={`p-2 cursor-pointer relative top-[2px] text-black transition-all duration-500 ${
-            activeTab === category.name ? "border-b-3 border-black" : "border-b-3 border-transparent"
-          }`}
+          className={`p-2 cursor-pointer relative top-[2px] text-black pmargin0 transition-all duration-500 `}
           onClick={() => setActiveTab(category.name)}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
@@ -94,7 +92,7 @@ const Bloglist: React.FC<FrameworkSectionProps> = ({ data, categories }) => {
       viewport={{ once: true }}
     >
       {filteredData?.map((member, index) => (
-        <Link key={index} href={`/blog-details/${member._id}`} className="teammem mt-10 lg:mt-20 xl:mt-20">
+        <Link key={index} href={`/blog-details/${member._id}`} className="teammem ">
         <motion.div
           key={index}
           className="teammem mt-10 lg:mt-20 xl:mt-20"

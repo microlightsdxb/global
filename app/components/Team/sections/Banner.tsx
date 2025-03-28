@@ -4,11 +4,11 @@ import React from "react";
 import Image from "next/image";
 const Banner = ({}) => {
   return (
-    <section className="ptc-130 pb-100 relative bg-[#f8f8f8] overflow-hidden">
+    <section className="ptc-130  relative bg-[#f8f8f8] overflow-hidden">
       <div className="container ">
-        <div className="flex flex-col-reverse md:flex-row">
-          <div className="w-full md:w-1/2">
-            <h1 className="text-2xl text-black mb-2 md:mb-4 leading-[1.2]">
+        <div className="flex flex-col-reverse lg:flex-row 2xl:pt-20">
+          <div className="w-full lg:w-1/2 pb-100">
+            <h1 className="text-2xl text-black mb-2 lg:mb-4 leading-[1.2]">
               Word from the MD
           </h1>
           <p className="font-[300] ">
@@ -34,12 +34,12 @@ const Banner = ({}) => {
             evolve.
           </p>
           <div>
-            <p className="text-lg text-black leading-[1.4] mt-4 md:mt-9">Julian Beglar</p>
+            <p className="text-lg text-black leading-[1.4] mt-4 lg:mt-9">Julian Beglar</p>
             <p>Managing Director</p>
           </div>
         </div>
-        <div className="md:absolute top-0 md:top-[23%] xl:top-0 right-0 mb-5 md:mb-0 md:w-[50%] lg:w-[50%] ">
-          <Image src={assets.md} alt=""  ></Image>
+        <div className="lg:absolute  right-0  mb-5 lg:mb-0 w-full h-full top-0 lg:w-1/2">
+          <Image src={assets.md} alt="" className="lg:absolute  right-0 bottom-0"  ></Image>
         </div>
         </div>
       </div>

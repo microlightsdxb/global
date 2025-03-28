@@ -64,7 +64,7 @@ const PdtContainer = () => {
                       <div className="flex h-full">
                         <figure className="relative w-full pt-8 mb-[82px]">
                           <Image
-                            className="object-none h-full object-center m-auto"
+                            className="object-contain h-full object-center m-auto"
                             src={product?.thumbnail}
                             alt="Apollo"
                             width={180}

@@ -46,14 +46,14 @@ const WhyMicolights: React.FC<FrameworkSectionProps> = ({
           transition={{ duration: 0.6, delay: index * 0.2 }}
           viewport={{ once: true }}
         >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <Image src={framework.icon} alt="" height={52} />
-          </motion.div>
+         <motion.div
+  initial={{ opacity: 0.7, scale: 1 }}
+  animate={{ opacity: 1, scale: 1, y: [0, -3, 0] }} // Moves up and down
+  transition={{ duration: 1.5, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
+>
+  <Image src={framework.icon} alt="" height={52} />
+</motion.div>
+
 
           <motion.div
             className="border-b border-black mt-[20px] md:mt-[40px] mb-[20px] md:mb-[30px]"

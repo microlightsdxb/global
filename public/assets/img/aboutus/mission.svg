@@ -1,13 +1,5 @@
-<svg width="75" height="75" viewBox="0 0 75 75" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_6_1441)">
-<path d="M26.8077 52.8222L19.9296 41.6583L1.49805 73.5015H73.501L55.0695 41.6583L48.1914 52.8222" stroke="#7D7D7D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M60.9141 73.5015L37.4925 35.4546L14.0859 73.5015" stroke="#7D7D7D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M37.4922 35.4546V1.49854" stroke="#7D7D7D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M37.4922 1.49854H60.9138L55.0546 8.81122L60.9138 16.1239H37.4922" stroke="#7D7D7D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-<defs>
-<clipPath id="clip0_6_1441">
-<rect width="75" height="75" fill="white"/>
-</clipPath>
-</defs>
-</svg>
+<svg id="e5Ezko8xYAU1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 75 75" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" project-id="a7e6e7995f3b4a0e96b066ff1cb31a4f" export-id="86b5c147266448a299afe7dd2fd031df" cached="false">
+<style><![CDATA[
+#e5Ezko8xYAU4 {animation: e5Ezko8xYAU4_s_do 3000ms linear infinite normal forwards}@keyframes e5Ezko8xYAU4_s_do { 0% {stroke-dashoffset: 171} 53.333333% {stroke-dashoffset: 0} 100% {stroke-dashoffset: 0}} #e5Ezko8xYAU5 {animation: e5Ezko8xYAU5_s_do 3000ms linear infinite normal forwards}@keyframes e5Ezko8xYAU5_s_do { 0% {stroke-dashoffset: 89} 53.333333% {stroke-dashoffset: 0} 100% {stroke-dashoffset: 0}} #e5Ezko8xYAU6 {animation: e5Ezko8xYAU6_s_do 3000ms linear infinite normal forwards}@keyframes e5Ezko8xYAU6_s_do { 0% {stroke-dashoffset: 33.96} 20% {stroke-dashoffset: 33.96} 46.666667% {stroke-dashoffset: 0} 100% {stroke-dashoffset: 0}} #e5Ezko8xYAU7 {animation: e5Ezko8xYAU7_s_do 3000ms linear infinite normal forwards}@keyframes e5Ezko8xYAU7_s_do { 0% {stroke-dashoffset: 0} 20% {stroke-dashoffset: 65.58} 50% {stroke-dashoffset: 0} 100% {stroke-dashoffset: 0}}
+]]></style>
+<g clip-path="url(#e5Ezko8xYAU8)"><g><path id="e5Ezko8xYAU4" d="M26.8077,52.8222L19.9296,41.6583L1.49805,73.5015h72.00295L55.0695,41.6583L48.1914,52.8222" fill="none" stroke="#7d7d7d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dashoffset="171" stroke-dasharray="171.81"/><path id="e5Ezko8xYAU5" d="M60.9141,73.5015L37.4925,35.4546L14.0859,73.5015" fill="none" stroke="#7d7d7d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dashoffset="89" stroke-dasharray="89"/><path id="e5Ezko8xYAU6" d="M37.4922,35.4546v-33.95606" fill="none" stroke="#7d7d7d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dashoffset="33.96" stroke-dasharray="33.96"/><path id="e5Ezko8xYAU7" d="M37.4922,1.49854h23.4216L55.0546,8.81122l5.8592,7.31268h-23.4216" fill="none" stroke="#7d7d7d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="65.58"/></g><clipPath id="e5Ezko8xYAU8"><rect width="75" height="75" rx="0" ry="0" fill="#fff"/></clipPath></g></svg>
