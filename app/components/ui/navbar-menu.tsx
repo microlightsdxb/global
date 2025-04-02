@@ -39,6 +39,7 @@ export const MenuItem = ({
       <Link href={url}><motion.p
         transition={{ duration: 0.3 }}
         className="cursor-pointer text-black hover:opacity-[0.9]"
+        onClick={()=> item === "Products" ? localStorage.setItem("type","") : null}
       >
         {item}
       </motion.p></Link>

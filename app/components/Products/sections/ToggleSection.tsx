@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import useSWR from "swr";
 
 interface FrameworkSectionProps {
+    typeSelected: string;
     setTypeSelected: (type: string) => void;
     setCategorySelected: (category: string) => void;
 }
@@ -21,7 +22,7 @@ interface FrameworkSectionProps {
 
   }
 
-export const ToggleSection: React.FC<FrameworkSectionProps> = ({setTypeSelected, setCategorySelected}) => {
+export const ToggleSection: React.FC<FrameworkSectionProps> = ({typeSelected,setTypeSelected, setCategorySelected}) => {
 
   const fetcher = (...args: Parameters<typeof fetch>) => fetch(...args).then(res => res.json())
   const { data }: { data: Type } = useSWR(`/api/admin/product/type`, fetcher)
@@ -83,7 +84,7 @@ export const ToggleSection: React.FC<FrameworkSectionProps> = ({setTypeSelected,
               onClick={() => toggleTypeSelection(index,type.type)}
             >
               <p>{type.type}</p>
-              {selectedType === index && (
+              {typeSelected === type.type && (
                 <Check size={20} className="text-font" />
               )}
             </div>

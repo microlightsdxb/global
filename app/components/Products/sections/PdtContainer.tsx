@@ -35,6 +35,14 @@ const PdtContainer = () => {
     }
   }, [data,typeSelected,categorySelected])
 
+  useEffect(() => {
+    if(localStorage.getItem("type") == ""){
+      setTypeSelected(data?.data[0].type)
+    }else{
+      setTypeSelected(localStorage.getItem("type") || "")
+    }
+  }, [data])
+
 
   return (
     <section className="">
@@ -45,7 +53,7 @@ const PdtContainer = () => {
           </h1>
           <div className="flex gap-10">
             <div className="w-1/4">
-              <ToggleSection setTypeSelected={setTypeSelected} setCategorySelected={setCategorySelected}/>
+              <ToggleSection typeSelected={typeSelected} setTypeSelected={setTypeSelected} setCategorySelected={setCategorySelected}/>
               {/* <ToggleSection
                 title="Category"
                 options={["Home", "Office", "Commercial"]}

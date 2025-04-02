@@ -22,12 +22,15 @@ import {
 } from "@/components/ui/sheet"
 import { FaPlusCircle } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa";
+import { ImageUploader } from '@/components/ui/image-uploader';
 
 
 
 const TypePage = () => {
-    const [typeList, setTypeList] = useState<{ _id: string, type: string }[]>([]);
+    const [typeList, setTypeList] = useState<{ _id: string, type: string, image: string, hoverImage: string }[]>([]);
     const [type, setType] = useState<string>("");
+    const [image, setImage] = useState<string>("");
+    const [hoverImage, setHoverImage] = useState<string>("");
     const [category, setCategory] = useState<string>("");
     const [typeId, setTypeId] = useState<string>("");
     const [categoryList, setCategoryList] = useState<{ _id: string, name: string }[]>([]);
@@ -67,7 +70,7 @@ const TypePage = () => {
         try {
             const response = await fetch("/api/admin/product/type", {
                 method: "POST",
-                body: JSON.stringify({ type })
+                body: JSON.stringify({ type, image, hoverImage })
             });
             if (response.ok) {
                 const data = await response.json();
@@ -82,11 +85,11 @@ const TypePage = () => {
         }
     }
 
-    const handleEditType = async (id:string) => {
+    const handleEditType = async (id: string) => {
         try {
             const response = await fetch(`/api/admin/product/type`, {
                 method: "PATCH",
-                body: JSON.stringify({ id, type })
+                body: JSON.stringify({ id, type, image, hoverImage })
             });
             if (response.ok) {
                 const data = await response.json();
@@ -101,7 +104,7 @@ const TypePage = () => {
         }
     }
 
-    const handleDeleteType = async (id:string) => {
+    const handleDeleteType = async (id: string) => {
         try {
             const response = await fetch(`/api/admin/product/type`, {
                 method: "DELETE",
@@ -116,7 +119,7 @@ const TypePage = () => {
                 alert(data.message);
             }
         } catch (error) {
-            console.log("Error in deleting type",error);
+            console.log("Error in deleting type", error);
         }
     }
 
@@ -197,9 +200,18 @@ const TypePage = () => {
                         <DialogContent>
                             <DialogHeader>
                                 <DialogTitle>Add Type</DialogTitle>
-                                <DialogDescription>
+                                <div className='flex gap-2 flex-col'>
+                                    <Label>Type</Label>
                                     <Input type="text" placeholder="Type" value={type} onChange={(e) => setType(e.target.value)} />
-                                </DialogDescription>
+                                </div>
+                                <div className='flex gap-2 flex-col'>
+                                    <Label>Image</Label>
+                                    <ImageUploader onChange={(url) => setImage(url)} value={image} />
+                                </div>
+                                <div className='flex gap-2 flex-col'>
+                                    <Label>Hover Image</Label>
+                                    <ImageUploader onChange={(url) => setHoverImage(url)} value={hoverImage} />
+                                </div>
                             </DialogHeader>
                             <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={handleAddType}>Save</DialogClose>
                         </DialogContent>
@@ -264,22 +276,31 @@ const TypePage = () => {
                                 </Sheet>
 
                                 <Dialog>
-                                    <DialogTrigger onClick={() => setType(item.type)}><MdEdit /></DialogTrigger>
+                                    <DialogTrigger onClick={() => { setType(item.type); setImage(item.image); setHoverImage(item.hoverImage) }}><MdEdit /></DialogTrigger>
                                     <DialogContent>
                                         <DialogHeader>
                                             <DialogTitle>Edit Type</DialogTitle>
-                                            <DialogDescription>
+                                            <div className='flex gap-2 flex-col'>
+                                                <Label>Type</Label>
                                                 <Input type="text" placeholder="Type" value={type} onChange={(e) => setType(e.target.value)} />
-                                            </DialogDescription>
+                                            </div>
+                                            <div className='flex gap-2 flex-col'>
+                                                <Label>Image</Label>
+                                                <ImageUploader onChange={(url) => setImage(url)} value={image} />
+                                            </div>
+                                            <div className='flex gap-2 flex-col'>
+                                                <Label>Hover Image</Label>
+                                                <ImageUploader onChange={(url) => setHoverImage(url)} value={hoverImage} />
+                                            </div>
                                         </DialogHeader>
                                         <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={() => handleEditType(item._id)}>Save</DialogClose>
                                     </DialogContent>
 
                                 </Dialog>
-                                
 
 
-                                <MdDelete onClick={() => handleDeleteType(item._id)}/>
+
+                                <MdDelete onClick={() => handleDeleteType(item._id)} />
 
                             </div>
                         </div>

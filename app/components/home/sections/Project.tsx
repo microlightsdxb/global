@@ -10,6 +10,7 @@ import { FiArrowUpRight } from "react-icons/fi";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 /* import { ChevronLeft, ChevronRight } from "lucide-react"; */
 import {motion} from 'framer-motion';
+import Link from "next/link";
 
 /* const slideVariant = {
   hidden: { opacity: 0, y: 50 },
@@ -24,52 +25,18 @@ import {motion} from 'framer-motion';
 
 
 interface Project {
-  id: number;
-  name: string;
-  client: string;
-  location: string;
-  image: string;
+  data:{
+    _id: string,
+    name: string,
+    client: string,
+    location: string,
+    thumbnail: string
+  }[]
 }
 
-const projects: Project[] = [
-  {
-    id: 1,
-    name: "Project Name",
-    client: "Dummy Name",
-    location: "Dubai",
-    image: "/assets/img/home/pr-01.jpg",
-  },
-  {
-    id: 2,
-    name: "Project Name",
-    client: "Dummy Name",
-    location: "Dubai",
-    image: "/assets/img/home/pr-02.jpg",
-  },
-  {
-    id: 3,
-    name: "Project Name",
-    client: "Dummy Name",
-    location: "Dubai",
-    image: "/assets/img/home/pr-03.jpg",
-  },
-  {
-    id: 4,
-    name: "Project Name",
-    client: "Dummy Name",
-    location: "Dubai",
-    image: "/assets/img/home/pr-01.jpg",
-  },
-  {
-    id: 5,
-    name: "Project Name",
-    client: "Dummy Name",
-    location: "Dubai",
-    image: "/assets/img/home/pr-03.jpg",
-  },
-];
 
-const RecentProjects: React.FC = () => {
+
+const RecentProjects = ({data}:{data:Project}) => {
   const prevRef = useRef<HTMLButtonElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
 
@@ -119,9 +86,9 @@ const RecentProjects: React.FC = () => {
             }}
             className=""
           >
-            {projects.map((project) => (
-              <SwiperSlide key={project.id}>
-                <div className="overflow-hidden" >
+            {data?.data?.slice(0,5).map((project) => (
+              <SwiperSlide key={project._id}>
+                <Link href={`/project-details/${project._id}`} className="overflow-hidden" >
                   <div className="hdrsc">
                     <div className="flex justify-between items-center border-b border-primary/10 pb-[14px]">
                       <h3 className="text-lg font-normal leading-none text-primary">
@@ -149,11 +116,11 @@ const RecentProjects: React.FC = () => {
                   <Image
                     width={500}
                     height={500}
-                    src={project.image}
+                    src={project.thumbnail}
                     alt={project.name}
                     className="w-full object-cover"
                   />
-                </div>
+                  </Link>
               </SwiperSlide>
             ))}
           </Swiper>

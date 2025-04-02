@@ -31,8 +31,7 @@ export default function ClientSideLink({
     <>
       <Link
         href={href}
-        onClick={(e) => {
-          e.preventDefault(); // Prevent navigation on click
+        onClick={() => {  // Prevent navigation on click
           setOpenLink?.(isOpen ? null : href);
         }}
         className={cn(

@@ -24,11 +24,24 @@ const Index = () => {
   }, [data])
 
   useEffect(()=>{
+
     if(!industrySelected && !locationSelected){
       setProjects(data?.data)
       return;
     }
-    if(industrySelected=="Industry" && locationSelected=="Location"){
+
+    if(industrySelected=="Industry" && !locationSelected){
+      setProjects(data?.data)
+      return;
+    }
+
+    if(locationSelected=="Location" && !industrySelected){
+      setProjects(data?.data)
+      return;
+    }
+
+
+    if(industrySelected=="Industry"  && locationSelected=="Location"){
       setProjects(data?.data)
       return;
     }else{
@@ -63,7 +76,7 @@ const Index = () => {
   return (
     <>
       <div className="headerpadding"> </div>
-      <Filter industryData={industryData} locationData={locationData} setIndustrySelected={setIndustrySelected} setLocationSelected={setLocationSelected} locationSelected={locationSelected} industrySelected={industrySelected}/>
+      <Filter industryData={industryData} locationData={locationData} setIndustrySelected={setIndustrySelected} setLocationSelected={setLocationSelected}/>
       <ProjectList data={projects} />
     </>
   );

@@ -20,10 +20,10 @@ export async function GET(){
 export async function POST(request:Request){
     try {
         await connectDB();
-        const {type} = await request.json();
+        const {type,image,hoverImage} = await request.json();
         console.log("type",type)
         if(type){
-            const newType = await ProductType.create({type});
+            const newType = await ProductType.create({type,image,hoverImage});
             if(newType){
                 console.log("new type created")
                 return NextResponse.json({success:true,message:"Type added successfully"},{status:200})
@@ -43,9 +43,9 @@ export async function POST(request:Request){
 export async function PATCH(request:Request){
     try {
         await connectDB();
-        const {id,type} = await request.json();
+        const {id,type,image,hoverImage} = await request.json();
         if(id && type){
-            const updatedType = await ProductType.findByIdAndUpdate(id,{type},{new:true});
+            const updatedType = await ProductType.findByIdAndUpdate(id,{type,image,hoverImage},{new:true});
             if(updatedType){
                 return NextResponse.json({success:true,message:"Type updated successfully"},{status:200})
             }else{
