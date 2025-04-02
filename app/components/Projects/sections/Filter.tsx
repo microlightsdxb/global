@@ -13,12 +13,12 @@ interface Option {
 
 
 const Filter = ({ industryData, locationData, setIndustrySelected, setLocationSelected }: { industryData: { data: { name: string }[], setIndustrySelected: (name: string) => void, industrySelected: string }, locationData: { data: { name: string }[], setLocationSelected: (name: string) => void, locationSelected: string }, setIndustrySelected: (name: string) => void, setLocationSelected: (name: string) => void }) => {
-  
+
   const [selectedIndustry, setSelectedIndustry] = useState<Option | null>(null);
   const [selectedLocation, setSelectedLocation] = useState<Option | null>(null);
   const [industryOptions, setIndustryOptions] = useState<Option[]>([]);
   const [locationOptions, setLocationOptions] = useState<Option[]>([]);
- 
+
   const handleIndustryChange = (newValue: Option | null) => {
     setSelectedIndustry(newValue);
     setIndustrySelected(newValue?.value || "")
@@ -46,7 +46,7 @@ const Filter = ({ industryData, locationData, setIndustrySelected, setLocationSe
     }
   },[industryData,locationData])
 
-  
+
   return (
     <section className="py-100">
       <div className="container">
@@ -70,52 +70,67 @@ const Filter = ({ industryData, locationData, setIndustrySelected, setLocationSe
               <div className="grid grid-cols-1 md:grid-cols-2 gap-[40px]">
                 <div>
                   <div className="relative w-full">
-                    <Select
-                      options={industryOptions}
-                      value={selectedIndustry}
-                      onChange={handleIndustryChange}
-                      isSearchable={true}
-                      placeholder="Industry"
-                      styles={{
-                        control: (provided) => ({
-                          ...provided,
-                          backgroundColor: "transparent",
-                          border: "none",
-                          borderBottom: "1px solid #fff",
-                          color: "white",
-                          borderRadius: "0px",
-                          boxShadow: "none",
-                          "&:hover": { borderBottom: "1px solid #fff" }
-                        }),
-                        singleValue: (provided) => ({
-                          ...provided,
-                          color: "white"
-                        }),
-                        placeholder: (provided) => ({
-                          ...provided,
-                          color: "white"
-                        }),
-                        input: (provided) => ({
-                          ...provided,
-                          color: "white"
-                        }),
-                        option: (provided, state) => ({
-                          ...provided,
-                          backgroundColor: state.isSelected
-                            ? "black"
-                            : state.isFocused
-                              ? "#333"
-                              : "transparent",
-                          color: state.isSelected || state.isFocused ? "white" : "black",
-                          padding: 10
-                        }),
-                        menu: (provided) => ({
-                          ...provided,
-                          backgroundColor: "white",
-                          borderBottom: "1px solid white"
-                        })
-                      }}
-                    />
+                  <Select
+  options={industryOptions}
+  value={selectedIndustry}
+  onChange={handleIndustryChange}
+  isSearchable={true}
+  placeholder="Industry"
+  styles={{
+    control: (provided) => ({
+      ...provided,
+      backgroundColor: "transparent",
+      border: "none",
+      borderBottom: "1px solid #fff",
+      color: "white",
+      borderRadius: "0px", // Rounded corners for select box
+      boxShadow: "none",
+      "&:hover": { borderBottom: "1px solid #fff" }
+    }),
+    singleValue: (provided) => ({
+      ...provided,
+      color: "white"
+    }),
+    placeholder: (provided) => ({
+      ...provided,
+      color: "white"
+    }),
+    input: (provided) => ({
+      ...provided,
+      color: "white"
+    }),
+    option: (provided, state) => ({
+      ...provided,
+      backgroundColor: state.isSelected
+        ? "black"
+        : state.isFocused
+        ? "#333"
+        : "transparent",
+      color: state.isSelected || state.isFocused ? "white" : "black",
+      padding: "10px",
+      margin: "0",
+      borderRadius: "0px", // Rounded corners for each option
+      "&:active": {
+        backgroundColor: "black"
+      }
+    }),
+    menu: (provided) => ({
+      ...provided,
+      backgroundColor: "white",
+      borderBottom: "1px solid white",
+      borderRadius: "5px" // Rounded corners for dropdown menu
+    }),
+    menuList: (provided) => ({
+      ...provided,
+      paddingTop: 0,
+      paddingBottom: 0,
+      borderRadius: "5px" // Rounded corners for list container
+    })
+  }}
+/>
+
+
+
                     {/* <select className="w-full bg-transparent text-white py-2 pr-8 pl-3 border-b border-white appearance-none focus:outline-none focus:border-gray-300 transition duration-300" value={industrySelected} onChange={(e)=>setIndustrySelected(e.target.value)}>
                     <option className="bg-black text-white" value={"Industry"}>
                         Industry
@@ -174,17 +189,28 @@ const Filter = ({ industryData, locationData, setIndustrySelected, setLocationSe
                         option: (provided, state) => ({
                           ...provided,
                           backgroundColor: state.isSelected
-                            ? "black"
+                            ? "#1d1e31"
                             : state.isFocused
                               ? "#333"
                               : "transparent",
-                          color: state.isSelected || state.isFocused ? "white" : "black",
-                          padding: 10
+                          color: state.isSelected || state.isFocused ? "white" : "#1d1e31",
+                          padding: "10px",
+      margin: "0",
+      "&:active": {
+        backgroundColor: "#333"
+      }
                         }),
                         menu: (provided) => ({
                           ...provided,
                           backgroundColor: "white",
-                          borderBottom: "1px solid white"
+                          borderBottom: "1px solid white",
+                          borderRadius: "5px"
+                        }),
+                        menuList: (provided) => ({
+                          ...provided,
+                          paddingTop: 0,
+                          borderRadius: "5px" ,
+                          paddingBottom: 0
                         })
                       }}
                     />
