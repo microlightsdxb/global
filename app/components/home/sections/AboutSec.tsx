@@ -73,7 +73,7 @@ const AboutSec = () => {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: false, amount: 0.5 }} className="text-xl text-primary ">
-             
+
               About Microlights
             </motion.h2>
             </div>
@@ -114,7 +114,7 @@ const AboutSec = () => {
             </p>
             <div className="flex mt-[30px] 2xl:mt-[50px]">
               <Link
-                href={"/"}
+                href={"/about-us"}
                 className="flex gap-[20px] items-center border-t border-primary text-sm text-primary border-solid leaing-none pt-[12px] cursor-pointer group"
               >
                 Read More{" "}

@@ -113,8 +113,8 @@ const IndustriesServed = () => {
                   <Image src={industry.hrimg} width={600} height={600} alt=""/>
 
                 </figure>
-                <Image src={industry.icon} width={100} height={75} className="w-auto mb-[40px] lg:mb-[60px] 2xl:mb-[90px] z-[10] relative h-[55px] lg:h-[65px] 2xl:h-[75px]" alt={industry.name}/>
-                <h3 className="text-lg z-[10]  relative">{industry.name}</h3>
+                <Image src={industry.icon} width={100} height={75} className="w-auto mb-[40px] lg:mb-[60px] 2xl:mb-[90px] z-[1] relative h-[55px] lg:h-[65px] 2xl:h-[75px]" alt={industry.name}/>
+                <h3 className="text-lg z-[1]  relative">{industry.name}</h3>
             </motion.div>
             ))}
 
