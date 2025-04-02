@@ -21,16 +21,16 @@ const Footer = () => {
               <h3 className="text-lg text-primary mb-[35px] leading-none">Quick Links</h3>
               <ul className="text-gray-500 mt-4 space-y-2">
                 <li>
-                  <Link className="text-xs text-[#7D7D7D]" href="#">About Microlights</Link>
+                  <Link className="text-xs text-[#7D7D7D]" href="/about-us">About Microlights</Link>
                 </li>
                 <li>
-                  <Link className="text-xs text-[#7D7D7D]" href="#">Sustainability</Link>
+                  <Link className="text-xs text-[#7D7D7D]" href="/sustainability">Sustainability</Link>
                 </li>
                 <li>
-                  <Link className="text-xs text-[#7D7D7D]" href="#">Projects</Link>
+                  <Link className="text-xs text-[#7D7D7D]" href="/projects">Projects</Link>
                 </li>
                 <li>
-                  <Link className="text-xs text-[#7D7D7D]" href="#">Blog</Link>
+                  <Link className="text-xs text-[#7D7D7D]" href="/blogs">Blog</Link>
                 </li>
                 <li>
                   <Link className="text-xs text-[#7D7D7D]" href="#">FAQ</Link>
