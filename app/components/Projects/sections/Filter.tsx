@@ -1,19 +1,15 @@
 "use client";
 import { assets } from "@/public/assets/assets";
-import React,{ useEffect } from "react";
-
+import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import $ from "jquery";
-import "select2/dist/css/select2.min.css";
-import "select2/dist/js/select2.min.js";
+
+
+
 
 const Filter = ({industryData, locationData, setIndustrySelected, setLocationSelected, industrySelected, locationSelected}: {industryData: {data:{name:string}[], setIndustrySelected: (name: string)=>void, industrySelected: string}, locationData: {data:{name:string}[], setLocationSelected: (name: string)=>void, locationSelected: string}, setIndustrySelected: (name: string)=>void, setLocationSelected: (name: string)=>void, industrySelected: string, locationSelected: string}) => {
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      $(".custom-select").select2();
-    }
-  }, []);
+
+
   return (
     <section className="py-100">
       <div className="container">
@@ -37,6 +33,8 @@ const Filter = ({industryData, locationData, setIndustrySelected, setLocationSel
             <div className="grid grid-cols-1 md:grid-cols-2 gap-[40px]">
               <div>
                   <div className="relative w-full">
+
+
                   <select className="w-full custom-select  bg-transparent text-white py-2 pr-8 pl-3 border-b border-white appearance-none focus:outline-none focus:border-gray-300 transition duration-300" value={industrySelected} onChange={(e)=>setIndustrySelected(e.target.value)}>
                     <option className="bg-black text-white" value={"Industry"}>
                         Industry
@@ -53,7 +51,8 @@ const Filter = ({industryData, locationData, setIndustrySelected, setLocationSel
                 </div>
               </div>
               <div><div className="relative w-full">
-                  <select className="w-full custom-select bg-transparent text-white py-2 pr-8 pl-3 border-b border-white appearance-none focus:outline-none focus:border-gray-300 transition duration-300" value={locationSelected} onChange={(e)=>setLocationSelected(e.target.value)}>
+
+                  <select className="w-full custom-selectbg-transparent text-white py-2 pr-8 pl-3 border-b border-white appearance-none focus:outline-none focus:border-gray-300 transition duration-300" value={locationSelected} onChange={(e) => setLocationSelected(e.target.value)}>
                     <option className="bg-black text-white" value="Location">
                     Location
                     </option>
