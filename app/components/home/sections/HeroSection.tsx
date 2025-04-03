@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 /* import { motion } from "framer-motion"; */
 import c01web2 from "@/public/assets/img/home/slide1.jpg";
+import c01web3 from "@/public/assets/img/home/secbnr.jpg";
 import Link from "next/link";
 import { FiArrowUpRight } from "react-icons/fi";
 import {motion} from "framer-motion";
@@ -31,10 +32,10 @@ const projects = [
     type: "5 Star Hilton Hotel & Branded Residences",
     description:
       "Perched on the captivating Al Marjan Island, the Hilton 5-star hotel masterfully balances serene beach front luxury with the thrilling allure of a vibrant casino. Nestled beside the existing Hampton by Hilton Al Marjan Island, this architectural marvel offers guests and residents an unparalleled experience that fuses relaxation and entertainment.",
-    image: c01web2,
+    image: c01web3,
     status: "Completed",
   }
- 
+
 ];
 
 const HeroSection = () => {
@@ -80,7 +81,7 @@ const HeroSection = () => {
           duration: 0.8,
             ease: "power2.inOut"
           }, `slide${index}`)
-          .fromTo(`.slide:nth-child(${index + 1}) figure img`, 
+          .fromTo(`.slide:nth-child(${index + 1}) figure img`,
             { scale: 1 },
             {
               scale: 1.2,
@@ -90,7 +91,7 @@ const HeroSection = () => {
             opacity: 0.5,
             duration: 0.8,
           }, `slide${index}`)
-       
+
         if (index < projects.length - 1) {
           masterTl.to(sectionRef.current, {
             x: `-${(index + 1) * 100}vw`,
@@ -100,7 +101,7 @@ const HeroSection = () => {
         }
       });
 
-  
+
       return () => {
         ScrollTrigger.getAll().forEach(masterTl => masterTl.kill());
       };
@@ -120,7 +121,7 @@ const HeroSection = () => {
           </span>
         </div>
       </div>
-  
+
       <div className="prject-sec h-full flex flex-wrap" style={{ width: `${projects.length * 100}vw` }} ref={sectionRef}>
 
         {projects.map((project) => (
@@ -129,7 +130,7 @@ const HeroSection = () => {
               <Image className="h-full w-full absolute object-cover object-center" src={project.image} alt={project.title} width={2500} height={1000} />
             </figure>
             <div className="h-full w-full -z-40 absolute bg-gradient-to-t from-black to-transparent opacity-70"></div>
-    
+
             <div className="absolute w-full h-full">
               <div className="container h-full">
                 <div className="h-full relative">
@@ -162,7 +163,7 @@ const HeroSection = () => {
                     </Link></motion.div>
                   </div>
                   </div>
-                 
+
                 </div>
               </div>
             </div>
