@@ -59,7 +59,7 @@ const Pjctslider = ({ data }: { data: { data: { images: string[] } } }) => {
             >
               {data?.data?.images?.map((project: string, index: number) => (
                 <SwiperSlide key={index} className="cursor-pointer  ">
-                  <div className="border-1 flex  mb-4 transition-all duration-300 min-h-full"
+                  <div className="border-1 flex  mb-4 transition-all duration-300 min-h-full overflow-hidden"
                     style={{ width: "60px", height: "60px" }}>
                     <Image
                       className=" h-auto   m-auto"
