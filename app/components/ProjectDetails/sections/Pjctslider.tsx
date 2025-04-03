@@ -38,8 +38,8 @@ const Pjctslider = ({ data }: { data: { data: { images: string[] } } }) => {
                       className="object-cover w-full h-full"
                       src={project}
                       alt="Apollo"
-                      width={1000}
-                      height={1000}
+                      width={1920}
+                      height={1500}
                     />
                   </figure>
                 </div>
