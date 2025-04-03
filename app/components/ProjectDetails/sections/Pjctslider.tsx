@@ -52,7 +52,7 @@ const Pjctslider = ({ data }: { data: { data: { images: string[] } } }) => {
             <Swiper
               onSwiper={setThumbsSwiper}
               modules={[Thumbs]}
-              slidesPerView={6} // Adjust based on the number of thumbnails
+              slidesPerView={"auto"} // Adjust based on the number of thumbnails
               spaceBetween={10}
               watchSlidesProgress
               className="w-full mt-4 thumpslider fullslider"
