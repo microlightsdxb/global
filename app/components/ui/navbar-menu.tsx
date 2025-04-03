@@ -50,7 +50,7 @@ export const MenuItem = ({
           transition={transition}
         >
           {active === item && (
-            <div className="absolute top-[calc(100%_+_1.2rem)] left-1/2 transform -translate-x-1/2 pt-4">
+            <div className="absolute top-[calc(100%_+_.2rem)] left-1/2 transform -translate-x-1/2 pt-4">
               <motion.div
                 transition={transition}
                 layoutId="active" // layoutId ensures smooth animation
@@ -81,7 +81,7 @@ export const Menu = ({
   return (
     <nav
       onMouseLeave={() => setActive(null)} // resets the state
-      className="relative rounded-full border border-transparent text-black bg-transparent shadow-input flex justify-center space-x-4 px-4 py-0 gap-5"
+      className="relative rounded-full border border-transparent text-black bg-transparent shadow-input flex justify-center space-x-4 px-4 py-4 gap-5"
     >
       {children}
     </nav>
@@ -122,7 +122,7 @@ export const ProductItem = ({
 
 export const HoveredLink = ({ children, className, ...rest }: HoveredLinkProps) => {
   return (
-    <Link {...rest} className={`text-white hover:text-neutral-500 ${className || ""}`}>
+    <Link {...rest} className={`text-black hover:text-neutral-500 ${className || ""}`}>
       {children}
     </Link>
   );

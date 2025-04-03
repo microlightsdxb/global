@@ -6,25 +6,42 @@ export type MenuItem = {
 export const menuItems: MenuItem[] = [
     {
       title:"About",
-      url:"/about-us",
+    url: "",
+    children:[
+      {
+        title:"About Us",
+        url:"/about-us"
+      },
+      {
+        title:"Our Team",
+        url:"/our-team"
+      }
+    ]
     },
     {
       title:"Products",
-      url:"/products"
-     /*  children:[
-        {
-          title:"Product 1",
-          url:"#"
-        }
-      ] */
+      url:"/products",
+      //   children:[
+      //   {
+      //     title:"Product 1",
+      //     url:"#"
+      //   }
+      // ]
     },
     {
       title:"Services",
-      url:"/services",
-    },
-    {
-      title:"Industries",
-      url:"/industries",
+      url: "",
+      children:[
+        {
+          title:"Microlights House of Design",
+          url:"/microlights-house-of-design"
+        },
+        {
+          title:"Project Management",
+          url:"/project-management"
+        }
+      ]
+
     },
     {
       title:"Projects",
