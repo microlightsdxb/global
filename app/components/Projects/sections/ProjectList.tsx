@@ -45,18 +45,18 @@ const ProjectList: React.FC<FrameworkSectionProps> = ({
           className="group">
           <div className="mb-10 ">
           <figure className="h-[325px] md:h-[380px] lg:h-[425px] xl:h-[475px] w-full overflow-hidden">
-  <motion.div
-    className="h-full w-full"
-  >
-    <Image
-      className="h-full w-full object-cover object-center   group-hover:scale-[1.1] transition-all ease-in-out duration-500"
-      src={project.thumbnail}
-      alt={project.name}
-      width={950}
-      height={950}
-    />
-  </motion.div>
-</figure>
+            <motion.div
+              className="h-full w-full"
+            >
+              <Image
+                className="h-full w-full object-cover object-center   group-hover:scale-[1.1] transition-all ease-in-out duration-500"
+                src={project.thumbnail}
+                alt={project.name}
+                width={950}
+                height={950}
+              />
+            </motion.div>
+          </figure>
           </div>
           <div className="flex items-center justify-between border-b border-[#00000010] pb-3">
             <div className="flex gap-5">
