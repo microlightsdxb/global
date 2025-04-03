@@ -52,8 +52,8 @@ const ProjectList: React.FC<FrameworkSectionProps> = ({
       className="h-full w-full object-cover object-center   group-hover:scale-[1.1] transition-all ease-in-out duration-500"
       src={project.thumbnail}
       alt={project.name}
-      width={100}
-      height={100}
+      width={950}
+      height={950}
     />
   </motion.div>
 </figure>
