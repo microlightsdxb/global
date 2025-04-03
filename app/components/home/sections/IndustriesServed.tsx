@@ -14,32 +14,32 @@ const industies = [
   {
     name : "Commercial",
     icon : "/assets/img/icons/commercial.svg",
-    hrimg : "/assets/img/home/hov-s.jpg"
+    hrimg : "/assets/img/home/Commercial.jpg"
   },
   {
     name : "Architectural",
     icon : "/assets/img/icons/retail.svg",
-    hrimg : "/assets/img/home/hov-s.jpg"
+    hrimg : "/assets/img/home/Architectural.jpg"
   },
   {
     name : "Public Spaces",
     icon : "/assets/img/icons/public-spaes.svg",
-    hrimg : "/assets/img/home/hov-s.jpg"
+    hrimg : "/assets/img/home/Public spaces.jpg"
   },
   {
     name : "Residential",
     icon : "/assets/img/icons/residential.svg",
-    hrimg : "/assets/img/home/hov-s.jpg"
+    hrimg : "/assets/img/home/residential.jpg"
   },
   {
     name : "Industrial",
     icon : "/assets/img/icons/industrial.svg",
-    hrimg : "/assets/img/home/hov-s.jpg"
+    hrimg : "/assets/img/home/Industrial.jpg"
   },
   {
     name : "Hospitality",
     icon : "/assets/img/icons/hospitality.svg",
-    hrimg : "/assets/img/home/hov-s.jpg"
+    hrimg : "/assets/img/home/Hospitality.jpg"
   }
 ]
 /*
