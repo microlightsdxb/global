@@ -34,7 +34,7 @@ const industies = [
   {
     name : "Industrial",
     icon : "/assets/img/icons/industrial.svg",
-    hrimg : "/assets/img/home/Industrialjpg"
+    hrimg : "/assets/img/home/Industrial.jpg"
   },
   {
     name : "Hospitality",
