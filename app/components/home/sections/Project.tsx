@@ -113,13 +113,20 @@ const RecentProjects = ({data}:{data:Project}) => {
                       </div>
                     </div>
                   </div>
-                  <Image
-                    width={500}
-                    height={500}
-                    src={project.thumbnail}
-                    alt={project.name}
-                    className="w-full object-cover"
-                  />
+
+                  <figure className="h-[280px]   lg:h-[300px] xl:h-[350px] w-full overflow-hidden">
+                              <motion.div
+                                className="h-full w-full"
+                              >
+                                <Image
+                                  className="h-full w-full object-cover object-center   group-hover:scale-[1.1] transition-all ease-in-out duration-500"
+                                  src={project.thumbnail}
+                                  alt={project.name}
+                                  width={950}
+                                  height={950}
+                                />
+                              </motion.div>
+                            </figure>
                   </Link>
               </SwiperSlide>
             ))}
