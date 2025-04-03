@@ -1,8 +1,20 @@
 "use client";
-import { assets } from "@/public/assets/assets";
+import parse from "html-react-parser";
 import React from "react";
 import Image from "next/image";
-const Banner = ({}) => {
+
+interface MdData {
+  data:{
+    mdName: string;
+    mdDesignation: string;
+    mdDescription: string;
+    mdImage: string;
+  }
+
+}
+
+
+const Banner = ({data}:{data:MdData}) => {
   return (
     <section className="ptc-130  relative bg-[#f8f8f8] overflow-hidden">
       <div className="container ">
@@ -11,7 +23,10 @@ const Banner = ({}) => {
             <h1 className="text-2xl text-black mb-2 lg:mb-4 leading-[1.2]">
               Word from the MD
           </h1>
-          <p className="font-[300] ">
+          <div className="font-[300]">
+            {parse(data?.data?.mdDescription || "")}
+          </div>
+          {/* <p className="font-[300] ">
             I started my career with Microlights as Regional Sales Manager in
             2009.  I then moved into a Sales Director position, before finally
             becoming the Managing Director of the company in 2022. I am very
@@ -32,14 +47,16 @@ const Banner = ({}) => {
             the helm of the company as it moves into its next chapter of
             expansion and growth in the Middle East region which continues to
             evolve.
-          </p>
+          </p> */}
           <div>
-            <p className="text-lg text-black leading-[1.4] mt-4 lg:mt-9">Julian Beglar</p>
-            <p>Managing Director</p>
+            <p className="text-lg text-black leading-[1.4] mt-4 lg:mt-9">
+              {data?.data?.mdName}
+            </p>
+            <p>{data?.data?.mdDesignation}</p>
           </div>
         </div>
         <div className="lg:absolute  right-0  mb-5 lg:mb-0 w-full h-full top-0 lg:w-1/2">
-          <Image src={assets.md} alt="" className="lg:absolute  right-0 bottom-0"  ></Image>
+          <Image src={data?.data?.mdImage} alt="" className="lg:absolute  right-0 bottom-0" height={1000} width={1000}></Image>
         </div>
         </div>
       </div>

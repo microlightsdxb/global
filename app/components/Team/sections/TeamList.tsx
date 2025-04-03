@@ -1,20 +1,19 @@
 "use client";
 import React from "react";
-import Image, { StaticImageData } from "next/image";
-
-
+import Image from "next/image";
 
 
 
 interface FrameworkItem {
-  id: number;
-  name: string;
-  role: string;
-  image: StaticImageData;
+  data:{
+    name: string;
+    designation: string;
+    image: string;
+  }[]
 }
 
 interface FrameworkSectionProps {
-  data: FrameworkItem[];
+  data: FrameworkItem;
 }
 const TeamList: React.FC<FrameworkSectionProps> = ({
   data
@@ -26,7 +25,7 @@ const TeamList: React.FC<FrameworkSectionProps> = ({
       <div className="container">
         <h2 className="text-xl leading-[1.3] mb-4 md:mb-15"> Our Team</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  xl:grid-cols-4 team-grid ">
-      {data.map((member, index) => (
+      {data?.data?.map((member, index) => (
         <div
           key={index}
           className="teammem border-b pb-7 hover:border-[#000] hover:border-b-2 transition-all duration-500 mb-10 md:mb-15 lg:mb-20"
@@ -43,7 +42,7 @@ const TeamList: React.FC<FrameworkSectionProps> = ({
           <p className="text-lg text-black leading-[1.4] mt-5 md:mt-10 mb-2">
             {member.name}
           </p>
-          <p>{member.role}</p>
+          <p>{member.designation}</p>
         </div>
       ))}
     </div>

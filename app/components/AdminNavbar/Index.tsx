@@ -24,6 +24,7 @@ const AdminNavbar = () => {
         { name: "Projects", href: "/admin/projects", icon: CheckBadgeIcon },
         { name: "Sustainability", href: "/admin/sustainability", icon: CheckBadgeIcon },
         { name: "Blogs", href: "/admin/blogs", icon: NewspaperIcon },
+        { name: "Team", href: "/admin/team", icon: UserGroupIcon },
         { name: "Contact", href: "#", icon: EnvelopeIcon,children:[{name:"Regions",href:"/admin/contact"},{name:"Enquiries",href:"/admin/contact/enquiry"}] },
       ];
 
