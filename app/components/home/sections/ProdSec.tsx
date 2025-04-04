@@ -12,11 +12,11 @@ const slideVariants = {
       transition: { delay: i * 0.2, duration: 0.6, ease: "easeOut" },
     }),
   };
-  
+
 const ProdSec = ({data}:{data:{data:{_id:string,type: string, image: string, hoverImage: string}[]}}) => {
-    
+
   return (
-    <section className="section-spacing">
+    <section className="section-spacing h-[210vh] lg:h-[133vh] 2xl:h-[100vh]">
       <div className="container">
         <div className="overflow-hidden">
           <motion.h2

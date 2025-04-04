@@ -38,7 +38,7 @@ const Mission: React.FC<FrameworkSectionProps> = ({
                      transition={{ duration: 0.4, delay: 0.2 }}
                      viewport={{ once: true }}
                    >
-        <Image src={assets.bnsc} alt=""></Image>
+        <Image src={assets.bnsc} alt="" className="w-full h-[200px] object-cover"></Image>
         </motion.div>
     <section style={{background: `url(${assets.bgstabt.src})`, backgroundPositionY: '-6px'}}>
       <div className="container">
