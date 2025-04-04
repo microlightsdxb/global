@@ -3,30 +3,37 @@ import React from "react";
 import Image from "next/image";
 
 import {motion} from "framer-motion";
+import parse from "html-react-parser";
 
-interface FrameworkItem {
-  id: number;
-  title: string;
-  dec: string[];
-  icon: string;
+
+interface AboutData {
+  data:{
+    _id: string;
+    introTitle: string;
+    introDescription: string;
+    introImage: string;
+    mission:{description:string,icon:string};
+    vision:{description:string,icon:string};
+    values:{description:string,icon:string};
+    whyItems: {
+      _id: string;
+      icon: string;
+      title: string;
+      description: string;
+    }[];
+  }
 }
 
-interface FrameworkSectionProps {
-  data: FrameworkItem[];
-}
 
-
-
-const Introducing: React.FC<FrameworkSectionProps> = ({
+const Introducing = ({
   data,
 
-}) => {
+}:{data:AboutData}) => {
   return (
     <section className="section-spacing ">
       <div className="container">
 
-        {data.map((framework) => (
-          <div key={framework.id}>
+          <div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-[40px]">
               <div>
               <motion.h2
@@ -34,32 +41,30 @@ const Introducing: React.FC<FrameworkSectionProps> = ({
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: false, amount: 0.5 }}
-                  className="text-xl text-black mb-[45px] md:mb-[57px] leading-[1.3]">{framework.title}</motion.h2>
+                  className="text-xl text-black mb-[45px] md:mb-[57px] leading-[1.3]">{data?.data?.introTitle}</motion.h2>
                   <motion.div
   initial={{ opacity: 0, x: -50 }}
   animate={{ opacity: 1, x: [0, 10, -10, 0] }} // Moves back and forth
   transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
 >
-  <Image src={framework.icon} alt="" />
+  <Image src={data?.data?.introImage} alt="" width={300} height={300} />
 </motion.div>
 
                 </div>
               <div>
 
-                {framework.dec.map((paragraph, index) => (
-                     <motion.p
-                     key={index}
+                     <motion.div
                      className="text-sm leading-[1.7] font-light"
                      initial={{ opacity: 0, y: 20 }}
                      whileInView={{ opacity: 1, y: 0 }}
-                     transition={{ duration: 0.4, delay: index * 0.2 }}
+                     transition={{ duration: 0.4, delay: 0.2 }}
                      viewport={{ once: true }}
-                   > {paragraph}</motion.p>
-            ))}
+                   > {parse(data?.data?.introDescription || "")}</motion.div>
+
                 </div>
             </div>
           </div>
-        ))}
+
       </div>
     </section>
   );

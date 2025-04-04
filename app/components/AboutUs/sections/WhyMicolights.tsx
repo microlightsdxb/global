@@ -4,26 +4,30 @@ import Image from "next/image";
 
 import {motion} from "framer-motion";
 
-interface FrameworkItem {
-  id: number;
-  title: string;
-  dec: string;
-  icon: string;
-  decimg?: string;
+interface AboutData {
+  data:{
+    _id: string;
+    introTitle: string;
+    introDescription: string;
+    introImage: string;
+    mission:{description:string,icon:string};
+    vision:{description:string,icon:string};
+    values:{description:string,icon:string};
+    whyItems: {
+      _id: string;
+      icon: string;
+      title: string;
+      description: string;
+      bottomIcon: string;
+    }[];
+  }
 }
 
-interface FrameworkSectionProps {
-  title: string;
-  data: FrameworkItem[];
-}
 
 
-
-const WhyMicolights: React.FC<FrameworkSectionProps> = ({
-  title,
+const WhyMicolights = ({
   data,
-
-}) => {
+}:{data:AboutData}) => {
   return (
     <div>
       <section className="bg-[#f2f2f2]">
@@ -34,13 +38,13 @@ const WhyMicolights: React.FC<FrameworkSectionProps> = ({
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: false, amount: 0.5 }} className="text-xl text-black mb-[20px] md:mb-[57px] leading-[1.3]">
-             {title}
+             Why Micolights
             </motion.h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-[40px] lg:gap-[77px]">
 
-            {data.map((framework, index) => (
+            {data?.data?.whyItems?.map((framework, index) => (
         <motion.div
-          key={framework.id}
+          key={framework._id}
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: index * 0.2 }}
@@ -51,7 +55,7 @@ const WhyMicolights: React.FC<FrameworkSectionProps> = ({
   animate={{ opacity: 1, scale: 1, y: [0, -3, 0] }} // Moves up and down
   transition={{ duration: 1.5, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
 >
-  <Image src={framework.icon} alt="" height={52} />
+  <Image src={framework.icon} alt="" height={52} width={52} />
 </motion.div>
 
 
@@ -81,17 +85,17 @@ const WhyMicolights: React.FC<FrameworkSectionProps> = ({
             transition={{ duration: 0.5, delay: 0.5 }}
             viewport={{ once: true }}
           >
-            {framework.dec}
+            {framework.description}
           </motion.p>
 
-          {framework.decimg && (
+          {framework.bottomIcon && (
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.6 }}
               viewport={{ once: true }}
             >
-              <Image className="mt-3 md:mt-[30px]" src={framework.decimg} alt="" />
+              <Image className="mt-3 md:mt-[30px]" src={framework.bottomIcon} alt="" width={100} height={100}/>
             </motion.div>
           )}
         </motion.div>
