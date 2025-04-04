@@ -50,7 +50,6 @@ export default function Sustainability() {
     const [icon, setIcon] = useState<string>("");
     const [title, setTitle] = useState<string>("");
     const [description, setDescription] = useState<string>("");
-    const [bottomIcon, setBottomIcon] = useState<string>("");
     const [whyUsList, setWhyUsList] = useState<WhyUs[]>([]);
 
     const handleFetchIntroSection = async () => {
@@ -248,6 +247,174 @@ export default function Sustainability() {
             </form>
 
 
+            <div className="h-fit w-full p-2 border-2 border-gray-300 rounded-md mt-5">
+                <div className="flex justify-between border-b-2 pb-2">
+                    <Label className="text-sm font-bold">Second Section</Label>
+                    <Button onClick={handleAddItem}>Save</Button>
+                </div>
+                <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
+                  <div>
+                    <Label className="text-sm font-bold">Title</Label>
+                    <Input type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
+                  </div>
+                  <div>
+                    <Label className="text-sm font-bold">Description</Label>
+                    <Textarea placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} className="min-h-36"/>
+                  </div>
+                      
+                      <div className="flex justify-end mt-5">
+                      <Dialog>
+                        <DialogTrigger className="bg-black text-white px-2 py-1 rounded-md" onClick={() => { setIcon(""); setTitle(""); setDescription(""); }}>Add Item</DialogTrigger>
+                        <DialogContent>
+                            <DialogHeader>
+                                <DialogTitle>Add Item</DialogTitle>
+                                <div className="flex flex-col gap-4 overflow-y-auto max-h-[500px]">
+                                    <div>
+                                        <Label>Icon</Label>
+                                        <ImageUploader onChange={(url) => setIcon(url)} value={icon} />
+                                    </div>
+                                    <div>
+                                        <Label>Title</Label>
+                                        <Input type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
+                                    </div>
+                                    <div>
+                                        <Label>Description</Label>
+                                        <Textarea placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} className="min-h-36"/>
+                                    </div>
+                                </div>
+                            </DialogHeader>
+                            <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={handleAddItem}>Save</DialogClose>
+                        </DialogContent>
+
+                    </Dialog>
+                      </div>
+
+                    {whyUsList.map((item, index) => (
+                        <div key={index} className="relative flex  justify-between border p-1 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300">
+                            <div className="flex gap-4 items-center">
+                                <div>
+                                    <Image src={item.icon} alt={item.title} width={100} height={100} />
+                                </div>
+                                <div>
+                                    <h3 className="text-sm font-bold">{item.title}</h3>
+                                </div>
+                            </div>
+                            <div className="absolute top-1 right-1 flex gap-2">
+                                <Dialog>
+                                    <DialogTrigger className=" text-white px-2 py-1 rounded-md" onClick={() => { setTitle(item.title); setDescription(item.description); setIcon(item.icon); }}>
+
+                                            <MdEdit className="text-black cursor-pointer"/>
+
+                                    </DialogTrigger>
+                                    <DialogContent>
+                                        <DialogHeader>
+                                            <DialogTitle>Edit Item</DialogTitle>
+                                            <div className="flex flex-col gap-4 overflow-y-auto max-h-[500px]">
+                                                <div>
+                                                    <Label>Icon</Label>
+                                                    <ImageUploader onChange={(url) => setIcon(url)} value={icon} />
+                                                </div>
+                                                <div>
+                                                    <Label>Title</Label>
+                                                    <Input type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
+                                                </div>
+                                                <div>
+                                                    <Label>Description</Label>
+                                                    <Textarea placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} className="min-h-36"/>
+                                                </div>
+                                            </div>
+                                        </DialogHeader>
+                                        <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={()=>handleEditItem(item._id)}>Save</DialogClose>
+                                    </DialogContent>
+
+                                </Dialog>
+                                
+                                    <MdDelete className="mt-1 cursor-pointer text-black" onClick={()=>handleDeleteItem(item._id)}/>
+                                
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+
+            <div className="h-fit w-full p-2 border-2 border-gray-300 rounded-md mt-5">
+                <div className="flex justify-between border-b-2 pb-2">
+                    <Label className="text-sm font-bold">Certifications</Label>
+                    <Dialog>
+                        <DialogTrigger className="bg-black text-white px-2 py-1 rounded-md" onClick={() => { setIcon(""); setTitle(""); setDescription(""); }}>Add Item</DialogTrigger>
+                        <DialogContent>
+                            <DialogHeader>
+                                <DialogTitle>Add Item</DialogTitle>
+                                <div className="flex flex-col gap-4 overflow-y-auto max-h-[500px]">
+                                    <div>
+                                        <Label>Icon</Label>
+                                        <ImageUploader onChange={(url) => setIcon(url)} value={icon} />
+                                    </div>
+                                    <div>
+                                        <Label>Title</Label>
+                                        <Input type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
+                                    </div>
+                                    <div>
+                                        <Label>Description</Label>
+                                        <Textarea placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} className="min-h-36"/>
+                                    </div>
+                                </div>
+                            </DialogHeader>
+                            <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={handleAddItem}>Save</DialogClose>
+                        </DialogContent>
+
+                    </Dialog>
+                </div>
+                <div className="mt-2 grid grid-cols-1 gap-2  h-fit">                      
+
+                    {whyUsList.map((item, index) => (
+                        <div key={index} className="relative flex  justify-between border p-1 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300">
+                            <div className="flex gap-4 items-center">
+                                <div>
+                                    <Image src={item.icon} alt={item.title} width={100} height={100} />
+                                </div>
+                                <div>
+                                    <h3 className="text-sm font-bold">{item.title}</h3>
+                                </div>
+                            </div>
+                            <div className="absolute top-1 right-1 flex gap-2">
+                                <Dialog>
+                                    <DialogTrigger className=" text-white px-2 py-1 rounded-md" onClick={() => { setTitle(item.title); setDescription(item.description); setIcon(item.icon); }}>
+
+                                            <MdEdit className="text-black cursor-pointer"/>
+
+                                    </DialogTrigger>
+                                    <DialogContent>
+                                        <DialogHeader>
+                                            <DialogTitle>Edit Item</DialogTitle>
+                                            <div className="flex flex-col gap-4 overflow-y-auto max-h-[500px]">
+                                                <div>
+                                                    <Label>Icon</Label>
+                                                    <ImageUploader onChange={(url) => setIcon(url)} value={icon} />
+                                                </div>
+                                                <div>
+                                                    <Label>Title</Label>
+                                                    <Input type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
+                                                </div>
+                                                <div>
+                                                    <Label>Description</Label>
+                                                    <Textarea placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} className="min-h-36"/>
+                                                </div>
+                                            </div>
+                                        </DialogHeader>
+                                        <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={()=>handleEditItem(item._id)}>Save</DialogClose>
+                                    </DialogContent>
+
+                                </Dialog>
+                                
+                                    <MdDelete className="mt-1 cursor-pointer text-black" onClick={()=>handleDeleteItem(item._id)}/>
+                                
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
 
 
             <div className="h-full w-full">
@@ -304,90 +471,7 @@ export default function Sustainability() {
                 </div>
             </form>
 
-            <div className="h-fit w-full p-2 border-2 border-gray-300 rounded-md mt-5">
-                <div className="flex justify-between border-b-2 pb-2">
-                    <Label className="text-sm font-bold">Why Us</Label>
-                    <Dialog>
-                        <DialogTrigger className="bg-black text-white px-2 py-1 rounded-md" onClick={() => { setIcon(""); setTitle(""); setDescription(""); }}>Add Item</DialogTrigger>
-                        <DialogContent>
-                            <DialogHeader>
-                                <DialogTitle>Add Item</DialogTitle>
-                                <div className="flex flex-col gap-4 overflow-y-auto max-h-[500px]">
-                                    <div>
-                                        <Label>Icon</Label>
-                                        <ImageUploader onChange={(url) => setIcon(url)} value={icon} />
-                                    </div>
-                                    <div>
-                                        <Label>Bottom Icon</Label>
-                                        <ImageUploader onChange={(url) => setBottomIcon(url)} value={bottomIcon} />
-                                    </div>
-                                    <div>
-                                        <Label>Title</Label>
-                                        <Input type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
-                                    </div>
-                                    <div>
-                                        <Label>Description</Label>
-                                        <Textarea placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} className="min-h-36"/>
-                                    </div>
-                                </div>
-                            </DialogHeader>
-                            <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={handleAddItem}>Save</DialogClose>
-                        </DialogContent>
-
-                    </Dialog>
-                </div>
-                <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
-                    {whyUsList.map((item, index) => (
-                        <div key={index} className="relative flex  justify-between border p-1 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300">
-                            <div className="flex gap-4 items-center">
-                                <div>
-                                    <Image src={item.icon} alt={item.title} width={100} height={100} />
-                                </div>
-                                <div>
-                                    <h3 className="text-sm font-bold">{item.title}</h3>
-                                </div>
-                            </div>
-                            <div className="absolute top-1 right-1 flex gap-2">
-                                <Dialog>
-                                    <DialogTrigger className=" text-white px-2 py-1 rounded-md" onClick={() => { setTitle(item.title); setDescription(item.description); setIcon(item.icon); setBottomIcon(item.bottomIcon); }}>
-
-                                            <MdEdit className="text-black cursor-pointer"/>
-
-                                    </DialogTrigger>
-                                    <DialogContent>
-                                        <DialogHeader>
-                                            <DialogTitle>Edit Item</DialogTitle>
-                                            <div className="flex flex-col gap-4 overflow-y-auto max-h-[500px]">
-                                                <div>
-                                                    <Label>Icon</Label>
-                                                    <ImageUploader onChange={(url) => setIcon(url)} value={icon} />
-                                                </div>
-                                                <div>
-                                                    <Label>Bottom Icon</Label>
-                                                    <ImageUploader onChange={(url) => setBottomIcon(url)} value={bottomIcon} />
-                                                </div>
-                                                <div>
-                                                    <Label>Title</Label>
-                                                    <Input type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
-                                                </div>
-                                                <div>
-                                                    <Label>Description</Label>
-                                                    <Textarea placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} className="min-h-36"/>
-                                                </div>
-                                            </div>
-                                        </DialogHeader>
-                                        <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={()=>handleEditItem(item._id)}>Save</DialogClose>
-                                    </DialogContent>
-
-                                </Dialog>
-                                
-                                    <MdDelete className="mt-1 cursor-pointer text-black" onClick={()=>handleDeleteItem(item._id)}/>
-                                
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
+            
 
             </div>
         </div>

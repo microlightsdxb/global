@@ -32,11 +32,11 @@ const OurFuture: React.FC<FrameworkSectionProps> = ({ data }) => {
               </p>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-5 lg:gap-[50px] 2xl:gap-[83px]">
-              <div className="   ">
+              <div className="h-[700px] w-full">
                 <Image
                   src={data[activeIndex]?.image || assets.sufe}
                   alt=""
-                  className="transition-all duration-500 ease-in-out w-full h-full"
+                  className="transition-all duration-500 ease-in-out w-full h-full object-cover"
                 />
               </div>
               <div className="border-y border-[#00000010]">

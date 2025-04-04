@@ -49,8 +49,8 @@ const Conceptual = () => {
           className="bg-[#000] overflow-hidden relative"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: false, amount: 0.5 }}>
+          transition={{ duration: 0.8 }}
+          viewport={{ once: false, amount: 0.3 }}>
         <div className="container">
           <div>
             <div className="grid grid-cols-1 md:grid-cols-2 ">

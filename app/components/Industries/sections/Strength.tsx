@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { FiArrowUpRight } from "react-icons/fi";
 import Link from "next/link";
@@ -11,6 +11,7 @@ interface FrameworkItem {
   description: string;
   icon: string;
   url?: string;
+  aicon: string;
 }
 
 interface FrameworkSectionProps {
@@ -18,6 +19,7 @@ interface FrameworkSectionProps {
 }
 
 const Strength: React.FC<FrameworkSectionProps> = ({ data }) => {
+  const [animateIcon, setAnimateIcon] = useState(-1);
   return (
     <>
       <section className="bg-[#f2f2f2]">
@@ -30,7 +32,7 @@ const Strength: React.FC<FrameworkSectionProps> = ({ data }) => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-              {data.map((item) => (
+              {data.map((item, index) => (
 
                   <motion.div
                 key={item.id}
@@ -39,9 +41,10 @@ const Strength: React.FC<FrameworkSectionProps> = ({ data }) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay:  0.1 }}
                 viewport={{ once: true }}
+                onMouseOver={()=>setAnimateIcon(index)}
               >
                   <div className="w-[85px] h-[85px] p-4 md:p-0 md:w-[115px] md:h-[115px] group-hover:bg-black rounded-full border border-[#00000015] flex justify-center items-center bg-[#f2f2f2] relative z-1">
-                    <Image src={item.icon} alt="" />
+                    {animateIcon === index ? <Image src={item.aicon} alt="" /> : <Image src={item.icon} alt="" />}
                   </div>
 
 

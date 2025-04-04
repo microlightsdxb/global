@@ -26,6 +26,11 @@ import icons2 from "./img/products/icons2.svg";
 import icons3 from "./img/products/icons3.svg";
 import icons4 from "./img/products/icons4.svg";
 import icons5 from "./img/products/icons5.svg";
+import icons1a from "./img/products/icons1a.svg";
+import icons2a from "./img/products/icons2a.svg";
+import icons3a from "./img/products/icons3a.svg";
+import icons4a from "./img/products/icons4a.svg";
+import icons5a from "./img/products/icons5a.svg";
 import arrdn from "./img/icons/arrdn.svg";
 import iconback from "./img/icons/iconback.svg";
 import pjt1 from "./img/projects/pjt1.jpg";
@@ -156,6 +161,11 @@ export const assets = {
   icons3,
   icons4,
   icons5,
+  icons1a,
+  icons2a,
+  icons3a,
+  icons4a,
+  icons5a,
   serbanner,
   serimg,
   sersec,

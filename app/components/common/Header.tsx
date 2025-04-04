@@ -53,7 +53,7 @@ const Header = () => {
                     {menuItem.children.map((item, subIndex) => (
                       <HoveredLink href={item.url} key={subIndex}>
                         <div className="hover:bg-black/5 pl-3 pr-[80px] py-2 rounded-[8px] transition-transform duration-300 hover:scale-105 flex justify-between items-center">
-                          <p className="m-0 p-0 text-[16px] uppercase">
+                          <p className="m-0 p-0 text-[16px]">
                             {item.title}
                           </p>
                         </div>

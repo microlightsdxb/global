@@ -31,7 +31,8 @@ export const consultationData = [
       description:
         "Our experienced sales team will listen to your needs and advise you on how Microlights can provide tailored solutions for your requirements.",
     icon: assets.icons1,
-      url:''
+      url:'',
+      aicon:assets.icons1a
     },
     {
       id: 2,
@@ -39,7 +40,8 @@ export const consultationData = [
       description:
         "Our dedicated team with craft bespoke solutions that align with your needs and vision. You can expect transparency and  full collaboration throughout the process. Your satisfaction is our priority.",
       icon: assets.icons2,
-      url:''
+      url:'',
+      aicon:assets.icons2a
     },
     {
       id: 3,
@@ -47,7 +49,8 @@ export const consultationData = [
       description:
         "From factory to warehouse, to you, we will ensure that all products are carefully packed, labelled and delivered in a timely manner, giving you peace of mind every step of the way.",
       icon: assets.icons3,
-      url:''
+      url:'',
+      aicon:assets.icons3a
     },
     {
       id: 4,
@@ -55,7 +58,8 @@ export const consultationData = [
       description:
         "Our highly skilled technicians are available to advise on-site contractors with technical advice where necessary, so that your project, when delivered, meets with your expectations and initial vision.",
       icon: assets.icons4,
-      url:''
+      url:'',
+      aicon:assets.icons4a
     },
     {
       id: 5,
@@ -63,7 +67,8 @@ export const consultationData = [
       description:
         "We appreciate the competitive world that we live in, and therefore Microlights prides itself on providing excellent aftercare service in order to build long term relationships with our customers. This includes technical support, maintenance, customer service and follow-up communications.",
       icon: assets.icons5,
-      url:''
+      url:'',
+      aicon:assets.icons5a
     }
   ];
 
