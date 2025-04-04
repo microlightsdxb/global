@@ -82,7 +82,7 @@ const AboutSec = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: false, amount: 0.5 }}>
               <Image
-                src={"/assets/img/home/secbnr.jpg"}
+                src={"/assets/img/home/abtmcs.jpg"}
                 className="absolute w-full h-full  object-center object-cover"
                 alt=""
                 width={900}

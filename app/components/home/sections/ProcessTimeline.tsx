@@ -24,7 +24,7 @@ const ProcessTimeline: React.FC = () => {
     if (!containerRef2.current || !timelineRef.current) return;
 
     const ctx = gsap.context(() => {
-      const scrollWidth = timelineRef.current?.scrollWidth || 1000; 
+      const scrollWidth = timelineRef.current?.scrollWidth || 1000;
 
       gsap.to(timelineRef.current, {
         x: () => `-${scrollWidth / 2}px`, // Adjust movement dynamically
@@ -32,11 +32,11 @@ const ProcessTimeline: React.FC = () => {
         scrollTrigger: {
           trigger: containerRef2.current,
           start: "top top",
-  
+
           end: "+=2000 top",
           scrub: 1,
           pin: true,
-          // markers: true,
+            // markers: true,
           anticipatePin: 1, // Reduce pinning glitches
         },
       });
@@ -48,9 +48,9 @@ const ProcessTimeline: React.FC = () => {
   }, []);
 
   return (
-    <section 
-      className="mt-[0px] lg:mt-[-90px] -z-10 relative bg-primary pt-[100px] lg:pt-[210px] pb-[60px] lg:pb-[90px] 2xl:pb-[120px] text-white overflow-x-hidden h-screen"   ref={containerRef2}
-    
+    <section
+      className="mt-[0px] lg:mt-[-90px] -z-10 relative bg-primary pt-[100px] lg:pt-[210px] pb-[60px] lg:pb-[90px] 2xl:pb-[120px] text-white overflow-x-hidden h-[62vh] md:h-screen"   ref={containerRef2}
+
     >
          <figure className="absolute bg-primary w-full h-full inset-0 -z-10">
               <Image src={'/assets/img/banner/process.jpg'} width={1900} height={900} alt="bnr" className="w-full h-full absolute object-center object-cover" />
@@ -71,9 +71,9 @@ const ProcessTimeline: React.FC = () => {
           <div ref={timelineRef} className="flex w-[300%] lg:w-[200%] gap-0 h-[300px]" >
             {steps.map((step, index) => (
               <div
-            
+
               key={index}
-              className={`w-[20%] lg:w-[28%]  h-[120px] lg:h-[150px] text-left relative before:absolute before:content-[] before:h-[1px] before:w-full before:bg-white after:absolute after:content-[] after:h-[20px] after:w-[20px] after:bg-white after:rounded-full ${
+              className={`w-[20%] lg:w-[28%]  h-[120px] lg:h-[150px] text-left relative before:absolute before:content-[] before:h-[1px] before:w-[200%] before:bg-white after:absolute after:content-[] after:h-[20px] after:w-[20px] after:bg-white after:rounded-full ${
                 index % 2 === 0 ? "before:bottom-0 after:bottom-[-10px]" : "mt-[119px] lg:mt-[149px] top-0 pt-[50px] before:top-0 after:top-[-10px]"
               }`}
             >

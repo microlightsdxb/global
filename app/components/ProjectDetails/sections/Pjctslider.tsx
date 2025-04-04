@@ -38,8 +38,8 @@ const Pjctslider = ({ data }: { data: { data: { images: string[] } } }) => {
                       className="object-cover w-full h-full"
                       src={project}
                       alt="Apollo"
-                      width={1000}
-                      height={1000}
+                      width={1920}
+                      height={1500}
                     />
                   </figure>
                 </div>
@@ -52,14 +52,14 @@ const Pjctslider = ({ data }: { data: { data: { images: string[] } } }) => {
             <Swiper
               onSwiper={setThumbsSwiper}
               modules={[Thumbs]}
-              slidesPerView={6} // Adjust based on the number of thumbnails
+              slidesPerView={"auto"} // Adjust based on the number of thumbnails
               spaceBetween={10}
               watchSlidesProgress
               className="w-full mt-4 thumpslider fullslider"
             >
               {data?.data?.images?.map((project: string, index: number) => (
-                <SwiperSlide key={index} className="cursor-pointer  ">
-                  <div className="border-1 flex  mb-4 transition-all duration-300 min-h-full"
+                <SwiperSlide key={index} className="cursor-pointer  " style={{ width: "60px" }}>
+                  <div className="border-1 flex  mb-4 transition-all duration-300 min-h-full overflow-hidden"
                     style={{ width: "60px", height: "60px" }}>
                     <Image
                       className=" h-auto   m-auto"
