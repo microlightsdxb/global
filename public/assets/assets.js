@@ -89,6 +89,12 @@ import cer3 from "./img/sustainability/cer3.svg";
 import sufe from "./img/sustainability/sufe.jpg";
 import fbanner from "./img/sustainability/fbanner.jpg";
 import hallwayhotel from "./img/aboutus/hallway-hotel.jpg";
+import conceptual1 from "./img/home/Architectural.jpg";
+import conceptual2 from "./img/home/Commercial.jpg";
+import conceptual3 from "./img/home/Industrial.jpg";
+import conceptual4 from "./img/home/residential.jpg";
+import conceptual5 from "./img/home/pr-02.jpg";
+
 
 
 
@@ -188,7 +194,12 @@ export const assets = {
   mission,
   vission,
   values,
-  bgstabt
+  bgstabt,
+  conceptual1,
+  conceptual2,
+  conceptual3,
+  conceptual4,
+  conceptual5,
 };
 
 

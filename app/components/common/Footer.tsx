@@ -33,9 +33,7 @@ const Footer = () => {
                 <li>
                   <Link className="text-xs text-[#7D7D7D]" href="/blogs">Blog</Link>
                 </li>
-                <li>
-                  <Link className="text-xs text-[#7D7D7D]" href="#">FAQ</Link>
-                </li>
+
               </ul>
             </div>
 

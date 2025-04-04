@@ -12,7 +12,8 @@ const items = [
     title: "Conceptual Design",
     description:
       "Our lighting designers utilize lighting simulation software to ensure the proposed fixtures deliver sufficient ambient light and achieve optimal illumination. At this point, we produce a 3D visualization of the intended lighting design..",
-  },
+      image:assets.conceptual1,
+    },
   {
     id: 2,
     number: "02",
@@ -20,6 +21,7 @@ const items = [
     title: "Lighting Calculations",
     description:
       "Our lighting designers utilize lighting simulation software to ensure the proposed fixtures deliver sufficient ambient light and achieve optimal illumination. At this point, we produce a 3D visualization of the intended lighting design..",
+    image:assets.sersec,
   },
   {
     id: 3,
@@ -28,6 +30,7 @@ const items = [
     title: "Design Documentations",
     description:
       "Our lighting designers utilize lighting simulation software to ensure the proposed fixtures deliver sufficient ambient light and achieve optimal illumination. At this point, we produce a 3D visualization of the intended lighting design..",
+    image:assets.conceptual2,
   },
   {
     id: 4,
@@ -36,6 +39,7 @@ const items = [
     title: "Final Commissioning & After Sales",
     description:
       "Our lighting designers utilize lighting simulation software to ensure the proposed fixtures deliver sufficient ambient light and achieve optimal illumination. At this point, we produce a 3D visualization of the intended lighting design..",
+    image:assets.conceptual3,
   },
 ];
 
@@ -100,9 +104,11 @@ const Conceptual = () => {
               <div className="">
                 <figure className="absolute w-full h-full border border-[#00000010] flex">
                   <Image
-                    className="object-cover  "
-                    src={assets.sersec}
-                    alt="Apollo"
+                    className="object-cover  h-full w-full"
+                    src={hoveredId ? items[hoveredId-1].image : items[1].image}
+                    alt="Apollo"  
+                    width={500}
+                    height={500}
                   />
                 </figure>
               </div>
