@@ -104,7 +104,7 @@ const Conceptual = () => {
               <div className="relative">
                 <figure className="absolute w-full h-full border border-[#00000010] flex">
                   <Image
-                    className="object-cover  h-full w-full"
+                    className="object-cover object-center  h-full w-full"
                     src={hoveredId ? items[hoveredId-1].image : items[1].image}
                     alt="Apollo"  
                     width={1500}
