@@ -12,7 +12,7 @@ const items = [
     title: "Conceptual Design",
     description:
       "Our lighting designers utilize lighting simulation software to ensure the proposed fixtures deliver sufficient ambient light and achieve optimal illumination. At this point, we produce a 3D visualization of the intended lighting design..",
-      image:assets.conceptual1,
+      image:assets.pp1,
     },
   {
     id: 2,
@@ -21,7 +21,7 @@ const items = [
     title: "Lighting Calculations",
     description:
       "Our lighting designers utilize lighting simulation software to ensure the proposed fixtures deliver sufficient ambient light and achieve optimal illumination. At this point, we produce a 3D visualization of the intended lighting design..",
-    image:assets.sersec,
+    image:assets.pp2,
   },
   {
     id: 3,
@@ -30,7 +30,7 @@ const items = [
     title: "Design Documentations",
     description:
       "Our lighting designers utilize lighting simulation software to ensure the proposed fixtures deliver sufficient ambient light and achieve optimal illumination. At this point, we produce a 3D visualization of the intended lighting design..",
-    image:assets.conceptual2,
+    image:assets.pp3,
   },
   {
     id: 4,
@@ -39,7 +39,7 @@ const items = [
     title: "Final Commissioning & After Sales",
     description:
       "Our lighting designers utilize lighting simulation software to ensure the proposed fixtures deliver sufficient ambient light and achieve optimal illumination. At this point, we produce a 3D visualization of the intended lighting design..",
-    image:assets.conceptual3,
+    image:assets.pp4,
   },
 ];
 
@@ -55,7 +55,7 @@ const Conceptual = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: false, amount: 0.3 }}>
-        <div className="container">
+        <div className="container-fluid left-spacing">
           <div>
             <div className="grid grid-cols-1 md:grid-cols-2 ">
               <div className="py-70">
@@ -101,14 +101,14 @@ const Conceptual = () => {
                   );
                 })}
               </div>
-              <div className="">
+              <div className="relative">
                 <figure className="absolute w-full h-full border border-[#00000010] flex">
                   <Image
                     className="object-cover  h-full w-full"
                     src={hoveredId ? items[hoveredId-1].image : items[1].image}
                     alt="Apollo"  
-                    width={500}
-                    height={500}
+                    width={1500}
+                    height={1500}
                   />
                 </figure>
               </div>
