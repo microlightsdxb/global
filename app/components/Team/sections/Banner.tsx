@@ -4,13 +4,10 @@ import React from "react";
 import Image from "next/image";
 
 interface MdData {
-  data:{
     mdName: string;
     mdDesignation: string;
     mdDescription: string;
     mdImage: string;
-  }
-
 }
 
 
@@ -24,7 +21,7 @@ const Banner = ({data}:{data:MdData}) => {
               Word from the MD
           </h1>
           <div className="font-[300]">
-            {parse(data?.data?.mdDescription || "")}
+            {parse(data?.mdDescription || "")}
           </div>
           {/* <p className="font-[300] ">
             I started my career with Microlights as Regional Sales Manager in
@@ -50,13 +47,13 @@ const Banner = ({data}:{data:MdData}) => {
           </p> */}
           <div>
             <p className="text-lg text-black leading-[1.4] mt-4 lg:mt-9">
-              {data?.data?.mdName}
+              {data?.mdName}
             </p>
-            <p>{data?.data?.mdDesignation}</p>
+            <p>{data?.mdDesignation}</p>
           </div>
         </div>
         <div className="lg:absolute  right-0  mb-5 lg:mb-0 w-full h-full top-0 lg:w-1/2">
-          <Image src={data?.data?.mdImage} alt="" className="lg:absolute  right-0 bottom-0" height={1000} width={1000}></Image>
+          <Image src={data?.mdImage} alt="" className="lg:absolute  right-0 bottom-0" height={1000} width={1000}></Image>
         </div>
         </div>
       </div>

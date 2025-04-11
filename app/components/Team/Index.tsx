@@ -1,22 +1,18 @@
 "use client"
 
-import React, { useEffect } from "react";
+import React from "react";
 import Banner from "./sections/Banner";
 import TeamList from "./sections/TeamList";
-import useSWR from "swr";
+// import useSWR from "swr";
 
-interface MdData {
-  data:{
+interface Props {
+  mdData:{
     mdName: string;
     mdDescription: string;
     mdImage: string;
     mdDesignation:string;
   }
-
-}
-
-interface TeamData {
-  data:{
+  teamData:{
     name: string;
     designation: string;
     image: string;
@@ -24,16 +20,7 @@ interface TeamData {
 }
 
 
-const Index = () => {
-  
-  const fetcher = (...args: Parameters<typeof fetch>) => fetch(...args).then(res => res.json())
-  const { data:mdData }:{data:MdData} = useSWR(`/api/admin/team/md`, fetcher)
-  const { data:teamData }:{data:TeamData} = useSWR(`/api/admin/team/member`, fetcher)
-
-  useEffect(()=>{
-    console.log(mdData,teamData)
-  },[mdData,teamData])
-
+const Index = ({teamData,mdData}: Props) => {
   return (
     <>
       <div className="headerpadding"> </div>
