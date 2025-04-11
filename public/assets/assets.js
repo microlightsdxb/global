@@ -94,6 +94,10 @@ import conceptual2 from "./img/home/Commercial.jpg";
 import conceptual3 from "./img/home/Industrial.jpg";
 import conceptual4 from "./img/home/residential.jpg";
 import conceptual5 from "./img/home/pr-02.jpg";
+import pp1 from "./img/pp/mc-01.jpg";
+import pp2 from "./img/pp/mc-02.jpg";
+import pp3 from "./img/pp/mc-03.jpg";
+import pp4 from "./img/pp/mc-04.jpg";
 
 
 
@@ -200,6 +204,10 @@ export const assets = {
   conceptual3,
   conceptual4,
   conceptual5,
+  pp1,
+  pp2,
+  pp3,
+  pp4,
 };
 
 
