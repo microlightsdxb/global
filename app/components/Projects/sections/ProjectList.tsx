@@ -1,5 +1,5 @@
 "use client";
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect } from "react";
 
 import Image from "next/image";
 import { FiArrowUpRight } from "react-icons/fi";
