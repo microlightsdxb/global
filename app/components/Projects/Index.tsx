@@ -8,6 +8,16 @@ import Filter from "./sections/Filter";
 import ProjectList from "./sections/ProjectList";
 import useSWR from "swr";
 
+interface FrameworkItem {
+  _id: string;
+  name: string;
+  category: string;
+  location: string;
+  thumbnail: string;
+  industry: string;
+  images: string[];
+}
+
 
 const Index = () => {
 
@@ -15,34 +25,59 @@ const Index = () => {
   const { data } = useSWR(`/api/admin/project`, fetcher)
   const {data: industryData} = useSWR(`/api/admin/industry`, fetcher)
   const {data: locationData} = useSWR(`/api/admin/location`, fetcher)
-  const [projects, setProjects] = useState([])
+  const [projects, setProjects] = useState<FrameworkItem[]>([])
   const [industrySelected, setIndustrySelected] = useState<string>("")
   const [locationSelected, setLocationSelected] = useState<string>("")
+  const [newVisible,setNewVisible] = useState<number>(0)
+    const [buttonVisible,setButtonVisible] = useState(true)
+  const limit = 8
 
   useEffect(() => {
-    setProjects(data?.data)
-  }, [data])
+    if(!data){
+      return
+    }
+    setProjects((prev)=>{
+      if(!prev || newVisible === 0){
+        return data?.data.slice(0,limit)
+      }
+      return [...prev,...data?.data.slice(newVisible,newVisible+limit)]
+    
+    })
+  }, [data,newVisible])
+
+  useEffect(()=>{
+    console.log(projects)
+  },[projects])
+
 
   useEffect(()=>{
 
+    console.log(industrySelected,locationSelected)
+
     if(!industrySelected && !locationSelected){
-      setProjects(data?.data)
+      setProjects(data?.data.slice(0,limit))
+      setNewVisible(0)
       return;
     }
 
     if(industrySelected=="Industry" && !locationSelected){
-      setProjects(data?.data)
+      setProjects(data?.data.slice(0,limit))
+      setNewVisible(0)
       return;
     }
 
     if(locationSelected=="Location" && !industrySelected){
-      setProjects(data?.data)
+      console.log("here")
+      setProjects(data?.data.slice(0,limit))
+      setNewVisible(0)
       return;
     }
 
 
     if(industrySelected=="Industry"  && locationSelected=="Location"){
-      setProjects(data?.data)
+      console.log("correct")
+      setProjects(data?.data.slice(0,limit))
+      setNewVisible(0)
       return;
     }else{
       if(industrySelected!=="Industry"  && locationSelected!=="Location"){
@@ -77,7 +112,7 @@ const Index = () => {
     <>
       <div className="headerpadding"> </div>
       <Filter industryData={industryData} locationData={locationData} setIndustrySelected={setIndustrySelected} setLocationSelected={setLocationSelected}/>
-      <ProjectList data={projects} />
+      <ProjectList data={projects} setNewVisible={setNewVisible} newVisible={newVisible} limit={limit} buttonVisible={buttonVisible} setButtonVisible={setButtonVisible}/>
     </>
   );
 };

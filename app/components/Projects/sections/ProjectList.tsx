@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 import Image from "next/image";
 import { FiArrowUpRight } from "react-icons/fi";
@@ -24,12 +24,35 @@ interface FrameworkItem {
 
 interface FrameworkSectionProps {
   data: FrameworkItem[];
+  setNewVisible: Dispatch<SetStateAction<number>>;
+  newVisible:number;
+  limit:number
+  buttonVisible:boolean;
+  setButtonVisible: Dispatch<SetStateAction<boolean>>;
 }
 
 const ProjectList: React.FC<FrameworkSectionProps> = ({
   data,
-
+  setNewVisible,
+  newVisible,
+  limit,
+  buttonVisible,
+  setButtonVisible
 }) => {
+
+
+
+  useEffect(()=>{
+    if(!data) return
+    console.log(newVisible+limit<=data?.length)
+    console.log(newVisible)
+    if(newVisible+limit<=data?.length){
+      setButtonVisible(true)
+    }else{
+      setButtonVisible(false)
+    }
+  },[newVisible,data])
+
   return (
     <section className=" ">
       <div className="container">
@@ -79,14 +102,18 @@ const ProjectList: React.FC<FrameworkSectionProps> = ({
         </Link>
       ))}
         </div>
-        <motion.div
+        {buttonVisible && <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: false, amount: 0.5 }}>
+          viewport={{ once: false, amount: 0.5 }}
+          onClick={() => {
+            setNewVisible(newVisible+8)
+          }}
+        >
         <div className="pb-100 border-b border-black cursor-pointer">
             <div className="py-7 text-center text-black bg-[#D9D9D9] max-w-[220px] md:max-w-[370px] m-auto pb">Load More</div></div>
-          </motion.div>
+          </motion.div>}
       </div>
     </section>
   );
