@@ -17,7 +17,6 @@ export const metadata: Metadata = {
   description: "Your project description",
 };
 
-export const dynamic = 'force';
 
 export default function RootLayout({
   children,
