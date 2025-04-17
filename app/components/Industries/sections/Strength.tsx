@@ -4,18 +4,11 @@ import Image from "next/image";
 import { FiArrowUpRight } from "react-icons/fi";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { Service } from "@/types/Service";
 
-interface FrameworkItem {
-  id: number;
-  title: string;
-  description: string;
-  icon: string;
-  url?: string;
-  aicon: string;
-}
 
 interface FrameworkSectionProps {
-  data: FrameworkItem[];
+  data: Service;
 }
 
 const Strength: React.FC<FrameworkSectionProps> = ({ data }) => {
@@ -32,10 +25,10 @@ const Strength: React.FC<FrameworkSectionProps> = ({ data }) => {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-              {data.map((item, index) => (
+              {data.method.items.map((item, index: number) => (
 
                   <motion.div
-                key={item.id}
+                key={index}
                 className="group mb-[70px] md:mb-0 last:mb-[40px]"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -44,7 +37,7 @@ const Strength: React.FC<FrameworkSectionProps> = ({ data }) => {
                 onMouseOver={()=>setAnimateIcon(index)}
               >
                   <div className="w-[85px] h-[85px] p-4 md:p-0 md:w-[115px] md:h-[115px] group-hover:bg-black rounded-full border border-[#00000015] flex justify-center items-center bg-[#f2f2f2] relative z-1">
-                    {animateIcon === index ? <Image src={item.aicon} alt="" /> : <Image src={item.icon} alt="" />}
+                    {animateIcon === index ? <Image src={item.animImage} alt="" width={55} height={55} /> : <Image src={item.image} alt="" width={55} height={55} />}
                   </div>
 
 

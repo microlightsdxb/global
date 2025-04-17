@@ -6,6 +6,9 @@ import { FiArrowUpRight } from "react-icons/fi";
 import { useState, useEffect, useRef } from "react";
 import {motion} from "framer-motion"
 import Image from "next/image";
+import parse from 'html-react-parser';
+import { Home } from "@/types/Home";
+
 type CounterProps = {
   end: number;
   label: string;
@@ -15,7 +18,7 @@ const Counter: React.FC<CounterProps> = ({ end, label }) => {
   const [count, setCount] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-
+  
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -62,7 +65,7 @@ const Counter: React.FC<CounterProps> = ({ end, label }) => {
   );
 };
 
-const AboutSec = () => {
+const AboutSec = ({data}:{data:Home}) => {
   return (
     <section className="pb-[60px] lg:pb-[0px] pt-[60px] lg:pt-[90px] 2xl:pt-[120px] ">
       <div className="container">
@@ -82,7 +85,7 @@ const AboutSec = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: false, amount: 0.5 }}>
               <Image
-                src={"/assets/img/home/abtmcs.jpg"}
+                src={data?.aboutImage}
                 className="absolute w-full h-full  object-center object-cover"
                 alt=""
                 width={900}
@@ -95,23 +98,12 @@ const AboutSec = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: false, amount: 0.5 }}>
             <h3 className="text-lg text-[#7D7D7D]">
-              Comprehensive Lighting Solutions Tailored for Every Space
+              {data?.aboutTitle}
             </h3>
             <hr className="mt-[30px] mb-[30px] lg:xl-[50px] 2xl:mb-[80px]" />
-            <p>
-              In 2002, Microlights Limited, a lighting company based in the West
-              of England manufacturing luminaires and related components,
-              expanded its presence into the Middle East by founding Microlights
-              Dubai. Microlights Dubai then embarked on supplying lighting
-              products, value add solutions and designs to retail and commercial
-              projects across the Middle East and neighbouring countries.
-            </p>
-            <p>
-              Microlights has been dealing directly with end retailers and
-              developing smart lighting solutions for major utilities and others
-              for over 22 years, and is proud of the long standing relationships
-              it has with many of its clients.
-            </p>
+            <div>
+            {parse(data?.aboutDescription || "")}
+            </div>
             <div className="flex mt-[30px] 2xl:mt-[50px]">
               <Link
                 href={"/about-us"}
@@ -122,9 +114,9 @@ const AboutSec = () => {
               </Link>
             </div>
             <div className="grid grid-cols-3 justify-center gap-[15px] lg:gap-[30px] text-center mt-[30px] lg:mt-[80px]">
-              <Counter end={25} label="Years of Expertise" />
-              <Counter end={250} label="Projects Completed" />
-              <Counter end={100} label="Happy Clients" />
+              <Counter end={data?.years} label="Years of Expertise" />
+              <Counter end={data?.projects} label="Projects Completed" />
+              <Counter end={data?.clients} label="Happy Clients" />
             </div>
           </motion.div>
         </div>

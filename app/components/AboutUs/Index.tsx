@@ -1,49 +1,23 @@
 "use client"
 
-import React, { useEffect } from "react";
+import React from "react";
 
 
-import Imgbanner from "../common/Imgbanner";
 import Introducing from "./sections/Introducing";
 import Mission from "./sections/Mission";
 import WhyMicolights from "./sections/WhyMicolights";
 
-import {banner} from "./data/dataBox"
-import useSWR from "swr";
+import Banner from "./Banner";
+import { About } from "@/types/About";
 
-interface AboutData {
-  data:{
-    _id: string;
-    introTitle: string;
-    introDescription: string;
-    introImage: string;
-    sectionTwoImage: string;
-    mission:{description:string,icon:string};
-    vision:{description:string,icon:string};
-    values:{description:string,icon:string};
-    whyItems: {
-      _id: string;
-      icon: string;
-      title: string;
-      description: string;
-      bottomIcon: string;
-    }[];
-  }
-}
 
-const Index = () => {
+const Index = ({data}:{data:About}) => {
   
-  const fetcher = (...args: Parameters<typeof fetch>) => fetch(...args).then(res => res.json())
-  const { data }:{data:AboutData} = useSWR(`/api/admin/about`, fetcher)
-
-  useEffect(()=>{
-    console.log(data)
-  },[data])
-
   return (
     <div>
       <div className="headerpadding"> </div>
-        <Imgbanner data={banner.data} />
+        {/* <Imgbanner data={data} /> */}
+        <Banner data={data} />
       <Introducing data={data} />
       <Mission data={data} />
       <WhyMicolights data={data} />

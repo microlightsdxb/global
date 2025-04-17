@@ -1,17 +1,11 @@
 "use client";
+import { Service } from "@/types/Service";
 import { motion } from "framer-motion";
 import React from "react";
 
 
-
-
-interface FrameworkItem {
-  id: number;
-  title: string;
-  image: string;
-}
 interface FrameworkSectionProps {
-  data: FrameworkItem[];
+  data: Service;
 }
 
 
@@ -21,15 +15,15 @@ const Imgbanner: React.FC<FrameworkSectionProps> = ({
 
 }) => {
 
-
+console.log(data)
   return (
     <section>
 
-      {data.map((framework) => (
+      
         <div
-          className="relative gd-blacktrans" key={framework.id}
+          className="relative gd-blacktrans"
           style={{
-            backgroundImage: `url(${framework.image})`,
+            backgroundImage: `url(${data?.pageBanner})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
@@ -42,11 +36,10 @@ const Imgbanner: React.FC<FrameworkSectionProps> = ({
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: false, amount: 0.5 }}>
-             {framework.title}</motion.h1>
+             {data?.name}</motion.h1>
             </div>
           </div>
         </div>
-      ))}
   </section>
 
   );

@@ -2,15 +2,10 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-interface FrameworkItem {
-  id: number;
-  title: string;
-  dec: string;
-  images: string[];
-}
+import { Sustainability } from "@/types/Sustainability";
 
 interface FrameworkSectionProps {
-  data: FrameworkItem[];
+  data: Sustainability;
 }
 
 const Certifications: React.FC<FrameworkSectionProps> = ({
@@ -28,17 +23,17 @@ const Certifications: React.FC<FrameworkSectionProps> = ({
           Certifications & Standards
         </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-2  border border-[#00000015]">
-        {data.map((item) => (
+        {data.data.certifications.map((item) => (
 
           <motion.div
-          key={item.id}
+          key={item.title}
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
             viewport={{ once: false, amount: 0.5 }} className="p-5 md:p-10 border-r border-[#00000015] last:border-r-0">
-                <div className="flex gap-5">
+                <div className="flex gap-5 h-20">
                   {item.images.map((image) => (
-                    <Image src={image} alt="" key={image}/>
+                    <Image src={image} alt="" key={image} width={80} height={80}/>
                   ))}
               </div>
             <div className="border-t   mt-10 "></div>
@@ -47,7 +42,7 @@ const Certifications: React.FC<FrameworkSectionProps> = ({
                 {item.title}
               </h4>
               <p className="text-[#555555] font-[300] leading-[1.7]">
-             {item.dec}
+             {item.description}
               </p>
             </div>
 

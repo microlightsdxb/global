@@ -1,15 +1,11 @@
 "use client";
 import { assets } from "@/public/assets/assets";
+import { Sustainability } from "@/types/Sustainability";
 import { motion } from "framer-motion";
 import React from "react";
-interface FrameworkItem {
-  id: number;
-  title: string;
-  dec: string[];
-}
 
 interface FrameworkSectionProps {
-  data: FrameworkItem[];
+  data: Sustainability;
 }
 
 const Joinus: React.FC<FrameworkSectionProps> = ({
@@ -25,20 +21,18 @@ const Joinus: React.FC<FrameworkSectionProps> = ({
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
             viewport={{ once: false, amount: 0.5 }}>
-            {data.map((item) => (
-              <div key={item.id} className="py-90 px-8 md:px-10 lg:px-25   bg-cover bg-center" style={{ background: `url(${assets.fbanner.src})` }} >
+            
+              <div className="py-90 px-8 md:px-10 lg:px-25   bg-cover bg-center" style={{ background: `url(${assets.fbanner.src})` }} >
                 <h2 className="text-xl text-white leading-[1.3] mb-4 md:mb-5">
-                  {item.title}
+                  {data?.data?.outroTitle}
                 </h2>
                 <div className="text-white font-[300] leading-[1.7]">
-                  {item.dec.map((dec) => (
-                    <div key={dec}>
-                      <p>{dec}</p>
+                  
+                    <div>
+                      {data?.data?.outroDescription}
                     </div>
-                  ))}
                   </div>
               </div>
-            ))}
         </motion.div>
       </div>
       </section>

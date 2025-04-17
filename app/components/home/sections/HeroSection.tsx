@@ -9,6 +9,7 @@ import c01web3 from "@/public/assets/img/home/secbnr.jpg";
 import Link from "next/link";
 import { FiArrowUpRight } from "react-icons/fi";
 import {motion} from "framer-motion";
+import { Home } from "@/types/Home";
 
 
 
@@ -38,11 +39,11 @@ const projects = [
 
 ];
 
-const HeroSection = () => {
+const HeroSection = ({data}:{data:Home}) => {
   const sectionRef = useRef(null);
   const triggerRef = useRef(null);
   const [currentSlide, setCurrentSlide] = useState(1);
-  const totalSlides = projects.length;
+  const totalSlides = data.banners.length;
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -74,7 +75,7 @@ const HeroSection = () => {
       });
 
       // Add animations to the timeline
-      projects.forEach((_, index) => {
+      data.banners.forEach((_, index) => {
         // Create a simultaneous animation for title fade out, content box slide in, and gradient effect
         masterTl.to(`.slide:nth-child(${index + 1}) figure`, {
             opacity: 0.5,
@@ -92,7 +93,7 @@ const HeroSection = () => {
             duration: 0.8,
           }, `slide${index}`)
 
-        if (index < projects.length - 1) {
+        if (index < data.banners.length - 1) {
           masterTl.to(sectionRef.current, {
             x: `-${(index + 1) * 100}vw`,
             duration: 1,
@@ -124,8 +125,8 @@ const HeroSection = () => {
 
       <div className="prject-sec h-full flex flex-wrap" style={{ width: `${projects.length * 100}vw` }} ref={sectionRef}>
 
-        {projects.map((project) => (
-          <div key={project.id} className="slide h-full w-screen relative overflow-hidden text-white">
+        {data?.banners?.map((project,index) => (
+          <div key={index} className="slide h-full w-screen relative overflow-hidden text-white">
             <figure className="h-full w-full absolute -z-50">
               <Image className="h-full w-full absolute object-cover object-center" src={project.image} alt={project.title} width={2500} height={1000} />
             </figure>
@@ -151,7 +152,7 @@ const HeroSection = () => {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
           viewport={{ once: false, amount: 0.5 }} className="text-lg text-white leading-tight font-custom font-light">
-                        {project.subtitle}
+                        {project.subTitle}
                       </motion.p>
                     </div>
                     <div className="overflow-hidden">

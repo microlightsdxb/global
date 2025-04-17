@@ -1,24 +1,17 @@
 "use client";
 import React from "react";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import { motion } from "framer-motion";
+import { Sustainability } from "@/types/Sustainability";
 
-interface FrameworkItem {
-  id: number;
-  title: string;
-  image: StaticImageData;
-  description: string;
-}
 
 interface FrameworkSectionProps {
-  description: string;
-  title: string;
-  data: FrameworkItem[];
+  data: Sustainability;
 }
 
 
 
-  const Commitments: React.FC<FrameworkSectionProps> = ({ description,title, data }) => {
+  const Commitments: React.FC<FrameworkSectionProps> = ({data }) => {
 
   return (
     <section className="pb-150 ptc-130">
@@ -27,13 +20,13 @@ interface FrameworkSectionProps {
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: false, amount: 0.5 }}>    {title}</motion.h2>
+          viewport={{ once: false, amount: 0.5 }}>    {data.data.sectionTwoTitle}</motion.h2>
         <motion.p className="font-[300] max-w-[105ch] leading-[1.7]"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: false, amount: 0.5 }}>
-        {description}
+        {data.data.sectionTwoDescription}
       </motion.p>
       <div className="bg-[#052500] p-5 mt-9 md:p-15 ">
           <motion.h3 className="text-40 text-white mb-3"
@@ -49,9 +42,9 @@ interface FrameworkSectionProps {
           We integrate sustainability across all aspects of our operations:
         </motion.p>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-0 md:gap-3 lg:gap-[4] xl:gap-[40px] mt-10 lg:mt-10">
-      {data.map((practice, index) => (
+      {data.data.practices.map((practice, index) => (
         <motion.div
-          key={practice.id}
+          key={index}
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
@@ -59,9 +52,11 @@ interface FrameworkSectionProps {
           className="mb-10 md:mb-5 lg:mb-0"
         >
           <Image
-            src={practice.image}
+            src={practice.icon}
             alt={practice.title}
-            className="rounded-lg"
+            className="rounded-lg h-10"
+            width={30}
+            height={30}
           />
           <div className="border-t border-white mt-5 md:mt-10"></div>
           <div className="pt-3 md:pt-8">

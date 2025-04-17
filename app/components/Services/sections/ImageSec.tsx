@@ -2,13 +2,13 @@
 import React from "react";
 import Image from "next/image";
 
-import { assets } from "@/public/assets/assets";
 import { motion } from "framer-motion";
+import { Service } from "@/types/Service";
 
 
 
 
-const ImageSec = () => {
+const ImageSec = ({data}:{data:Service}) => {
 
   return (
     <div>
@@ -18,11 +18,13 @@ const ImageSec = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: false, amount: 0.3 }}>
-      <figure className="relative w-full h-full   flex pb-150">
+      <figure className="relative w-full h-[572px] flex pb-150">
                                 <Image
-                                  className="object-contain w-full h-full"
-                                  src={assets.serimg}
+                                  className="object-cover w-full h-full"
+                                  src={data?.introImage}
                                   alt="Apollo"
+                                  width={1500}
+                                  height={500}
                                 />
                               </figure>
       </motion.div>

@@ -4,31 +4,14 @@ import Image from "next/image";
 
 import {motion} from "framer-motion";
 import parse from "html-react-parser";
+import { About } from "@/types/About";
 
-
-interface AboutData {
-  data:{
-    _id: string;
-    introTitle: string;
-    introDescription: string;
-    introImage: string;
-    mission:{description:string,icon:string};
-    vision:{description:string,icon:string};
-    values:{description:string,icon:string};
-    whyItems: {
-      _id: string;
-      icon: string;
-      title: string;
-      description: string;
-    }[];
-  }
-}
 
 
 const Introducing = ({
   data,
 
-}:{data:AboutData}) => {
+}:{data:About}) => {
   return (
     <section className="section-spacing ">
       <div className="container">
@@ -41,13 +24,13 @@ const Introducing = ({
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: false, amount: 0.5 }}
-                  className="text-xl text-black mb-[45px] md:mb-[57px] leading-[1.3]">{data?.data?.introTitle}</motion.h2>
+                  className="text-xl text-black mb-[45px] md:mb-[57px] leading-[1.3]">{data?.introTitle}</motion.h2>
                   <motion.div
   initial={{ opacity: 0, x: -50 }}
   animate={{ opacity: 1, x: [0, 10, -10, 0] }} // Moves back and forth
   transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
 >
-  <Image src={data?.data?.introImage} alt="" width={300} height={300} />
+  <Image src={data?.introImage} alt="" width={300} height={300} />
 </motion.div>
 
                 </div>
@@ -59,7 +42,7 @@ const Introducing = ({
                      whileInView={{ opacity: 1, y: 0 }}
                      transition={{ duration: 0.4, delay: 0.2 }}
                      viewport={{ once: true }}
-                   > {parse(data?.data?.introDescription || "")}</motion.div>
+                   > {parse(data?.introDescription || "")}</motion.div>
 
                 </div>
             </div>

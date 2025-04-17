@@ -1,0 +1,30 @@
+export type Sustainability = {
+    data:{
+        introTitle:string,
+        introDescription:string,
+        introImage:string,
+        sectionTwoTitle:string,
+        sectionTwoDescription:string,
+        practices:[{
+            title:string,
+            description:string,
+            icon:string
+        }],
+        certifications:[{
+            title:string,
+            description:string,
+            images:string[]
+        }],
+        goals:{
+            title:string,
+            description:string,
+            items:[{
+                title:string,
+                description:string,
+                image:string
+            }]
+        },
+        outroTitle:string,
+        outroDescription:string
+    }
+}

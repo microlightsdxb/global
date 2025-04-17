@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 const aboutSchema = new mongoose.Schema({
+    banner: String,
     introTitle: String,
     introDescription: String,
     introImage: String,

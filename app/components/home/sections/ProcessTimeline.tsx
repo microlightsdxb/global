@@ -4,21 +4,22 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import {motion} from 'framer-motion';
+import { Home } from "@/types/Home";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const ProcessTimeline: React.FC = () => {
+const ProcessTimeline: React.FC<{data:Home}> = ({data}) => {
   const containerRef2 = useRef<HTMLDivElement>(null);
   const timelineRef = useRef<HTMLDivElement>(null);
 
-  const steps = [
-    { id: "01", title: "Consultation" },
-    { id: "02", title: "Lighting Design" },
-    { id: "03", title: "Product Selection" },
-    { id: "04", title: "Manage Roll Out" },
-    { id: "05", title: "Testing" },
-    { id: "06", title: "Finalization" },
-  ];
+  // const steps = [
+  //   { id: "01", title: "Consultation" },
+  //   { id: "02", title: "Lighting Design" },
+  //   { id: "03", title: "Product Selection" },
+  //   { id: "04", title: "Manage Roll Out" },
+  //   { id: "05", title: "Testing" },
+  //   { id: "06", title: "Finalization" },
+  // ];
 
   useEffect(() => {
     if (!containerRef2.current || !timelineRef.current) return;
@@ -69,7 +70,7 @@ const ProcessTimeline: React.FC = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: false, amount: 0.5 }}>
           <div ref={timelineRef} className="flex w-[300%] lg:w-[200%] gap-0 h-[300px]" >
-            {steps.map((step, index) => (
+            {data?.process?.map((step, index) => (
               <div
 
               key={index}
@@ -77,7 +78,7 @@ const ProcessTimeline: React.FC = () => {
                 index % 2 === 0 ? "before:bottom-0 after:bottom-[-10px]" : "mt-[119px] lg:mt-[149px] top-0 pt-[50px] before:top-0 after:top-[-10px]"
               }`}
             >
-                <h4 className="text-xl font-light opacity-30 leading-none mb-[20px]">{step.id}</h4>
+                <h4 className="text-xl font-light opacity-30 leading-none mb-[20px]">{"0"+(index+1)}</h4>
                 <h3 className="text-lg mt-2 font-light leading-none">{step.title}</h3>
               </div>
             ))}

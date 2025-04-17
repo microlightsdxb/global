@@ -3,31 +3,14 @@ import React from "react";
 import Image from "next/image";
 
 import {motion} from "framer-motion";
+import { About } from "@/types/About";
 
-interface AboutData {
-  data:{
-    _id: string;
-    introTitle: string;
-    introDescription: string;
-    introImage: string;
-    mission:{description:string,icon:string};
-    vision:{description:string,icon:string};
-    values:{description:string,icon:string};
-    whyItems: {
-      _id: string;
-      icon: string;
-      title: string;
-      description: string;
-      bottomIcon: string;
-    }[];
-  }
-}
 
 
 
 const WhyMicolights = ({
   data,
-}:{data:AboutData}) => {
+}:{data:About}) => {
   return (
     <div>
       <section className="bg-[#f2f2f2]">
@@ -42,7 +25,7 @@ const WhyMicolights = ({
             </motion.h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-[40px] lg:gap-[77px]">
 
-            {data?.data?.whyItems?.map((framework, index) => (
+            {data?.whyItems?.map((framework, index) => (
         <motion.div
           key={framework._id}
           initial={{ opacity: 0, y: 50 }}

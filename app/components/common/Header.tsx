@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FiArrowUpRight } from "react-icons/fi";
 import { HoveredLink, Menu, MenuItem } from "../ui/navbar-menu";
 import { menuItems } from "./menuItems";
@@ -17,6 +17,20 @@ type MenuItemType = {
 
 const Header = () => {
   const [active, setActive] = useState<string | null>(null);
+  const [services, setServices] = useState<{name:string,slug:string}[]>([]);
+
+  useEffect(()=>{
+    const fetchServices = async() =>{
+      try {
+        const response = await fetch(`/api/admin/service`)
+        const data = await response.json()
+        setServices(data.data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetchServices()
+  },[])
 
   return (
     <header className="lg:py-[22px] fixed w-full z-10 bg-white shadow-xs">
@@ -48,7 +62,16 @@ const Header = () => {
                 nomenu={!menuItem.children?.length} // If no submenu, set `nomenu=true`
               >
                 {/* Render submenus only if `children` exist */}
-                {menuItem.children?.length ? (
+                {menuItem.title == "Services" && services.map((service: {name:string,slug:string}, subIndex) => (
+                  <HoveredLink href={`/services/${service.slug}`} key={subIndex}>
+                    <div className="hover:bg-black/5 pl-3 pr-[80px] py-2 rounded-[8px] transition-transform duration-300 hover:scale-105 flex justify-between items-center">
+                      <p className="m-0 p-0 text-[16px]">
+                        {service.name}
+                      </p>
+                    </div>
+                  </HoveredLink>
+                ))}
+                {menuItem.title !== "Services" && menuItem.children?.length ? (
                   <div className="grid grid-cols-1">
                     {menuItem.children.map((item, subIndex) => (
                       <HoveredLink href={item.url} key={subIndex}>

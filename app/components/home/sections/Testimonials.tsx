@@ -6,13 +6,8 @@ import "swiper/css";
 import "swiper/css/pagination";
 import Image from "next/image";
 import {motion} from 'framer-motion';
+import { Home } from "@/types/Home";
 
-interface Testimonial {
-  id: number;
-  text: string;
-  name: string;
-  company: string;
-}
 
 const slideVariant = {
   hidden: { opacity: 0, y: 50 },
@@ -24,31 +19,8 @@ const slideVariant = {
 };
 
 
-const testimonials: Testimonial[] = [
-  {
-    id: 1,
-    text: "<b>Microlights has been dealing directly with end retailers</b> and developing smart lighting solutions for major utilities and others for over 22 years, and is proud of the long standing.",
-    name: "Name Dummy Text",
-    company: "Company",
-  },
-  {
-    id: 2,
-    text: "<b>Microlights has been dealing directly with end retailers</b> and developing smart lighting solutions for major utilities and others for over 22 years, and is proud of the long standing.",    name: "Name Dummy Text",
-    company: "Company",
-  },
-  {
-    id: 3,
-    text: "<b>Microlights has been dealing directly with end retailers</b> and developing smart lighting solutions for major utilities and others for over 22 years, and is proud of the long standing.",    name: "Name Dummy Text",
-    company: "Company",
-  },
-  {
-    id: 4,
-    text: "<b>Microlights has been dealing directly with end retailers</b> and developing smart lighting solutions for major utilities and others for over 22 years, and is proud of the long standing.",    name: "Name Dummy Text",
-    company: "Company",
-  }
-];
 
-const Testimonials: React.FC = () => {
+const Testimonials: React.FC<{data:Home}> = ({data}:{data:Home}) => {
   return (
     <section className="section-spacing relative text-white">
           <figure className="absolute bg-primary w-full h-full inset-0 -z-10">
@@ -70,14 +42,14 @@ const Testimonials: React.FC = () => {
         }}
         className="tsmnls"
       >
-        {testimonials.map((testimonial, i) => (
+        {data?.testimonials?.map((testimonial, i) => (
           <SwiperSlide key={testimonial.id}>
             <motion.div className="pt-[40px] relative before:absolute before:h-[1px] before:w-full before:top-0 before:bg-white itms"   initial="hidden"
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.5 }}
                 variants={slideVariant}
                 custom={i}>
-              <p className="text-sm leading-relaxed text-[#B8B8B8]" dangerouslySetInnerHTML={{__html: testimonial.text}} />
+              <p className="text-sm leading-relaxed text-[#B8B8B8]" dangerouslySetInnerHTML={{__html: testimonial.content}} />
            
               <div className="flex items-center gap-[15px] mt-[40px]">
                 <div className="w-[45px] h-[45px] bg-gray-500 rounded-full"></div>

@@ -33,6 +33,7 @@ interface AboutData {
     missionIcon: string;
     visionIcon: string;
     valuesIcon: string;
+    banner: string;
 }
 
 interface WhyUs {
@@ -62,6 +63,7 @@ export default function About() {
                     setValue("title", data.data.introTitle);
                     setValue("image", data.data.introImage);
                     setValue("description", data.data.introDescription);
+                    setValue("banner", data.data.banner);
                 }
             } else {
                 const data = await response.json();
@@ -222,8 +224,42 @@ export default function About() {
         }
     }
 
+    const submitBanner = async (data: AboutData) => {
+        try {
+          const formData = new FormData();
+          formData.append("banner", data.banner);
+          const response = await fetch("/api/admin/about/banner", {
+            method: "POST",
+            body: formData,
+          });
+          if(response.ok){
+            const data = await response.json();
+            alert(data.message);
+          }else{
+            const data = await response.json();
+            alert(data.message);
+          }
+        } catch (error) {
+          console.log("Error saving details", error);
+        }
+      }
+
     return (
         <div className="h-screen grid grid-cols-1 gap-5">
+            
+            <form className="h-full w-full p-2 border-2 border-gray-300 rounded-md" onSubmit={handleSubmit(submitBanner)}>
+                <div className="flex justify-between border-b-2 pb-2">
+                    <Label className="text-sm font-bold">Banner</Label>
+                    <Button type="submit">Save</Button>
+                </div>
+                <div className="mt-2 flex flex-col gap-2 h-fit">
+                    <div>
+                        <ImageUploader onChange={(url) => setValue("banner", url)} value={watch("banner")} />
+                    </div>
+                </div>
+            </form>
+
+
             <form className="h-full w-full p-2 border-2 border-gray-300 rounded-md" onSubmit={handleSubmit(submitIntroSection)}>
                 <div className="flex justify-between border-b-2 pb-2">
                     <Label className="text-sm font-bold">Intro Section</Label>

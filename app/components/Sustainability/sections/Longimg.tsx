@@ -1,9 +1,10 @@
 "use client";
-import { assets } from "@/public/assets/assets";
 import React,{useEffect,useState,useRef} from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-const Longimg = ({ }) => {
+import { Sustainability } from "@/types/Sustainability";
+
+const Longimg = ({data}: {data: Sustainability}) => {
 
   const [isSmallScreen, setIsSmallScreen] = useState(false);
 
@@ -69,7 +70,7 @@ const Longimg = ({ }) => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true, amount: 0.5 }}>
-  <Image src={assets.macrogreenleaf} alt="" layout="responsive" />
+  <Image src={data.data.introImage} alt="" layout="responsive" width={1000} height={1000}/>
 </motion.div>
 </div>
       </div>

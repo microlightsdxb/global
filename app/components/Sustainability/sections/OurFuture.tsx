@@ -1,17 +1,11 @@
 "use client";
 import { assets } from "@/public/assets/assets";
 import React, { useState } from "react";
-import Image, { StaticImageData } from "next/image";
-
-interface FrameworkItem {
-  id: number;
-  title: string;
-  description: string;
-  image: StaticImageData;
-}
+import Image from "next/image";
+import { Sustainability } from "@/types/Sustainability";
 
 interface FrameworkSectionProps {
-  data: FrameworkItem[];
+  data: Sustainability;
 }
 
 const OurFuture: React.FC<FrameworkSectionProps> = ({ data }) => {
@@ -24,25 +18,26 @@ const OurFuture: React.FC<FrameworkSectionProps> = ({ data }) => {
           <div>
             <div className="text-center  mb-6 md md:mb-10 lg:mb-18">
               <h2 className="text-xl text-black leading-[1.3] mb-4 md:mb-5">
-                Our Future Goals
+                {data?.data?.goals?.title}
               </h2>
               <p className="font-[300] text-[555555]">
-                Looking ahead, Microlights Group is committed to advancing our
-                sustainability initiatives
+                {data?.data?.goals?.description}
               </p>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-5 lg:gap-[50px] 2xl:gap-[83px]">
               <div className="h-[700px] w-full">
                 <Image
-                  src={data[activeIndex]?.image || assets.sufe}
+                  src={data?.data?.goals?.items[activeIndex]?.image || assets.sufe}
                   alt=""
                   className="transition-all duration-500 ease-in-out w-full h-full object-cover"
+                  width={1000}
+                  height={1000}
                 />
               </div>
               <div className="border-y border-[#00000010]">
-                {data.map((item, index) => (
+                {data?.data?.goals?.items?.map((item, index) => (
                   <div
-                    key={item.id}
+                    key={index}
                     className={`py-5 lg:py-10 border-b border-[#00000010] pmargin0 transition-all duration-300 ${
                       activeIndex === index ? "bg-[#F1F6F0]" : ""
                     }`}
