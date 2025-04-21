@@ -7,7 +7,8 @@ const MethodSchema = new mongoose.Schema({
         title: String,
         description: String,
         image: String,
-        animImage:String
+        animImage:String,
+        imageAlt: String,
       },
     ],
   });
@@ -23,6 +24,9 @@ const ServiceSchema = new mongoose.Schema({
     pageBanner:{
         type:String
     },
+    bannerAlt:{
+        type:String
+    },
     introTitle:{
         type:String
     },
@@ -32,8 +36,17 @@ const ServiceSchema = new mongoose.Schema({
     introImage:{
         type:String
     },
+    introImageAlt:{
+        type:String
+    },
     method:MethodSchema,
     slug:{
+        type:String
+    },
+    metaTitle:{
+        type:String
+    },
+    metaDescription:{
         type:String
     }
 })

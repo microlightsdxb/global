@@ -5,8 +5,8 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req:NextRequest) {
     try {
         await connectDB();
-        const {name,client,industry,scope,location,description,images,thumbnail} = await req.json();
-        const project = await Project.create({name,client,industry,scope,location,description,images,thumbnail});
+        const {name,client,industry,scope,location,description,images,thumbnail,thumbnailAlt,metaTitle,metaDescription} = await req.json();
+        const project = await Project.create({name,client,industry,scope,location,description,images,thumbnail,thumbnailAlt,metaTitle,metaDescription});
         if(project){
             return NextResponse.json({message: "Project added successfully"},{status: 200});
         }
@@ -24,8 +24,8 @@ export async function PATCH(req:NextRequest) {
         await connectDB();
         const {searchParams} = new URL(req.url);
         const id = searchParams.get("id");
-        const {name,client,industry,scope,location,description,images,thumbnail} = await req.json();
-        const project = await Project.findByIdAndUpdate(id,{name,client,industry,scope,location,description,images,thumbnail});
+        const {name,client,industry,scope,location,description,images,thumbnail,thumbnailAlt,metaTitle,metaDescription} = await req.json();
+        const project = await Project.findByIdAndUpdate(id,{name,client,industry,scope,location,description,images,thumbnail,thumbnailAlt,metaTitle,metaDescription});
         if(project){
             return NextResponse.json({message: "Project updated successfully"},{status: 200});
         }

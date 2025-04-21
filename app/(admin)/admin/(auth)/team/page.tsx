@@ -25,17 +25,21 @@ interface TeamMember {
     name: string;
     designation: string;
     image: string;
+    imageAlt: string;
     description: string;
+    mdImageAlt: string;
 }
-
 
 export default function Team() {
 
     const [name, setName] = useState<string>("");
     const [designation, setDesignation] = useState<string>("");
     const [image, setImage] = useState<string>("");
+    const [imageAlt, setImageAlt] = useState<string>("");
     const [memberList, setMemberList] = useState<TeamMember[]>([]);
     const { register, handleSubmit, setValue, watch, control } = useForm<TeamMember>();
+    const [metaTitle, setMetaTitle] = useState<string>("");
+    const [metaDescription, setMetaDescription] = useState<string>("");
 
     const handleFetchMdDetails = async () => {
         try {
@@ -47,6 +51,7 @@ export default function Team() {
                     setValue("designation", data.data.mdDesignation);
                     setValue("image", data.data.mdImage);
                     setValue("description", data.data.mdDescription);
+                    setValue("mdImageAlt", data.data.mdImageAlt);
                 }
             } else {
                 const data = await response.json();
@@ -72,11 +77,31 @@ export default function Team() {
         }
     }
 
+    const handleFetchMetaDetails = async () => {
+        try {
+            const response = await fetch("/api/admin/team/meta");
+            if (response.ok) {
+                const data = await response.json();
+                if (data) {
+                    setMetaTitle(data.teamMeta.metaTitle);
+                    setMetaDescription(data.teamMeta.metaDescription);
+                }
+            } else {
+                const data = await response.json();
+                alert(data.message);
+            }
+        } catch (error) {
+            console.log("Error fetching meta details", error);
+        }
+    }
+
+
+
     const handleAddMember = async () => {
         try {
             const response = await fetch("/api/admin/team/member", {
                 method: "POST",
-                body: JSON.stringify({ name, designation, image }),
+                body: JSON.stringify({ name, designation, image, imageAlt }),
             });
             if (response.ok) {
                 const data = await response.json();
@@ -95,7 +120,7 @@ export default function Team() {
         try {
             const response = await fetch(`/api/admin/team/member?id=${id}`, {
                 method: "PATCH",
-                body: JSON.stringify({ name, designation, image }),
+                body: JSON.stringify({ name, designation, image, imageAlt }),
             });
             if (response.ok) {
                 const data = await response.json();
@@ -132,6 +157,7 @@ export default function Team() {
     useEffect(() => {
         handleFetchMembers();
         handleFetchMdDetails();
+        handleFetchMetaDetails();
     }, [])
 
     const onSubmit = async (data: TeamMember) => {
@@ -152,8 +178,44 @@ export default function Team() {
         }
     }
 
+    const submitMetaSection = async () => {
+        try {
+            const response = await fetch("/api/admin/team/meta", {
+                method: "POST",
+                body: JSON.stringify({ metaTitle, metaDescription }),
+            });
+            if (response.ok) {
+                const data = await response.json();
+                alert(data.message);
+            } else {
+                const data = await response.json();
+                alert(data.message);
+            }
+        } catch (error) {
+            console.log("Error saving meta details", error);
+        }
+    }
+
     return (
         <div className="h-screen grid grid-cols-1 gap-5">
+
+            <div className="h-fit w-full p-2 border-2 border-gray-300 rounded-md mt-5">
+                                        <div className="flex justify-between border-b-2 pb-2">
+                                            <Label className="text-sm font-bold">Meta Section</Label>
+                                            <Button onClick={submitMetaSection}>Save</Button>
+                                        </div>
+                                        <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
+                                            <div>
+                                                <Label>Meta title</Label>
+                                                <Input type="text" value={metaTitle} onChange={(e) => setMetaTitle(e.target.value)} />
+                                            </div>
+                                            <div>
+                                                <Label>Meta Description</Label>
+                                                <Input type="text" value={metaDescription} onChange={(e) => setMetaDescription(e.target.value)} />
+                                            </div>
+                                        </div>
+                                    </div>
+
             <form className="h-full w-full p-2 border-2 border-gray-300 rounded-md" onSubmit={handleSubmit(onSubmit)}>
                 <div className="flex justify-between border-b-2 pb-2">
                     <Label className="text-sm font-bold">MD Section</Label>
@@ -171,6 +233,10 @@ export default function Team() {
                     <div>
                         <Label className="text-sm font-bold">Image</Label>
                         <ImageUploader onChange={(url) => setValue("image", url)} value={watch("image")} />
+                    </div>
+                    <div>
+                        <Label className="text-sm font-bold">Alt Tag</Label>
+                        <Input type="text" placeholder="Alt Tag" {...register("mdImageAlt")} />
                     </div>
                     <div>
                         <Label className="text-sm font-bold">Description</Label>
@@ -205,6 +271,10 @@ export default function Team() {
                                         <Label>Image</Label>
                                         <ImageUploader onChange={(url) => setImage(url)} value={image} />
                                     </div>
+                                    <div>
+                                        <Label>Alt Tag</Label>
+                                        <Input type="text" placeholder="Alt Tag" value={imageAlt} onChange={(e) => setImageAlt(e.target.value)} />
+                                    </div>
                                 </div>
                             </DialogHeader>
                             <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={handleAddMember}>Save</DialogClose>
@@ -225,7 +295,7 @@ export default function Team() {
                             </div>
                             <div className="absolute top-1 right-1 flex gap-2">
                                 <Dialog>
-                                    <DialogTrigger className=" text-white px-2 py-1 rounded-md" onClick={() => { setName(member.name); setDesignation(member.designation); setImage(member.image); }}>
+                                    <DialogTrigger className=" text-white px-2 py-1 rounded-md" onClick={() => { setName(member.name); setDesignation(member.designation); setImage(member.image); setImageAlt(member.imageAlt) }}>
 
                                             <MdEdit className="text-black cursor-pointer"/>
 
@@ -245,6 +315,10 @@ export default function Team() {
                                                 <div>
                                                     <Label>Image</Label>
                                                     <ImageUploader onChange={(url) => setImage(url)} value={image} />
+                                                </div>
+                                                <div>
+                                                    <Label>Alt Tag</Label>
+                                                    <Input type="text" placeholder="Alt Tag" value={imageAlt} onChange={(e) => setImageAlt(e.target.value)} />
                                                 </div>
                                             </div>
                                         </DialogHeader>

@@ -34,24 +34,28 @@ interface ServiceFormProps {
     name: string;
     type: string;
     pageBanner: string;
+    bannerAlt: string;
     pageHeading: string;
     introTitle: string;
     introDescription: string;
     introImage: string;
+    introImageAlt: string;
     itemTitle: string;
     itemDescription: string;
     itemImage: string;
     itemAnimImage: string;
-    items: { title: string, description: string, image: string ,animImage:string}[];
+    itemImageAlt: string;
+    items: { title: string, description: string, image: string ,animImage:string, imageAlt: string }[];
+    metaTitle: string;
+    metaDescription: string;
 }
 
 const ServiceForm = () => {
-
     const router = useRouter();
     const { id } = useParams();
 
     const { register, handleSubmit, setValue, watch, control, formState: { errors } } = useForm<ServiceFormProps>();
-    const [items, setItems] = useState<{ title: string, description: string, image: string,animImage:string }[]>([]);
+    const [items, setItems] = useState<{ title: string, description: string, image: string,animImage:string, imageAlt: string }[]>([]);
 
     const handleFetchService = async () => {
         try {
@@ -61,11 +65,16 @@ const ServiceForm = () => {
                 setValue("name", data.data.name)
                 setValue("pageHeading", data.data.pageHeading)
                 setValue("pageBanner", data.data.pageBanner)
+                setValue("bannerAlt", data.data.bannerAlt)
                 setValue("introTitle", data.data.introTitle)
                 setValue("introDescription", data.data.introDescription)
                 setValue("introImage", data.data.introImage)
+                setValue("introImageAlt", data.data.introImageAlt)
                 setValue("type", data.data.method.name)
                 setItems(data.data.method.items)
+                setValue("items", data.data.method.items)
+                setValue("metaTitle", data.data.metaTitle)
+                setValue("metaDescription", data.data.metaDescription)
             } else {
                 console.log("Error in fetching service")
             }
@@ -82,6 +91,7 @@ const ServiceForm = () => {
             description: watch("itemDescription"),
             image: watch("itemImage"),
             animImage: watch("itemAnimImage"),
+            imageAlt: watch("itemImageAlt"),
         };
     
         const updatedItems = [...items, newItem];
@@ -101,6 +111,7 @@ const ServiceForm = () => {
             description: watch("itemDescription"),
             image: watch("itemImage"),
             animImage: watch("itemAnimImage"),
+            imageAlt: watch("itemImageAlt"),
         };
         setItems(updatedItems);
         setValue("items", updatedItems);
@@ -155,6 +166,11 @@ const ServiceForm = () => {
                         {errors.pageBanner && <p className='text-red-500'>{errors.pageBanner.message}</p>}
                     </div>
 
+                    <div className='flex flex-col gap-2'>
+                            <Label className='pl-3 font-bold'>Banner Alt</Label>
+                            <Input type='text' placeholder='Alt' {...register("bannerAlt")} />
+                        </div>
+
                 </div>
                 <div className='flex flex-col gap-5'>
                     <Label className='font-bold'>Intro Section</Label>
@@ -174,6 +190,10 @@ const ServiceForm = () => {
                             <Label className='pl-3 font-bold'>Image</Label>
                             <ImageUploader onChange={(url) => setValue("introImage", url)} value={watch("introImage")} />
                             {errors.introImage && <p className='text-red-500'>{errors.introImage.message}</p>}
+                        </div>
+                        <div className='flex flex-col gap-2'>
+                            <Label className='pl-3 font-bold'>Alt Tag</Label>
+                            <Input type='text' placeholder='Alt Tag' {...register("introImageAlt")} />
                         </div>
                     </div>
                 </div>
@@ -203,7 +223,7 @@ const ServiceForm = () => {
                     <div className='flex justify-between'>
                         <h1 className='text-md font-bold'>Items</h1>
                         <Dialog>
-                            <DialogTrigger className="bg-black text-white px-2 py-1 rounded-md">Add Item</DialogTrigger>
+                            <DialogTrigger className="bg-black text-white px-2 py-1 rounded-md" onClick={()=>{setValue("itemTitle", "");setValue("itemDescription", "");setValue("itemImage", "");setValue("itemAnimImage", "");setValue("itemImageAlt", "")}}>Add Item</DialogTrigger>
                             <DialogContent>
                                 <DialogHeader>
                                     <DialogTitle>Add Item</DialogTitle>
@@ -219,6 +239,10 @@ const ServiceForm = () => {
                                         <div>
                                             <Label>Image</Label>
                                             <ImageUploader onChange={(url) => setValue("itemImage", url)} value={watch("itemImage")} />
+                                        </div>
+                                        <div>
+                                            <Label>Image Alt</Label>
+                                            <Input type="text" placeholder="Image Alt" {...register("itemImageAlt")} />
                                         </div>
                                         <div>
                                             <Label>Anim Image</Label>
@@ -243,7 +267,7 @@ const ServiceForm = () => {
                                 <div className='flex gap-5'>
 
                                     <Dialog>
-                                <DialogTrigger onClick={() => { setValue("itemTitle", item.title); setValue("itemDescription", item.description); setValue("itemImage", item.image); setValue("itemAnimImage", item.animImage) }}><MdEdit /></DialogTrigger>
+                                <DialogTrigger onClick={() => { setValue("itemTitle", item.title); setValue("itemDescription", item.description); setValue("itemImage", item.image); setValue("itemAnimImage", item.animImage); setValue("itemImageAlt", item.imageAlt) }}><MdEdit /></DialogTrigger>
                                 <DialogContent>
                                     <DialogHeader>
                                         <DialogTitle>Edit Item</DialogTitle>
@@ -259,6 +283,10 @@ const ServiceForm = () => {
                                         <div>
                                             <Label>Image</Label>
                                             <ImageUploader onChange={(url) => setValue("itemImage", url)} value={watch("itemImage")} />
+                                        </div>
+                                        <div>
+                                            <Label>Image Alt</Label>
+                                            <Input type="text" placeholder="Image Alt" {...register("itemImageAlt")} />
                                         </div>
                                         <div>
                                             <Label>Anim Image</Label>
@@ -277,7 +305,17 @@ const ServiceForm = () => {
                     </div>
                 </div>
 
-
+                <div className='flex flex-col gap-2'>
+                    <Label className='pl-3 font-bold'>Meta Title</Label>
+                    <Input type='text' placeholder='Meta Title' {...register("metaTitle")} />
+                    {errors.metaTitle && <p className='text-red-500'>{errors.metaTitle.message}</p>}
+                </div>
+                <div className='flex flex-col gap-2'>
+                    <Label className='pl-3 font-bold'>Meta Description</Label>
+                    <Textarea placeholder='Meta Description' {...register("metaDescription")} />
+                    {errors.metaDescription && <p className='text-red-500'>{errors.metaDescription.message}</p>}
+                </div>
+                
                 <div className='flex justify-center'>
                     <Button type='submit'>Submit</Button>
                 </div>

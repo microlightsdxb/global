@@ -4,7 +4,8 @@ const homeSchema = new mongoose.Schema({
     banners: [{
         title: String,
         subTitle: String,
-        image: String
+        image: String,
+        bannerAltTag: String
     }],
     aboutTitle:{
         type:String
@@ -13,6 +14,9 @@ const homeSchema = new mongoose.Schema({
         type:String
     },
     aboutImage:{
+        type:String
+    },
+    aboutImageAltTag:{
         type:String
     },
     years:{
@@ -31,8 +35,11 @@ const homeSchema = new mongoose.Schema({
         content: String,
         image: String,
         name: String,
-        company: String
-    }]
+        company: String,
+        testimonialImageAltTag: String,
+    }],
+    metaTitle: String,
+    metaDescription: String,
 });
 
 export default mongoose.models.Home || mongoose.model("Home", homeSchema);

@@ -13,6 +13,10 @@ const sustainabilitySchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    introImageAlt:{
+        type:String,
+        default:""
+    },
     sectionTwoTitle:{
         type:String,
     },
@@ -23,7 +27,8 @@ const sustainabilitySchema = new mongoose.Schema({
         {
             title:String,
             description:String,
-            icon:String
+            icon:String,
+            iconAlt:String
         }
     ],
     certifications:[
@@ -40,7 +45,8 @@ const sustainabilitySchema = new mongoose.Schema({
             {
                 title:String,
                 description:String,
-                image:String
+                image:String,
+                iconAlt:String
             }
         ]
     },
@@ -48,6 +54,12 @@ const sustainabilitySchema = new mongoose.Schema({
         type:String
     },
     outroDescription:{
+        type:String
+    },
+    metaTitle:{
+        type:String
+    },
+    metaDescription:{
         type:String
     }
 })

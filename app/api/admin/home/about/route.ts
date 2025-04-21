@@ -12,6 +12,7 @@ export async function POST(request: Request) {
         const years = formData.get("years");
         const projects = formData.get("projects");
         const clients = formData.get("clients");
+        const aboutImageAltTag = formData.get("aboutImageAltTag");
         const home = await Home.findOne({});
         if (home) {
             home.aboutTitle = title;
@@ -20,6 +21,7 @@ export async function POST(request: Request) {
             home.years = years;
             home.projects = projects;
             home.clients = clients;
+            home.aboutImageAltTag = aboutImageAltTag;
             await home.save();
             return NextResponse.json({ message: "About section updated successfully" }, { status: 200 });
         } else {
@@ -37,7 +39,7 @@ export async function GET() {
         const home = await Home.findOne({});
         if(home){
             return NextResponse.json({ data: home }, { status: 200 });
-        }else{
+        } else {
             return NextResponse.json({ message: "Error fetching about section" }, { status: 500 });
         }
     } catch (error) {
@@ -45,3 +47,6 @@ export async function GET() {
         return NextResponse.json({ message: "Error fetching about section" }, { status: 500 });
     }
 }
+
+
+

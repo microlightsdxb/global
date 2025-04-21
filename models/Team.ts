@@ -5,10 +5,12 @@ const teamSchema = new mongoose.Schema({
     mdDesignation: String,
     mdImage: String,
     mdDescription: String,
+    mdImageAlt: String,
     members:[{
         name: String,
         designation: String,
         image: String,
+        imageAlt: String,
     }]
 });
 

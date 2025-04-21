@@ -4,19 +4,23 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function PATCH(request: NextRequest) {
     try {
-        await connectDB();
-        const {introTitle, introDescription, introImage,pageBanner,type,items} = await request.json();
+        await connectDB()
+        const {introTitle, introDescription, introImage,introImageAlt,pageBanner,bannerAlt,type,items,metaTitle,metaDescription} = await request.json();
         const {searchParams} = new URL(request.url);
         const id = searchParams.get("id");
         const service = await Service.findById(id);
-        console.log("Type",type)
+        console.log("items",items)
         if (!service) {
             return NextResponse.json({ message: "Editing service failed" }, { status: 400 });
         }
         service.introTitle = introTitle;
         service.introDescription = introDescription;
         service.introImage = introImage;
+        service.introImageAlt = introImageAlt;
         service.pageBanner = pageBanner;
+        service.bannerAlt = bannerAlt;
+        service.metaTitle = metaTitle;
+        service.metaDescription = metaDescription;
         if (!service.method) {
             service.method = { name: type, items }; // set default structure
           } else {
@@ -50,7 +54,7 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
     try {
         await connectDB();
-        const {type,itemTitle, itemDescription, itemImage} = await request.json();
+        const {type,itemTitle, itemDescription, itemImage,metaTitle,metaDescription} = await request.json();
         const {searchParams} = new URL(request.url);
         const id = searchParams.get("id");
         const service = await Service.findById(id);
@@ -58,9 +62,9 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ message: "Adding item failed" }, { status: 400 });
         }
         if (!service.method) {
-            service.method.name = type;;
+            service.method.name = type;
         }
-        service.method.items.push({ title: itemTitle, description: itemDescription, image: itemImage });
+        service.method.items.push({ title: itemTitle, description: itemDescription, image: itemImage,metaTitle,metaDescription });
         await service.save();
         return NextResponse.json({ message: "Item added successfully" }, { status: 200 });
     } catch (error) {

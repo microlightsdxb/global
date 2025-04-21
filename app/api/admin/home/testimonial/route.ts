@@ -21,10 +21,10 @@ export async function GET() {
 export async function POST(request: Request) {
     try {
         await connectDB();
-        const { name, company, image, content } = await request.json();
+        const { name, company, image, content, testimonialImageAltTag } = await request.json();
         const home = await Home.findOne({})
         if(home){
-            home.testimonials.push({ name, company, image, content });
+            home.testimonials.push({ name, company, image, content, testimonialImageAltTag });
             await home.save();
             return NextResponse.json({ message: "Testimonial added successfully" }, { status: 200 });
         }else{
@@ -41,7 +41,7 @@ export async function PATCH(request: Request) {
         await connectDB();
         const {searchParams} = new URL(request.url)
         const id = searchParams.get("id")
-        const { name, company, image, content } = await request.json();
+        const { name, company, image, content, testimonialImageAltTag } = await request.json();
         const home = await Home.findOne({})
         if(home){
             const editedTestimonial = home.testimonials.find((item:{_id:string})=>item._id==id)
@@ -50,6 +50,7 @@ export async function PATCH(request: Request) {
                 editedTestimonial.company = company
                 editedTestimonial.image = image
                 editedTestimonial.content = content
+                editedTestimonial.testimonialImageAltTag = testimonialImageAltTag
                 await home.save();
                 return NextResponse.json({ message: "Testimonial updated successfully" }, { status: 200 });
             }

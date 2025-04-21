@@ -1,23 +1,19 @@
 import connectDB from "@/lib/mongodb";
 import About from "@/models/About";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
-export async function POST(request: NextRequest) {
+export async function POST(request: Request) {
     try {
-        await connectDB();
+        await connectDB()
         const formData = await request.formData();
-        const title = formData.get("title");
-        const description = formData.get("description");
-        const image = formData.get("image");
-        const introImageAltTag = formData.get("introImageAltTag");
+        const metaTitle = formData.get("metaTitle");
+        const metaDescription = formData.get("metaDescription");
         const about = await About.findOne({});
         if(!about){
             return NextResponse.json({ message: "About not found" }, { status: 404 });
         }
-        about.introTitle = title;
-        about.introDescription = description;
-        about.introImage = image;
-        about.introImageAltTag = introImageAltTag;
+        about.metaTitle = metaTitle;
+        about.metaDescription = metaDescription;
         await about.save();
         return NextResponse.json({ message: "About updated successfully" }, { status: 200 });
     } catch (error) {
@@ -26,16 +22,15 @@ export async function POST(request: NextRequest) {
     }
 }
 
-export async function GET(){
+export async function GET() {
     try {
-        await connectDB();
         const about = await About.findOne({});
         if(!about){
             return NextResponse.json({ message: "About not found" }, { status: 404 });
         }
-        return NextResponse.json({ data: about }, { status: 200 });
+        return NextResponse.json({ metaTitle: about.metaTitle, metaDescription: about.metaDescription }, { status: 200 });
     } catch (error) {
-        console.log("Error fetching intro section", error);
-        return NextResponse.json({ message: "Error fetching intro section" }, { status: 500 });
+        console.log("Error fetching details", error);
+        return NextResponse.json({ message: "Error fetching details" }, { status: 500 });
     }
 }

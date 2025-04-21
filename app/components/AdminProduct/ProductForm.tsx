@@ -44,8 +44,11 @@ interface ProductFormProps {
     lumen: string;
     images: string[];
     thumbnail: string;
+    altTag: string;
     specifications:{name:string,items:{title:string,value:string}[]}[]
-    file:string
+    file:string;
+    metaTitle:string;
+    metaDescription:string;
 }
 
 
@@ -82,10 +85,12 @@ const ProductForm = ({ editMode }: { editMode?: boolean }) => {
                 setValue("images",data.data.images)
                 setImageUrls(data.data.images)
                 setValue("thumbnail",data.data.thumbnail)
+                setValue("altTag",data.data.altTag)
                 setSpecifications(data.data.specifications)
                 setValue("file",data.data.file)
                 setCategory(data.data.category)
-
+                setValue("metaTitle",data.data.metaTitle)
+                setValue("metaDescription",data.data.metaDescription)
             }else{
                 console.log("Error in fetching product")
             }
@@ -249,10 +254,17 @@ const ProductForm = ({ editMode }: { editMode?: boolean }) => {
                         {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
                     </div>
                     <div>
+                        <div className='flex flex-col gap-2'>
                         <Label className='pl-3 font-bold'>Thumbnail</Label>
                         <ImageUploader onChange={(url) => setValue("thumbnail", url)} value={watch("thumbnail")}/>
                         {errors.thumbnail && <p className='text-red-500'>{errors.thumbnail.message}</p>}
+                        <div>
+                        <Label className='pl-3 font-bold'>Alt Tag</Label>
+                        <Input type='text' placeholder='Alt Tag' {...register("altTag")} />
+                        </div>
                     </div>
+                    </div>
+                    
                 </div>
                 <div className='flex flex-col gap-2'>
                     <Label className='pl-3 font-bold'>Wattage</Label>
@@ -473,6 +485,22 @@ const ProductForm = ({ editMode }: { editMode?: boolean }) => {
                             </div>
                         ))}
 
+                    </div>
+                </div>
+
+                <div className="h-fit w-full p-2 border-2 border-gray-300 rounded-md mt-5">
+                    <div className="flex justify-between border-b-2 pb-2">
+                        <Label className="text-sm font-bold">Meta Section</Label>
+                    </div>
+                    <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
+                        <div>
+                            <Label>Meta title</Label>
+                            <Input type="text" {...register('metaTitle')} />
+                        </div>
+                        <div>
+                            <Label>Meta Description</Label>
+                            <Input type="text" {...register('metaDescription')} />
+                        </div>
                     </div>
                 </div>
 

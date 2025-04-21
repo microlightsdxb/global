@@ -5,10 +5,14 @@ import Image from 'next/image'
 import { MdDelete, MdEdit } from 'react-icons/md'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
+import { Label } from '@/components/ui/label'
+import { Input } from '@/components/ui/input'
 
 const ProductListing = () => {
     const [products,setProducts] = useState<{_id:string,name:string,thumbnail:string}[]>([]);
     const [refetch,setRefetch] = useState(false);
+    const [metaTitle, setMetaTitle] = useState("");
+    const [metaDescription, setMetaDescription] = useState("");
 
     useEffect(()=>{
         const fetchProducts = async () => {
@@ -44,9 +48,67 @@ const ProductListing = () => {
             console.log("Error in deleting product",error)
         }
     }
+
+    const submitMetaSection = async () => {
+        try {
+            const response = await fetch("/api/admin/product/meta", {
+                method: "POST",
+                body: JSON.stringify({ metaTitle, metaDescription }),
+            });
+            if (response.ok) {
+                const data = await response.json();
+                alert(data.message);
+            } else {
+                const data = await response.json();
+                alert(data.message);
+            }
+        } catch (error) {
+            console.log("Error saving details", error);
+        }
+    }
+
+    const fetchMeta = async() =>{
+        try {
+            const response = await fetch("/api/admin/product/meta");
+            if (response.ok) {
+                const data = await response.json();
+                if (data) {
+                    setMetaTitle(data.metaTitle);
+                    setMetaDescription(data.metaDescription);
+                }
+            } else {
+                const data = await response.json();
+                alert(data.message);
+            }
+        } catch (error) {
+            console.log("Error fetching meta section", error);
+        }
+    }
+
+    useEffect(()=>{
+        fetchMeta();
+    },[]);
     
   return (
     <div className='flex flex-col gap-5'>
+                                
+                                <div className="h-fit w-full p-2 border-2 border-gray-300 rounded-md mt-5">
+                            <div className="flex justify-between border-b-2 pb-2">
+                                <Label className="text-sm font-bold">Meta Section</Label>
+                                <Button onClick={submitMetaSection}>Save</Button>
+                            </div>
+                            <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
+                                <div>
+                                    <Label>Meta title</Label>
+                                    <Input type="text" value={metaTitle} onChange={(e) => setMetaTitle(e.target.value)} />
+                                </div>
+                                <div>
+                                    <Label>Meta Description</Label>
+                                    <Input type="text" value={metaDescription} onChange={(e) => setMetaDescription(e.target.value)} />
+                                </div>
+                            </div>
+                        </div>
+
         <div className='flex justify-between'>
             <h1 className='text-md font-bold'>Products</h1>
             <Link href={"/admin/products/add"}><Button>Add Product</Button></Link>

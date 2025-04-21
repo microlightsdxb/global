@@ -5,13 +5,14 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(request: NextRequest) {
     try {
         await connectDB();
-        const {name:mdName,designation:mdDesignation,image:mdImage,description:mdDescription} = await request.json();
+        const {name:mdName,designation:mdDesignation,image:mdImage,description:mdDescription,mdImageAlt} = await request.json();
         const team = await Team.findOne({});
         if(team){
             team.mdName = mdName;
             team.mdDesignation = mdDesignation;
             team.mdImage = mdImage;
             team.mdDescription = mdDescription;
+            team.mdImageAlt = mdImageAlt;
             await team.save();
             return NextResponse.json({ message: "Details saved successfully" }, { status: 200 });
         }else{

@@ -25,6 +25,10 @@ const projectSchema = new mongoose.Schema({
         type: String,
         default: "",
     },
+    thumbnailAlt: {
+        type: String,
+        default: "",
+    },
     images: {
         type: [String],
         default: [],
@@ -33,6 +37,12 @@ const projectSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    metaTitle:{
+        type:String
+    },
+    metaDescription:{
+        type:String
+    }
 });
 
 

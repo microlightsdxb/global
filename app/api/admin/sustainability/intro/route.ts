@@ -10,13 +10,15 @@ export async function POST(request: NextRequest) {
         const title = formData.get("title");
         const description = formData.get("description");
         const image = formData.get("image");
+        const imageAlt = formData.get("imageAlt");
         const sustainablity = await Sustainability.findOne({});
         if(!sustainablity){
             return NextResponse.json({ message: "Sustainability not found" }, { status: 404 });
         }
-        sustainablity.title = title;
-        sustainablity.description = description;
-        sustainablity.image = image;
+        sustainablity.introTitle = title;
+        sustainablity.introDescription = description;
+        sustainablity.introImage = image;
+        sustainablity.introImageAlt = imageAlt;
         await sustainablity.save();
         return NextResponse.json({ message: "Sustainability updated successfully" }, { status: 200 });
     } catch (error) {

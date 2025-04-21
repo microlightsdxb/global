@@ -39,6 +39,7 @@ interface SustainabilityData {
     title: string;
     description: string;
     image: string;
+    imageAlt: string;
     sectionTwoImage: string;
     secondSectionTitle: string;
     secondSectionDescription: string;
@@ -46,11 +47,14 @@ interface SustainabilityData {
     goalsDescription:string;
     outroTitle:string;
     outroDescription:string;
+    metaTitle: string;
+    metaDescription: string;
 }
 
 interface Items {
     _id: string;
     icon: string;
+    iconAlt: string;
     title: string;
     description: string;
     bottomIcon: string;
@@ -74,6 +78,8 @@ export default function Sustainability() {
     const [goalTitle,setGoalTitle] = useState("")
     const [goalDescription,setGoalDescription] = useState("")
     const [goalImage,setGoalImage] = useState("")
+    const [iconAlt,setIconAlt] = useState("")
+    const [goalIconAlt, setGoalIconAlt] = useState("")
 
 
     const handleFetchIntroSection = async () => {
@@ -84,7 +90,10 @@ export default function Sustainability() {
                 if (data.data) {
                     setValue("title", data.data.introTitle);
                     setValue("image", data.data.introImage);
+                    setValue("imageAlt", data.data.introImageAlt);
                     setValue("description", data.data.introDescription);
+                    setValue("metaTitle", data.data.metaTitle);
+                    setValue("metaDescription", data.data.metaDescription);
                 }
             } else {
                 const data = await response.json();
@@ -154,7 +163,7 @@ export default function Sustainability() {
         try {
             const response = await fetch("/api/admin/sustainability/second", {
                 method: "PATCH",
-                body: JSON.stringify({ icon, title, description }),
+                body: JSON.stringify({ icon, iconAlt, title, description }),
             });
             if (response.ok) {
                 const data = await response.json();
@@ -173,12 +182,12 @@ export default function Sustainability() {
         try {
             const response = await fetch(`/api/admin/sustainability/second?id=${id}`, {
                 method: "PATCH",
-                body: JSON.stringify({ title, description, icon }),
+                body: JSON.stringify({ title, description, icon, iconAlt }),
             });
             if (response.ok) {
                 const data = await response.json();
                 alert(data.message);
-                handleFetchSecondSection()
+                handleFetchSecondSection();
             } else {
                 const data = await response.json();
                 alert(data.message);
@@ -285,7 +294,7 @@ export default function Sustainability() {
         try {
             const response = await fetch(`/api/admin/sustainability/goal`, {
                 method: "PATCH",
-                body:JSON.stringify({goalTitle,goalDescription,goalImage})
+                body:JSON.stringify({goalTitle,goalDescription,goalImage,goalIconAlt})
             });
             if (response.ok) {
                 const data = await response.json();
@@ -304,7 +313,7 @@ export default function Sustainability() {
         try {
             const response = await fetch(`/api/admin/sustainability/goal?id=${id}`, {
                 method: "PATCH",
-                body:JSON.stringify({goalTitle,goalDescription,goalImage})
+                body:JSON.stringify({goalTitle,goalDescription,goalImage,goalIconAlt})
             });
             if (response.ok) {
                 const data = await response.json();
@@ -371,6 +380,7 @@ export default function Sustainability() {
             formData.append("title", data.title);
             formData.append("description", data.description);
             formData.append("image", data.image);
+            formData.append("imageAlt", data.imageAlt);
             const response = await fetch("/api/admin/sustainability/intro", {
                 method: "POST",
                 body: formData,
@@ -452,9 +462,48 @@ export default function Sustainability() {
         }
     }
 
+    const submitMetaSection = async() => {
+        try {
+            const response = await fetch("/api/admin/sustainability/meta", {
+                method: "POST",
+                body: JSON.stringify({
+                    metaTitle: watch("metaTitle"),
+                    metaDescription: watch("metaDescription")
+                })
+            });
+            if (response.ok) {
+                const data = await response.json();
+                alert(data.message);
+            } else {
+                const data = await response.json();
+                alert(data.message);
+            }
+        } catch (error) {
+            console.log("Error saving details", error);
+        }
+    }
+
 
     return (
         <div className="h-screen grid grid-cols-1 gap-5">
+
+            <div className="h-fit w-full p-2 border-2 border-gray-300 rounded-md mt-5">
+                                        <div className="flex justify-between border-b-2 pb-2">
+                                            <Label className="text-sm font-bold">Meta Section</Label>
+                                            <Button onClick={submitMetaSection}>Save</Button>
+                                        </div>
+                                        <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
+                                            <div>
+                                                <Label>Meta title</Label>
+                                                <Input type="text" {...register("metaTitle")} />
+                                            </div>
+                                            <div>
+                                                <Label>Meta Description</Label>
+                                                <Input type="text" {...register("metaDescription")} />
+                                            </div>
+                                        </div>
+                                    </div>
+
             <form className="h-full w-full p-2 border-2 border-gray-300 rounded-md" onSubmit={handleSubmit(submitIntroSection)}>
                 <div className="flex justify-between border-b-2 pb-2">
                     <Label className="text-sm font-bold">Intro Section</Label>
@@ -474,6 +523,10 @@ export default function Sustainability() {
                     <div>
                         <Label className="text-sm font-bold">Image</Label>
                         <ImageUploader onChange={(url) => setValue("image", url)} value={watch("image")}/>
+                    </div>
+                    <div>
+                        <Label className="text-sm font-bold">Alt Tag</Label>
+                        <Input type="text" placeholder="Alt Tag" {...register("imageAlt")} />
                     </div>
                 </div>
             </form>
@@ -496,7 +549,7 @@ export default function Sustainability() {
 
                     <div className="flex justify-end mt-5">
                         <Dialog>
-                            <DialogTrigger className="bg-black text-white px-2 py-1 rounded-md" onClick={() => { setIcon(""); setTitle(""); setDescription(""); }}>Add Item</DialogTrigger>
+                            <DialogTrigger className="bg-black text-white px-2 py-1 rounded-md" onClick={() => { setIcon(""); setTitle(""); setDescription(""); setIconAlt("") }}>Add Item</DialogTrigger>
                             <DialogContent>
                                 <DialogHeader>
                                     <DialogTitle>Add Item</DialogTitle>
@@ -504,6 +557,10 @@ export default function Sustainability() {
                                         <div>
                                             <Label>Icon</Label>
                                             <ImageUploader onChange={(url) => setIcon(url)} value={icon} />
+                                        </div>
+                                        <div>
+                                            <Label>Alt Tag</Label>
+                                            <Input type="text" placeholder="Alt Tag" value={iconAlt} onChange={(e) => setIconAlt(e.target.value)} />
                                         </div>
                                         <div>
                                             <Label>Title</Label>
@@ -533,10 +590,8 @@ export default function Sustainability() {
                             </div>
                             <div className="absolute top-1 right-1 flex gap-2">
                                 <Dialog>
-                                    <DialogTrigger className=" text-white px-2 py-1 rounded-md" onClick={() => { setTitle(item.title); setDescription(item.description); setIcon(item.icon); }}>
-
+                                    <DialogTrigger className=" text-white px-2 py-1 rounded-md" onClick={() => { setTitle(item.title); setDescription(item.description); setIcon(item.icon); setIconAlt(item.iconAlt) }}>
                                         <MdEdit className="text-black cursor-pointer" />
-
                                     </DialogTrigger>
                                     <DialogContent>
                                         <DialogHeader>
@@ -545,6 +600,10 @@ export default function Sustainability() {
                                                 <div>
                                                     <Label>Icon</Label>
                                                     <ImageUploader onChange={(url) => setIcon(url)} value={icon} />
+                                                </div>
+                                                <div>
+                                                    <Label>Alt Tag</Label>
+                                                    <Input type="text" placeholder="Alt Tag" value={iconAlt} onChange={(e) => setIconAlt(e.target.value)} />
                                                 </div>
                                                 <div>
                                                     <Label>Title</Label>
@@ -675,7 +734,7 @@ export default function Sustainability() {
 
                     <div className="flex justify-end mt-5">
                         <Dialog>
-                            <DialogTrigger className="bg-black text-white px-2 py-1 rounded-md" onClick={() => { setGoalImage(""); setGoalTitle(""); setGoalDescription(""); }}>Add Item</DialogTrigger>
+                            <DialogTrigger className="bg-black text-white px-2 py-1 rounded-md" onClick={() => { setGoalImage(""); setGoalTitle(""); setGoalDescription(""); setGoalIconAlt("") }}>Add Item</DialogTrigger>
                             <DialogContent>
                                 <DialogHeader>
                                     <DialogTitle>Add Item</DialogTitle>
@@ -683,6 +742,10 @@ export default function Sustainability() {
                                         <div>
                                             <Label>Image</Label>
                                             <ImageUploader onChange={(url) => setGoalImage(url)} value={icon} />
+                                        </div>
+                                        <div>
+                                            <Label>Alt Tag</Label>
+                                            <Input type="text" placeholder="Alt Tag" value={goalIconAlt} onChange={(e) => setGoalIconAlt(e.target.value)} />
                                         </div>
                                         <div>
                                             <Label>Title</Label>
@@ -712,7 +775,7 @@ export default function Sustainability() {
                             </div>
                             <div className="absolute top-1 right-1 flex gap-2">
                                 <Dialog>
-                                    <DialogTrigger className=" text-white px-2 py-1 rounded-md" onClick={() => { setGoalTitle(item.title); setGoalDescription(item.description); setGoalImage(item.image); }}>
+                                    <DialogTrigger className=" text-white px-2 py-1 rounded-md" onClick={() => { setGoalTitle(item.title); setGoalDescription(item.description); setGoalImage(item.image); setGoalIconAlt(item.iconAlt) }}>
 
                                         <MdEdit className="text-black cursor-pointer" />
 
@@ -725,6 +788,10 @@ export default function Sustainability() {
                                                     <Label>Icon</Label>
                                                     <ImageUploader onChange={(url) => setGoalImage(url)} value={goalImage} />
                                                 </div>
+                                                <div>
+                                            <Label>Alt Tag</Label>
+                                            <Input type="text" placeholder="Alt Tag" value={goalIconAlt} onChange={(e) => setGoalIconAlt(e.target.value)} />
+                                        </div>
                                                 <div>
                                                     <Label>Title</Label>
                                                     <Input type="text" placeholder="Title" value={goalTitle} onChange={(e) => setGoalTitle(e.target.value)} />

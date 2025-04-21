@@ -7,11 +7,10 @@ export default async function Home() {
     const data = await response.json();
     return (
       <>
-      <Index data={data.data} />
+      <Index data={data?.data} />
       </>
     );
   } catch (error) {
     console.log(error)
   }
-
 }

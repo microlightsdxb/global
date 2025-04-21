@@ -5,12 +5,12 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(request: NextRequest) {
     try {
         await connectDB();
-        const { name, designation, image } = await request.json();
+        const { name, designation, image, imageAlt } = await request.json();
         const team = await Team.findOne({});
         if(!team){
             return NextResponse.json({ message: "Team not found" }, { status: 404 });
         }
-        team.members.push({ name, designation, image });
+        team.members.push({ name, designation, image, imageAlt });
         await team.save();
         return NextResponse.json({ message: "Member added successfully" }, { status: 200 });
     } catch (error) {
@@ -39,8 +39,8 @@ export async function PATCH(request: NextRequest) {
         await connectDB();
         const {searchParams} = new URL(request.url);
         const id = searchParams.get("id");
-        const { name, designation, image } = await request.json();
-        console.log(id, name, designation, image);
+        const { name, designation, image, imageAlt } = await request.json();
+        console.log(id, name, designation, image, imageAlt);
         const team = await Team.findOne({});
         if(!team){
             return NextResponse.json({ message: "Team not found" }, { status: 404 });
@@ -52,6 +52,7 @@ export async function PATCH(request: NextRequest) {
         member.name = name;
         member.designation = designation;
         member.image = image;
+        member.imageAlt = imageAlt;
         await team.save();
         return NextResponse.json({ message: "Member updated successfully" }, { status: 200 });
     } catch (error) {

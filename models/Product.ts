@@ -26,6 +26,9 @@ const productSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    altTag:{
+        type:String
+    },
     specifications:[
         {
             name:String,
@@ -39,6 +42,12 @@ const productSchema = new mongoose.Schema({
     ],
     file:{
         type:String,
+    },
+    metaTitle:{
+        type:String
+    },
+    metaDescription:{
+        type:String
     }
 })
 

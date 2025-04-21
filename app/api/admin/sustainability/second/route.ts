@@ -43,7 +43,7 @@ export async function PATCH(request: NextRequest) {
         await connectDB();
         const {searchParams} = new URL(request.url)
         const id = searchParams.get("id")
-        const {icon,title,description} = await request.json()
+        const {icon,iconAlt,title,description} = await request.json()
         const sustainablity = await Sustainability.findOne({});
         if(!sustainablity){
             return NextResponse.json({ message: "Sustainability not found" }, { status: 404 });
@@ -52,13 +52,14 @@ export async function PATCH(request: NextRequest) {
             const editSustainability = sustainablity.practices.find((item:{_id:string})=>item._id == id)
             if(editSustainability){
                 editSustainability.icon = icon
+                editSustainability.iconAlt = iconAlt
                 editSustainability.title = title
                 editSustainability.description = description
                 await sustainablity.save()
                 return NextResponse.json({ message: "Item updated successfully" }, { status: 200 });
             }
         }
-        sustainablity.practices.push({icon,title,description})
+        sustainablity.practices.push({icon,title,description,iconAlt})
         await sustainablity.save();
         return NextResponse.json({ message: "Item added successfully" }, { status: 200 });
     } catch (error) {

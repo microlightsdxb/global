@@ -29,8 +29,10 @@ interface ProjectFormProps {
     description: string;
     images: string[];
     thumbnail: string;
+    thumbnailAlt: string;
+    metaTitle: string;
+    metaDescription: string;
 }
-
 
 const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
 
@@ -69,10 +71,13 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                 setValue("industry", data.data.industry);
                 setValue("scope", data.data.scope);
                 setValue("thumbnail", data.data.thumbnail);
+                setValue("thumbnailAlt", data.data.thumbnailAlt);
                 setValue("images", data.data.images);
                 setImageUrls(data.data.images);
                 setValue("location", data.data.location);
                 setValue("description", data.data.description);
+                setValue("metaTitle", data.data.metaTitle);
+                setValue("metaDescription", data.data.metaDescription);
             } else {
                 const data = await response.json();
                 alert(data.message);
@@ -136,10 +141,16 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                         <Input type='text' placeholder='Project Name' {...register("name", { required: "Name is required" })} />
                         {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
                     </div>
-                    <div>
+                    <div className='flex flex-col gap-2'>
+                        <div>
                         <Label className='pl-3 font-bold'>Thumbnail</Label>
                         <ImageUploader onChange={(url)=>setValue("thumbnail",url)} value={watch("thumbnail")} />
                         {errors.thumbnail && <p className='text-red-500'>{errors.thumbnail.message}</p>}
+                        </div>
+                        <div>
+                        <Label className='pl-3 font-bold'>Alt Tag</Label>
+                        <Input type='text' placeholder='Alt Tag' {...register("thumbnailAlt")} />
+                    </div>
                     </div>
                 </div>
                 <div className='flex flex-col gap-2'>
@@ -240,6 +251,17 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                             </div>
                         ))}
                     </div>
+                </div>
+
+                <div className='flex flex-col gap-2'>
+                    <Label className='pl-3 font-bold'>Meta Title</Label>
+                    <Input type='text' placeholder='Meta Title' {...register("metaTitle", { required: "Meta Title is required" })} />
+                    {errors.metaTitle && <p className='text-red-500'>{errors.metaTitle.message}</p>}
+                </div>
+                <div className='flex flex-col gap-2'>
+                    <Label className='pl-3 font-bold'>Meta Description</Label>
+                    <Input type='text' placeholder='Meta Description' {...register("metaDescription", { required: "Meta Description is required" })} />
+                    {errors.metaDescription && <p className='text-red-500'>{errors.metaDescription.message}</p>}
                 </div>
 
                 <div className='flex justify-center'>

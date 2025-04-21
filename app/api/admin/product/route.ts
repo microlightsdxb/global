@@ -5,7 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(request:NextRequest){
     try {
         await connectDB();
-        const {name,wattage,lumen,type,category,specifications,thumbnail,images,file} = await request.json();
+        const {name,wattage,lumen,type,category,specifications,thumbnail,images,file,metaTitle,metaDescription,altTag} = await request.json();
         const product = await Product.create({
             name,
             wattage,
@@ -15,7 +15,10 @@ export async function POST(request:NextRequest){
             specifications,
             thumbnail,
             images,
-            file
+            file,
+            metaTitle,
+            metaDescription,
+            altTag
         })
         if(product){
             return NextResponse.json({message:"Product added successfully"},{status:200})
@@ -58,10 +61,10 @@ export async function GET(request:NextRequest){
 export async function PATCH(request:NextRequest){
     try {
         await connectDB();
-        const {name,wattage,lumen,type,category,specifications,thumbnail,images,file} = await request.json();
+        const {name,wattage,lumen,type,category,specifications,thumbnail,images,file,metaTitle,metaDescription,altTag} = await request.json();
         const {searchParams} = new URL(request.url);
         const id = searchParams.get("id");
-        const product = await Product.findByIdAndUpdate(id,{name,wattage,lumen,type,category,specifications,thumbnail,images,file})
+        const product = await Product.findByIdAndUpdate(id,{name,wattage,lumen,type,category,specifications,thumbnail,images,file,metaTitle,metaDescription,altTag})
         if(product){
             return NextResponse.json({message:"Product updated successfully"},{status:200})
         }else{
@@ -72,6 +75,7 @@ export async function PATCH(request:NextRequest){
         return NextResponse.json({message:"Error in updating product"},{status:500})
     }
 }
+
 
 export async function DELETE(request:NextRequest){
     try {

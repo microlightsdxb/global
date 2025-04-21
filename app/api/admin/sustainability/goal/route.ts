@@ -42,7 +42,7 @@ export async function PATCH(request: NextRequest) {
         await connectDB();
         const {searchParams} = new URL(request.url)
         const id = searchParams.get("id")
-        const {goalTitle,goalDescription,goalImage} = await request.json()
+        const {goalTitle,goalDescription,goalImage,goalIconAlt} = await request.json()
         const sustainablity = await Sustainability.findOne({});
         if(!sustainablity){
             return NextResponse.json({ message: "Sustainability not found" }, { status: 404 });
@@ -53,11 +53,12 @@ export async function PATCH(request: NextRequest) {
                 editSustainability.image = goalImage
                 editSustainability.title = goalTitle
                 editSustainability.description = goalDescription
+                editSustainability.iconAlt = goalIconAlt
                 await sustainablity.save()
                 return NextResponse.json({ message: "Item updated successfully" }, { status: 200 });
             }
         }
-        sustainablity.goals.items.push({title:goalTitle,description:goalDescription,image:goalImage})
+        sustainablity.goals.items.push({title:goalTitle,description:goalDescription,image:goalImage,iconAlt:goalIconAlt})
         await sustainablity.save();
         return NextResponse.json({ message: "Item added successfully" }, { status: 200 });
     } catch (error) {

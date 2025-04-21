@@ -29,6 +29,7 @@ interface AboutData {
     years: number;
     projects: number;
     clients: number;
+    aboutImageAltTag: string;
 }
 
 
@@ -39,15 +40,19 @@ export default function AdminHome() {
     const [image, setImage] = useState<string>("");
     const [title, setTitle] = useState<string>("");
     const [subTitle, setSubTitle] = useState<string>("");
-    const [banners,setBanners] = useState<{_id:string;title:string;subTitle:string;image:string}[]>([]);
-    const [process,setProcess] = useState<{_id:string;title:string}[]>([])
+    const [banners, setBanners] = useState<{ _id: string; title: string; subTitle: string; image: string; bannerAltTag: string }[]>([]);
+    const [process, setProcess] = useState<{ _id: string; title: string }[]>([])
     const [processTitle, setProcessTitle] = useState<string>("");
-    const [testimonials,setTestimonials] = useState<{_id:string;name:string;company:string;image:string;content:string}[]>([]);
+    const [testimonials, setTestimonials] = useState<{ _id: string; name: string; company: string; image: string; content: string; testimonialImageAltTag: string }[]>([]);
     const [testimonialName, setTestimonialName] = useState<string>("");
     const [testimonialCompany, setTestimonialCompany] = useState<string>("");
     const [testimonialImage, setTestimonialImage] = useState<string>("");
     const [testimonialContent, setTestimonialContent] = useState<string>("");
-    
+    const [metaTitle, setMetaTitle] = useState<string>("");
+    const [metaDescription, setMetaDescription] = useState<string>("");
+    const [bannerAltTag, setBannerAltTag] = useState<string>("");
+    const [testimonialImageAltTag, setTestimonialImageAltTag] = useState<string>("");
+
     const handleFetchAboutSection = async () => {
         try {
             const response = await fetch("/api/admin/home/about");
@@ -57,9 +62,10 @@ export default function AdminHome() {
                     setValue("aboutTitle", data.data.aboutTitle);
                     setValue("aboutImage", data.data.aboutImage);
                     setValue("aboutDescription", data.data.aboutDescription);
-                    setValue("years",data.data.years);
-                    setValue("projects",data.data.projects);
-                    setValue("clients",data.data.clients);
+                    setValue("years", data.data.years);
+                    setValue("projects", data.data.projects);
+                    setValue("clients", data.data.clients);
+                    setValue("aboutImageAltTag",data.data.aboutImageAltTag)
                 }
             } else {
                 const data = await response.json();
@@ -102,11 +108,27 @@ export default function AdminHome() {
         }
     }
 
+    const handleFetchMeta = async () => {
+        try {
+            const response = await fetch("/api/admin/home/meta");
+            if (response.ok) {
+                const data = await response.json();
+                setMetaTitle(data.metaTitle);
+                setMetaDescription(data.metaDescription);
+            } else {
+                const data = await response.json();
+                alert(data.message);
+            }
+        } catch (error) {
+            console.log("Error fetching meta section", error);
+        }
+    }
+
     const handleAddBanner = async () => {
         try {
             const response = await fetch("/api/admin/home/banner", {
                 method: "POST",
-                body: JSON.stringify({ title, subTitle, image }),
+                body: JSON.stringify({ title, subTitle, image, bannerAltTag }),
             });
             if (response.ok) {
                 const data = await response.json();
@@ -144,7 +166,7 @@ export default function AdminHome() {
         try {
             const response = await fetch("/api/admin/home/testimonial", {
                 method: "POST",
-                body: JSON.stringify({ name: testimonialName, company: testimonialCompany, image: testimonialImage, content: testimonialContent }),
+                body: JSON.stringify({ name: testimonialName, company: testimonialCompany, image: testimonialImage, content: testimonialContent, testimonialImageAltTag }),
             });
             if (response.ok) {
                 const data = await response.json();
@@ -163,7 +185,7 @@ export default function AdminHome() {
         try {
             const response = await fetch(`/api/admin/home/banner?id=${id}`, {
                 method: "PATCH",
-                body: JSON.stringify({ title, subTitle, image }),
+                body: JSON.stringify({ title, subTitle, image, bannerAltTag }),
             });
             if (response.ok) {
                 const data = await response.json();
@@ -201,7 +223,7 @@ export default function AdminHome() {
         try {
             const response = await fetch(`/api/admin/home/testimonial?id=${id}`, {
                 method: "PATCH",
-                body: JSON.stringify({ name: testimonialName, company: testimonialCompany, image: testimonialImage, content: testimonialContent }),
+                body: JSON.stringify({ name: testimonialName, company: testimonialCompany, image: testimonialImage, content: testimonialContent, testimonialImageAltTag }),
             });
             if (response.ok) {
                 const data = await response.json();
@@ -290,6 +312,7 @@ export default function AdminHome() {
         handleFetchBanners();
         handleFetchProcess();
         handleFetchTestimonials();
+        handleFetchMeta();
     }, [])
 
     const submitAboutSection = async (data: AboutData) => {
@@ -301,9 +324,28 @@ export default function AdminHome() {
             formData.append("years", data.years.toString());
             formData.append("projects", data.projects.toString());
             formData.append("clients", data.clients.toString());
+            formData.append("aboutImageAltTag", data.aboutImageAltTag);
             const response = await fetch("/api/admin/home/about", {
                 method: "POST",
                 body: formData,
+            });
+            if (response.ok) {
+                const data = await response.json();
+                alert(data.message);
+            } else {
+                const data = await response.json();
+                alert(data.message);
+            }
+        } catch (error) {
+            console.log("Error saving details", error);
+        }
+    }
+
+    const submitMetaSection = async () => {
+        try {
+            const response = await fetch("/api/admin/home/meta", {
+                method: "POST",
+                body: JSON.stringify({ title: metaTitle, description: metaDescription }),
             });
             if (response.ok) {
                 const data = await response.json();
@@ -323,9 +365,26 @@ export default function AdminHome() {
 
             <div className="h-fit w-full p-2 border-2 border-gray-300 rounded-md mt-5">
                 <div className="flex justify-between border-b-2 pb-2">
+                    <Label className="text-sm font-bold">Meta Section</Label>
+                    <Button onClick={submitMetaSection}>Save</Button>
+                </div>
+                <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
+                    <div>
+                        <Label>Meta title</Label>
+                        <Input type="text" value={metaTitle} onChange={(e) => setMetaTitle(e.target.value)} />
+                    </div>
+                    <div>
+                        <Label>Meta Description</Label>
+                        <Input type="text" value={metaDescription} onChange={(e) => setMetaDescription(e.target.value)} />
+                    </div>
+                </div>
+            </div>
+
+            <div className="h-fit w-full p-2 border-2 border-gray-300 rounded-md mt-5">
+                <div className="flex justify-between border-b-2 pb-2">
                     <Label className="text-sm font-bold">Banners</Label>
                     <Dialog>
-                        <DialogTrigger className="bg-black text-white px-2 py-1 rounded-md" onClick={() => { setImage(""); setTitle(""); setSubTitle(""); }}>Add Item</DialogTrigger>
+                        <DialogTrigger className="bg-black text-white px-2 py-1 rounded-md" onClick={() => { setImage(""); setTitle(""); setSubTitle(""); setBannerAltTag("") }}>Add Item</DialogTrigger>
                         <DialogContent>
                             <DialogHeader>
                                 <DialogTitle>Add Item</DialogTitle>
@@ -333,6 +392,10 @@ export default function AdminHome() {
                                     <div>
                                         <Label>Image</Label>
                                         <ImageUploader onChange={(url) => setImage(url)} value={image} />
+                                    </div>
+                                    <div>
+                                        <Label>Alt Tag</Label>
+                                        <Input type="text" placeholder="Alt Tag" value={bannerAltTag} onChange={(e) => setBannerAltTag(e.target.value)} />
                                     </div>
                                     <div>
                                         <Label>Title</Label>
@@ -362,10 +425,8 @@ export default function AdminHome() {
                             </div>
                             <div className="absolute top-1 right-1 flex gap-2">
                                 <Dialog>
-                                    <DialogTrigger className=" text-white px-2 py-1 rounded-md" onClick={() => { setTitle(item.title); setSubTitle(item.subTitle); setImage(item.image); }}>
-
+                                    <DialogTrigger className=" text-white px-2 py-1 rounded-md" onClick={() => { setTitle(item.title); setSubTitle(item.subTitle); setImage(item.image); setBannerAltTag(item.bannerAltTag) }}>
                                         <MdEdit className="text-black cursor-pointer" />
-
                                     </DialogTrigger>
                                     <DialogContent>
                                         <DialogHeader>
@@ -375,7 +436,11 @@ export default function AdminHome() {
                                                     <Label>Image</Label>
                                                     <ImageUploader onChange={(url) => setImage(url)} value={image} />
                                                 </div>
-            
+
+                                                <div>
+                                                    <Label>Alt Tag</Label>
+                                                    <Input type="text" placeholder="Alt Tag" value={bannerAltTag} onChange={(e) => setBannerAltTag(e.target.value)} />
+                                                </div>
                                                 <div>
                                                     <Label>Title</Label>
                                                     <Input type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
@@ -432,6 +497,10 @@ export default function AdminHome() {
                         <Label className="text-sm font-bold">Image</Label>
                         <ImageUploader onChange={(url) => setValue("aboutImage", url)} value={watch("aboutImage")} />
                     </div>
+                    <div>
+                        <Label className="text-sm font-bold">Image Alt Tag</Label>
+                        <Input type="text" placeholder="Image Alt Tag" {...register("aboutImageAltTag")} />
+                    </div>
                 </div>
             </form>
 
@@ -475,7 +544,7 @@ export default function AdminHome() {
                                         <DialogHeader>
                                             <DialogTitle>Edit Item</DialogTitle>
                                             <div className="flex flex-col gap-4 overflow-y-auto max-h-[500px]">
-            
+
                                                 <div>
                                                     <Label>Title</Label>
                                                     <Input type="text" placeholder="Title" value={processTitle} onChange={(e) => setProcessTitle(e.target.value)} />
@@ -500,7 +569,7 @@ export default function AdminHome() {
                 <div className="flex justify-between border-b-2 pb-2">
                     <Label className="text-sm font-bold">Testimonials</Label>
                     <Dialog>
-                        <DialogTrigger className="bg-black text-white px-2 py-1 rounded-md" onClick={() => { setTestimonialContent(""); setTestimonialImage(""); setTestimonialName(""); setTestimonialCompany("") }}>Add Item</DialogTrigger>
+                        <DialogTrigger className="bg-black text-white px-2 py-1 rounded-md" onClick={() => { setTestimonialContent(""); setTestimonialImage(""); setTestimonialName(""); setTestimonialCompany(""); setTestimonialImageAltTag("") }}>Add Item</DialogTrigger>
                         <DialogContent>
                             <DialogHeader>
                                 <DialogTitle>Add Item</DialogTitle>
@@ -512,6 +581,10 @@ export default function AdminHome() {
                                     <div>
                                         <Label>Image</Label>
                                         <ImageUploader onChange={(url) => setTestimonialImage(url)} value={testimonialImage} />
+                                    </div>
+                                    <div>
+                                        <Label>Image Alt Tag</Label>
+                                        <Input type="text" placeholder="Image Alt Tag" value={testimonialImageAltTag} onChange={(e) => setTestimonialImageAltTag(e.target.value)} />
                                     </div>
                                     <div>
                                         <Label>Name</Label>
@@ -538,7 +611,7 @@ export default function AdminHome() {
                             </div>
                             <div className="absolute top-1 right-1 flex gap-2">
                                 <Dialog>
-                                    <DialogTrigger className=" text-white px-2 py-1 rounded-md" onClick={() => { setTestimonialName(item.name); setTestimonialCompany(item.company); setTestimonialImage(item.image); setTestimonialContent(item.content); }}>
+                                    <DialogTrigger className=" text-white px-2 py-1 rounded-md" onClick={() => { setTestimonialName(item.name); setTestimonialCompany(item.company); setTestimonialImage(item.image); setTestimonialContent(item.content); setTestimonialImageAltTag(item.testimonialImageAltTag) }}>
                                         <MdEdit className="text-black cursor-pointer" />
                                     </DialogTrigger>
                                     <DialogContent>
@@ -546,15 +619,19 @@ export default function AdminHome() {
                                             <DialogTitle>Edit Item</DialogTitle>
                                             <div className="flex flex-col gap-4 overflow-y-auto max-h-[500px]">
 
-                                            <div>
+                                                <div>
                                                     <Label>Image</Label>
                                                     <ImageUploader onChange={(url) => setTestimonialImage(url)} value={testimonialImage} />
+                                                </div>
+                                                <div>
+                                                    <Label>Image Alt Tag</Label>
+                                                    <Input type="text" placeholder="Image Alt Tag" value={testimonialImageAltTag} onChange={(e) => setTestimonialImageAltTag(e.target.value)} />
                                                 </div>
                                                 <div>
                                                     <Label>Content</Label>
                                                     <Input type="text" placeholder="Content" value={testimonialContent} onChange={(e) => setTestimonialContent(e.target.value)} />
                                                 </div>
-            
+
                                                 <div>
                                                     <Label>Name</Label>
                                                     <Input type="text" placeholder="Name" value={testimonialName} onChange={(e) => setTestimonialName(e.target.value)} />
@@ -563,7 +640,7 @@ export default function AdminHome() {
                                                     <Label>Company</Label>
                                                     <Input type="text" placeholder="Company" value={testimonialCompany} onChange={(e) => setTestimonialCompany(e.target.value)} />
                                                 </div>
-                                                
+
                                             </div>
                                         </DialogHeader>
                                         <DialogClose className="bg-black text-white px-2 py-1 rounded-md" onClick={() => handleEditTestimonial(item._id)}>Save</DialogClose>

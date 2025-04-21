@@ -22,10 +22,12 @@ import { ImageUploader } from '@/components/ui/image-uploader'
 interface BlogFormProps {
     title: string;
     content: string;
-    category:string;
-    image:string;
+    category: string;
+    image: string;
+    imageAlt: string;
+    metaTitle: string;
+    metaDescription: string;
 }
-
 
 const BlogForm = ({ editMode }: { editMode?: boolean }) => {
 
@@ -34,7 +36,7 @@ const BlogForm = ({ editMode }: { editMode?: boolean }) => {
 
     const [categoryList, setCategoryList] = useState<{ name: string }[]>([]);
 
-    const { register, handleSubmit, setValue, watch,control, formState: { errors } } = useForm<BlogFormProps>();
+    const { register, handleSubmit, setValue, watch, control, formState: { errors } } = useForm<BlogFormProps>();
 
     const handleAddBlog = async (data: BlogFormProps) => {
         try {
@@ -61,6 +63,9 @@ const BlogForm = ({ editMode }: { editMode?: boolean }) => {
                 setValue("content", data.data.content);
                 setValue("category", data.data.category);
                 setValue("image", data.data.image);
+                setValue("imageAlt", data.data.imageAlt);
+                setValue("metaTitle", data.data.metaTitle);
+                setValue("metaDescription", data.data.metaDescription);
             } else {
                 const data = await response.json();
                 alert(data.message);
@@ -106,12 +111,12 @@ const BlogForm = ({ editMode }: { editMode?: boolean }) => {
             <h1 className='text-lg font-bold'>{editMode ? "Edit Blog" : "Add Blog"}</h1>
             <form className='flex flex-col gap-5 border p-2 rounded-md' onSubmit={handleSubmit(handleAddBlog)}>
 
-                    <div>
-                        <Label className='pl-3'>Title</Label>
-                        <Input type='text' placeholder='Title' {...register("title", { required: "Title is required" })} />
-                        {errors.title && <p className='text-red-500'>{errors.title.message}</p>}
-                    </div>
-                    <div className='flex flex-col gap-2'>
+                <div>
+                    <Label className='pl-3'>Title</Label>
+                    <Input type='text' placeholder='Title' {...register("title", { required: "Title is required" })} />
+                    {errors.title && <p className='text-red-500'>{errors.title.message}</p>}
+                </div>
+                <div className='flex flex-col gap-2'>
                     <Label className='pl-3'>Category</Label>
                     <Controller
                         name="category"
@@ -142,9 +147,14 @@ const BlogForm = ({ editMode }: { editMode?: boolean }) => {
 
 
                 <div>
-                        <Label className='pl-3'>Image</Label>
-                        <ImageUploader onChange={(url)=>setValue("image",url)} value={watch("image")} />
-                        {errors.image && <p className='text-red-500'>{errors.image.message}</p>}
+                    <Label className='pl-3'>Image</Label>
+                    <ImageUploader onChange={(url) => setValue("image", url)} value={watch("image")} />
+                    {errors.image && <p className='text-red-500'>{errors.image.message}</p>}
+                </div>
+
+                <div>
+                    <Label className='pl-3'>Alt Tag</Label>
+                    <Input type='text' placeholder='Alt Tag' {...register("imageAlt")} />
                 </div>
 
                 <div>
@@ -152,6 +162,22 @@ const BlogForm = ({ editMode }: { editMode?: boolean }) => {
                         return <ReactQuill theme="snow" value={field.value} onChange={field.onChange} />
                     }} />
                     {errors.content && <p className='text-red-500'>{errors.content.message}</p>}
+                </div>
+
+                <div className="h-fit w-full p-2 border-2 border-gray-300 rounded-md mt-5">
+                    <div className="flex justify-between border-b-2 pb-2">
+                        <Label className="text-sm font-bold">Meta Section</Label>
+                    </div>
+                    <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
+                        <div>
+                            <Label>Meta title</Label>
+                            <Input type="text" {...register("metaTitle")} />
+                        </div>
+                        <div>
+                            <Label>Meta Description</Label>
+                            <Input type="text" {...register("metaDescription")} />
+                        </div>
+                    </div>
                 </div>
 
 

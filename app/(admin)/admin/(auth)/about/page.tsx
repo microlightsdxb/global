@@ -26,14 +26,22 @@ interface AboutData {
     title: string;
     description: string;
     image: string;
+    introImageAltTag: string;
     sectionTwoImage: string;
+    sectionTwoImageAltTag: string;
     missionDescription: string;
     visionDescription: string;
     valuesDescription: string;
     missionIcon: string;
     visionIcon: string;
     valuesIcon: string;
+    missionAltTag: string;
+    visionAltTag: string;
+    valuesAltTag: string;
     banner: string;
+    bannerAltTag: string;
+    metaTitle: string;
+    metaDescription: string;
 }
 
 interface WhyUs {
@@ -42,8 +50,8 @@ interface WhyUs {
     title: string;
     description: string;
     bottomIcon: string;
+    iconAltTag: string;
 }
-
 
 export default function About() {
 
@@ -52,6 +60,7 @@ export default function About() {
     const [title, setTitle] = useState<string>("");
     const [description, setDescription] = useState<string>("");
     const [bottomIcon, setBottomIcon] = useState<string>("");
+    const [iconAltTag, setIconAltTag] = useState<string>("");
     const [whyUsList, setWhyUsList] = useState<WhyUs[]>([]);
 
     const handleFetchIntroSection = async () => {
@@ -62,8 +71,10 @@ export default function About() {
                 if (data.data) {
                     setValue("title", data.data.introTitle);
                     setValue("image", data.data.introImage);
+                    setValue("introImageAltTag", data.data.introImageAltTag);
                     setValue("description", data.data.introDescription);
                     setValue("banner", data.data.banner);
+                    setValue("bannerAltTag", data.data.bannerAltTag);
                 }
             } else {
                 const data = await response.json();
@@ -86,7 +97,11 @@ export default function About() {
                   setValue("missionIcon", data.data.mission.icon);
                   setValue("visionIcon", data.data.vision.icon);
                   setValue("valuesIcon", data.data.values.icon);
+                  setValue("missionAltTag", data.data.mission.altTag);
+                  setValue("visionAltTag", data.data.vision.altTag);
+                  setValue("valuesAltTag", data.data.values.altTag);
                   setValue("sectionTwoImage", data.data.sectionTwoImage);
+                  setValue("sectionTwoImageAltTag", data.data.sectionTwoImageAltTag);
               }
           } else {
               const data = await response.json();
@@ -113,11 +128,28 @@ export default function About() {
         }
     }
 
+
+    const handleFetchMeta = async () => {
+        try {
+            const response = await fetch("/api/admin/about/meta");
+            if (response.ok) {
+                const data = await response.json();
+                setValue("metaTitle", data.metaTitle);
+                setValue("metaDescription", data.metaDescription);
+            } else {
+                const data = await response.json();
+                alert(data.message);
+            }
+        } catch (error) {
+            console.log("Error fetching meta section", error);
+        }
+    }
+
     const handleAddItem = async () => {
         try {
             const response = await fetch("/api/admin/about/why-us", {
                 method: "POST",
-                body: JSON.stringify({ icon, title, description }),
+                body: JSON.stringify({ icon, title, description, iconAltTag }),
             });
             if (response.ok) {
                 const data = await response.json();
@@ -136,7 +168,7 @@ export default function About() {
         try {
             const response = await fetch(`/api/admin/about/why-us?id=${id}`, {
                 method: "PATCH",
-                body: JSON.stringify({ title, description, icon }),
+                body: JSON.stringify({ title, description, icon, iconAltTag }),
             });
             if (response.ok) {
                 const data = await response.json();
@@ -174,6 +206,7 @@ export default function About() {
         handleFetchIntroSection();
         handleFetchSecondSection();
         handleFetchWhyUs();
+        handleFetchMeta();
     }, [])
 
     const submitIntroSection = async (data: AboutData) => {
@@ -182,6 +215,7 @@ export default function About() {
           formData.append("title", data.title);
           formData.append("description", data.description);
           formData.append("image", data.image);
+          formData.append("introImageAltTag", data.introImageAltTag);
             const response = await fetch("/api/admin/about/intro", {
                 method: "POST",
                 body: formData,
@@ -207,7 +241,12 @@ export default function About() {
           formData.append("missionIcon", data.missionIcon);
           formData.append("visionIcon", data.visionIcon);
           formData.append("valuesIcon", data.valuesIcon);
+          formData.append("missionAltTag", data.missionAltTag);
+          formData.append("visionAltTag", data.visionAltTag);
+          formData.append("valuesAltTag", data.valuesAltTag);
           formData.append("secondSectionImage", data.sectionTwoImage);
+          formData.append("sectionTwoImageAltTag", data.sectionTwoImageAltTag);
+
           const response = await fetch("/api/admin/about/second", {
             method: "POST",
             body: formData,
@@ -228,7 +267,29 @@ export default function About() {
         try {
           const formData = new FormData();
           formData.append("banner", data.banner);
+          formData.append("bannerAltTag", data.bannerAltTag);
           const response = await fetch("/api/admin/about/banner", {
+            method: "POST",
+            body: formData,
+          });
+          if(response.ok){
+            const data = await response.json();
+            alert(data.message);
+          }else{
+            const data = await response.json();
+            alert(data.message);
+          }
+        } catch (error) {
+          console.log("Error saving details", error);
+        }
+      }
+
+      const submitMetaSection = async () => {
+        try {
+          const formData = new FormData();
+          formData.append("metaTitle", watch("metaTitle"));
+          formData.append("metaDescription", watch("metaDescription"));
+          const response = await fetch("/api/admin/about/meta", {
             method: "POST",
             body: formData,
           });
@@ -246,6 +307,23 @@ export default function About() {
 
     return (
         <div className="h-screen grid grid-cols-1 gap-5">
+
+                        <div className="h-fit w-full p-2 border-2 border-gray-300 rounded-md mt-5">
+                            <div className="flex justify-between border-b-2 pb-2">
+                                <Label className="text-sm font-bold">Meta Section</Label>
+                                <Button onClick={submitMetaSection}>Save</Button>
+                            </div>
+                            <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
+                                <div>
+                                    <Label>Meta title</Label>
+                                    <Input type="text" {...register("metaTitle")} />
+                                </div>
+                                <div>
+                                    <Label>Meta Description</Label>
+                                    <Input type="text" {...register("metaDescription")} />
+                                </div>
+                            </div>
+                        </div>
             
             <form className="h-full w-full p-2 border-2 border-gray-300 rounded-md" onSubmit={handleSubmit(submitBanner)}>
                 <div className="flex justify-between border-b-2 pb-2">
@@ -255,6 +333,10 @@ export default function About() {
                 <div className="mt-2 flex flex-col gap-2 h-fit">
                     <div>
                         <ImageUploader onChange={(url) => setValue("banner", url)} value={watch("banner")} />
+                    </div>
+                    <div>
+                        <Label className="text-sm font-bold">Banner Image Alt Tag</Label>
+                        <Input type="text" placeholder="Banner Image Alt Tag" {...register("bannerAltTag")} />
                     </div>
                 </div>
             </form>
@@ -280,6 +362,10 @@ export default function About() {
                         <Label className="text-sm font-bold">Image</Label>
                         <ImageUploader onChange={(url) => setValue("image", url)} value={watch("image")} />
                     </div>
+                    <div>
+                        <Label className="text-sm font-bold">Image Alt Tag</Label>
+                        <Input type="text" placeholder="Image Alt Tag" {...register("introImageAltTag")} />
+                    </div>
                 </div>
             </form>
 
@@ -297,6 +383,10 @@ export default function About() {
                   <Label className="text-sm font-bold">Image</Label>
                   <ImageUploader onChange={(url) => setValue("sectionTwoImage", url)} value={watch("sectionTwoImage")} />
                 </div>
+                <div>
+                        <Label className="text-sm font-bold">Image Alt Tag</Label>
+                        <Input type="text" placeholder="Image Alt Tag" {...register("sectionTwoImageAltTag")} />
+                    </div>
                 <div className="mt-2 grid grid-cols-3 gap-2 h-fit">
                   <div className="flex gap-2 flex-col rounded-md border-2 border-gray-300 p-2">
                     <div className="flex justify-center items-center">
@@ -308,6 +398,10 @@ export default function About() {
                     </div>
                     <div>
                       <ImageUploader onChange={(url) => setValue("missionIcon", url)} value={watch("missionIcon")} />
+                    </div>
+                    <div>
+                        <Label className="text-sm font-bold">Alt Tag</Label>
+                        <Input type="text" placeholder="Alt Tag" {...register("missionAltTag")} />
                     </div>
                   </div>
 
@@ -322,6 +416,10 @@ export default function About() {
                     <div>
                       <ImageUploader onChange={(url) => setValue("visionIcon", url)} value={watch("visionIcon")} />
                     </div>
+                    <div>
+                        <Label className="text-sm font-bold">Alt Tag</Label>
+                        <Input type="text" placeholder="Alt Tag" {...register("visionAltTag")} />
+                    </div>
                   </div>
 
                   <div className="flex gap-2 flex-col rounded-md border-2 border-gray-300 p-2">
@@ -335,8 +433,11 @@ export default function About() {
                     <div>
                       <ImageUploader onChange={(url) => setValue("valuesIcon", url)} value={watch("valuesIcon")} />
                     </div>
+                    <div>
+                        <Label className="text-sm font-bold">Alt Tag</Label>
+                        <Input type="text" placeholder="Alt Tag" {...register("valuesAltTag")} />
+                    </div>
                   </div>
-
                 </div>
             </form>
 
@@ -344,7 +445,7 @@ export default function About() {
                 <div className="flex justify-between border-b-2 pb-2">
                     <Label className="text-sm font-bold">Why Us</Label>
                     <Dialog>
-                        <DialogTrigger className="bg-black text-white px-2 py-1 rounded-md" onClick={() => { setIcon(""); setTitle(""); setDescription(""); }}>Add Item</DialogTrigger>
+                        <DialogTrigger className="bg-black text-white px-2 py-1 rounded-md" onClick={() => { setIcon(""); setTitle(""); setDescription(""); setIconAltTag("") }}>Add Item</DialogTrigger>
                         <DialogContent>
                             <DialogHeader>
                                 <DialogTitle>Add Item</DialogTitle>
@@ -352,6 +453,10 @@ export default function About() {
                                     <div>
                                         <Label>Icon</Label>
                                         <ImageUploader onChange={(url) => setIcon(url)} value={icon} />
+                                    </div>
+                                    <div>
+                                        <Label>Alt Tag</Label>
+                                        <Input type="text" placeholder="Alt Tag" value={iconAltTag} onChange={(e) => setIconAltTag(e.target.value)} />
                                     </div>
                                     <div>
                                         <Label>Bottom Icon</Label>
@@ -385,10 +490,8 @@ export default function About() {
                             </div>
                             <div className="absolute top-1 right-1 flex gap-2">
                                 <Dialog>
-                                    <DialogTrigger className=" text-white px-2 py-1 rounded-md" onClick={() => { setTitle(item.title); setDescription(item.description); setIcon(item.icon); setBottomIcon(item.bottomIcon); }}>
-
-                                            <MdEdit className="text-black cursor-pointer"/>
-
+                                    <DialogTrigger className=" text-white px-2 py-1 rounded-md" onClick={() => { setTitle(item.title); setDescription(item.description); setIcon(item.icon); setBottomIcon(item.bottomIcon); setIconAltTag(item.iconAltTag); }}>
+                                        <MdEdit className="text-black cursor-pointer"/>
                                     </DialogTrigger>
                                     <DialogContent>
                                         <DialogHeader>
@@ -397,6 +500,10 @@ export default function About() {
                                                 <div>
                                                     <Label>Icon</Label>
                                                     <ImageUploader onChange={(url) => setIcon(url)} value={icon} />
+                                                </div>
+                                                <div>
+                                                    <Label>Alt Tag</Label>
+                                                    <Input type="text" placeholder="Alt Tag" value={iconAltTag} onChange={(e) => setIconAltTag(e.target.value)} />
                                                 </div>
                                                 <div>
                                                     <Label>Bottom Icon</Label>

@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/sheet"
 import { FaPlusCircle } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa";
+import { Button } from '@/components/ui/button';
 
 
 
@@ -37,6 +38,8 @@ const AdminContact = () => {
     const [mobile, setMobile] = useState<string>("");
     const [email, setEmail] = useState<string>("");
     const [mapIframe, setMapIframe] = useState<string>("");
+    const [metaTitle, setMetaTitle] = useState<string>("");
+    const [metaDescription, setMetaDescription] = useState<string>("");
 
 
     const handleFetchRegion = async () => {
@@ -67,6 +70,22 @@ const AdminContact = () => {
             }
         } catch (error) {
             console.log("Error in fetching area", error);
+        }
+    }
+
+    const handleFetchMeta = async () => {
+        try {
+            const response = await fetch("/api/admin/contact/meta");
+            if (response.ok) {
+                const data = await response.json();
+                setMetaTitle(data.data.metaTitle);
+                setMetaDescription(data.data.metaDescription);
+            } else {
+                const data = await response.json();
+                alert(data.message);
+            }
+        } catch (error) {
+            console.log("Error fetching meta", error);
         }
     }
 
@@ -204,8 +223,27 @@ const AdminContact = () => {
         }
     }
 
+    const handleSaveMeta = async () => {
+        try {
+            const response = await fetch("/api/admin/contact/meta", {
+                method: "POST",
+                body: JSON.stringify({ metaTitle, metaDescription })
+            });
+            if (response.ok) {
+                const data = await response.json();
+                alert(data.message);
+            } else {
+                const data = await response.json();
+                alert(data.message);
+            }
+        } catch (error) {
+            console.log("Error in saving meta", error);
+        }
+    }
+
     useEffect(() => {
         handleFetchRegion();
+        handleFetchMeta();
     }, [])
 
     useEffect(() => {
@@ -215,7 +253,23 @@ const AdminContact = () => {
     }, [regionId])
 
     return (
-        <div className="h-screen grid grid-cols-1 gap-5">
+        <div className=" grid grid-cols-1 gap-10">
+            <div className="h-fit w-full p-2 border-2 border-gray-300 rounded-md mt-5">
+                            <div className="flex justify-between border-b-2 pb-2">
+                                <Label className="text-sm font-bold">Meta Section</Label>
+                                <Button onClick={handleSaveMeta}>Save</Button>
+                            </div>
+                            <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
+                                <div>
+                                    <Label>Meta title</Label>
+                                    <Input type="text" value={metaTitle} onChange={(e) => setMetaTitle(e.target.value)} />
+                                </div>
+                                <div>
+                                    <Label>Meta Description</Label>
+                                    <Input type="text" value={metaDescription} onChange={(e) => setMetaDescription(e.target.value)} />
+                                </div>
+                            </div>
+                        </div>
             <div className="h-full w-full p-2 border-2 border-gray-300 rounded-md">
                 <div className="flex justify-between border-b-2 pb-2">
                     <Label className="text-sm font-bold">Regions</Label>

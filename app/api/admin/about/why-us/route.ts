@@ -18,10 +18,10 @@ export async function GET() {
 
 export async function POST(req: Request) {
     try {
-        const {title, description,icon} = await req.json();
+        const {title, description,icon,iconAltTag} = await req.json();
         const about = await About.findOne({});
         if(about){
-            about.whyItems.push({title, description,icon});
+            about.whyItems.push({title, description,icon,iconAltTag});
             await about.save();
             return NextResponse.json({message:"Data added successfully"});
         }else{
@@ -37,7 +37,7 @@ export async function PATCH(req: Request) {
     try {
         const {searchParams} = new URL(req.url);
         const id = searchParams.get("id");
-        const {title, description, icon} = await req.json();
+        const {title, description, icon, iconAltTag} = await req.json();
         const about = await About.findOne({});
         if(about){
             const whyUs = about.whyItems.find((item: { _id: string }) => item._id == id);
@@ -45,8 +45,9 @@ export async function PATCH(req: Request) {
                 whyUs.title = title;
                 whyUs.description = description;
                 whyUs.icon = icon;
+                whyUs.iconAltTag = iconAltTag;
                 await about.save();
-                return NextResponse.json({message:"Data updated successfully"});
+                return NextResponse.json({ message: "Data updated successfully" }, { status: 200 });
             }else{
                 return NextResponse.json({ message: "No data found" }, { status: 404 });
             }

@@ -21,10 +21,10 @@ export async function GET() {
 export async function POST(request: Request) {
     try {
         await connectDB();
-        const { title, subTitle, image } = await request.json();
+        const { title, subTitle, image, bannerAltTag } = await request.json();
         const home = await Home.findOne({})
         if(home){
-            home.banners.push({ title, subTitle, image });
+            home.banners.push({ title, subTitle, image, bannerAltTag });
             await home.save();
             return NextResponse.json({ message: "Banner added successfully" }, { status: 200 });
         }else{
@@ -41,7 +41,7 @@ export async function PATCH(request: Request) {
         await connectDB();
         const {searchParams} = new URL(request.url)
         const id = searchParams.get("id")
-        const { title, subTitle, image } = await request.json();
+        const { title, subTitle, image, bannerAltTag } = await request.json();
         const home = await Home.findOne({})
         if(home){
             const editedBanner = home.banners.find((item:{_id:string})=>item._id==id)
@@ -49,6 +49,7 @@ export async function PATCH(request: Request) {
                 editedBanner.title = title
                 editedBanner.subTitle = subTitle
                 editedBanner.image = image
+                editedBanner.bannerAltTag = bannerAltTag
                 await home.save();
                 return NextResponse.json({ message: "Banner updated successfully" }, { status: 200 });
             }

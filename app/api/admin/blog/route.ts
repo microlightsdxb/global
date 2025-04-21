@@ -5,8 +5,8 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req:NextRequest) {
     try {
         await connectDB();
-        const {title,content,image,category} = await req.json();
-        const blog = await Blog.create({title,content,image,category});
+        const {title,content,image,imageAlt,category,metaTitle,metaDescription} = await req.json();
+        const blog = await Blog.create({title,content,image,imageAlt,category,metaTitle,metaDescription});
         if(blog){
             return NextResponse.json({message: "Blog added successfully"},{status: 200});
         }
@@ -24,8 +24,8 @@ export async function PATCH(req:NextRequest) {
         await connectDB();
         const {searchParams} = new URL(req.url);
         const id = searchParams.get("id");
-        const {title,content,image,category} = await req.json();
-        const blog = await Blog.findByIdAndUpdate(id,{title,content,image,category});
+        const {title,content,image,imageAlt,category,metaTitle,metaDescription} = await req.json();
+        const blog = await Blog.findByIdAndUpdate(id,{title,content,image,imageAlt,category,metaTitle,metaDescription});
         if(blog){
             return NextResponse.json({message: "Blog updated successfully"},{status: 200});
         }

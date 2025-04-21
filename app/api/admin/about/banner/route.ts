@@ -7,9 +7,11 @@ export async function POST(request: NextRequest) {
         await connectDB();
         const formData = await request.formData();
         const banner = formData.get("banner");
+        const bannerAltTag = formData.get("bannerAltTag");
         const about = await About.findOne({});
         if(about){
             about.banner = banner;
+            about.bannerAltTag = bannerAltTag;
             await about.save();
             return NextResponse.json({ message: "Banner uploaded successfully" }, { status: 200 });
         }
