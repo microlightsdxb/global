@@ -29,9 +29,9 @@ interface Product {
 }
 
 const Index = () => {
-  const {id} = useParams()
+  const {slug} = useParams()
   const fetcher = (...args: Parameters<typeof fetch>) => fetch(...args).then(res => res.json())
-  const { data }: { data: Product } = useSWR(`/api/admin/product?id=${id}`, fetcher)
+  const { data }: { data: Product } = useSWR(`/api/admin/product?slug=${slug}`, fetcher)
 
   useEffect(() => {
     if(data?.data){

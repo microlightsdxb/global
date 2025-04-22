@@ -10,6 +10,7 @@ import Link from "next/link";
 interface Product {
   data:{
     name: string;
+    slug: string;
     thumbnail: string;
     wattage: string;
     lumen: string;
@@ -25,7 +26,7 @@ const PdtContainer = () => {
 
   const fetcher = (...args: Parameters<typeof fetch>) => fetch(...args).then(res => res.json())
   const { data }: { data: Product } = useSWR(`/api/admin/product`, fetcher)
-  const [products, setProducts] = useState<{ name: string, thumbnail: string, wattage: string, lumen: string, _id: string, altTag: string }[]>([])
+  const [products, setProducts] = useState<{ name: string,slug:string, thumbnail: string, wattage: string, lumen: string, _id: string, altTag: string }[]>([])
   const [typeSelected, setTypeSelected] = useState<string>("")
   const [categorySelected, setCategorySelected] = useState<string>("")
 
@@ -68,7 +69,7 @@ const PdtContainer = () => {
             <div className="w-3/4   p-4 ">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {products?.map((product,index) => (
-                  <Link href={`/product-details/${product._id}`} key={index}>
+                  <Link href={`/product-details/${product.slug}`} key={index}>
                     <div className="pdtcontainer min-h-[300px] md:min-h-[385px] xl:min-h-[435px] h-full border relative overflow-hidden cursor-pointer group">
                       <div className="flex h-full">
                         <figure className="relative w-full pt-8 mb-[82px]">

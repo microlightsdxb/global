@@ -8,10 +8,10 @@ import {useParams} from "next/navigation";
 
 const Index = () => {
 
-  const {id} = useParams()
+  const {slug} = useParams()
 
   const fetcher = (...args: Parameters<typeof fetch>) => fetch(...args).then(res => res.json())
-  const { data } = useSWR(`/api/admin/blog?id=${id}`, fetcher)
+  const { data } = useSWR(`/api/admin/blog?slug=${slug}`, fetcher)
   const {data: recentBlogs} = useSWR(`/api/admin/blog`, fetcher)
   const [recentBlogData, setRecentBlogData] = useState([])
 

@@ -1,9 +1,9 @@
 import Index from "../../../components/ProjectDetails/Index";
 import type { Metadata } from "next";
 
-export async function generateMetadata({params}: {params: Promise<{id: string}>}): Promise<Metadata> {
-  const id = (await params).id;
-  const response = await fetch(`${process.env.BASE_URL}/api/admin/project?id=${id}`, { next: { revalidate: 60 } });
+export async function generateMetadata({params}: {params: Promise<{slug: string}>}): Promise<Metadata> {
+  const slug = (await params).slug;
+  const response = await fetch(`${process.env.BASE_URL}/api/admin/project?slug=${slug}`, { next: { revalidate: 60 } });
   const data = await response.json();
 
   const metadataTitle = data?.data?.metaTitle || "Microlights";

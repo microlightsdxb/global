@@ -22,6 +22,7 @@ import Image from 'next/image';
 
 interface ProjectFormProps {
     name: string;
+    slug:string;
     client: string;
     industry: string;
     scope: string;
@@ -67,6 +68,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
             if (response.ok) {
                 const data = await response.json();
                 setValue("name", data.data.name);
+                setValue("slug", data.data.slug);
                 setValue("client", data.data.client);
                 setValue("industry", data.data.industry);
                 setValue("scope", data.data.scope);
@@ -130,6 +132,11 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
         );
       };
 
+          useEffect(()=>{
+              if(watch("slug") === undefined) return;
+              const slug = watch("slug").replace(/\s+/g, '-');
+              setValue("slug", slug);
+          },[watch("slug")])
 
     return (
         <div className='flex flex-col gap-5'>
@@ -141,6 +148,14 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                         <Input type='text' placeholder='Project Name' {...register("name", { required: "Name is required" })} />
                         {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
                     </div>
+                    <div>
+                                            <Label className='pl-3 font-bold'>Slug</Label>
+                                            <Input type='text' placeholder='Product Slug' {...register("slug", { required: "Slug is required",pattern: {
+                            value: /^[a-z0-9]+(-[a-z0-9]+)*$/,
+                            message: "Slug must contain only lowercase letters, numbers, and hyphens (no spaces)"
+                          } })} />
+                                            {errors.slug && <p className='text-red-500'>{errors.slug.message}</p>}
+                                        </div>
                     <div className='flex flex-col gap-2'>
                         <div>
                         <Label className='pl-3 font-bold'>Thumbnail</Label>
@@ -255,13 +270,11 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
 
                 <div className='flex flex-col gap-2'>
                     <Label className='pl-3 font-bold'>Meta Title</Label>
-                    <Input type='text' placeholder='Meta Title' {...register("metaTitle", { required: "Meta Title is required" })} />
-                    {errors.metaTitle && <p className='text-red-500'>{errors.metaTitle.message}</p>}
+                    <Input type='text' placeholder='Meta Title' {...register("metaTitle")} />
                 </div>
                 <div className='flex flex-col gap-2'>
                     <Label className='pl-3 font-bold'>Meta Description</Label>
-                    <Input type='text' placeholder='Meta Description' {...register("metaDescription", { required: "Meta Description is required" })} />
-                    {errors.metaDescription && <p className='text-red-500'>{errors.metaDescription.message}</p>}
+                    <Input type='text' placeholder='Meta Description' {...register("metaDescription")} />
                 </div>
 
                 <div className='flex justify-center'>

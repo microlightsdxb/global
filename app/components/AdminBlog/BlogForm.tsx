@@ -21,6 +21,7 @@ import { ImageUploader } from '@/components/ui/image-uploader'
 
 interface BlogFormProps {
     title: string;
+    slug: string;
     content: string;
     category: string;
     image: string;
@@ -60,6 +61,7 @@ const BlogForm = ({ editMode }: { editMode?: boolean }) => {
             if (response.ok) {
                 const data = await response.json();
                 setValue("title", data.data.title);
+                setValue("slug",data.data.slug);
                 setValue("content", data.data.content);
                 setValue("category", data.data.category);
                 setValue("image", data.data.image);
@@ -105,6 +107,12 @@ const BlogForm = ({ editMode }: { editMode?: boolean }) => {
         fetchCategory().then(() => ((editMode) ? fetchBlogData() : null));
     }, []);
 
+    useEffect(() => {
+        if (watch("slug") === undefined) return;
+        const slug = watch("slug").replace(/\s+/g, '-');
+        setValue("slug", slug);
+    }, [watch("slug")])
+
 
     return (
         <div className='flex flex-col gap-5'>
@@ -115,6 +123,16 @@ const BlogForm = ({ editMode }: { editMode?: boolean }) => {
                     <Label className='pl-3'>Title</Label>
                     <Input type='text' placeholder='Title' {...register("title", { required: "Title is required" })} />
                     {errors.title && <p className='text-red-500'>{errors.title.message}</p>}
+                </div>
+                <div>
+                    <Label className='pl-3 font-bold'>Slug</Label>
+                    <Input type='text' placeholder='Blog Slug' {...register("slug", {
+                        required: "Slug is required", pattern: {
+                            value: /^[a-z0-9]+(-[a-z0-9]+)*$/,
+                            message: "Slug must contain only lowercase letters, numbers, and hyphens (no spaces)"
+                        }
+                    })} />
+                    {errors.slug && <p className='text-red-500'>{errors.slug.message}</p>}
                 </div>
                 <div className='flex flex-col gap-2'>
                     <Label className='pl-3'>Category</Label>

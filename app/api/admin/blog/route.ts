@@ -5,8 +5,8 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req:NextRequest) {
     try {
         await connectDB();
-        const {title,content,image,imageAlt,category,metaTitle,metaDescription} = await req.json();
-        const blog = await Blog.create({title,content,image,imageAlt,category,metaTitle,metaDescription});
+        const {title,slug,content,image,imageAlt,category,metaTitle,metaDescription} = await req.json();
+        const blog = await Blog.create({title,slug,content,image,imageAlt,category,metaTitle,metaDescription});
         if(blog){
             return NextResponse.json({message: "Blog added successfully"},{status: 200});
         }
@@ -24,8 +24,8 @@ export async function PATCH(req:NextRequest) {
         await connectDB();
         const {searchParams} = new URL(req.url);
         const id = searchParams.get("id");
-        const {title,content,image,imageAlt,category,metaTitle,metaDescription} = await req.json();
-        const blog = await Blog.findByIdAndUpdate(id,{title,content,image,imageAlt,category,metaTitle,metaDescription});
+        const {title,slug,content,image,imageAlt,category,metaTitle,metaDescription} = await req.json();
+        const blog = await Blog.findByIdAndUpdate(id,{title,slug,content,image,imageAlt,category,metaTitle,metaDescription});
         if(blog){
             return NextResponse.json({message: "Blog updated successfully"},{status: 200});
         }
@@ -43,7 +43,15 @@ export async function GET(req:NextRequest) {
         await connectDB();
         const {searchParams} = new URL(req.url);
         const id = searchParams.get("id");
-        if(id){
+        const slug = searchParams.get("slug");
+        if(slug){
+            const blog = await Blog.findOne({slug});
+            if(blog){
+                return NextResponse.json({message: "Blog fetched successfully",data: blog},{status: 200});
+            }else{
+                return NextResponse.json({message: "Error in fetching blog"},{status: 500}); 
+            }
+        }else if(id){
             const blog = await Blog.findById(id);
             if(blog){
                 return NextResponse.json({message: "Blog fetched successfully",data: blog},{status: 200});

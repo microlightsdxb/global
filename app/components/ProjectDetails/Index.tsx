@@ -13,10 +13,9 @@ import useSWR from "swr";
 
 
 const Index = () => {
-
-  const {id} = useParams()
+  const {slug} = useParams()
   const fetcher = (...args: Parameters<typeof fetch>) => fetch(...args).then(res => res.json())
-  const { data } = useSWR(`/api/admin/project?id=${id}`, fetcher)
+  const { data } = useSWR(`/api/admin/project?slug=${slug}`, fetcher)
   const {data:allProjects} = useSWR(`/api/admin/project`, fetcher)
 
   useEffect(() => {

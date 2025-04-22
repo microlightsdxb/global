@@ -14,6 +14,7 @@ import { motion } from "framer-motion";
 interface FrameworkItem {
     _id: string;
     name: string;
+    slug: string;
     category: string;
     location: string;
     thumbnail: string;
@@ -60,7 +61,7 @@ const ProjectList: React.FC<FrameworkSectionProps> = ({
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-[40px]">
       {data?.map((project) => (
-        <Link href={`/project-details/${project._id}`} key={project._id}>
+        <Link href={`/project-details/${project.slug}`} key={project._id}>
           <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

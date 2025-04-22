@@ -38,6 +38,7 @@ import { FileUploader } from '@/components/ui/file-uploader'
 
 interface ProductFormProps {
     name: string;
+    slug:string;
     type: string;
     category: string;
     wattage: string;
@@ -78,6 +79,7 @@ const ProductForm = ({ editMode }: { editMode?: boolean }) => {
             if(response.ok){
                 const data = await response.json();
                 setValue("name",data.data.name)
+                setValue("slug",data.data.slug)
                 setValue("wattage",data.data.wattage)
                 setValue("lumen",data.data.lumen)
                 setValue("type",data.data.type)
@@ -242,6 +244,12 @@ const ProductForm = ({ editMode }: { editMode?: boolean }) => {
         setValue("category",category)
     },[categoryList])
 
+    useEffect(()=>{
+        if(watch("slug") === undefined) return;
+        const slug = watch("slug").replace(/\s+/g, '-');
+        setValue("slug", slug);
+    },[watch("slug")])
+
 
     return (
         <div className='flex flex-col gap-5'>
@@ -252,6 +260,14 @@ const ProductForm = ({ editMode }: { editMode?: boolean }) => {
                         <Label className='pl-3 font-bold'>Name</Label>
                         <Input type='text' placeholder='Product Name' {...register("name", { required: "Name is required" })} />
                         {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
+                    </div>
+                    <div>
+                        <Label className='pl-3 font-bold'>Slug</Label>
+                        <Input type='text' placeholder='Product Slug' {...register("slug", { required: "Slug is required",pattern: {
+        value: /^[a-z0-9]+(-[a-z0-9]+)*$/,
+        message: "Slug must contain only lowercase letters, numbers, and hyphens (no spaces)"
+      } })} />
+                        {errors.slug && <p className='text-red-500'>{errors.slug.message}</p>}
                     </div>
                     <div>
                         <div className='flex flex-col gap-2'>

@@ -5,9 +5,10 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(request:NextRequest){
     try {
         await connectDB();
-        const {name,wattage,lumen,type,category,specifications,thumbnail,images,file,metaTitle,metaDescription,altTag} = await request.json();
+        const {name,slug,wattage,lumen,type,category,specifications,thumbnail,images,file,metaTitle,metaDescription,altTag} = await request.json();
         const product = await Product.create({
             name,
+            slug,
             wattage,
             lumen,
             type,
@@ -36,8 +37,15 @@ export async function GET(request:NextRequest){
         await connectDB();
         const {searchParams} = new URL(request.url);
         const id = searchParams.get("id");
-        
-        if(id){
+        const slug = searchParams.get("slug");
+        if(slug){
+            const product = await Product.findOne({slug});
+            if(product){
+                return NextResponse.json({data:product},{status:200})
+            }else{
+                return NextResponse.json({message:"Product not found"},{status:404})
+            }
+        }else if(id){
             const product = await Product.findById(id);
             if(product){
                 return NextResponse.json({data:product},{status:200})
@@ -61,10 +69,10 @@ export async function GET(request:NextRequest){
 export async function PATCH(request:NextRequest){
     try {
         await connectDB();
-        const {name,wattage,lumen,type,category,specifications,thumbnail,images,file,metaTitle,metaDescription,altTag} = await request.json();
+        const {name,slug,wattage,lumen,type,category,specifications,thumbnail,images,file,metaTitle,metaDescription,altTag} = await request.json();
         const {searchParams} = new URL(request.url);
         const id = searchParams.get("id");
-        const product = await Product.findByIdAndUpdate(id,{name,wattage,lumen,type,category,specifications,thumbnail,images,file,metaTitle,metaDescription,altTag})
+        const product = await Product.findByIdAndUpdate(id,{name,slug,wattage,lumen,type,category,specifications,thumbnail,images,file,metaTitle,metaDescription,altTag})
         if(product){
             return NextResponse.json({message:"Product updated successfully"},{status:200})
         }else{

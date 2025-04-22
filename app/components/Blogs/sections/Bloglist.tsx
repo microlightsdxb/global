@@ -16,6 +16,7 @@ interface FrameworkSectionProps {
   data:{
     data:{
     image:string,
+    slug:string,
     imageAlt:string,
     category:string,
     _id:string,
@@ -93,7 +94,7 @@ const Bloglist: React.FC<FrameworkSectionProps> = ({ data, categories }) => {
       viewport={{ once: true }}
     >
       {filteredData?.map((member, index) => (
-        <Link key={index} href={`/blog-details/${member._id}`} className="teammem ">
+        <Link key={index} href={`/blog-details/${member.slug}`} className="teammem ">
         <motion.div
           key={index}
           className="teammem mt-10 lg:mt-20 xl:mt-20"
