@@ -37,7 +37,7 @@ const Strength: React.FC<FrameworkSectionProps> = ({ data }) => {
                 onMouseOver={()=>setAnimateIcon(index)}
               >
                   <div className="w-[85px] h-[85px] p-4 md:p-0 md:w-[115px] md:h-[115px] group-hover:bg-black rounded-full border border-[#00000015] flex justify-center items-center bg-[#f2f2f2] relative z-1">
-                    {animateIcon === index ? <Image src={item.animImage} alt="" width={55} height={55} /> : <Image src={item.image} alt="" width={55} height={55} />}
+                    {animateIcon === index ? <Image src={item.animImage} alt={item.imageAlt} width={55} height={55} /> : <Image src={item.image} alt={item.imageAlt} width={55} height={55} />}
                   </div>
 
 

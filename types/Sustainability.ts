@@ -3,12 +3,14 @@ export type Sustainability = {
         introTitle:string,
         introDescription:string,
         introImage:string,
+        introImageAlt:string,
         sectionTwoTitle:string,
         sectionTwoDescription:string,
         practices:[{
             title:string,
             description:string,
-            icon:string
+            icon:string,
+            iconAlt:string
         }],
         certifications:[{
             title:string,
@@ -21,7 +23,8 @@ export type Sustainability = {
             items:[{
                 title:string,
                 description:string,
-                image:string
+                image:string,
+                iconAlt:string
             }]
         },
         outroTitle:string,

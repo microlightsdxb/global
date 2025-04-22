@@ -7,10 +7,10 @@ interface RecentBlogItem {
     _id:string,
     title:string,
     image:string,
+    imageAlt:string,
     category:string,
     createdAt:string,
   }
-
 
 interface FrameworkSectionProps {
   categories: string[];
@@ -39,7 +39,7 @@ const Bloglist: React.FC<FrameworkSectionProps> = ({ data }) => {
                 <div className="evecont h-[200px]  sm:h-[300px] lg:h-[200px] overflow-hidden"  >
                   <Image
                     src={member.image}
-                    alt={member.category}
+                    alt={member.imageAlt}
                     className="w-full h-auto object-center object-cover"
                     width={500}
                     height={500}

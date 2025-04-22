@@ -4,6 +4,7 @@ export type Home = {
             title: string;
             subTitle: string;
             image: string
+            bannerAltTag: string
         }[];
         years: number;
         projects: number;
@@ -20,4 +21,5 @@ export type Home = {
         aboutTitle: string;
         aboutDescription: string;
         aboutImage: string;
+        aboutImageAltTag: string
     }

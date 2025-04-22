@@ -12,6 +12,7 @@ interface FrameworkItem {
     _id:string,
     title:string,
     image:string,
+    imageAlt:string,
     content:string,
     category:string,
     createdAt:string,
@@ -22,10 +23,11 @@ interface RecentBlogItem {
     _id:string,
     title:string,
     image:string,
+    imageAlt:string,
     category:string,
     createdAt:string,
   }
-
+  
 interface FrameworkSectionProps {
   data: FrameworkItem;
   recentBlogData: RecentBlogItem[];
@@ -44,7 +46,7 @@ const Blogdetails: React.FC<FrameworkSectionProps> = ({ data, recentBlogData }) 
                 <figure className="w-full h-[300px]   md:h-[400px]   lg:h-[600px] overflow-hidden ">
                   <Image
                     src={data?.data?.image}
-                    alt="bnr"
+                    alt={data?.data?.imageAlt}
                     className=" w-full   object-cover"
                     width={500}
                     height={500}

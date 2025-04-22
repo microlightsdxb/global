@@ -87,7 +87,7 @@ const AboutSec = ({data}:{data:Home}) => {
               <Image
                 src={data?.aboutImage}
                 className="absolute w-full h-full  object-center object-cover"
-                alt=""
+                alt={data?.aboutImageAltTag}
                 width={900}
                 height={600}
               />

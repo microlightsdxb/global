@@ -8,6 +8,7 @@ interface FrameworkItem {
     name: string;
     designation: string;
     image: string;
+    imageAlt: string;
 }
 
 interface FrameworkSectionProps {
@@ -31,7 +32,7 @@ const TeamList: React.FC<FrameworkSectionProps> = ({
           <div className="teamover">
           <Image
             src={member.image}
-            alt={member.name}
+            alt={member.imageAlt}
             width={300}
             height={300}
             className="w-full h-auto "

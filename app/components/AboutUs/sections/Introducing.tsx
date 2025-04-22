@@ -30,7 +30,7 @@ const Introducing = ({
   animate={{ opacity: 1, x: [0, 10, -10, 0] }} // Moves back and forth
   transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
 >
-  <Image src={data?.introImage} alt="" width={300} height={300} />
+  <Image src={data?.introImage} alt={data?.introImageAltTag} width={300} height={300} />
 </motion.div>
 
                 </div>

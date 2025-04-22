@@ -11,11 +11,13 @@ interface Props {
     mdDescription: string;
     mdImage: string;
     mdDesignation:string;
+    mdImageAlt: string;
   }
   teamData:{
     name: string;
     designation: string;
     image: string;
+    imageAlt: string;
   }[]
 }
 

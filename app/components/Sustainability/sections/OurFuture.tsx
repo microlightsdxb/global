@@ -28,7 +28,7 @@ const OurFuture: React.FC<FrameworkSectionProps> = ({ data }) => {
               <div className="h-[700px] w-full">
                 <Image
                   src={data?.data?.goals?.items[activeIndex]?.image || assets.sufe}
-                  alt=""
+                  alt={data?.data?.goals?.items[activeIndex]?.iconAlt || ""}
                   className="transition-all duration-500 ease-in-out w-full h-full object-cover"
                   width={1000}
                   height={1000}

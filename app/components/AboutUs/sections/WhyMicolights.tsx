@@ -38,7 +38,7 @@ const WhyMicolights = ({
   animate={{ opacity: 1, scale: 1, y: [0, -3, 0] }} // Moves up and down
   transition={{ duration: 1.5, repeat: Infinity, repeatType: "reverse", ease: "easeInOut" }}
 >
-  <Image src={framework.icon} alt="" height={52} width={52} />
+  <Image src={framework.icon} alt={framework.iconAltTag} height={52} width={52} />
 </motion.div>
 
 

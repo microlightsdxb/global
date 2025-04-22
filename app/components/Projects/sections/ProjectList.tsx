@@ -17,6 +17,7 @@ interface FrameworkItem {
     category: string;
     location: string;
     thumbnail: string;
+    thumbnailAlt: string;
     industry: string;
     images: string[];
   }
@@ -74,7 +75,7 @@ const ProjectList: React.FC<FrameworkSectionProps> = ({
               <Image
                 className="h-full w-full object-cover object-center   group-hover:scale-[1.1] transition-all ease-in-out duration-500"
                 src={project.thumbnail}
-                alt={project.name}
+                alt={project.thumbnailAlt}
                 width={950}
                 height={950}
               />

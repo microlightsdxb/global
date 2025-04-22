@@ -53,7 +53,7 @@ interface FrameworkSectionProps {
         >
           <Image
             src={practice.icon}
-            alt={practice.title}
+            alt={practice.iconAlt}
             className="rounded-lg h-10"
             width={30}
             height={30}

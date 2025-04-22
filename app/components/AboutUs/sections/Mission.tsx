@@ -30,7 +30,7 @@ const Mission = ({
                      transition={{ duration: 0.4, delay: 0.2 }}
                      viewport={{ once: true }}
                    >
-        <Image src={data?.sectionTwoImage} alt="" width={2000} height={2000}></Image>
+        <Image src={data?.sectionTwoImage} alt={data?.sectionTwoImageAltTag} width={2000} height={2000}></Image>
         </motion.div>
     <section style={{background: `url(${assets.bgstabt.src})`, backgroundPositionY: '-6px'}}>
       <div className="container">
@@ -46,7 +46,7 @@ const Mission = ({
                 variants={slideVariants}
                 custom={data?.mission?.icon}
               >
-                  <Image src={data?.mission?.icon} alt=""   className="h-[45px] md:h-[45px] lg:h-[45px] xl:h-[75px] w-auto" width={100} height={100}></Image>
+                  <Image src={data?.mission?.icon} alt={data?.mission?.altTag}   className="h-[45px] md:h-[45px] lg:h-[45px] xl:h-[75px] w-auto" width={100} height={100}></Image>
                   <div className="border-b-1 border-[#fff]  mt-[20px] md:mt-[40px] mb-[20px] md:mb-[44px] "></div>
                   <h3 className="text-xl text-white mb-[11px]">Our Mission</h3>
                   <p className="text-white text-sm font-light">{data?.mission?.description}</p>
@@ -61,7 +61,7 @@ const Mission = ({
                 variants={slideVariants}
                 custom={data?.vision?.icon}
               >
-                  <Image src={data?.vision?.icon} alt=""   className="h-[45px] md:h-[45px] lg:h-[45px] xl:h-[75px] w-auto" width={100} height={100}></Image>
+                  <Image src={data?.vision?.icon} alt={data?.vision?.altTag}   className="h-[45px] md:h-[45px] lg:h-[45px] xl:h-[75px] w-auto" width={100} height={100}></Image>
                   <div className="border-b-1 border-[#fff]  mt-[20px] md:mt-[40px] mb-[20px] md:mb-[44px] "></div>
                   <h3 className="text-xl text-white mb-[11px]">Our Vision</h3>
                   <p className="text-white text-sm font-light">{data?.vision?.description}</p>
@@ -76,7 +76,7 @@ const Mission = ({
                 variants={slideVariants}
                 custom={data?.values?.icon}
               >
-                  <Image src={data?.values?.icon} alt=""   className="h-[45px] md:h-[45px] lg:h-[45px] xl:h-[75px] w-auto" width={100} height={100}></Image>
+                  <Image src={data?.values?.icon} alt={data?.values?.altTag}   className="h-[45px] md:h-[45px] lg:h-[45px] xl:h-[75px] w-auto" width={100} height={100}></Image>
                   <div className="border-b-1 border-[#fff]  mt-[20px] md:mt-[40px] mb-[20px] md:mb-[44px] "></div>
                   <h3 className="text-xl text-white mb-[11px]">Our Values</h3>
                   <p className="text-white text-sm font-light">{data?.values?.description}</p>

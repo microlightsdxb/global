@@ -16,6 +16,7 @@ interface Product {
     _id: string;
     type: string;
     category: string;
+    altTag: string;
   }[]
 }
 
@@ -24,14 +25,14 @@ const PdtContainer = () => {
 
   const fetcher = (...args: Parameters<typeof fetch>) => fetch(...args).then(res => res.json())
   const { data }: { data: Product } = useSWR(`/api/admin/product`, fetcher)
-  const [products, setProducts] = useState<{ name: string, thumbnail: string, wattage: string, lumen: string, _id: string }[]>([])
+  const [products, setProducts] = useState<{ name: string, thumbnail: string, wattage: string, lumen: string, _id: string, altTag: string }[]>([])
   const [typeSelected, setTypeSelected] = useState<string>("")
   const [categorySelected, setCategorySelected] = useState<string>("")
 
   useEffect(() => {
     if (data?.data) {
       console.log(data?.data)
-      setProducts(data?.data.filter((product: {type: string, category: string}) => product.type === typeSelected && product.category === categorySelected))
+      setProducts(data?.data.filter((product: {type: string, category: string, altTag: string}) => product.type === typeSelected && product.category === categorySelected))
     }
   }, [data,typeSelected,categorySelected])
 
@@ -74,7 +75,7 @@ const PdtContainer = () => {
                           <Image
                             className="object-contain h-full object-center m-auto"
                             src={product?.thumbnail}
-                            alt="Apollo"
+                            alt={product?.altTag}
                             width={180}
                             height={180}
                           />

@@ -8,6 +8,7 @@ interface MdData {
     mdDesignation: string;
     mdDescription: string;
     mdImage: string;
+    mdImageAlt: string;
 }
 
 
@@ -53,7 +54,7 @@ const Banner = ({data}:{data:MdData}) => {
           </div>
         </div>
         <div className="lg:absolute  right-0  mb-5 lg:mb-0 w-full h-full top-0 lg:w-1/2">
-          <Image src={data?.mdImage} alt="" className="lg:absolute  right-0 bottom-0" height={1000} width={1000}></Image>
+          <Image src={data?.mdImage} alt={data?.mdImageAlt} className="lg:absolute  right-0 bottom-0" height={1000} width={1000}></Image>
         </div>
         </div>
       </div>

@@ -14,10 +14,10 @@ interface FrameworkItem {
   category: string;
   location: string;
   thumbnail: string;
+  thumbnailAlt: string;
   industry: string;
   images: string[];
 }
-
 
 const Index = () => {
 

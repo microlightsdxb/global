@@ -47,7 +47,7 @@ const Pdtdetails = ({data}: {data: ProductProps}) => {
                           <Image
                             className="object-contain w-full h-full"
                             src={image}
-                            alt="Apollo"
+                            alt=""
                             width={100}
                             height={100}
                           />

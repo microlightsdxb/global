@@ -22,7 +22,7 @@ const ImageSec = ({data}:{data:Service}) => {
                                 <Image
                                   className="object-cover w-full h-full"
                                   src={data?.introImage}
-                                  alt="Apollo"
+                                  alt={data?.introImageAlt}
                                   width={1500}
                                   height={500}
                                 />

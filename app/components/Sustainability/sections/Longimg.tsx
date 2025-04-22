@@ -70,7 +70,7 @@ const Longimg = ({data}: {data: Sustainability}) => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true, amount: 0.5 }}>
-  <Image src={data.data.introImage} alt="" layout="responsive" width={1000} height={1000}/>
+  <Image src={data.data.introImage} alt={data.data.introImageAlt} layout="responsive" width={1000} height={1000}/>
 </motion.div>
 </div>
       </div>

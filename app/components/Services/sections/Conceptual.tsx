@@ -70,7 +70,7 @@ const Conceptual = ({data}:{data:Service}) => {
                   <Image
                     className="object-cover object-center  h-full w-full"
                     src={hoveredId ? data?.method?.items[hoveredId-1]?.image : data?.method?.items[1]?.image}
-                    alt="Apollo"  
+                    alt={hoveredId ? data?.method?.items[hoveredId-1]?.imageAlt : data?.method?.items[1]?.imageAlt}
                     width={1500}
                     height={1500}
                   />

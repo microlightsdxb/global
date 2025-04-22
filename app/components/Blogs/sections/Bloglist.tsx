@@ -16,6 +16,7 @@ interface FrameworkSectionProps {
   data:{
     data:{
     image:string,
+    imageAlt:string,
     category:string,
     _id:string,
     title:string,
@@ -111,7 +112,7 @@ const Bloglist: React.FC<FrameworkSectionProps> = ({ data, categories }) => {
           >
             <Image
               src={member.image}
-              alt={member.category}
+              alt={member.imageAlt}
               width={300}
               height={300}
               className="w-full h-auto"

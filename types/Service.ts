@@ -2,16 +2,19 @@ export type Service = {
     name:string,
     pageHeading:string,
     pageBanner:string,
+    bannerAlt:string,
     introTitle:string,
     introDescription:string,
     introImage:string,
+    introImageAlt:string,
     method:{
         name:string,
         items:{
             title:string,
             description:string,
             image:string,
-            animImage:string
+            animImage:string,
+            imageAlt:string,
         }[]
     }
 }
