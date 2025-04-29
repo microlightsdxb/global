@@ -6,6 +6,7 @@ import Image from "next/image";
 import { ToggleSection } from "./ToggleSection";
 import useSWR from "swr";
 import Link from "next/link";
+import { useStore } from "@/app/store/productType";
 
 interface Product {
   data:{
@@ -29,6 +30,7 @@ const PdtContainer = () => {
   const [products, setProducts] = useState<{ name: string,slug:string, thumbnail: string, wattage: string, lumen: string, _id: string, altTag: string }[]>([])
   const [typeSelected, setTypeSelected] = useState<string>("")
   const [categorySelected, setCategorySelected] = useState<string>("")
+  const type = useStore((state)=>state.type);
 
   useEffect(() => {
     if (data?.data) {
@@ -38,10 +40,10 @@ const PdtContainer = () => {
   }, [data,typeSelected,categorySelected])
 
   useEffect(() => {
-    if(localStorage.getItem("type") == ""){
+    if(type == ""){
       setTypeSelected(data?.data[0].type)
     }else{
-      setTypeSelected(localStorage.getItem("type") || "")
+      setTypeSelected(type)
     }
   }, [data])
 
@@ -84,7 +86,7 @@ const PdtContainer = () => {
                       </div>
 
                       <div
-                        className={`px-10 pb-3 w-full absolute  bottom-0 group-hover:translate-y-[10px] transition-all duration-500 ease-in-out group-hover:bg-black
+                        className={`px-10 pb-3 w-full absolute  bottom-0 group-hover:translate-y-[10px] transition-all duration-500 ease-in-out group-hover:bg-[#7D7D7D]
                  group-hover:text-white  `}
                       >
                         <p className="text-25 text-black  group-hover:text-white transition-500 mt-5 mb-8">

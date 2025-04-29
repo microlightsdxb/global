@@ -31,9 +31,9 @@ const Certifications: React.FC<FrameworkSectionProps> = ({
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
             viewport={{ once: false, amount: 0.5 }} className="p-5 md:p-10 border-r border-[#00000015] last:border-r-0">
-                <div className="flex gap-5 h-20">
+                <div className="flex gap-5 h-20 w-20">
                   {item.images.map((image) => (
-                    <Image src={image} alt="" key={image} width={80} height={80}/>
+                    <Image src={image} alt="" key={image} width={80} height={80} className="object-cover h-full w-full"/>
                   ))}
               </div>
             <div className="border-t   mt-10 "></div>

@@ -60,8 +60,8 @@ const ProjectList: React.FC<FrameworkSectionProps> = ({
       <div className="container">
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-[40px]">
-      {data?.map((project) => (
-        <Link href={`/project-details/${project.slug}`} key={project._id}>
+      {data?.map((project,index) => (
+        <Link href={`/project-details/${project.slug}`} key={index}>
           <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

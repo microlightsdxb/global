@@ -21,12 +21,20 @@ export const menuItems: MenuItem[] = [
     {
       title:"Products",
       url:"/products",
-      //   children:[
-      //   {
-      //     title:"Product 1",
-      //     url:"#"
-      //   }
-      // ]
+        children:[
+        {
+          title:"Indoor Lighting",
+          url:"/products"
+        },
+        {
+          title:"Outdoor Lighting",
+          url:"/products"
+        },
+        {
+          title:"Industrial Lighting",
+          url:"/products"
+        }
+      ]
     },
     {
       title:"Services",

@@ -75,10 +75,10 @@ const Address = ({data}:{data:AddressProps}) => {
               <p className="font-[300]">{location.address}</p>
             </div>
             <div className="flex flex-col gap-0 lg:flex-row lg:gap-3 pmargin0 mb-2 md:mb-3">
-              <p className="font-[600] text-black">Tel: {location.telephone}</p>
-              <p className="font-[600] text-black">Mob: {location.mobile}</p>
+              {location.telephone && <p className="font-[600] text-black">Tel: {location.telephone}</p>}
+              {location.mobile && <p className="font-[600] text-black">Mob: {location.mobile}</p>}
             </div>
-            <p className="font-[600] text-black">Email: {location.email}</p>
+            {location.email && <p className="font-[600] text-black">Email: {location.email}</p>}
             <div className="mt-5"   style={{ filter: "grayscale(100%)" }}>
               {/* <Image src={location.map} alt="Map" /> */}
               {parse(location.mapIframe || "")}

@@ -31,6 +31,7 @@ const Index = () => {
   const [locationSelected, setLocationSelected] = useState<string>("")
   const [newVisible,setNewVisible] = useState<number>(0)
     const [buttonVisible,setButtonVisible] = useState(true)
+    const [selectedLocations,setSelectedLocations] = useState<string[]>([])
   const limit = 8
 
   useEffect(() => {
@@ -47,7 +48,9 @@ const Index = () => {
   }, [data,newVisible])
 
   useEffect(()=>{
-    console.log(projects)
+    if(projects?.length > 8){
+      setButtonVisible(false)
+    }
   },[projects])
 
 
@@ -55,19 +58,19 @@ const Index = () => {
 
     console.log(industrySelected,locationSelected)
 
-    if(!industrySelected && !locationSelected){
+    if(!industrySelected && selectedLocations.length==0){
       setProjects(data?.data.slice(0,limit))
       setNewVisible(0)
       return;
     }
 
-    if(industrySelected=="Industry" && !locationSelected){
+    if(industrySelected=="Industry" && selectedLocations.length==0){
       setProjects(data?.data.slice(0,limit))
       setNewVisible(0)
       return;
     }
 
-    if(locationSelected=="Location" && !industrySelected){
+    if(selectedLocations.length==0 && !industrySelected){
       console.log("here")
       setProjects(data?.data.slice(0,limit))
       setNewVisible(0)
@@ -75,23 +78,25 @@ const Index = () => {
     }
 
 
-    if(industrySelected=="Industry"  && locationSelected=="Location"){
+    if(industrySelected=="Industry"  && selectedLocations.length==0){
       console.log("correct")
       setProjects(data?.data.slice(0,limit))
       setNewVisible(0)
       return;
     }else{
-      if(industrySelected!=="Industry"  && locationSelected!=="Location"){
+      if(industrySelected!=="Industry"  && selectedLocations.length!==0){
+        
           if(!industrySelected){
-            const filteredProjects = data?.data?.filter((project: {industry: string, location: string})=>project.location === locationSelected)
+            const filteredProjects = data?.data?.filter((project: {industry: string, location: string})=>selectedLocations.includes(project.location))
             setProjects(filteredProjects)
+            console.log("here yeah")
             return;
-          }else if(!locationSelected){
+          }else if(selectedLocations.length==0){
             const filteredProjects = data?.data?.filter((project: {industry: string, location: string})=>project.industry === industrySelected)
             setProjects(filteredProjects)
             return;
           }else{
-            const filteredProjects = data?.data?.filter((project: {industry: string, location: string})=>project.industry === industrySelected && project.location === locationSelected)
+            const filteredProjects = data?.data?.filter((project: {industry: string, location: string})=>project.industry === industrySelected && selectedLocations.includes(project.location))
             setProjects(filteredProjects)
             return;
           }
@@ -100,19 +105,24 @@ const Index = () => {
           const filteredProjects = data?.data?.filter((project: {industry: string, location: string})=>project.industry === industrySelected)
           setProjects(filteredProjects)
           return;
-        }else if(locationSelected!=="Location"){
-          const filteredProjects = data?.data?.filter((project: {industry: string, location: string})=>project.location === locationSelected) 
+        }else if(selectedLocations.length!==0){
+          console.log(selectedLocations)
+          const filteredProjects = data?.data?.filter((project: {industry: string, location: string})=>selectedLocations.includes(project.location)) 
           setProjects(filteredProjects)
           return;
         }
       }
 
-  },[industrySelected, locationSelected])
+  },[industrySelected, locationSelected,selectedLocations])
+
+  // useEffect(()=>{
+  //   console.log(selectedLocations)
+  // },[selectedLocations])
 
   return (
     <>
       <div className="headerpadding"> </div>
-      <Filter industryData={industryData} locationData={locationData} setIndustrySelected={setIndustrySelected} setLocationSelected={setLocationSelected}/>
+      <Filter industryData={industryData} locationData={locationData} setIndustrySelected={setIndustrySelected} setLocationSelected={setLocationSelected} selectedLocations={selectedLocations} setSelectedLocations={setSelectedLocations}/>
       <ProjectList data={projects} setNewVisible={setNewVisible} newVisible={newVisible} limit={limit} buttonVisible={buttonVisible} setButtonVisible={setButtonVisible}/>
     </>
   );

@@ -1,3 +1,4 @@
+
 import type { Metadata } from "next";
 import { Parkinsans } from "next/font/google"; // Import ParkinSans
 import "../globals.css";
@@ -7,6 +8,7 @@ import Footer from "../components/common/Footer";
 /* import Header from "./componennts/common/Header"; */
 import { Toaster } from "@/components/ui/sonner"
 import parse from 'html-react-parser'
+
 
 const parkinSans = Parkinsans({
   variable: "--font-parkin-sans",
@@ -33,10 +35,10 @@ export default async function RootLayout({
       <body className={`${parkinSans.variable} antialiased`}>
         {parse(tagData.tag.bodyScript)}
         <SmoothScroll />
-        <Header />
-        {children}
-        <Toaster />
-        <Footer />
+          <Header />
+          {children}
+          <Toaster />
+          <Footer />
       </body>
     </html>
   );

@@ -7,6 +7,7 @@ import { FiArrowUpRight } from "react-icons/fi";
 import { HoveredLink, Menu, MenuItem } from "../ui/navbar-menu";
 import { menuItems } from "./menuItems";
 import MobileNav from "./MobileNav";
+import { useStore } from "@/app/store/productType";
 
 // Define the type for menu items
 type MenuItemType = {
@@ -18,6 +19,7 @@ type MenuItemType = {
 const Header = () => {
   const [active, setActive] = useState<string | null>(null);
   const [services, setServices] = useState<{name:string,slug:string}[]>([]);
+  const setType = useStore((state)=>state.setType)
 
   useEffect(()=>{
     const fetchServices = async() =>{
@@ -74,7 +76,7 @@ const Header = () => {
                 {menuItem.title !== "Services" && menuItem.children?.length ? (
                   <div className="grid grid-cols-1">
                     {menuItem.children.map((item, subIndex) => (
-                      <HoveredLink href={item.url} key={subIndex}>
+                      <HoveredLink href={item.url} key={subIndex} onClick={()=>setType(item.title.split(' ')[0])}>
                         <div className="hover:bg-black/5 pl-3 pr-[80px] py-2 rounded-[8px] transition-transform duration-300 hover:scale-105 flex justify-between items-center">
                           <p className="m-0 p-0 text-[16px]">
                             {item.title}

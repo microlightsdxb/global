@@ -1,9 +1,11 @@
 'use client'
+
 import React from "react";
 import {motion} from 'framer-motion'
 import Image from "next/image";
 import { FiArrowUpRight } from "react-icons/fi";
 import Link from "next/link";
+import { useStore } from "@/app/store/productType";
 const slideVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: (i: number) => ({
@@ -14,6 +16,7 @@ const slideVariants = {
   };
 
 const ProdSec = ({data}:{data:{data:{_id:string,type: string, image: string, hoverImage: string}[]}}) => {
+  const setType = useStore((state)=>state.setType);
 
   return (
     <section className="section-spacing h-[210vh] lg:h-[133vh] 2xl:h-[100vh]">
@@ -31,7 +34,7 @@ const ProdSec = ({data}:{data:{data:{_id:string,type: string, image: string, hov
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-[40px]"
         >
           {data?.data?.map((product: {_id: string, type: string, image: string, hoverImage: string}, i: number) => (
-            <Link key={product._id} onClick={()=>localStorage.setItem("type",product.type)} href={`/products`} className="relative last:before:hidden before:content-[] before:absolute before:h-full before:w-[1px] before:bg-primary/10 before:right-[-20px] ">
+            <Link key={product._id} onClick={()=>setType(product.type)} href={`/products`} className="relative last:before:hidden before:content-[] before:absolute before:h-full before:w-[1px] before:bg-primary/10 before:right-[-20px] ">
               <motion.div
                 className="prditm group cursor-pointer"
                 initial="hidden"

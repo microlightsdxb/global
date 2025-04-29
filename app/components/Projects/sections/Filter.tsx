@@ -1,10 +1,13 @@
 "use client";
 import { assets } from "@/public/assets/assets";
-import React, { useEffect, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Select from 'react-select'
+import { FaCheck } from "react-icons/fa";
+import { IoIosCloseCircle } from "react-icons/io";
+import { FaAngleDown } from "react-icons/fa";
 
 interface Option {
   value: string;
@@ -12,7 +15,14 @@ interface Option {
 }
 
 
-const Filter = ({ industryData, locationData, setIndustrySelected, setLocationSelected }: { industryData: { data: { name: string }[], setIndustrySelected: (name: string) => void, industrySelected: string }, locationData: { data: { name: string }[], setLocationSelected: (name: string) => void, locationSelected: string }, setIndustrySelected: (name: string) => void, setLocationSelected: (name: string) => void }) => {
+const Filter = ({ industryData, locationData, setIndustrySelected, setLocationSelected,selectedLocations,setSelectedLocations }: { 
+  industryData: { data: { name: string }[], setIndustrySelected: (name: string) => void, industrySelected: string }, 
+  locationData: { data: { name: string }[], setLocationSelected: (name: string) => void, locationSelected: string }, 
+  setIndustrySelected: (name: string) => void, setLocationSelected: (name: string) => void,
+  setSelectedLocations:Dispatch<SetStateAction<string[]>> ,
+  selectedLocations:string[]
+
+}) => {
 
   const [selectedIndustry, setSelectedIndustry] = useState<Option | null>(null);
   const [selectedLocation, setSelectedLocation] = useState<Option | null>(null);
@@ -24,16 +34,28 @@ const Filter = ({ industryData, locationData, setIndustrySelected, setLocationSe
     setIndustrySelected(newValue?.value || "")
   };
 
-  const handleLocationChange = (newValue: Option | null) => {
-    setSelectedLocation(newValue);
-    setLocationSelected(newValue?.value || "")
-  };
+  // const handleLocationChange = (newValue: Option | null) => {
+  //   console.log(newValue)
+  //   if (newValue) {
+  //     setSelectedLocations((prev) => {
+  //       const updated = [...(prev || []), newValue.value];
+  //       return updated;
+  //     });
+  //     setSelectedLocation(newValue);
+  //     setLocationSelected(newValue.value);
+  //   }
+  // };
+
+  useEffect(()=>{
+    console.log(selectedLocation)
+  },[selectedLocation])
 
   const handleClear = () => {
     setIndustrySelected("Industry")
     setLocationSelected("Location")
     setSelectedIndustry(null)
     setSelectedLocation(null)
+    setSelectedLocations([])
   }
 
   useEffect(()=>{
@@ -42,7 +64,7 @@ const Filter = ({ industryData, locationData, setIndustrySelected, setLocationSe
     }
 
     if(locationData?.data?.length>0){
-      setLocationOptions([{value: "Location", label: "Location"},...locationData?.data?.map((item: {name: string})=>({value: item.name, label: item.name}))]);
+      setLocationOptions([...locationData?.data?.map((item: {name: string})=>({value: item.name, label: item.name}))]);
     }
   },[industryData,locationData])
 
@@ -157,63 +179,16 @@ const Filter = ({ industryData, locationData, setIndustrySelected, setLocationSe
                       </option>
                     ))}
                   </select> */}
-                  <Select
-                      options={locationOptions}
-                      value={selectedLocation}
-                      onChange={handleLocationChange}
-                      isSearchable={true}
-                      placeholder="Location"
-                      styles={{
-                        control: (provided) => ({
-                          ...provided,
-                          backgroundColor: "transparent",
-                          border: "none",
-                          borderBottom: "1px solid #fff",
-                          color: "white",
-                          borderRadius: "0px",
-                          boxShadow: "none",
-                          "&:hover": { borderBottom: "1px solid #fff" }
-                        }),
-                        singleValue: (provided) => ({
-                          ...provided,
-                          color: "white"
-                        }),
-                        placeholder: (provided) => ({
-                          ...provided,
-                          color: "white"
-                        }),
-                        input: (provided) => ({
-                          ...provided,
-                          color: "white"
-                        }),
-                        option: (provided, state) => ({
-                          ...provided,
-                          backgroundColor: state.isSelected
-                            ? "#1d1e31"
-                            : state.isFocused
-                              ? "#333"
-                              : "transparent",
-                          color: state.isSelected || state.isFocused ? "white" : "#1d1e31",
-                          padding: "10px",
-      margin: "0",
-      "&:active": {
-        backgroundColor: "#333"
-      }
-                        }),
-                        menu: (provided) => ({
-                          ...provided,
-                          backgroundColor: "white",
-                          borderBottom: "1px solid white",
-                          borderRadius: "5px"
-                        }),
-                        menuList: (provided) => ({
-                          ...provided,
-                          paddingTop: 0,
-                          borderRadius: "5px" ,
-                          paddingBottom: 0
-                        })
-                      }}
-                    />
+                  <CustomDropdown
+        options={locationOptions}
+        selected={selectedLocation}
+        onChange={setSelectedLocation}
+        setSelectedLocation={setSelectedLocation}
+        setLocationSelected={setLocationSelected}
+        setSelectedLocations={setSelectedLocations}
+        selectedLocations={selectedLocations}
+        placeholder="Location"
+      />
                   {/* <div className="absolute inset-y-0 right-2 flex items-center pointer-events-none text-white">
                     <Image src={assets.arrdn} alt=""></Image>
                   </div> */}
@@ -239,3 +214,113 @@ const Filter = ({ industryData, locationData, setIndustrySelected, setLocationSe
 };
 
 export default Filter;
+
+
+
+interface CustomDropdownProps {
+  options: Option[];
+  selected: Option | null;
+  onChange: (option: Option) => void;
+  placeholder?: string;
+  setSelectedLocation:(loc:Option)=>void
+  setLocationSelected:(loc:string)=>void
+  setSelectedLocations:Dispatch<SetStateAction<string[]>>
+  selectedLocations:string[]
+}
+
+const CustomDropdown: React.FC<CustomDropdownProps> = ({
+  options,
+  onChange,
+  setSelectedLocation,
+  setLocationSelected,
+  setSelectedLocations,
+  selectedLocations
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const toggleDropdown = () => setIsOpen((prev) => !prev);
+
+  const handleOptionClick = (option: Option) => {
+    console.log(option)
+    onChange(option);
+    // setIsOpen(false);
+    setSelectedLocation(option);
+    setLocationSelected(option.value);
+    if(selectedLocations.includes(option.value)){
+      setSelectedLocations((prev) => prev.filter((item) => item !== option.value));
+    }else{
+      setSelectedLocations((prev) => {
+        const updated = [...(prev || []), option.value];
+        return [...new Set(updated)];
+      });
+    }
+  };
+
+  const handleRemoveLocation = (option:string) =>{
+    setIsOpen(!isOpen)
+    setSelectedLocations((prev) => prev.filter((item) => item !== option));
+    setLocationSelected(option);
+  }
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  return (
+    <div className="relative w-full border-b  mt-1 flex justify-between" ref={dropdownRef}>
+      <div onClick={toggleDropdown} className="w-full">
+      <div
+        className="bg-transparent border-b border-none text-white py-1 px-3 cursor-pointer select-none"
+        
+      >
+        <div className="flex gap-3">
+        {selectedLocations.map((item,index)=>(
+          <div className="px-1 bg-gray-500 flex gap-1" key={index}>
+            {item}
+            <IoIosCloseCircle className="" onClick={()=>handleRemoveLocation(item)}/>
+            </div>
+        ))}
+        </div>
+        {selectedLocations.length==0 && "Location"}
+      </div>
+      {isOpen && (
+        <div className="absolute z-10 w-full bg-white text-black border  rounded-b-md mt-1">
+          {options.map((option,index) => (
+            <div key={index} className="flex gap-3 items-center px-3 w-full hover:text-white hover:bg-[#333] hover:cursor-pointer" onClick={() => handleOptionClick(option)}>
+            <div className="h-5 w-5 border">{selectedLocations.includes(option.value) && <FaCheck className="text-sm"/>}</div>
+            <div
+              key={index}
+              className={`px-3 py-2 cursor-pointer ${
+                selectedLocations.includes(option.value)
+                  ? ` text-black hover:text-white ${index == options.length - 1 ? "rounded-b-md" : ""}`
+                  : ` ${index == options.length - 1 ? "rounded-b-md" : ""}`
+              }`}
+              
+            >
+              {option.label}
+            </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+    {selectedLocations.length > 0 ? <IoIosCloseCircle className="text-lg cursor-pointer" onClick={(()=>setSelectedLocations([]))}/> : <FaAngleDown className="text-[28px] pt-2 text-[rgb(204, 204, 204)]"/>}
+    </div>
+  );
+};
+
+

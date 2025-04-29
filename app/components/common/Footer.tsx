@@ -1,7 +1,7 @@
 'use client'
 import Image from "next/image";
 import Link from "next/link";
-import { FaLinkedin, FaInstagram } from "react-icons/fa";
+import { FaLinkedin, FaInstagram, FaFacebookF } from "react-icons/fa";
 /* import { BsWhatsapp } from "react-icons/bs"; */
 import { FiArrowUpRight } from "react-icons/fi";
 import {motion} from 'framer-motion';
@@ -76,6 +76,9 @@ const Footer = () => {
                 </Link>
                 <Link href="#" className="text-white bg-primary rounded-full text-center flex justify-center items-center  w-[40px] h-[40px]">
                   <FaInstagram size={18}/>
+                </Link>
+                <Link href="#" className="text-white bg-primary rounded-full text-center flex justify-center items-center  w-[40px] h-[40px]">
+                  <FaFacebookF size={18}/>
                 </Link>
               </div>
 
