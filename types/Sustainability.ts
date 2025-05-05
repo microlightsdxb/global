@@ -24,7 +24,8 @@ export type Sustainability = {
                 title:string,
                 description:string,
                 image:string,
-                iconAlt:string
+                iconAlt:string,
+                icon:string
             }]
         },
         outroTitle:string,

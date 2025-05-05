@@ -88,7 +88,7 @@ const Footer = () => {
             </div>
             <div className="text-primary/50 text-center mt-6 text-[13px] flex justify-between">
               <p>&copy;2025 microlights. All rights reserved </p>
-              <Link href="#" className="">
+              <Link href="/terms-and-conditions" className="">
                 Terms & Conditions
               </Link>
             </div>

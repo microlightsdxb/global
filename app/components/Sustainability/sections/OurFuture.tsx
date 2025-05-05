@@ -50,11 +50,17 @@ const OurFuture: React.FC<FrameworkSectionProps> = ({ data }) => {
                           : "border-[transparent]"
                       }`}
                     >
-                      <div className="ps-5 md:ps-10 lg:ps-13">
+                      <div className="ps-5 md:ps-10 lg:ps-13 flex gap-2 items-center">
+                        <Image
+                          src={item.icon}
+                          alt={item.iconAlt}
+                          width={50}
+                          height={50}
+                        />
                         <p className="text-lg text-black leading-[1.4]">
                           {item.title}
                         </p>
-                        <p
+                        {/* <p
                           className={`text-[#555555]  detailsec transition-opacity duration-300 ${
                             activeIndex === index
                               ? "opacity-100 visible h-full pt-5"
@@ -62,7 +68,7 @@ const OurFuture: React.FC<FrameworkSectionProps> = ({ data }) => {
                           }`}
                         >
                           {item.description}
-                        </p>
+                        </p> */}
                       </div>
                     </div>
                   </div>
