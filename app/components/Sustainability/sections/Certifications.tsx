@@ -22,7 +22,7 @@ const Certifications: React.FC<FrameworkSectionProps> = ({
           viewport={{ once: false, amount: 0.5 }}>
           Certifications & Standards
         </motion.h2>
-        <div className="grid grid-cols-1 md:grid-cols-2  border border-[#00000015]">
+        <div className="grid grid-cols-1 md:grid-cols-3  border border-[#00000015]">
         {data.data.certifications.map((item) => (
 
           <motion.div
