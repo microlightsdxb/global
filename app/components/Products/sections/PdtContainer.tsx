@@ -45,7 +45,7 @@ const PdtContainer = () => {
     }else{
       setTypeSelected(type)
     }
-  }, [data])
+  }, [data,type])
 
 
   return (
