@@ -1,5 +1,6 @@
 "use client"
 
+import { useStore } from "@/app/store/productType";
 import { Plus, Minus, Check } from "lucide-react";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
@@ -8,6 +9,7 @@ interface FrameworkSectionProps {
     typeSelected: string;
     setTypeSelected: (type: string) => void;
     setCategorySelected: (category: string) => void;
+    type: string;
 }
 
   interface Type {
@@ -22,7 +24,7 @@ interface FrameworkSectionProps {
 
   }
 
-export const ToggleSection: React.FC<FrameworkSectionProps> = ({typeSelected,setTypeSelected, setCategorySelected}) => {
+export const ToggleSection: React.FC<FrameworkSectionProps> = ({typeSelected,setTypeSelected, setCategorySelected,type}) => {
 
   const fetcher = (...args: Parameters<typeof fetch>) => fetch(...args).then(res => res.json())
   const { data }: { data: Type } = useSWR(`/api/admin/product/type`, fetcher)
@@ -39,11 +41,14 @@ export const ToggleSection: React.FC<FrameworkSectionProps> = ({typeSelected,set
     const [isCategoryOpen, setIsCategoryOpen] = useState(true);
     const [selectedType, setSelectedType] = useState<number>(0);
     const [selectedCategory, setSelectedCategory] = useState<number>(0);
-    const categories = data?.data[selectedType].category
+    
+    const categories = data?.data[selectedType]?.category
+    const setType = useStore((state)=>state.setType)
 
   
-    const toggleTypeSelection = (index: number,type: string) => {
-      setTypeSelected(type)
+    const toggleTypeSelection = (index: number,typeInSelection: string) => {
+      setTypeSelected(typeInSelection)
+      setType(typeInSelection)
       setSelectedType(index)
       setSelectedCategory(0)
       setCategorySelected(data?.data[index].category[0].name)
@@ -55,9 +60,19 @@ export const ToggleSection: React.FC<FrameworkSectionProps> = ({typeSelected,set
     };
 
     useEffect(() => {
-      setTypeSelected(data?.data[0].type)
+      setTypeSelected(data?.data[0]?.type)
       setCategorySelected(data?.data[0].category[0].name)
     }, [data])
+
+
+    useEffect(()=>{
+      setSelectedType(data?.data.findIndex((item)=>item.type===type) || 0)
+      setSelectedCategory(0)
+      setCategorySelected(data?.data[0].category[0].name)
+    },[type])
+
+
+
   
     return (
       <div>

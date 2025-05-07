@@ -40,6 +40,7 @@ const PdtContainer = () => {
   }, [data,typeSelected,categorySelected])
 
   useEffect(() => {
+    console.log(type)
     if(type == ""){
       setTypeSelected(data?.data[0].type)
     }else{
@@ -57,7 +58,7 @@ const PdtContainer = () => {
           </h1>
           <div className="flex gap-10">
             <div className="w-1/4">
-              <ToggleSection typeSelected={typeSelected} setTypeSelected={setTypeSelected} setCategorySelected={setCategorySelected}/>
+              <ToggleSection type={type} typeSelected={typeSelected} setTypeSelected={setTypeSelected} setCategorySelected={setCategorySelected}/>
               {/* <ToggleSection
                 title="Category"
                 options={["Home", "Office", "Commercial"]}
