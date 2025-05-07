@@ -36,7 +36,7 @@ console.log(data)
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: false, amount: 0.5 }}>
-             Terms And Conditions</motion.h1>
+             About Us</motion.h1>
             </div>
           </div>
         </div>

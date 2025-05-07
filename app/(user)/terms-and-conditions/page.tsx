@@ -2,7 +2,8 @@
 import React from "react";
 
 
-import Banner from "@/app/components/AboutUs/Banner";
+import Banner from "./Banner";
+import Content from "./Content";
 
 
 const Index = () => {
@@ -12,6 +13,7 @@ const Index = () => {
       <div className="headerpadding"> </div>
         {/* <Imgbanner data={data} /> */}
         <Banner/>
+        <Content/>
     </div>
   );
 };
