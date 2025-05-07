@@ -2,7 +2,8 @@ import React from 'react'
 
 const Content = () => {
     return (
-        <div className="max-w-full mx-auto p-6 text-gray-800 bg-white">
+      <section className="section-spacing ">
+        <div className="container text-gray-800">
     
           <section className="mb-6">
             <p className="mb-4">Welcome to <strong>Microlights</strong>!</p>
@@ -76,6 +77,7 @@ const Content = () => {
             </p>
           </section>
         </div>
+        </section>
       );
 }
 
