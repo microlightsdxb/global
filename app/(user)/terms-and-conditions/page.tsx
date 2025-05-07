@@ -3,9 +3,9 @@ import React from "react";
 
 
 import Banner from "@/app/components/AboutUs/Banner";
-import { About } from "@/types/About";
 
-const Index = ({data}:{data:About}) => {
+
+const Index = () => {
   
   return (
     <div>
