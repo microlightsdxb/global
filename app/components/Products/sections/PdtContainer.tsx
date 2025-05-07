@@ -78,7 +78,7 @@ const PdtContainer = () => {
                           <Image
                             className="object-contain h-full object-center m-auto"
                             src={product?.thumbnail}
-                            alt={product?.altTag}
+                            alt={'image'}
                             width={180}
                             height={180}
                           />

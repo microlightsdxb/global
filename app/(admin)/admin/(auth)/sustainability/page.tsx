@@ -78,6 +78,7 @@ export default function Sustainability() {
     const [goalTitle,setGoalTitle] = useState("")
     const [goalDescription,setGoalDescription] = useState("")
     const [goalImage,setGoalImage] = useState("")
+    const [goalIcon,setGoalIcon] = useState("")
     const [iconAlt,setIconAlt] = useState("")
     const [goalIconAlt, setGoalIconAlt] = useState("")
 
@@ -294,7 +295,7 @@ export default function Sustainability() {
         try {
             const response = await fetch(`/api/admin/sustainability/goal`, {
                 method: "PATCH",
-                body:JSON.stringify({goalTitle,goalDescription,goalImage,goalIconAlt})
+                body:JSON.stringify({goalTitle,goalDescription,goalImage,goalIconAlt,goalIcon})
             });
             if (response.ok) {
                 const data = await response.json();
@@ -313,7 +314,7 @@ export default function Sustainability() {
         try {
             const response = await fetch(`/api/admin/sustainability/goal?id=${id}`, {
                 method: "PATCH",
-                body:JSON.stringify({goalTitle,goalDescription,goalImage,goalIconAlt})
+                body:JSON.stringify({goalTitle,goalDescription,goalImage,goalIconAlt,goalIcon})
             });
             if (response.ok) {
                 const data = await response.json();
@@ -752,8 +753,8 @@ export default function Sustainability() {
                                             <Input type="text" placeholder="Title" value={goalTitle} onChange={(e) => setGoalTitle(e.target.value)} />
                                         </div>
                                         <div>
-                                            <Label>Description</Label>
-                                            <Textarea placeholder="Description" value={goalDescription} onChange={(e) => setGoalDescription(e.target.value)} className="min-h-36" />
+                                            <Label>Icon</Label>
+                                            <ImageUploader onChange={(url) => setGoalIcon(url)} value={goalIcon} />
                                         </div>
                                     </div>
                                 </DialogHeader>
@@ -775,7 +776,7 @@ export default function Sustainability() {
                             </div>
                             <div className="absolute top-1 right-1 flex gap-2">
                                 <Dialog>
-                                    <DialogTrigger className=" text-white px-2 py-1 rounded-md" onClick={() => { setGoalTitle(item.title); setGoalDescription(item.description); setGoalImage(item.image); setGoalIconAlt(item.iconAlt) }}>
+                                    <DialogTrigger className=" text-white px-2 py-1 rounded-md" onClick={() => { setGoalTitle(item.title); setGoalImage(item.image); setGoalIconAlt(item.iconAlt); setGoalIcon(item.icon) }}>
 
                                         <MdEdit className="text-black cursor-pointer" />
 
@@ -785,7 +786,7 @@ export default function Sustainability() {
                                             <DialogTitle>Edit Item</DialogTitle>
                                             <div className="flex flex-col gap-4 overflow-y-auto max-h-[500px]">
                                                 <div>
-                                                    <Label>Icon</Label>
+                                                    <Label>Image</Label>
                                                     <ImageUploader onChange={(url) => setGoalImage(url)} value={goalImage} />
                                                 </div>
                                                 <div>
@@ -797,8 +798,8 @@ export default function Sustainability() {
                                                     <Input type="text" placeholder="Title" value={goalTitle} onChange={(e) => setGoalTitle(e.target.value)} />
                                                 </div>
                                                 <div>
-                                                    <Label>Description</Label>
-                                                    <Textarea placeholder="Description" value={goalDescription} onChange={(e) => setGoalDescription(e.target.value)} className="min-h-36" />
+                                                    <Label>Icon</Label>
+                                                    <ImageUploader onChange={(url) => setGoalIcon(url)} value={goalIcon} />
                                                 </div>
                                             </div>
                                         </DialogHeader>
