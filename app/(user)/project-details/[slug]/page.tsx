@@ -16,10 +16,13 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
   };
 }
 
-export default function Home() {
+export default async function Home({params}: {params: Promise<{slug: string}>}) {
+  const slug = (await params).slug;
+  const response = await fetch(`${process.env.BASE_URL}/api/admin/project?slug=${slug}`, { next: { revalidate: 60 } });
+  const data = await response.json();
   return (
     <>
-    <Index/>
+    <Index data={data}/>
     </>
   );
 }

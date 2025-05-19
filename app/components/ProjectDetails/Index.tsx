@@ -1,28 +1,21 @@
 "use client"
 
-import React, { useEffect } from "react";
+import React from "react";
 
 // import { projects,projectDetails,content } from "./data/dataBox"
 import MoreProjects from "./sections/MoreProjects";
 import Details from "./sections/Details";
 import Contents from "./sections/Contents";
 import Pjctslider from "./sections/Pjctslider";
-import { useParams } from "next/navigation";
 import useSWR from "swr";
+import { Project } from "@/types/Project";
 
 
 
-const Index = () => {
-  const {slug} = useParams()
+const Index = ({data}:{data:Project}) => {
   const fetcher = (...args: Parameters<typeof fetch>) => fetch(...args).then(res => res.json())
-  const { data } = useSWR(`/api/admin/project?slug=${slug}`, fetcher)
   const {data:allProjects} = useSWR(`/api/admin/project`, fetcher)
 
-  useEffect(() => {
-    if(data?.data){
-      console.log(data?.data)
-    }
-  }, [data])
   
   return (
     <>

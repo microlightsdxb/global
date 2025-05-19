@@ -1,24 +1,12 @@
 "use client";
 import { motion } from "framer-motion";
 import React from "react";
+import { Project } from "@/types/Project";
 
 
-interface FrameworkItem {
-  data:{
-    _id: string;
-    name: string;
-    client: string;
-    location: string;
-    industry: string;
-    scope: string;
-    description: string;
-    images: string[];
-  }
-
-}
 
 interface FrameworkSectionProps {
-  data: FrameworkItem;
+  data: Project;
 }
 
 const Details: React.FC<FrameworkSectionProps> = ({
@@ -39,7 +27,7 @@ const Details: React.FC<FrameworkSectionProps> = ({
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: false, amount: 0.5 }}>
-          {data?.data?.name}
+          {data?.data.name}
           </motion.h2>
         </div>
         <motion.div
@@ -49,10 +37,10 @@ const Details: React.FC<FrameworkSectionProps> = ({
       viewport={{ once: true }}
     >
       {[
-        { label: "Client", value: data?.data?.client },
-        { label: "Industry", value: data?.data?.industry },
-        { label: "Scope", value: data?.data?.scope },
-        { label: "Location", value: data?.data?.location },
+        { label: "Client", value: data?.data.client },
+        { label: "Industry", value: data?.data.industry },
+        { label: "Scope", value: data?.data.scope },
+        { label: "Location", value: data?.data.location },
       ].map((item, index) => (
         <motion.div
           key={index}
