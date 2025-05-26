@@ -19,7 +19,7 @@ const ProdSec = ({data}:{data:{data:{_id:string,type: string, image: string, hov
   const setType = useStore((state)=>state.setType);
 
   return (
-    <section className="section-spacing h-[210vh] lg:h-[133vh] 2xl:h-[100vh]">
+    <section className="section-spacing h-[220vh] md:h-[230vh] lg:h-[100vh] 2xl:h-[110vh]">
       <div className="container">
         <div className="overflow-hidden">
           <motion.h2
@@ -31,7 +31,7 @@ const ProdSec = ({data}:{data:{data:{_id:string,type: string, image: string, hov
             Products
           </motion.h2>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-[40px]"
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[40px]"
         >
           {data?.data?.map((product: {_id: string, type: string, image: string, hoverImage: string}, i: number) => (
             <Link key={product._id} onClick={()=>setType(product.type)} href={`/products`} className="relative last:before:hidden before:content-[] before:absolute before:h-full before:w-[1px] before:bg-primary/10 before:right-[-20px] ">
