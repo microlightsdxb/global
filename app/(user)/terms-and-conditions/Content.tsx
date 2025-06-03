@@ -1,82 +1,62 @@
 import React from 'react'
-
 const Content = () => {
     return (
       <section className="section-spacing ">
         <div className="container text-gray-800">
-    
-          <section className="mb-6">
-            <p className="mb-4">Welcome to <strong>Microlights</strong>!</p>
-            <p className="mb-2">
-              These Terms and Conditions (&quot;Terms&quot;) govern your use of our website located at <strong>microlights.com</strong> (&quot;Website&quot;) and any related services offered by Microlights, a manufacturer of lighting products (&quot;we&quot;, &quot;our&quot;, &quot;us&quot;).
+         
+            <p className=" font-[300] leading-[1.7]">Welcome to our Website <a href="https://microlights.com/"><strong>www.microlights.com </strong></a> (“Website”). This Website is operated by Microlights Lighting LLC (“Microlights”) (also referred to as “us”, “we”, “our” in these Terms and Conditions). Please read these Terms and Conditions carefully, they govern your access and use of the Website. The Website is provided for your personal use subject to these Terms and Conditions and any other rules posted on the Website (including our Privacy Policy and Cookie Policy) – (together “Terms and Conditions”). These Terms and Conditions apply to all users of this Website including without limitation users who are browsers, vendors, customers, merchants, and/or contributors of Content. By continuing to use or view the Website, and/or use any of the services on the Website, you agree to be bound by, comply with and consent to the practices described in these Terms and Conditions.</p>
+
+            <p className=" font-[300] leading-[1.7]">
+            We may change these Terms and Conditions from time to time without notice to you by posting the updated Terms and Conditions on the Website, so please ensure that you check for updates on a regular basis.
             </p>
-            <p>
-              By accessing our website or purchasing from us, you agree to be bound by these Terms. If you do not agree, please do not use our services.
-            </p>
-          </section>
-    
-          <section className="mb-6">
-            <h2 className="text-lg font-semibold mb-2">1. Use of Our Website</h2>
-            <p>You agree to use our website only for lawful purposes. You must not use the website in any way that may cause damage to the website or impair the availability or accessibility of the site.</p>
-          </section>
-    
-          <section className="mb-6">
-            <h2 className="text-lg font-semibold mb-2">2. Product Information and Orders</h2>
-            <p className="mb-2">All product descriptions, pricing, and availability are subject to change without notice. We make reasonable efforts to ensure the accuracy of product details, but errors may occasionally occur.</p>
-            <p>We reserve the right to refuse or cancel any order for any reason, including limitations on quantities available for purchase, inaccuracies, or errors in product or pricing information.</p>
-          </section>
-    
-          <section className="mb-6">
-            <h2 className="text-lg font-semibold mb-2">3. Intellectual Property</h2>
-            <p>All content on this website, including images, text, logos, graphics, and designs, is the intellectual property of Microlights and protected by applicable copyright and trademark laws. Unauthorized use or reproduction is prohibited.</p>
-          </section>
-    
-          <section className="mb-6">
-            <h2 className="text-lg font-semibold mb-2">4. Warranty and Liability</h2>
-            <p>Microlights products may come with a limited warranty as specified on individual product pages or accompanying documentation. We are not liable for any indirect, incidental, or consequential damages arising from the use or misuse of our products.</p>
-          </section>
-    
-          <section className="mb-6">
-            <h2 className="text-lg font-semibold mb-2">5. Returns and Refunds</h2>
-            <p>Return and refund policies are detailed on our <a href="/returns-policy" className="text-blue-600 hover:underline">Returns & Refunds Policy page</a>. Customers are responsible for understanding the policy prior to making a purchase.</p>
-          </section>
-    
-          <section className="mb-6">
-            <h2 className="text-lg font-semibold mb-2">6. Third-Party Links</h2>
-            <p>Our website may contain links to third-party websites for your convenience. We do not endorse and are not responsible for the content, privacy policies, or practices of any third-party sites.</p>
-          </section>
-    
-          <section className="mb-6">
-            <h2 className="text-lg font-semibold mb-2">7. Privacy</h2>
-            <p>We respect your privacy and handle your personal data in accordance with our <a href="/privacy-policy" className="text-blue-600 hover:underline">Privacy Policy</a>. By using our services, you consent to our data practices.</p>
-          </section>
-    
-          <section className="mb-6">
-            <h2 className="text-lg font-semibold mb-2">8. Termination</h2>
-            <p>We reserve the right to suspend or terminate your access to our website or services at any time, without notice, for conduct that we believe violates these Terms or is harmful to other users of the site, us, or third parties.</p>
-          </section>
-    
-          <section className="mb-6">
-            <h2 className="text-lg font-semibold mb-2">9. Governing Law</h2>
-            <p>These Terms are governed by and construed in accordance with the laws of <strong>India</strong>, and you agree to submit to the exclusive jurisdiction of its courts.</p>
-          </section>
-    
-          <section className="mb-6">
-            <h2 className="text-lg font-semibold mb-2">10. Changes to These Terms</h2>
-            <p>We may update these Terms from time to time. Changes will be posted on this page, and your continued use of the website after any changes signifies your acceptance of the updated Terms.</p>
-          </section>
-    
-          <section className="mb-6">
-            <h2 className="text-lg font-semibold mb-2">11. Contact Us</h2>
-            <p>If you have any questions about these Terms and Conditions, please contact us at:</p>
-            <p className="mt-2">
-              <strong>Microlights</strong><br />
-              Email: <a href="mailto:support@microlights.com" className="text-blue-600 hover:underline">support@microlights.com</a><br />
-              Phone: +91-9876543210<br />
-              Address: 123 Light Street, Industrial Area, Pune, Maharashtra, India
-            </p>
-          </section>
-        </div>
+            <p className=" font-[300] leading-[1.7]"><strong>NOTE: IF YOU DO NOT AGREE TO BE BOUND BY THESE TERMS AND CONDITIONS, PLEASE DO NOT USE/VIEW THE WEBSITE.</strong></p>
+          <p className=" font-[300] leading-[1.7]">
+            Microlights offers a variety of lighting products and design services. The Website displays only a limited selection of our lighting products. Should you require a specific product that is not displayed, or require further assistance, you are advised to speak with us direct either via email or via telephone on the details appearing in the Contact section of the Website. Please note, that the sale of all of our products are subject to our standard terms and conditions of purchase which appear on the reverse side of our Purchase Orders, and/or any additional terms and conditions as agreed between us and a respective buyer.
+          </p>
+          <p className=" font-[300] leading-[1.7]">Our Design services are offered and agreed between us and a respective client on a case by case basis.</p>
+          <h2 className="text-[20px] mb-4"><strong>Definitions and Interpretation</strong></h2>
+          <p className=" font-[300] leading-[1.7]"> The words and expressions listed hereunder have the meaning assigned to them respectively for all purposes relating to these Terms and Conditions:</p>
+          <p className=" font-[300] leading-[1.7]"><strong>Content</strong>: is defined as any graphics, photographs, including all image rights, sounds, music, video, audio, text or other materials displayed on the Website.</p>
+       <p className=" font-[300] leading-[1.7]"><strong>Intellectual Property Rights</strong>: means copyright, trademarks (registered and unregistered), designs, all rights in relation to inventions (including patent rights, semi-conductor or circuit layout rights), confidential information (including trade secrets and know how) and any other rights resulting from intellectual activity in the industrial, scientific, literary or artistic fields in existence now, or which may come into existence in the future, in relation to the Content.</p>
+<p className=" font-[300] leading-[1.7]"><strong>UAE</strong>: means the United Arab Emirates.</p>
+       
+        <h2 className="text-[20px] mb-4"><strong>Submission of Information and Privacy Policy</strong></h2>
+        <p className=" font-[300] leading-[1.7]">Any information submitted to Microlights via the Website or collected through or in connection with this Website shall be deemed and remain the property of Microlights, who shall only use the information in accordance any obligations of confidentiality or privacy relating to the submitted information as agreed by Microlights, or specifically set forth on the Website in its Privacy Policy and Cookies Policy, or as otherwise specifically agreed or required by law. Please refer to the Website Privacy Policy and Cookies Policy for more details which can be found at https://www.microlights.com.</p>
+        <h2 className="text-[20px] mb-4"><strong>Intellectual Property</strong></h2>
+        <p className=" font-[300] leading-[1.7]">All Intellectual Property Rights in the Content and materials displayed and included on the Website, are either the sole property of Microlights and/ or its affiliates, or are licensed for use by Microlights and are protected to the fullest extent by applicable trademark, copyright and database laws, and all such rights are reserved. By using the Website and its Content, Microlights does not grant you any copyright, design, trademark or other Intellectual Property Rights relating to the Content, including any software, HTML or other codes contained within the Website. You are permitted to use the Content only as expressly authorised by Microlights. Any reproduction or redistribution of the Content is prohibited and may result in civil and criminal penalties. Without limiting the foregoing, linking, commercially exploiting, copying and use of the above listed materials on any other server, location or support for publication, reproduction or distribution is expressly prohibited, unless you have entered into a separate written agreement with us in relation thereto.</p>
+<p className=" font-[300] leading-[1.7]">
+  The use and registration of the Microlights name and logo is exclusively reserved to us. You may not register nor use a company name, statutory name, trade name, domain name or other name, indication or description, of which the Microlights name or logo (or any name similar thereto), or any name which consists of a part of the Microlight name or logo forms part, nor include any other registered trademark owned by Microlights.
+  </p> 
+  <h2 className="text-[20px] mb-4"><strong>Use of Information and Materials and No Warranty</strong></h2>   
+  <p className=" font-[300] leading-[1.7]">As mentioned above, the information and materials contained on the Website, the Terms and Conditions and descriptions that appear, are subject to change. Not all products and services described herein shall be available at all times, or in all areas. Your eligibility for particular products and services is subject to the final determination and acceptance by us, and any agreement with us, shall be subject only to a written agreement evidencing such acceptance.</p>
+  <p className=" font-[300] leading-[1.7]">To the full extent permitted by law, we do not warrant the accuracy, validity, currency, adequacy or completeness of the Content, and expressly disclaim liability for any errors, mistakes or omissions that may appear on the Website and/or any page therein. The Content is provided on an “as is” and “as available” basis and your access to, reliance on and use of the Website is at your own risk. You agree that from time to time we may remove the Website for indefinite periods of time, or cancel the Website at any time without notice to you. We do not warrant that the functional aspects of the Website will be error free, or that this Website or the servers that make them available are free of viruses or other harmful components. We always recommend that you have up to date virus checking software installed on your own personal computers, or electronic devices. No warranties of any kind, implied, express or statutory, including but not limited to, the warranties of non-infringement of third-party rights, title, reliability, merchantability, fitness for a particular purpose and freedom from computer virus, are given in conjunction with the Content.</p>
+  <h2 className="text-[20px] mb-4"><strong>Links to Third Party Websites</strong></h2>   
+  <p className=" font-[300] leading-[1.7]">The Website may contain hyperlinks to websites operated by third parties. We are not responsible for the Content of these websites, and inclusion of such hyperlinks on the Website are solely for your convenience, and in no way constitutes endorsement of the Content of such third-party websites and you acknowledge and agree that we provide access to such third-party websites on an “as is” and “as available” basis. The Content, accuracy, opinions expressed, and other links provided by these resources are not investigated, verified, monitored, or endorsed by us, and we shall have no liability whatsoever arising from or relating to your use of optional third-party tools.</p>
+  <p className=" font-[300] leading-[1.7]">We are not liable for any harm or damages related to the purchase or use of goods, services, resources, Content, or any other transactions made in connection with any third-party websites. Please ensure that you review carefully the third party&rsquo;s policies and practices and make sure you understand them before you engage in any transaction. Any complaints, claims, concerns, or questions regarding third party products should be directed to that third party.</p>
+  <h2 className="text-[20px] mb-4"><strong>Exclusion of Liability</strong></h2>
+  <p className=" font-[300] leading-[1.7]">In no event will we be liable for any damages, including without limitation, direct or indirect, special, incidental, or consequential damages, losses or expenses arising in connection with, or in any way related to the Website or use thereof, or inability to use by any party, or reliance on the Content of the Website, or in connection with any failure of performance, error, omission, interruption, defect, delay or failure in operation or transmission, computer virus or line or system failure, even if we, or our representatives are advised of the possibility of such damages, losses or expenses.</p>
+  <h2 className="text-[20px] mb-4"><strong>Indemnity</strong></h2>
+  <p className=" font-[300] leading-[1.7]">As a user of the Website, you agree to indemnify us from and against all liabilities, costs, expenses (including legal fees) and damages that arise or may arise out of, or in relation to, (i) any claim resulting from the use of the Website; or (ii) use of the Website whatsoever.</p>
+  <h2 className="text-[20px] mb-4"><strong>Limitations on Use</strong></h2>
+<p className=" font-[300] leading-[1.7]">As a user of this Website, you agree to not abuse the Website in anyway. This shall include, but is not limited to, defamatory, threatening or abusive conduct that violates another person&rsquo;s rights at law; attempting to post discriminatory, abusive, threatening, pornographic or offensive content; violation of any intellectual property, trademark and database laws; harming or interfering with the operation of another person&rsquo;s hardware and/or software by uploading, transmitting or downloading computer viruses or any corrupt files; transmitting or otherwise disclosing trade secrets or any other confidential material or information; sending junk mail, spam or other chain letters; or directing any bots, spiders, crawlers, avatars or any other automated process that may debilitate the Website, our software, network or infrastructure.</p>
+  <h2 className="text-[20px] mb-4"><strong>Amendment</strong></h2>
+  <p className="font-[300] leading-[1.7]"> These Terms and Conditions are subject to change and can be modified at any time without notice. Your continued use of the Website following the posting of changes to these Terms and Conditions further signifies that you accept such changes.</p>
+  <h2 className="text-[20px] mb-4"><strong>Legal Disclaimer</strong></h2>
+  <p className=" font-[300] leading-[1.7]">We reserve the right to disclose your personally identifiable information when we believe that disclosure is necessary to enforce or apply our Terms and Conditions, protect our rights at law and/or to comply with any judicial proceeding, court order, or legal process served on our Website to the extent permissible by any applicable law.</p>
+  <h2 className="text-[20px] mb-4"><strong>Governing Law and Dispute Resolution</strong></h2>
+  <p className=" font-[300] leading-[1.7]">By accessing the Website, you agree and understand that these Terms and Conditions shall be governed by and construed in accordance with the laws of the Dubai International Financial Centre (“DIFC”). You agree to the exclusive jurisdiction of the courts of the DIFC for any dispute, claim or cause of action arising out of, or relating to, or in connection with these Terms and Conditions or use of the Website, including any disputes relating to the existence or validity of these Terms and Conditions, provided that you agree to submit any such disputes, claims or causes of action exclusively to the courts of the DIFC.</p>
+  <h2 className="text-[20px] mb-4"><strong>Waiver</strong></h2>
+  <p className=" font-[300] leading-[1.7]">No term, condition, right obligation or breach of these Terms and Conditions shall be waived or be deemed to have been waived if Microlights does not exercise or enforce, or delays in its exercise or enforcement of any legal right or remedy.</p>
+  <h2 className="text-[20px] mb-4"><strong>Illegality</strong></h2>
+<p className=" font-[300] leading-[1.7]">If any provision of these Website Terms and Conditions are held to be illegal or unenforceable, the remaining Website Terms and Conditions or any part thereof, will not be affected and will remain in full force and effect.</p>
+<h2 className="text-[20px] mb-4"><strong>Language</strong></h2>
+<p className=" font-[300] leading-[1.7]">These Website Terms and Conditions are published in English and Arabic. If there is any inconsistency between the English text and the Arabic text, the English text will prevail.</p>
+<h2 className="text-[20px] mb-4"><strong>Contact Information</strong></h2>
+<p className=" font-[300] leading-[1.7]">
+  Questions about these Terms and Conditions should be sent to us at 
+  <a href="mailto:info@microlightsgroup.ae"> <strong>info@microlightsgroup.ae</strong></a>.
+</p>
+    </div>
         </section>
       );
 }
