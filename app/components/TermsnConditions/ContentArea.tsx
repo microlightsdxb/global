@@ -6,31 +6,23 @@ export default function ContentArea() {
   return (
     <motion.section variants={staggerContainer} initial="hidden" animate="show" viewport={{ once: true, amount: 0.2 }} className="section-spacing">
       <motion.div variants={moveUp} className="container">
-        <div className="pt-16 pb-150 border-b border-black">
-          <div className="mx-auto p-6 bg-white text-gray-800">
-            <h1 className="text-xl font-bold mb-4">MICROLIGHTS LIGHTING LLC<br/>WEBSITE TERMS AND CONDITIONS</h1>
-
+        <div className="pt-16 pb-150 border-b border-black ">
+          <div className="mx-auto p-6 bg-white text-black">
+            <h1 className="text-2xl mb-8 md:mb-12 leading-[1.3]">MICROLIGHTS LIGHTING LLC<br/>WEBSITE TERMS AND CONDITIONS</h1>
             <p className="mb-4">Welcome to our Website www.microlights.com (“Website”). This Website is operated by Microlights Lighting LLC (“Microlights”) (also referred to as “us”, “we”, “our” in these Terms and Conditions). Please read these Terms and Conditions carefully, they govern your access and use of the Website. The Website is provided for your personal use subject to these Terms and Conditions and any other rules posted on the Website (including our Privacy Policy and Cookie Policy) – (together “Terms and Conditions”). These Terms and Conditions apply to all users of this Website including without limitation users who are browsers, vendors, customers, merchants, and/or contributors of Content. By continuing to use or view the Website, and/or use any of the services on the Website, you agree to be bound by, comply with and consent to the practices described in these Terms and Conditions.</p>
-
             <p className="mb-4">We may change these Terms and Conditions from time to time without notice to you by posting the updated Terms and Conditions on the Website, so please ensure that you check for updates on a regular basis.</p>
-
             <p className="mb-4 font-semibold">NOTE: IF YOU DO NOT AGREE TO BE BOUND BY THESE TERMS AND CONDITIONS, PLEASE DO NOT USE/VIEW THE WEBSITE.</p>
-
             <p className="mb-4">Microlights offers a variety of lighting products and design services which are not directly available for sale via this Website. The Website displays only a limited selection of our lighting products and therefore, should you require a specific product that is not displayed, or require further assistance, you are advised to speak with us direct either via email or via telephone on the details appearing in the Contact section of the Website. Please note, that the sale of all of our products are subject to our standard terms and conditions of purchase which appear on the reverse side of our Purchase Orders, and/or any additional terms and conditions as agreed between us and a respective buyer.</p>
-
             <p className="mb-4">Our Design services are offered and agreed between us and a respective client on a case-by-case basis.</p>
-
-            <h2 className="text-lg font-semibold mt-6 mb-2">1. Definitions and Interpretation</h2>
+            <h2 className="text-lg font-semibold mt-8 mb-4">1. Definitions and Interpretation</h2>
             <p className="mb-4">The words and expressions listed hereunder have the meaning assigned to them respectively for all purposes relating to these Terms and Conditions:</p>
             <ul className="list-disc list-inside mb-4">
               <li><strong>Content:</strong> is defined as any graphics, photographs, including all image rights, sounds, music, video, audio, text or other materials displayed on the Website.</li>
               <li><strong>Intellectual Property Rights:</strong> means copyright, trademarks (registered and unregistered), designs, all rights in relation to inventions (including patent rights, semi-conductor or circuit layout rights), confidential information (including trade secrets and know how) and any other rights resulting from intellectual activity in the industrial, scientific, literary or artistic fields in existence now, or which may come into existence in the future, in relation to the Content.</li>
               <li><strong>UAE:</strong> means the United Arab Emirates.</li>
             </ul>
-
             <h2 className="text-lg font-semibold mt-6 mb-2">2. Submission of Information and Privacy Policy</h2>
             <p className="mb-4">Any information submitted voluntarily to Microlights via the contact form on the Website shall be deemed and remain the property of Microlights, who shall only use the information in accordance with any obligations of confidentiality or privacy relating to the submitted information as agreed by Microlights, or specifically set forth on the Website in its Privacy Policy and Cookies Policy, or as otherwise specifically agreed or required by law. Please refer to the Website Privacy Policy and Cookies Policy for more details which can be found at <a href="https://www.microlights.com" className="text-blue-600 underline">https://www.microlights.com</a>.</p>
-
             <h2 className="text-lg font-semibold mt-6 mb-2">3. Intellectual Property</h2>
             <p className="mb-4">3.1 All Intellectual Property Rights in the Content and materials displayed and included on the Website, are either the sole property of Microlights and/ or its affiliates, or are licensed for use by Microlights and are protected to the fullest extent by applicable trademark, copyright and database laws, and all such rights are reserved. By using the Website and its Content, Microlights does not grant you any copyright, design, trademark or other Intellectual Property Rights relating to the Content, including any software, HTML or other codes contained within the Website. You are permitted to use the Content only as expressly authorised by Microlights. Any reproduction or redistribution of the Content is prohibited and may result in civil and criminal penalties...</p>
 
