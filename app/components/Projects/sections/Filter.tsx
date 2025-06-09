@@ -15,12 +15,12 @@ interface Option {
 }
 
 
-const Filter = ({ industryData, locationData, setIndustrySelected, setLocationSelected,selectedLocations,setSelectedLocations }: { 
-  industryData: { data: { name: string }[], setIndustrySelected: (name: string) => void, industrySelected: string }, 
-  locationData: { data: { name: string }[], setLocationSelected: (name: string) => void, locationSelected: string }, 
+const Filter = ({ industryData, locationData, setIndustrySelected, setLocationSelected, selectedLocations, setSelectedLocations }: {
+  industryData: { data: { name: string }[], setIndustrySelected: (name: string) => void, industrySelected: string },
+  locationData: { data: { name: string }[], setLocationSelected: (name: string) => void, locationSelected: string },
   setIndustrySelected: (name: string) => void, setLocationSelected: (name: string) => void,
-  setSelectedLocations:Dispatch<SetStateAction<string[]>> ,
-  selectedLocations:string[]
+  setSelectedLocations: Dispatch<SetStateAction<string[]>>,
+  selectedLocations: string[]
 
 }) => {
 
@@ -46,9 +46,9 @@ const Filter = ({ industryData, locationData, setIndustrySelected, setLocationSe
   //   }
   // };
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log(selectedLocation)
-  },[selectedLocation])
+  }, [selectedLocation])
 
   const handleClear = () => {
     setIndustrySelected("Industry")
@@ -58,15 +58,15 @@ const Filter = ({ industryData, locationData, setIndustrySelected, setLocationSe
     setSelectedLocations([])
   }
 
-  useEffect(()=>{
-    if(industryData?.data?.length>0){
-      setIndustryOptions([{value: "Industry", label: "Industry"},...industryData?.data?.map((item: {name: string})=>({value: item.name, label: item.name}))]);
+  useEffect(() => {
+    if (industryData?.data?.length > 0) {
+      setIndustryOptions([{ value: "Industry", label: "Industry" }, ...industryData?.data?.map((item: { name: string }) => ({ value: item.name, label: item.name }))]);
     }
 
-    if(locationData?.data?.length>0){
-      setLocationOptions([...locationData?.data?.map((item: {name: string})=>({value: item.name, label: item.name}))]);
+    if (locationData?.data?.length > 0) {
+      setLocationOptions([...locationData?.data?.map((item: { name: string }) => ({ value: item.name, label: item.name }))]);
     }
-  },[industryData,locationData])
+  }, [industryData, locationData])
 
 
   return (
@@ -76,7 +76,7 @@ const Filter = ({ industryData, locationData, setIndustrySelected, setLocationSe
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: false, amount: 0.5 }}>
+          viewport={{ once: true, amount: 0.5 }}>
           <h2 className="text-2xl text-black mb-[15px] md:mb-[28px] leading-[1.3]">
             Projects
           </h2>
@@ -86,70 +86,70 @@ const Filter = ({ industryData, locationData, setIndustrySelected, setLocationSe
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: false, amount: 0.5 }}>
+          viewport={{ once: true, amount: 0.5 }}>
           <div className="block md:flex bg-black p-6 md:p-10 pt-5 items-center">
             <div className="w-full md:w-4/5">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-[40px]">
                 <div>
                   <div className="relative w-full">
-                  <Select
-  options={industryOptions}
-  value={selectedIndustry}
-  onChange={handleIndustryChange}
-  isSearchable={true}
-  placeholder="Industry"
-  styles={{
-    control: (provided) => ({
-      ...provided,
-      backgroundColor: "transparent",
-      border: "none",
-      borderBottom: "1px solid #fff",
-      color: "white",
-      borderRadius: "0px", // Rounded corners for select box
-      boxShadow: "none",
-      "&:hover": { borderBottom: "1px solid #fff" }
-    }),
-    singleValue: (provided) => ({
-      ...provided,
-      color: "white"
-    }),
-    placeholder: (provided) => ({
-      ...provided,
-      color: "white"
-    }),
-    input: (provided) => ({
-      ...provided,
-      color: "white"
-    }),
-    option: (provided, state) => ({
-      ...provided,
-      backgroundColor: state.isSelected
-        ? "black"
-        : state.isFocused
-        ? "#333"
-        : "transparent",
-      color: state.isSelected || state.isFocused ? "white" : "black",
-      padding: "10px",
-      margin: "0",
-      borderRadius: "0px", // Rounded corners for each option
-      "&:active": {
-        backgroundColor: "black"
-      }
-    }),
-    menu: (provided) => ({
-      ...provided,
-      backgroundColor: "white",
-      borderBottom: "1px solid white",
-      borderRadius: "5px" // Rounded corners for dropdown menu
-    }),
-    menuList: (provided) => ({
-      ...provided,
-      paddingTop: 0,
-      paddingBottom: 0,
-      borderRadius: "5px" // Rounded corners for list container
-    })
-  }}
-/>
+                    <Select
+                      options={industryOptions}
+                      value={selectedIndustry}
+                      onChange={handleIndustryChange}
+                      isSearchable={true}
+                      placeholder="Industry"
+                      styles={{
+                        control: (provided) => ({
+                          ...provided,
+                          backgroundColor: "transparent",
+                          border: "none",
+                          borderBottom: "1px solid #fff",
+                          color: "white",
+                          borderRadius: "0px", // Rounded corners for select box
+                          boxShadow: "none",
+                          "&:hover": { borderBottom: "1px solid #fff" }
+                        }),
+                        singleValue: (provided) => ({
+                          ...provided,
+                          color: "white"
+                        }),
+                        placeholder: (provided) => ({
+                          ...provided,
+                          color: "white"
+                        }),
+                        input: (provided) => ({
+                          ...provided,
+                          color: "white"
+                        }),
+                        option: (provided, state) => ({
+                          ...provided,
+                          backgroundColor: state.isSelected
+                            ? "black"
+                            : state.isFocused
+                              ? "#333"
+                              : "transparent",
+                          color: state.isSelected || state.isFocused ? "white" : "black",
+                          padding: "10px",
+                          margin: "0",
+                          borderRadius: "0px", // Rounded corners for each option
+                          "&:active": {
+                            backgroundColor: "black"
+                          }
+                        }),
+                        menu: (provided) => ({
+                          ...provided,
+                          backgroundColor: "white",
+                          borderBottom: "1px solid white",
+                          borderRadius: "5px" // Rounded corners for dropdown menu
+                        }),
+                        menuList: (provided) => ({
+                          ...provided,
+                          paddingTop: 0,
+                          paddingBottom: 0,
+                          borderRadius: "5px" // Rounded corners for list container
+                        })
+                      }}
+                    />
 
 
 
@@ -180,15 +180,15 @@ const Filter = ({ industryData, locationData, setIndustrySelected, setLocationSe
                     ))}
                   </select> */}
                   <CustomDropdown
-        options={locationOptions}
-        selected={selectedLocation}
-        onChange={setSelectedLocation}
-        setSelectedLocation={setSelectedLocation}
-        setLocationSelected={setLocationSelected}
-        setSelectedLocations={setSelectedLocations}
-        selectedLocations={selectedLocations}
-        placeholder="Location"
-      />
+                    options={locationOptions}
+                    selected={selectedLocation}
+                    onChange={setSelectedLocation}
+                    setSelectedLocation={setSelectedLocation}
+                    setLocationSelected={setLocationSelected}
+                    setSelectedLocations={setSelectedLocations}
+                    selectedLocations={selectedLocations}
+                    placeholder="Location"
+                  />
                   {/* <div className="absolute inset-y-0 right-2 flex items-center pointer-events-none text-white">
                     <Image src={assets.arrdn} alt=""></Image>
                   </div> */}
@@ -222,10 +222,10 @@ interface CustomDropdownProps {
   selected: Option | null;
   onChange: (option: Option) => void;
   placeholder?: string;
-  setSelectedLocation:(loc:Option)=>void
-  setLocationSelected:(loc:string)=>void
-  setSelectedLocations:Dispatch<SetStateAction<string[]>>
-  selectedLocations:string[]
+  setSelectedLocation: (loc: Option) => void
+  setLocationSelected: (loc: string) => void
+  setSelectedLocations: Dispatch<SetStateAction<string[]>>
+  selectedLocations: string[]
 }
 
 const CustomDropdown: React.FC<CustomDropdownProps> = ({
@@ -247,9 +247,9 @@ const CustomDropdown: React.FC<CustomDropdownProps> = ({
     // setIsOpen(false);
     setSelectedLocation(option);
     setLocationSelected(option.value);
-    if(selectedLocations.includes(option.value)){
+    if (selectedLocations.includes(option.value)) {
       setSelectedLocations((prev) => prev.filter((item) => item !== option.value));
-    }else{
+    } else {
       setSelectedLocations((prev) => {
         const updated = [...(prev || []), option.value];
         return [...new Set(updated)];
@@ -257,7 +257,7 @@ const CustomDropdown: React.FC<CustomDropdownProps> = ({
     }
   };
 
-  const handleRemoveLocation = (option:string) =>{
+  const handleRemoveLocation = (option: string) => {
     setIsOpen(!isOpen)
     setSelectedLocations((prev) => prev.filter((item) => item !== option));
     setLocationSelected(option);
@@ -283,42 +283,41 @@ const CustomDropdown: React.FC<CustomDropdownProps> = ({
   return (
     <div className="relative w-full border-b  mt-1 flex justify-between" ref={dropdownRef}>
       <div onClick={toggleDropdown} className="w-full">
-      <div
-        className="bg-transparent border-b border-none text-white py-1 px-3 cursor-pointer select-none"
-        
-      >
-        <div className="flex gap-3">
-        {selectedLocations.map((item,index)=>(
-          <div className="px-1 bg-gray-500 flex gap-1" key={index}>
-            {item}
-            <IoIosCloseCircle className="" onClick={()=>handleRemoveLocation(item)}/>
-            </div>
-        ))}
+        <div
+          className="bg-transparent border-b border-none text-white py-1 px-3 cursor-pointer select-none"
+
+        >
+          <div className="flex gap-3">
+            {selectedLocations.map((item, index) => (
+              <div className="px-1 bg-gray-500 flex gap-1" key={index}>
+                {item}
+                <IoIosCloseCircle className="" onClick={() => handleRemoveLocation(item)} />
+              </div>
+            ))}
+          </div>
+          {selectedLocations.length == 0 && "Location"}
         </div>
-        {selectedLocations.length==0 && "Location"}
+        {isOpen && (
+          <div className="absolute z-10 w-full bg-white text-black border  rounded-b-md mt-1">
+            {options.map((option, index) => (
+              <div key={index} className="flex gap-3 items-center px-3 w-full hover:text-white hover:bg-[#333] hover:cursor-pointer" onClick={() => handleOptionClick(option)}>
+                <div className="h-5 w-5 border">{selectedLocations.includes(option.value) && <FaCheck className="text-sm" />}</div>
+                <div
+                  key={index}
+                  className={`px-3 py-2 cursor-pointer ${selectedLocations.includes(option.value)
+                      ? ` text-black hover:text-white ${index == options.length - 1 ? "rounded-b-md" : ""}`
+                      : ` ${index == options.length - 1 ? "rounded-b-md" : ""}`
+                    }`}
+
+                >
+                  {option.label}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
-      {isOpen && (
-        <div className="absolute z-10 w-full bg-white text-black border  rounded-b-md mt-1">
-          {options.map((option,index) => (
-            <div key={index} className="flex gap-3 items-center px-3 w-full hover:text-white hover:bg-[#333] hover:cursor-pointer" onClick={() => handleOptionClick(option)}>
-            <div className="h-5 w-5 border">{selectedLocations.includes(option.value) && <FaCheck className="text-sm"/>}</div>
-            <div
-              key={index}
-              className={`px-3 py-2 cursor-pointer ${
-                selectedLocations.includes(option.value)
-                  ? ` text-black hover:text-white ${index == options.length - 1 ? "rounded-b-md" : ""}`
-                  : ` ${index == options.length - 1 ? "rounded-b-md" : ""}`
-              }`}
-              
-            >
-              {option.label}
-            </div>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-    {selectedLocations.length > 0 ? <IoIosCloseCircle className="text-lg cursor-pointer" onClick={(()=>setSelectedLocations([]))}/> : <FaAngleDown className="text-[28px] pt-2 text-[rgb(204, 204, 204)]"/>}
+      {selectedLocations.length > 0 ? <IoIosCloseCircle className="text-lg cursor-pointer" onClick={(() => setSelectedLocations([]))} /> : <FaAngleDown className="text-[28px] pt-2 text-[rgb(204, 204, 204)]" />}
     </div>
   );
 };

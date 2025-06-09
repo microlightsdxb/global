@@ -15,7 +15,7 @@ const Footer = () => {
           <motion.div className="flex" initial={{opacity: 0, y: -50}}
           whileInView={{opacity: 1, y: 0}}
           transition={{delay: 0, duration: 0.9}}
-          viewport={{once: false, amount: 0.8}}
+          viewport={{once: true, amount: 0.8}}
           >
             {/* Quick Links */}
             <div className="w-1/2">
@@ -56,7 +56,7 @@ const Footer = () => {
           <motion.div className="" initial={{opacity: 0, y: -50}}
           whileInView={{opacity: 1, y: 0}}
           transition={{delay: 0, duration: 0.9}}
-          viewport={{once: false, amount: 0.8}}>
+          viewport={{once: true, amount: 0.8}}>
             <div className="flex justify-between items-center bg-primary p-[20px] lg:p-[25px] 2xl:p-[35px] mb-[30px] lg:mb-[90px]">
               <span className="text-lg text-white">Download Brochure</span>
               <div className="flex">

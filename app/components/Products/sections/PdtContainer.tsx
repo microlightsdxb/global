@@ -1,7 +1,7 @@
 "use client";
+import {motion} from "framer-motion";
+import { moveUp, staggerContainer } from "../../scrollanims";
 import React, { useEffect, useState } from "react";
-
-
 import Image from "next/image";
 import { ToggleSection } from "./ToggleSection";
 import useSWR from "swr";
@@ -9,7 +9,7 @@ import Link from "next/link";
 import { useStore } from "@/app/store/productType";
 
 interface Product {
-  data:{
+  data: {
     name: string;
     slug: string;
     thumbnail: string;
@@ -27,26 +27,26 @@ const PdtContainer = () => {
 
   const fetcher = (...args: Parameters<typeof fetch>) => fetch(...args).then(res => res.json())
   const { data }: { data: Product } = useSWR(`/api/admin/product`, fetcher)
-  const [products, setProducts] = useState<{ name: string,slug:string, thumbnail: string, wattage: string, lumen: string, _id: string, altTag: string }[]>([])
+  const [products, setProducts] = useState<{ name: string, slug: string, thumbnail: string, wattage: string, lumen: string, _id: string, altTag: string }[]>([])
   const [typeSelected, setTypeSelected] = useState<string>("")
   const [categorySelected, setCategorySelected] = useState<string>("")
-  const type = useStore((state)=>state.type);
+  const type = useStore((state) => state.type);
 
   useEffect(() => {
     if (data?.data) {
       console.log(data?.data)
-      setProducts(data?.data.filter((product: {type: string, category: string, altTag: string}) => product.type === typeSelected && product.category === categorySelected))
+      setProducts(data?.data.filter((product: { type: string, category: string, altTag: string }) => product.type === typeSelected && product.category === categorySelected))
     }
-  }, [data,typeSelected,categorySelected])
+  }, [data, typeSelected, categorySelected])
 
   useEffect(() => {
     console.log(type)
-    if(type == ""){
+    if (type == "") {
       setTypeSelected(data?.data[0].type)
-    }else{
+    } else {
       setTypeSelected(type)
     }
-  }, [data,type])
+  }, [data, type])
 
 
   return (
@@ -58,7 +58,7 @@ const PdtContainer = () => {
           </h1>
           <div className="flex gap-10">
             <div className="w-1/4">
-              <ToggleSection type={type} typeSelected={typeSelected} setTypeSelected={setTypeSelected} setCategorySelected={setCategorySelected}/>
+              <ToggleSection type={type} typeSelected={typeSelected} setTypeSelected={setTypeSelected} setCategorySelected={setCategorySelected} />
               {/* <ToggleSection
                 title="Category"
                 options={["Home", "Office", "Commercial"]}
@@ -70,51 +70,44 @@ const PdtContainer = () => {
             </div>
 
             <div className="w-3/4   p-4 ">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {products?.map((product,index) => (
-                  <Link href={`/product-details/${product.slug}`} key={index}>
-                    <div className="pdtcontainer min-h-[300px] md:min-h-[385px] xl:min-h-[435px] h-full border relative overflow-hidden cursor-pointer group">
-                      <div className="flex h-full">
-                        <figure className="relative w-full pt-8 mb-[82px]">
-                          <Image
-                            className="object-contain h-full object-center m-auto"
-                            src={product?.thumbnail}
-                            alt={'image'}
-                            width={180}
-                            height={180}
-                          />
-                        </figure>
-                      </div>
-
-                      <div
-                        className={`px-10 pb-3 w-full absolute  bottom-0 group-hover:translate-y-[10px] transition-all duration-500 ease-in-out group-hover:bg-[#7D7D7D]
-                 group-hover:text-white  `}
-                      >
-                        <p className="text-25 text-black  group-hover:text-white transition-500 mt-5 mb-8">
-                          {product?.name}
-                        </p>
+              <motion.div variants={staggerContainer} initial="hidden" animate="show" viewport={{once:true, amount:0.2}} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {products?.map((product, index) => (
+                  <motion.div variants={moveUp} key={index}>
+                    <Link href={`/product-details/${product.slug}`} >
+                      <div className="pdtcontainer min-h-[300px] md:min-h-[385px] xl:min-h-[435px] h-full border relative overflow-hidden cursor-pointer group">
+                        <div className="flex h-full">
+                          <figure className="relative w-full pt-8 mb-[82px]">
+                            <Image
+                              className="object-contain h-full object-center m-auto" src={product?.thumbnail} alt={'image'} width={180} height={180} />
+                          </figure>
+                        </div>
 
                         <div
-                          className={`text-gray-600  text-sm transition-opacity duration-500 h-0 group-hover:text-white group-hover:h-full opacity-0 group-hover:opacity-100 `}
-                        >
-                          <div className="flex justify-between ">
-                            {" "}
-                            <p className="text-red group-hover:text-white">
-                              Wattage
-                            </p>{" "}
-                            <p>{product?.wattage}</p>
-                          </div>
-                          <div className="flex justify-between ">
-                            {" "}
-                            <p className=" group-hover:text-white">Lumen</p>{" "}
-                            <p>{product?.lumen}</p>
+                          className={`px-10 pb-3 w-full absolute  bottom-0 group-hover:translate-y-[10px] transition-all duration-500 ease-in-out group-hover:bg-[#7D7D7D] group-hover:text-white`} >
+                          <p className="text-25 text-black  group-hover:text-white transition-500 mt-5 mb-8">
+                            {product?.name}
+                          </p>
+
+                          <div className={`text-gray-600  text-sm transition-opacity duration-500 h-0 group-hover:text-white group-hover:h-full opacity-0 group-hover:opacity-100 `} >
+                            <div className="flex justify-between ">
+                              {" "}
+                              <p className="text-red group-hover:text-white">
+                                Wattage
+                              </p>{" "}
+                              <p>{product?.wattage}</p>
+                            </div>
+                            <div className="flex justify-between ">
+                              {" "}
+                              <p className=" group-hover:text-white">Lumen</p>{" "}
+                              <p>{product?.lumen}</p>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </Link>
+                    </Link>
+                </motion.div>
                 ))}
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
