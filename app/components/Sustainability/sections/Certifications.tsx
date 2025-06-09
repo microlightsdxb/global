@@ -3,6 +3,7 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Sustainability } from "@/types/Sustainability";
+import { moveUp, staggerContainer } from "../../scrollanims";
 
 interface FrameworkSectionProps {
   data: Sustainability;
@@ -22,15 +23,11 @@ const Certifications: React.FC<FrameworkSectionProps> = ({
           viewport={{ once: true, amount: 0.5 }}>
           Certifications & Standards
         </motion.h2>
-        <div className="grid grid-cols-1 md:grid-cols-3  border border-[#00000015]">
+        <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{once:true, amount:0.2}} className="grid grid-cols-1 md:grid-cols-3  border border-[#00000015]">
           {data.data.certifications.map((item) => (
 
             <motion.div
-              key={item.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true, amount: 0.5 }} className="p-5 md:p-10 border-r border-[#00000015] last:border-r-0">
+              key={item.title} variants={moveUp} className="p-5 md:p-10 border-r border-[#00000015] last:border-r-0">
               <div className="flex gap-5 h-20 w-20">
                 {item.images.map((image) => (
                   <Image src={image} alt="" key={image} width={80} height={80} className="object-cover h-full w-full" />
@@ -49,7 +46,7 @@ const Certifications: React.FC<FrameworkSectionProps> = ({
             </motion.div>
           ))}
 
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -3,6 +3,7 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Sustainability } from "@/types/Sustainability";
+import { moveUp, staggerContainer } from "../../scrollanims";
 
 
 interface FrameworkSectionProps {
@@ -41,23 +42,11 @@ const Commitments: React.FC<FrameworkSectionProps> = ({ data }) => {
             viewport={{ once: true, amount: 0.5 }}>
             We integrate sustainability across all aspects of our operations:
           </motion.p>
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-0 md:gap-3 lg:gap-[4] xl:gap-[40px] mt-10 lg:mt-10">
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{once:true, amount:0.2}} className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-0 md:gap-3 lg:gap-[4] xl:gap-[40px] mt-10 lg:mt-10">
             {data.data.practices.map((practice, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
-                whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
-                className="mb-10 md:mb-5 lg:mb-0"
-              >
-                <Image
-                  src={practice.icon}
-                  alt={practice.iconAlt}
-                  className="rounded-lg h-10"
-                  width={30}
-                  height={30}
-                />
+              <motion.div key={index} variants={moveUp} transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
+               whileHover={{ scale: 1.05, transition: { duration: 0.3 } }} className="mb-10 md:mb-5 lg:mb-0" >
+                <Image src={practice.icon} alt={practice.iconAlt} className="rounded-lg h-10" width={30} height={30} />
                 <div className="border-t border-white mt-5 md:mt-10"></div>
                 <div className="pt-3 md:pt-8">
                   <h4 className="text-lg text-white mb-3 md:mb-6 leading-[1.3]">
@@ -69,7 +58,7 @@ const Commitments: React.FC<FrameworkSectionProps> = ({ data }) => {
                 </div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

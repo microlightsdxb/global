@@ -40,9 +40,9 @@ export default function ContactForm() {
     <section  >
       <div className="container">
       <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
             viewport={{ once: true }}
           >
         <div className=" border-b border-black pb-100">

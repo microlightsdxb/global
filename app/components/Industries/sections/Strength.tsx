@@ -18,24 +18,24 @@ const Strength: React.FC<FrameworkSectionProps> = ({ data }) => {
       <section className="bg-[#f2f2f2]">
         <div className="container ">
           <div className="pt-[50px] lg:pt-[60px] xl:pt-[80px] 2xl:pt-[150px] pb-10  ">
-          <motion.div
-            className="space-y-10"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
+            <motion.div
+              className="space-y-10"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
               {data.method.items.map((item, index: number) => (
 
-                  <motion.div
-                key={index}
-                className="group mb-[70px] md:mb-0 last:mb-[40px]"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay:  0.1 }}
-                viewport={{ once: true }}
-                onMouseOver={()=>setAnimateIcon(index)}
-              >
+                <motion.div
+                  key={index}
+                  className="group mb-[70px] md:mb-0 last:mb-[40px]"
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  viewport={{ once: true }}
+                  onMouseOver={() => setAnimateIcon(index)}
+                >
                   <div className="w-[85px] h-[85px] p-4 md:p-0 md:w-[115px] md:h-[115px] group-hover:bg-black rounded-full border border-[#00000015] flex justify-center items-center bg-[#f2f2f2] relative z-1">
                     {animateIcon === index ? <Image src={item.animImage} alt={item.imageAlt} width={55} height={55} /> : <Image src={item.image} alt={item.imageAlt} width={55} height={55} />}
                   </div>
@@ -67,11 +67,11 @@ const Strength: React.FC<FrameworkSectionProps> = ({ data }) => {
                   </div>
                 </motion.div>
               ))}
-              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>
-      <div className="container  ">
+      <div className="container">
         <div className="border-b border-black pb-100"> </div>
       </div>
     </>

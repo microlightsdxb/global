@@ -2,6 +2,8 @@
 import parse from "html-react-parser";
 import React from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
+import { moveRight, moveUp, staggerContainer } from "../../scrollanims";
 
 interface MdData {
     mdName: string;
@@ -16,8 +18,8 @@ const Banner = ({data}:{data:MdData}) => {
   return (
     <section className="ptc-130  relative bg-[#f8f8f8] overflow-hidden">
       <div className="container ">
-        <div className="flex flex-col-reverse lg:flex-row 2xl:pt-20">
-          <div className="w-full lg:w-1/2 pb-100">
+        <motion.div variants={staggerContainer} initial="hidden" animate="show" viewport={{ once: true, amount: 0.2 }} className="flex flex-col-reverse lg:flex-row 2xl:pt-20">
+          <motion.div variants={moveUp} className="w-full lg:w-1/2 pb-100">
             <h1 className="text-2xl text-black mb-2 lg:mb-4 leading-[1.2]">
               Word from the MD
           </h1>
@@ -52,11 +54,11 @@ const Banner = ({data}:{data:MdData}) => {
             </p>
             <p>{data?.mdDesignation}</p>
           </div>
-        </div>
-        <div className="lg:absolute  right-0  mb-5 lg:mb-0 w-full h-full top-0 lg:w-1/2">
+        </motion.div>
+        <motion.div variants={moveRight} initial="hidden" animate="show" className="lg:absolute  right-0  mb-5 lg:mb-0 w-full h-full top-0 lg:w-1/2">
           <Image src={data?.mdImage} alt={data?.mdImageAlt} className="lg:absolute  right-0 bottom-0" height={1000} width={1000}></Image>
-        </div>
-        </div>
+        </motion.div>
+        </motion.div>
       </div>
     </section>
   );

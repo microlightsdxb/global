@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { staggerContainer, moveUp } from "../../scrollanims";
 import parse from "html-react-parser";
 
 
@@ -63,9 +64,9 @@ const Address = ({ data }: { data: AddressProps }) => {
               ))}
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-[40px]">
+            <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="grid grid-cols-1 md:grid-cols-2 gap-[40px]">
               {data?.data[activeTab]?.area.map((location: { _id: string, name: string, type: string, address: string, telephone: string, mobile: string, email: string, mapIframe: string }) => (
-                <div key={location._id}>
+                <motion.div variants={moveUp} key={location._id}>
                   <div className="mb-5">
                     <p className="text-25 font-[600] leading-[1.2] text-black">
                       {location.name}
@@ -83,9 +84,9 @@ const Address = ({ data }: { data: AddressProps }) => {
                     {parse(location.mapIframe || "")}
 
                   </div>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </motion.div>
 
 

@@ -18,13 +18,9 @@ const Index = () => {
   return (
     <>
       <div className="headerpadding"> </div>
-
       <Banner data={banner.data} />
       <Address data={data}/>
       <ContactForm />
-
-
-
     </>
   );
 };
