@@ -6,9 +6,9 @@ export default function ContentArea() {
   return (
     <motion.section variants={staggerContainer} initial="hidden" animate="show" viewport={{ once: true, amount: 0.2 }} className="section-spacing">
       <motion.div variants={moveUp} className="container">
-        <div className="pt-16 pb-150 border-b border-black ">
+        <div className="pt-16 lg:pb-20 border-b border-black ">
           <div className="mx-auto p-6 bg-white text-black">
-            <h1 className="text-2xl mb-8 md:mb-12 leading-[1.3]">MICROLIGHTS LIGHTING LLC<br/>WEBSITE TERMS AND CONDITIONS</h1>
+            <h1 className="text-2xl mb-6 md:mb-8 leading-[1.3]">MICROLIGHTS LIGHTING LLC WEBSITE TERMS AND CONDITIONS</h1>
             <p className="mb-4">Welcome to our Website www.microlights.com (“Website”). This Website is operated by Microlights Lighting LLC (“Microlights”) (also referred to as “us”, “we”, “our” in these Terms and Conditions). Please read these Terms and Conditions carefully, they govern your access and use of the Website. The Website is provided for your personal use subject to these Terms and Conditions and any other rules posted on the Website (including our Privacy Policy and Cookie Policy) – (together “Terms and Conditions”). These Terms and Conditions apply to all users of this Website including without limitation users who are browsers, vendors, customers, merchants, and/or contributors of Content. By continuing to use or view the Website, and/or use any of the services on the Website, you agree to be bound by, comply with and consent to the practices described in these Terms and Conditions.</p>
             <p className="mb-4">We may change these Terms and Conditions from time to time without notice to you by posting the updated Terms and Conditions on the Website, so please ensure that you check for updates on a regular basis.</p>
             <p className="mb-4 font-semibold">NOTE: IF YOU DO NOT AGREE TO BE BOUND BY THESE TERMS AND CONDITIONS, PLEASE DO NOT USE/VIEW THE WEBSITE.</p>
@@ -64,7 +64,8 @@ export default function ContentArea() {
             <p className="mb-4">These Website Terms and Conditions are published in English and Arabic...</p>
 
             <h2 className="text-lg font-semibold mt-6 mb-2">15. Contact Information</h2>
-            <p className="mb-4">Questions about these Terms and Conditions should be sent to us at <a href="mailto:info@microlightsgroup.ae" className="text-blue-600 underline">info@microlightsgroup.ae</a>.</p>
+            <p className="">Questions about these Terms and Conditions should be sent to us at 
+              <a href="mailto:info@microlightsgroup.ae" className="text-blue-600 underline">info@microlightsgroup.ae</a>.</p>
           </div>
 
         </div>

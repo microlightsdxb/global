@@ -6,8 +6,8 @@ export default function ContentArea() {
   return (
     <motion.section variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="section-spacing">
       <motion.div variants={moveUp} className="container">
-        <div className="pt-16 pb-150 border-b border-black text-black">
-          <h1 className="text-2xl mb-8 md:mb-12 leading-[1.3]"> MICROLIGHTS LIGHTING LLC – WEBSITE PRIVACY AND COOKIE POLICY </h1>
+        <div className="pt-16 lg:pb-20 border-b border-black text-black">
+          <h1 className="text-2xl mb-6 md:mb-8 leading-[1.3]"> MICROLIGHTS LIGHTING LLC – WEBSITE PRIVACY AND COOKIE POLICY </h1>
           <h2 className="text-3xl font-bold mb-6">MICROLIGHTS LIGHTING LLC – WEBSITE PRIVACY AND COOKIE POLICY</h2>
           <p className="mb-6">Microlights Lighting LLC is committed to ensuring that your privacy is protected.</p>
           <p className="mb-8">This privacy and cookie policy sets out how we collect, use, process and protect the information that we collect from you or you provide to us when you use our website.</p>
@@ -57,7 +57,7 @@ export default function ContentArea() {
             <li>If our assets are acquired by a third party</li>
           </ul>
           <p className="mb-4">If you believe that any information we are holding on you is incorrect or incomplete, we will promptly correct any information found to be incorrect.</p>
-          <p className="mb-4">We may change this policy from time to time by changing this page. Please ensure that you check this page from time to time for updates.</p>
+          <p className="">We may change this policy from time to time by changing this page. Please ensure that you check this page from time to time for updates.</p>
         </div>
 
       </motion.div>
