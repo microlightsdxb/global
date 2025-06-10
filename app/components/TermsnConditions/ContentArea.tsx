@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { staggerContainer, moveUp } from '../scrollanims';
 export default function ContentArea() {
   return (
-    <motion.section variants={staggerContainer} initial="hidden" animate="show" viewport={{ once: true, amount: 0.2 }} className="section-spacing">
+    <motion.section variants={staggerContainer} initial="hidden" animate="show" viewport={{ once: true, amount: 0.2 }} className="pt-10 lg:pt-[120px]">
       <motion.div variants={moveUp} className="container">
         <div className="pt-16 lg:pb-20 border-b border-black ">
           <div className="mx-auto p-6 bg-white text-black">
