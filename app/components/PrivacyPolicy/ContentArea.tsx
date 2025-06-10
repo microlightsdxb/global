@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { staggerContainer, moveUp } from '../scrollanims';
 export default function ContentArea() {
   return (
-    <motion.section variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="section-spacing">
+    <motion.section variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="pt-10 lg:pt-[120px]">
       <motion.div variants={moveUp} className="container">
         <div className="pt-16 lg:pb-20 border-b border-black text-black">
           <h1 className="text-2xl mb-6 md:mb-8 leading-[1.3]"> Microlights Lighting LLC – Website Privacy and Cookie Policy</h1>
