@@ -48,8 +48,8 @@ const Conceptual = ({ data }: { data: Service }) => {
                             <p className="text-white text-lg">{item.title}</p>
                             <div
                               className={`descd transition-all duration-100 ease-in-out transform mt-3 ${isHovered || isInitiallyActive
-                                  ? "opacity-100 h-auto translate-y-0"
-                                  : "opacity-0 h-0 translate-y-5"
+                                ? "opacity-100 h-auto translate-y-0"
+                                : "opacity-0 h-0 translate-y-5"
                                 }`}
                             >
                               <p>{item.description}</p>
@@ -66,7 +66,7 @@ const Conceptual = ({ data }: { data: Service }) => {
                 <div className="relative">
                   <figure className="absolute w-full h-full border border-[#00000010] flex">
                     <Image
-                      className="object-cover object-center  h-full w-full"
+                      className="object-cover object-center h-full w-full"
                       src={hoveredId ? data?.method?.items[hoveredId - 1]?.image : data?.method?.items[1]?.image}
                       alt={hoveredId ? data?.method?.items[hoveredId - 1]?.imageAlt : data?.method?.items[1]?.imageAlt}
                       width={1500}
