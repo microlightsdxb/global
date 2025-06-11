@@ -64,7 +64,7 @@ export default function ContentArea() {
             <p className="mb-4">These Website Terms and Conditions are published in English and Arabic...</p>
 
             <h2 className="text-lg font-semibold mt-6 mb-2">15. Contact Information</h2>
-            <p className="">Questions about these Terms and Conditions should be sent to us at 
+            <p className="">Questions about these Terms and Conditions should be sent to us at  &nbsp;
               <a href="mailto:info@microlightsgroup.ae" className="text-blue-600 underline">info@microlightsgroup.ae</a>.</p>
           </div>
 
