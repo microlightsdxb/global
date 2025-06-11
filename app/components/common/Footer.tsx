@@ -88,9 +88,10 @@ const Footer = () => {
             </div>
             <div className="text-primary/50 text-center mt-6 text-[13px] flex justify-between">
               <p>&copy;2025 microlights. All rights reserved </p>
-              <Link href="/terms-and-conditions" className="">
-                Terms & Conditions
-              </Link>
+           <div className="flex space-x-4 items-center">
+                <Link href="/privacy-policy" className=" border-r pr-4 last:border-r-0 last:pr-0">Privacy Policy</Link>
+                <Link href="/terms-and-conditions" className=" border-r pr-4 last:border-r-0 last:pr-0">Terms & Conditions</Link>
+           </div>
             </div>
             {/* sdfv */}
           </motion.div>
