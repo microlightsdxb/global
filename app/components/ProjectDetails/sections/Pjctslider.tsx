@@ -16,10 +16,10 @@ const Pjctslider = ({ data }: { data: { data: { images: string[] } } }) => {
   return (
     <section className="">
       <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: false, amount: 0.5 }}
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true, amount: 0.5 }}
       >
         <div className="relative">
           <Swiper
@@ -65,7 +65,7 @@ const Pjctslider = ({ data }: { data: { data: { images: string[] } } }) => {
                       className=" h-auto   m-auto"
                       src={project}
                       alt="Apollo"
-                      width={60 }
+                      width={60}
                       height={60}
                     />
                   </div>

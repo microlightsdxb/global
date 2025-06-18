@@ -26,7 +26,7 @@ const ProdSec = ({data}:{data:{data:{_id:string,type: string, image: string, hov
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: false, amount: 0.5 }}
+          viewport={{ once: true, amount: 0.5 }}
           className="text-xl leading-none mb-[50px] text-primary">
             Products
           </motion.h2>
@@ -39,7 +39,7 @@ const ProdSec = ({data}:{data:{data:{_id:string,type: string, image: string, hov
                 className="prditm group cursor-pointer"
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: false, amount: 0.5 }}
+                viewport={{ once: true, amount: 0.5 }}
                 variants={slideVariants}
                 custom={i}
               >
