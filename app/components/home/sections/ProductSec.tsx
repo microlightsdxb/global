@@ -1,5 +1,5 @@
 "use client";
-import React, {  } from "react";
+import React, { } from "react";
 
 import { motion } from "framer-motion";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
@@ -23,16 +23,16 @@ const slideVariants = {
 };
 
 const ProductSec = () => {
- 
-  
+
+
 
   return (
     <section className="section-spacing">
       <div className="container">
         <div className="overflow-hidden">
-        <h2 className="text-xl leading-none mb-[50px] text-primary">
-          Products
-        </h2>
+          <h2 className="text-xl leading-none mb-[50px] text-primary">
+            Products
+          </h2>
         </div>
 
         <Swiper
@@ -52,7 +52,7 @@ const ProductSec = () => {
                 className="prditm group cursor-pointer"
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: false, amount: 0.5 }}
+                viewport={{ once: true, amount: 0.5 }}
                 variants={slideVariants}
                 custom={i}
               >

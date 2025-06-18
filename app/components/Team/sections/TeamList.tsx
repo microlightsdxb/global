@@ -1,7 +1,8 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-
+import { motion } from "framer-motion";
+import { moveUp, staggerContainer } from "../../scrollanims";
 
 
 interface FrameworkItem {
@@ -23,9 +24,9 @@ const TeamList: React.FC<FrameworkSectionProps> = ({
     <section className="ptc-130 pb-10  ">
       <div className="container">
         <h2 className="text-xl leading-[1.3] mb-4 md:mb-15"> Our Team</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  xl:grid-cols-4 team-grid ">
+        <motion.div initial="hidden" whileInView="show" variants={staggerContainer} viewport={{once:true, amount:0.2}} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  xl:grid-cols-4 team-grid ">
       {data?.map((member, index) => (
-        <div
+        <motion.div variants={moveUp}
           key={index}
           className="teammem border-b pb-7 hover:border-[#000] hover:border-b-2 transition-all duration-500 mb-10 md:mb-15 lg:mb-20"
         >
@@ -42,9 +43,9 @@ const TeamList: React.FC<FrameworkSectionProps> = ({
             {member.name}
           </p>
           <p>{member.designation}</p>
-        </div>
+        </motion.div>
       ))}
-    </div>
+    </motion.div>
       </div>
       </section>
       <div className="container">

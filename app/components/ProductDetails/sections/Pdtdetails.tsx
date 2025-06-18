@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
-
+import { motion } from "framer-motion";
+import { staggerContainer, moveUp } from "@/app/components/scrollanims";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Thumbs } from "swiper/modules";
 import { Swiper as SwiperClass } from "swiper/types";
@@ -28,8 +29,8 @@ const Pdtdetails = ({data}: {data: ProductProps}) => {
     <section className="">
       <div className="container ">
         <div className="pt-16 pb-150  ">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap:[30px] lg:gap-[90px]">
-            <div className=" ">
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{once:true, amount:0.2}} className="grid grid-cols-1 md:grid-cols-2 gap:[30px] lg:gap-[90px]">
+            <motion.div variants={moveUp} className=" ">
               <div>
                 {/* Main Swiper */}
                 <Swiper
@@ -81,8 +82,8 @@ const Pdtdetails = ({data}: {data: ProductProps}) => {
                   ))}
                 </Swiper>
               </div>
-            </div>
-            <div className=" ">
+            </motion.div>
+            <motion.div variants={moveUp} className=" ">
               <div className="flex flex-col gap-30 justify-between">
               <div>
               <div>
@@ -106,8 +107,8 @@ const Pdtdetails = ({data}: {data: ProductProps}) => {
             Download Datasheet
             </div></Link>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>
