@@ -64,7 +64,7 @@ const Address = ({ data }: { data: AddressProps }) => {
               ))}
             </div>
 
-            <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="grid grid-cols-1 md:grid-cols-2 gap-[40px]">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-[40px]">
               {data?.data[activeTab]?.area.map((location: { _id: string, name: string, type: string, address: string, telephone: string, mobile: string, email: string, mapIframe: string }) => (
                 <motion.div variants={moveUp} key={location._id}>
                   <div className="mb-5">
@@ -86,7 +86,7 @@ const Address = ({ data }: { data: AddressProps }) => {
                   </div>
                 </motion.div>
               ))}
-            </motion.div>
+            </div>
           </motion.div>
 
 
