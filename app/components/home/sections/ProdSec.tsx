@@ -19,7 +19,7 @@ const ProdSec = ({data}:{data:{data:{_id:string,type: string, image: string, hov
   const setType = useStore((state)=>state.setType);
 
   return (
-    <section className="section-spacing h-[220vh] md:h-[230vh] lg:h-[100vh] 2xl:h-[110vh]">
+    <section className="section-spacing h-[280vh] md:h-[230vh] lg:h-[100vh] 2xl:h-[110vh]">
       <div className="container">
         <div className="overflow-hidden">
           <motion.h2
