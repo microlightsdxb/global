@@ -40,9 +40,7 @@ const MoreProjects: React.FC<FrameworkSectionProps> = ({
     }
   }, [data, industry, projectName])
 
-  useEffect(() => {
-    console.log(filteredData)
-  }, [filteredData])
+
 
   return (
     <section className=" ">
