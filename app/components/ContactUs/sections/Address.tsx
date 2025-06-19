@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { staggerContainer, moveUp } from "../../scrollanims";
+import { moveUp } from "../../scrollanims";
 import parse from "html-react-parser";
 
 
