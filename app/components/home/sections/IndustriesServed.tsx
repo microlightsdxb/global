@@ -1,47 +1,48 @@
 "use client"
 import Image from "next/image";
-import React, { } from "react";
+import React from "react";
 /* import gsap  from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger"; */
 import { motion } from "framer-motion"
+import { Home } from "@/types/Home"
 
-const industies = [
-  {
-    name: "Retail",
-    icon: "/assets/img/icons/retail.svg",
-    hrimg: "/assets/img/home/hov-s.jpg"
-  },
-  {
-    name: "Commercial",
-    icon: "/assets/img/icons/commercial.svg",
-    hrimg: "/assets/img/home/Commercial.jpg"
-  },
-  {
-    name: "Architectural",
-    icon: "/assets/img/icons/retail.svg",
-    hrimg: "/assets/img/home/Architectural.jpg"
-  },
-  {
-    name: "Public Spaces",
-    icon: "/assets/img/icons/public-spaes.svg",
-    hrimg: "/assets/img/home/Public spaces.jpg"
-  },
-  {
-    name: "Residential",
-    icon: "/assets/img/icons/residential.svg",
-    hrimg: "/assets/img/home/residential.jpg"
-  },
-  {
-    name: "Industrial",
-    icon: "/assets/img/icons/industrial.svg",
-    hrimg: "/assets/img/home/Industrial.jpg"
-  },
-  {
-    name: "Hospitality",
-    icon: "/assets/img/icons/hospitality.svg",
-    hrimg: "/assets/img/home/Hospitality.jpg"
-  }
-]
+// const industies = [
+//   {
+//     name: "Retail",
+//     icon: "/assets/img/icons/retail.svg",
+//     hrimg: "/assets/img/home/hov-s.jpg"
+//   },
+//   {
+//     name: "Commercial",
+//     icon: "/assets/img/icons/commercial.svg",
+//     hrimg: "/assets/img/home/Commercial.jpg"
+//   },
+//   {
+//     name: "Architectural",
+//     icon: "/assets/img/icons/retail.svg",
+//     hrimg: "/assets/img/home/Architectural.jpg"
+//   },
+//   {
+//     name: "Public Spaces",
+//     icon: "/assets/img/icons/public-spaes.svg",
+//     hrimg: "/assets/img/home/Public spaces.jpg"
+//   },
+//   {
+//     name: "Residential",
+//     icon: "/assets/img/icons/residential.svg",
+//     hrimg: "/assets/img/home/residential.jpg"
+//   },
+//   {
+//     name: "Industrial",
+//     icon: "/assets/img/icons/industrial.svg",
+//     hrimg: "/assets/img/home/Industrial.jpg"
+//   },
+//   {
+//     name: "Hospitality",
+//     icon: "/assets/img/icons/hospitality.svg",
+//     hrimg: "/assets/img/home/Hospitality.jpg"
+//   }
+// ]
 /*
 gsap.registerPlugin(ScrollTrigger); */
 
@@ -55,7 +56,7 @@ const slideVariants = {
 };
 
 
-const IndustriesServed = () => {
+const IndustriesServed = ({data}: {data: Home}) => {
   /* const headerRef = useRef<HTMLHeadingElement | null>(null); */
   /*
     useEffect(() => {
@@ -98,10 +99,10 @@ const IndustriesServed = () => {
               <motion.h2 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6 }}
-                viewport={{ once: true, amount: 0.5 }} className="text-xl mb-[30px] lg:mb-[60px]" >Industries Served</motion.h2>
+                viewport={{ once: true, amount: 0.5 }} className="text-xl mb-[30px] lg:mb-[60px]" >{data.industries.title}</motion.h2>
             </div>
             <div className="bomsx grid grid-cols-1 lg:grid-cols-3 ">
-              {industies.map((industry, i) => (
+              {data.industries.items.map((industry, i) => (
                 <motion.div
                   initial="hidden"
                   whileInView="visible"
@@ -110,11 +111,11 @@ const IndustriesServed = () => {
                   custom={i}
                   className="bitms p-[20px] lg:p-[40px] 2xl:p-[50px] border-r border-b border-[#595959] border-l border-t relative overflow-hidden group cursor-pointer" key={i}>
                   <figure className="absolute w-full h-[0px] inset-0 z-[0] before:content-[]  before:absolute before:w-full before:h-full before:bg-gradient-to-t before:from-black/80 before:to-transparent transition-all ease-in-out duration-300 top-[50%] -translate-y-[50%] group-hover:h-full overflow-hidden">
-                    <Image src={industry.hrimg} width={600} height={600} alt="" />
+                    <Image src={industry.image} width={600} height={600} alt={industry.imageAlt} />
 
                   </figure>
-                  <Image src={industry.icon} width={100} height={75} className="w-auto mb-[40px] lg:mb-[60px] 2xl:mb-[90px] z-[1] relative h-[55px] lg:h-[65px] 2xl:h-[75px]" alt={industry.name} />
-                  <h3 className="text-lg z-[1]  relative">{industry.name}</h3>
+                  <Image src={industry.logo} width={100} height={75} className="w-auto mb-[40px] lg:mb-[60px] 2xl:mb-[90px] z-[1] relative h-[55px] lg:h-[65px] 2xl:h-[75px]" alt={industry.logoAlt} />
+                  <h3 className="text-lg z-[1]  relative">{industry.title}</h3>
                 </motion.div>
               ))}
 

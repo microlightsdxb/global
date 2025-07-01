@@ -6,6 +6,16 @@ export type Home = {
             image: string
             bannerAltTag: string
         }[];
+        industries:{
+            title: string;
+            items:[{
+                title: string,
+                logo: string,
+                logoAlt: string,
+                image: string,
+                imageAlt: string,
+            }]
+        }
         years: number;
         projects: number;
         clients: number;
