@@ -14,12 +14,13 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import Image from "next/image";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, useFieldArray, useForm } from "react-hook-form";
 import { ImageUploader } from "@/components/ui/image-uploader";
 const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false })
 import 'react-quill-new/dist/quill.snow.css';
 import dynamic from 'next/dynamic'
 import { Textarea } from "@/components/ui/textarea";
+import { RiDeleteBinLine } from "react-icons/ri";
 
 interface AboutData {
     _id: string;
@@ -30,13 +31,23 @@ interface AboutData {
     projects: number;
     clients: number;
     aboutImageAltTag: string;
+    industries: {
+        title: string;
+        items: {
+            title: string;
+            logo: string;
+            logoAlt:string;
+            image:string;
+            imageAlt:string;
+        }[]
+    };
 }
 
 
 
 
 export default function AdminHome() {
-    const { register, handleSubmit, setValue, watch, control } = useForm<AboutData>();
+    const { register, handleSubmit, setValue, watch, control, formState: { errors } } = useForm<AboutData>();
     const [image, setImage] = useState<string>("");
     const [title, setTitle] = useState<string>("");
     const [subTitle, setSubTitle] = useState<string>("");
@@ -52,6 +63,7 @@ export default function AdminHome() {
     const [metaDescription, setMetaDescription] = useState<string>("");
     const [bannerAltTag, setBannerAltTag] = useState<string>("");
     const [testimonialImageAltTag, setTestimonialImageAltTag] = useState<string>("");
+
 
     const handleFetchAboutSection = async () => {
         try {
@@ -73,6 +85,25 @@ export default function AdminHome() {
             }
         } catch (error) {
             console.log("Error fetching about section", error);
+        }
+    }
+
+    const handleFetchIndustriesSection = async () => {
+        try {
+            const response = await fetch("/api/admin/home/industries");
+            if (response.ok) {
+                const data = await response.json();
+                if (data.data) {
+                    console.log(data.data)
+                    setValue("industries.title", data.data.industries.title);
+                    setValue("industries.items", data.data.industries.items);
+                }
+            } else {
+                const data = await response.json();
+                alert(data.message);
+            }
+        } catch (error) {
+            console.log("Error fetching industries section", error);
         }
     }
 
@@ -307,12 +338,18 @@ export default function AdminHome() {
         }
     };
 
+    const { fields: industriesFields, append: industriesAppend, remove: industriesRemove } = useFieldArray({
+        control,
+        name: "industries.items"
+    });
+
     useEffect(() => {
         handleFetchAboutSection();
         handleFetchBanners();
         handleFetchProcess();
         handleFetchTestimonials();
         handleFetchMeta();
+        handleFetchIndustriesSection();
     }, [])
 
     const submitAboutSection = async (data: AboutData) => {
@@ -346,6 +383,25 @@ export default function AdminHome() {
             const response = await fetch("/api/admin/home/meta", {
                 method: "POST",
                 body: JSON.stringify({ title: metaTitle, description: metaDescription }),
+            });
+            if (response.ok) {
+                const data = await response.json();
+                alert(data.message);
+            } else {
+                const data = await response.json();
+                alert(data.message);
+            }
+        } catch (error) {
+            console.log("Error saving details", error);
+        }
+    }
+
+    const submitIndustriesSection = async (data: AboutData) => {
+        try {
+            console.log(data.industries);
+            const response = await fetch("/api/admin/home/industries", {
+                method: "POST",
+                body: JSON.stringify({industries:data.industries.items,title:data.industries.title}),
             });
             if (response.ok) {
                 const data = await response.json();
@@ -463,6 +519,90 @@ export default function AdminHome() {
                     ))}
                 </div>
             </div>
+
+<form onSubmit={handleSubmit(submitIndustriesSection)} className='p-2 border-2 border-gray-300 rounded-md'>
+                <div className="flex justify-between border-b-2 pb-2 mb-5">
+                    <Label className="text-sm font-bold">Industries Section</Label>
+                    <Button type="submit">Save</Button>
+                </div>
+                <div className='flex flex-col gap-5'>
+                <div className='flex flex-col gap-2'>
+                                <div className='flex flex-col gap-2'>
+                                    <Label className='font-bold'>Title</Label>
+                                    <Input type='text' placeholder='Title' {...register(`industries.title`)} />
+                                </div>
+                            </div>
+                            <div>
+                    <Label className='font-bold'>Items</Label>
+                <div className='border p-2 rounded-md flex flex-col gap-5'>
+
+
+                    {industriesFields.map((field, index) => (
+                        <div key={field.id} className='grid grid-cols-1 gap-2 relative border-b pb-5 last:border-b-0'>
+                            <div className='absolute top-2 right-2'>
+                                <RiDeleteBinLine onClick={() => industriesRemove(index)} className='cursor-pointer text-red-600' />
+                            </div>
+                            <div className='grid grid-cols-2 gap-2'>
+                                <div className='flex flex-col gap-2'>
+                                    <Label className='pl-3 font-bold'>Image</Label>
+                                    <Controller
+                                        name={`industries.items.${index}.image`}
+                                        control={control}
+                                        rules={{ required: "Image is required" }}
+                                        render={({ field }) => (
+                                            <ImageUploader
+                                                value={field.value}
+                                                onChange={field.onChange}
+                                            />
+                                        )}
+                                    />
+                                    {errors.industries?.items?.[index]?.image && <p className='text-red-500'>{errors.industries?.items?.[index]?.image.message}</p>}
+                                    <div className='flex flex-col gap-2'>
+                                    <Label className='pl-3 font-bold'>Alt Tag</Label>
+                                    <Input type='text' placeholder='Alt Tag' {...register(`industries.items.${index}.imageAlt`)} />
+                                </div>
+                                </div>
+                                <div className='flex flex-col gap-2'>
+                                    <Label className='pl-3 font-bold'>Logo</Label>
+                                    <Controller
+                                        name={`industries.items.${index}.logo`}
+                                        control={control}
+                                        rules={{ required: "Logo is required" }}
+                                        render={({ field }) => (
+                                            <ImageUploader
+                                                value={field.value}
+                                                onChange={field.onChange}
+                                            />
+                                        )}
+                                    />
+                                    {errors.industries?.items?.[index]?.logo && <p className='text-red-500'>{errors.industries?.items?.[index]?.logo.message}</p>}
+                                    <div className='flex flex-col gap-2'>
+                                    <Label className='pl-3 font-bold'>Alt Tag</Label>
+                                    <Input type='text' placeholder='Alt Tag' {...register(`industries.items.${index}.logoAlt`)} />
+                                </div>
+                                </div>
+                                <div className='flex flex-col gap-2'>
+                                <div className='flex flex-col gap-2'>
+                                    <Label className='pl-3 font-bold'>Title</Label>
+                                    <Input type='text' placeholder='Title' {...register(`industries.items.${index}.title`)} />
+                                </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    ))}
+
+                   
+
+                </div>
+                <div className='flex justify-end mt-2'>
+                        <Button type='button' className="cursor-pointer" onClick={() => industriesAppend({ image: "", imageAlt: "", title: "",logo:"",logoAlt:"" })}>Add Item</Button>
+                    </div>
+                </div>
+
+                
+                </div>
+                </form>
 
 
             <form className="h-full w-full p-2 border-2 border-gray-300 rounded-md" onSubmit={handleSubmit(submitAboutSection)}>

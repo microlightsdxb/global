@@ -23,7 +23,7 @@ const Index = ({data}:{data:Project}) => {
       <Details data={data} />
       <Pjctslider data={data} />
       <Contents data={data} />
-      <MoreProjects data={allProjects} industry={data?.data?.industry}/>
+      <MoreProjects data={allProjects} industry={data?.data?.industry} projectName={data?.data?.name}/>
 
     </>
   );

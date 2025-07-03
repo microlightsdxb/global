@@ -50,7 +50,7 @@ const ProcessTimeline: React.FC<{ data: Home }> = ({ data }) => {
 
   return (
     <section
-      className="mt-[0px] lg:mt-[-90px] -z-10 relative bg-primary pt-[100px] lg:pt-[210px] pb-[60px] lg:pb-[90px] 2xl:pb-[120px] text-white overflow-x-hidden h-[62vh] md:h-screen" ref={containerRef2}
+      className="mt-[0px] lg:mt-[-90px] -z-10 relative bg-primary pt-[100px] lg:pt-[210px] pb-[60px] lg:pb-[90px] 2xl:pb-[120px] text-white overflow-x-hidden h-[75vh] md:h-screen" ref={containerRef2}
 
     >
       <figure className="absolute bg-primary w-full h-full inset-0 -z-10">

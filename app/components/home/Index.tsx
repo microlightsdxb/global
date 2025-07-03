@@ -29,7 +29,7 @@ const Index = ({ homeData }: { homeData: Home }) => {
     <div>
       <HeroSection data={homeData} />
       <ProdSec data={data} />
-      <IndustriesServed />
+      <IndustriesServed data={homeData} />
       <AboutSec data={homeData} />
       <ProcessTimeline data={homeData} />
       <RecentProjects data={projectData} />
