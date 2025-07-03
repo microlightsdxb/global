@@ -20,45 +20,50 @@ const ProcessTimeline: React.FC<{ data: Home }> = ({ data }) => {
   //   { id: "05", title: "Testing" },
   //   { id: "06", title: "Finalization" },
   // ];
-
   useEffect(() => {
     if (!containerRef2.current || !timelineRef.current) return;
-
-    const ctx = gsap.context(() => {
-      const scrollWidth = timelineRef.current?.scrollWidth || 1000;
-
-      gsap.to(timelineRef.current, {
-        x: () => `-${scrollWidth / 2}px`, // Adjust movement dynamically
-        ease: "none",
-        scrollTrigger: {
-          trigger: containerRef2.current,
-          start: "top top",
-
-          end: "+=2000 top",
-          scrub: 1,
-          pin: true,
-          // markers: true,
-          anticipatePin: 1, // Reduce pinning glitches
-        },
-      });
-
-      ScrollTrigger.refresh(); // Ensure proper calculation on mount
-    }, containerRef2);
-
-    return () => ctx.revert();
+  
+    const timer = setTimeout(() => {
+      const ctx = gsap.context(() => {
+        const scrollWidth = timelineRef.current?.scrollWidth || 1000;
+  
+        gsap.to(timelineRef.current, {
+          x: () => `-${scrollWidth / 2}px`, // Adjust movement dynamically
+          ease: "none",
+          scrollTrigger: {
+            trigger: containerRef2.current,
+            start: "top top",
+            end: "+=2000 top",
+            scrub: 1,
+            pin: true,
+            // markers: true,
+            anticipatePin: 1,
+          },
+        });
+  
+        ScrollTrigger.refresh();
+      }, containerRef2);
+  
+      // Cleanup function to revert GSAP context when unmounting
+      return () => ctx.revert();
+    }, 3000); // 6000 ms = 6 seconds
+  
+    // Cleanup: clear the timer if unmounted before timeout triggers
+    return () => clearTimeout(timer);
   }, []);
+  
 
   return (
     <section
-      className="mt-[0px] lg:mt-[-90px] -z-10 relative bg-primary pt-[100px] lg:pt-[210px] pb-[60px] lg:pb-[90px] 2xl:pb-[120px] text-white overflow-x-hidden h-[75vh] md:h-screen" ref={containerRef2}
+      className="mt-[0px] lg:mt-[-90px] -z-10 relative bg-primary pt-[100px] lg:pt-[210px] pb-[60px] lg:pb-[90px] 2xl:pb-[120px] text-white overflow-x-hidden h-[100vh] md:h-screen" ref={containerRef2}
 
-    >
+    > 
       <figure className="absolute bg-primary w-full h-full inset-0 -z-10">
         <Image src={'/assets/img/banner/process.jpg'} width={1900} height={900} alt="bnr" className="w-full h-full absolute object-center object-cover" />
       </figure>
       <div className="container">
         <div className="overflow-hidden mb-[30px] lg:mb-[80px]" >
-          <motion.h2 className="text-xl " initial={{ opacity: 0, x: -50 }}
+          <motion.h2 className="text-xl lg:text-[40px] 2xl:text-xl " initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true, amount: 0.5 }}>
