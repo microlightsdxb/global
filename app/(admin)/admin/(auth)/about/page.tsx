@@ -306,9 +306,9 @@ export default function About() {
       }
 
     return (
-        <div className="h-screen grid grid-cols-1 gap-5">
+        <div className="grid grid-cols-1 gap-5">
 
-                        <div className="h-fit w-full p-2 border-2 border-gray-300 rounded-md mt-5">
+                        <div className="h-fit w-full p-5 shadow-md rounded-md mt-5 bg-white">
                             <div className="flex justify-between border-b-2 pb-2">
                                 <Label className="text-sm font-bold">Meta Section</Label>
                                 <Button onClick={submitMetaSection}>Save</Button>
@@ -325,9 +325,9 @@ export default function About() {
                             </div>
                         </div>
             
-            <form className="h-full w-full p-2 border-2 border-gray-300 rounded-md" onSubmit={handleSubmit(submitBanner)}>
+            <form className="h-full w-full p-5 shadow-md rounded-md mt-5 bg-white" onSubmit={handleSubmit(submitBanner)}>
                 <div className="flex justify-between border-b-2 pb-2">
-                    <Label className="text-sm font-bold">Banner</Label>
+                    <Label className="text-sm">Banner</Label>
                     <Button type="submit">Save</Button>
                 </div>
                 <div className="mt-2 flex flex-col gap-2 h-fit">
@@ -335,35 +335,35 @@ export default function About() {
                         <ImageUploader onChange={(url) => setValue("banner", url)} value={watch("banner")} />
                     </div>
                     <div>
-                        <Label className="text-sm font-bold">Banner Image Alt Tag</Label>
+                        <Label className="text-sm">Banner Image Alt Tag</Label>
                         <Input type="text" placeholder="Banner Image Alt Tag" {...register("bannerAltTag")} />
                     </div>
                 </div>
             </form>
 
 
-            <form className="h-full w-full p-2 border-2 border-gray-300 rounded-md" onSubmit={handleSubmit(submitIntroSection)}>
+            <form className="h-full w-full p-5 shadow-md rounded-md mt-5 bg-white" onSubmit={handleSubmit(submitIntroSection)}>
                 <div className="flex justify-between border-b-2 pb-2">
                     <Label className="text-sm font-bold">Intro Section</Label>
                     <Button type="submit">Save</Button>
                 </div>
                 <div className="mt-2 flex flex-col gap-2 h-fit">
                     <div>
-                        <Label className="text-sm font-bold">Title</Label>
+                        <Label className="text-sm">Title</Label>
                         <Input type="text" placeholder="Title" {...register("title")} />
                     </div>
                     <div>
-                        <Label className="text-sm font-bold">Description</Label>
+                        <Label className="text-sm">Description</Label>
                         <Controller name="description" control={control} rules={{ required: "Content is required" }} render={({ field }) => {
                             return <ReactQuill theme="snow" value={field.value} onChange={field.onChange} />
                         }} />
                     </div>
                     <div>
-                        <Label className="text-sm font-bold">Image</Label>
+                        <Label className="text-sm">Image</Label>
                         <ImageUploader onChange={(url) => setValue("image", url)} value={watch("image")} />
                     </div>
                     <div>
-                        <Label className="text-sm font-bold">Image Alt Tag</Label>
+                        <Label className="text-sm">Image Alt Tag</Label>
                         <Input type="text" placeholder="Image Alt Tag" {...register("introImageAltTag")} />
                     </div>
                 </div>
@@ -374,74 +374,74 @@ export default function About() {
 
             <div className="h-full w-full">
                 
-            <form className="h-fit w-full p-2 border-2 border-gray-300 rounded-md" onSubmit={handleSubmit(submitSecondSection)}>
+            <form className="h-fit w-full p-5 shadow-md rounded-md mt-5 bg-white flex flex-col gap-2" onSubmit={handleSubmit(submitSecondSection)}>
                 <div className="flex justify-between border-b-2 pb-2">
                     <Label className="text-sm font-bold">Second Section</Label>
                     <Button type="submit">Save</Button>
                 </div>
                 <div>
-                  <Label className="text-sm font-bold">Image</Label>
+                  <Label className="text-sm">Image</Label>
                   <ImageUploader onChange={(url) => setValue("sectionTwoImage", url)} value={watch("sectionTwoImage")} />
                 </div>
                 <div>
-                        <Label className="text-sm font-bold">Image Alt Tag</Label>
+                        <Label className="text-sm">Image Alt Tag</Label>
                         <Input type="text" placeholder="Image Alt Tag" {...register("sectionTwoImageAltTag")} />
                     </div>
                 <div className="mt-2 grid grid-cols-3 gap-2 h-fit">
-                  <div className="flex gap-2 flex-col rounded-md border-2 border-gray-300 p-2">
+                  <div className="flex gap-2 flex-col border-gray-300 p-2 border-r">
                     <div className="flex justify-center items-center">
-                        <Label className="text-sm font-bold">Mission</Label>
+                        <Label className="text-sm">Mission</Label>
                     </div>
                     <div>
-                        <Label className="text-sm font-bold">Description</Label>
+                        <Label className="text-sm">Description</Label>
                         <Textarea placeholder="Description" {...register("missionDescription")} className="min-h-36"/>
                     </div>
                     <div>
-                      <ImageUploader onChange={(url) => setValue("missionIcon", url)} value={watch("missionIcon")} />
+                      <ImageUploader onChange={(url) => setValue("missionIcon", url)} value={watch("missionIcon")} isLogo/>
                     </div>
                     <div>
-                        <Label className="text-sm font-bold">Alt Tag</Label>
+                        <Label className="text-sm">Alt Tag</Label>
                         <Input type="text" placeholder="Alt Tag" {...register("missionAltTag")} />
                     </div>
                   </div>
 
-                  <div className="flex gap-2 flex-col rounded-md border-2 border-gray-300 p-2">
+                  <div className="flex gap-2 flex-col border-gray-300 p-2 border-r">
                   <div className="flex justify-center items-center">
-                        <Label className="text-sm font-bold">Vision</Label>
+                        <Label className="text-sm">Vision</Label>
                     </div>
                     <div>
-                        <Label className="text-sm font-bold">Description</Label>
+                        <Label className="text-sm">Description</Label>
                         <Textarea placeholder="Description" {...register("visionDescription")} className="min-h-36"/>
                     </div>
                     <div>
-                      <ImageUploader onChange={(url) => setValue("visionIcon", url)} value={watch("visionIcon")} />
+                      <ImageUploader onChange={(url) => setValue("visionIcon", url)} value={watch("visionIcon")} isLogo />
                     </div>
                     <div>
-                        <Label className="text-sm font-bold">Alt Tag</Label>
+                        <Label className="text-sm">Alt Tag</Label>
                         <Input type="text" placeholder="Alt Tag" {...register("visionAltTag")} />
                     </div>
                   </div>
 
-                  <div className="flex gap-2 flex-col rounded-md border-2 border-gray-300 p-2">
+                  <div className="flex gap-2 flex-col border-gray-300 p-2">
                   <div className="flex justify-center items-center">
-                        <Label className="text-sm font-bold">Values</Label>
+                        <Label className="text-sm">Values</Label>
                     </div>
                     <div>
-                        <Label className="text-sm font-bold">Description</Label>
+                        <Label className="text-sm">Description</Label>
                         <Textarea placeholder="Description" {...register("valuesDescription")} className="min-h-36"/>
                     </div>
                     <div>
-                      <ImageUploader onChange={(url) => setValue("valuesIcon", url)} value={watch("valuesIcon")} />
+                      <ImageUploader onChange={(url) => setValue("valuesIcon", url)} value={watch("valuesIcon")} isLogo />
                     </div>
                     <div>
-                        <Label className="text-sm font-bold">Alt Tag</Label>
+                        <Label className="text-sm">Alt Tag</Label>
                         <Input type="text" placeholder="Alt Tag" {...register("valuesAltTag")} />
                     </div>
                   </div>
                 </div>
             </form>
 
-            <div className="h-fit w-full p-2 border-2 border-gray-300 rounded-md mt-5">
+            <div className="h-fit w-full p-5 border-2 border-gray-300 rounded-md mt-5 bg-white">
                 <div className="flex justify-between border-b-2 pb-2">
                     <Label className="text-sm font-bold">Why Us</Label>
                     <Dialog>
@@ -452,7 +452,7 @@ export default function About() {
                                 <div className="flex flex-col gap-4 overflow-y-auto max-h-[500px]">
                                     <div>
                                         <Label>Icon</Label>
-                                        <ImageUploader onChange={(url) => setIcon(url)} value={icon} />
+                                        <ImageUploader onChange={(url) => setIcon(url)} value={icon} isLogo/>
                                     </div>
                                     <div>
                                         <Label>Alt Tag</Label>
@@ -479,16 +479,16 @@ export default function About() {
                 </div>
                 <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
                     {whyUsList.map((item, index) => (
-                        <div key={index} className="relative flex  justify-between border p-1 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300">
+                        <div key={index} className="relative flex  justify-between border p-2 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300">
                             <div className="flex gap-4 items-center">
-                                <div>
-                                    <Image src={item.icon} alt={item.title} width={100} height={100} />
+                                <div className="bg-black p-2">
+                                    <Image src={item.icon} alt={item.title} width={50} height={50} className="object-contain"/>
                                 </div>
                                 <div>
-                                    <h3 className="text-sm font-bold">{item.title}</h3>
+                                    <h3 className="text-sm">{item.title}</h3>
                                 </div>
                             </div>
-                            <div className="absolute top-1 right-1 flex gap-2">
+                            <div className="flex gap-2">
                                 <Dialog>
                                     <DialogTrigger className=" text-white px-2 py-1 rounded-md" onClick={() => { setTitle(item.title); setDescription(item.description); setIcon(item.icon); setBottomIcon(item.bottomIcon); setIconAltTag(item.iconAltTag); }}>
                                         <MdEdit className="text-black cursor-pointer"/>
@@ -499,7 +499,7 @@ export default function About() {
                                             <div className="flex flex-col gap-4 overflow-y-auto max-h-[500px]">
                                                 <div>
                                                     <Label>Icon</Label>
-                                                    <ImageUploader onChange={(url) => setIcon(url)} value={icon} />
+                                                    <ImageUploader onChange={(url) => setIcon(url)} value={icon} isLogo/>
                                                 </div>
                                                 <div>
                                                     <Label>Alt Tag</Label>

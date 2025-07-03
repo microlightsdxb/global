@@ -140,16 +140,16 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
 
     return (
         <div className='flex flex-col gap-5'>
-            <h1 className='text-lg font-bold'>{editMode ? "Edit Project" : "Add Project"}</h1>
-            <form className='flex flex-col gap-5 border p-2 rounded-md' onSubmit={handleSubmit(handleAddProject)}>
+            <h1 className='text-md font-bold'>{editMode ? "Edit Project" : "Add Project"}</h1>
+            <form className='flex flex-col gap-5 border p-5 rounded-md bg-white shadow-md' onSubmit={handleSubmit(handleAddProject)}>
                 <div className='grid grid-cols-2 gap-2'>
                     <div>
-                        <Label className='pl-3 font-bold'>Name</Label>
+                        <Label className=''>Name</Label>
                         <Input type='text' placeholder='Project Name' {...register("name", { required: "Name is required" })} />
                         {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
                     </div>
                     <div>
-                                            <Label className='pl-3 font-bold'>Slug</Label>
+                                            <Label className=''>Slug</Label>
                                             <Input type='text' placeholder='Product Slug' {...register("slug", { required: "Slug is required",pattern: {
                             value: /^[a-z0-9]+(-[a-z0-9]+)*$/,
                             message: "Slug must contain only lowercase letters, numbers, and hyphens (no spaces)"
@@ -158,23 +158,24 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                                         </div>
                     <div className='flex flex-col gap-2'>
                         <div>
-                        <Label className='pl-3 font-bold'>Thumbnail</Label>
+                        <Label className=''>Thumbnail</Label>
                         <ImageUploader onChange={(url)=>setValue("thumbnail",url)} value={watch("thumbnail")} />
                         {errors.thumbnail && <p className='text-red-500'>{errors.thumbnail.message}</p>}
                         </div>
                         <div>
-                        <Label className='pl-3 font-bold'>Alt Tag</Label>
+                        <Label className=''>Alt Tag</Label>
                         <Input type='text' placeholder='Alt Tag' {...register("thumbnailAlt")} />
                     </div>
                     </div>
                 </div>
+                <div className='grid grid-cols-4 gap-2'>
                 <div className='flex flex-col gap-2'>
-                    <Label className='pl-3 font-bold'>Client</Label>
+                    <Label className=''>Client</Label>
                     <Input type='text' placeholder='Client Name' {...register("client", { required: "Client is required" })} />
                     {errors.client && <p className='text-red-500'>{errors.client.message}</p>}
                 </div>
                 <div className='flex flex-col gap-2'>
-                    <Label className='pl-3 font-bold'>Industry</Label>
+                    <Label className=''>Industry</Label>
                     <Controller
                         name="industry"
                         control={control}
@@ -202,12 +203,12 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
 
                 </div>
                 <div className='flex flex-col gap-2'>
-                    <Label className='pl-3 font-bold'>Scope</Label>
+                    <Label className=''>Scope</Label>
                     <Input type='text' placeholder='Scope' {...register("scope", { required: "Scope is required" })} />
                     {errors.scope && <p className='text-red-500'>{errors.scope.message}</p>}
                 </div>
                 <div className='flex flex-col gap-2'>
-                    <Label className='pl-3 font-bold'>Location</Label>
+                    <Label className=''>Location</Label>
                     <Controller
                         name="location"
                         control={control}
@@ -233,8 +234,9 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                     />
                     {errors.location && <p className="text-red-500">{errors.location.message}</p>}
                 </div>
+                </div>
                 <div>
-                <Label className='pl-3 font-bold'>Description</Label>
+                <Label className=''>Description</Label>
                     <Controller name="description" control={control} rules={{ required: "Description is required" }} render={({ field }) => {
                         return <ReactQuill theme="snow" value={field.value} onChange={field.onChange} />
                     }} />
@@ -242,19 +244,20 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                 </div>
 
                 <div>
-                    <Label className="block text-sm font-bold text-gray-700">Gallery</Label>
+                    <Label className="block text-sm  text-gray-700">Gallery</Label>
                     <div className="mt-2">
                         <ImageUploader onChange={handleImageUpload} deleteAfterUpload={true} />
                     </div>
-                    <div className="mt-4 grid grid-cols-3 gap-4">
+                    <div className="mt-4 grid grid-cols-6 gap-4">
                         {imageUrls.map((url, index) => (
-                            <div key={index} className="relative h-40">
+                            <div key={url} className="relative h-40">
                                 <Image
                                     src={url}
                                     alt={`Uploaded image ${index + 1}`}
                                     className="h-full w-full object-cover rounded-lg"
-                                    width={100}
-                                    height={100}
+                                    width={50}
+                                    height={50}
+                                    loading="lazy"
                                 />
                                 <button
                                     type="button"
@@ -269,16 +272,16 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                 </div>
 
                 <div className='flex flex-col gap-2'>
-                    <Label className='pl-3 font-bold'>Meta Title</Label>
+                    <Label className=''>Meta Title</Label>
                     <Input type='text' placeholder='Meta Title' {...register("metaTitle")} />
                 </div>
                 <div className='flex flex-col gap-2'>
-                    <Label className='pl-3 font-bold'>Meta Description</Label>
+                    <Label className=''>Meta Description</Label>
                     <Input type='text' placeholder='Meta Description' {...register("metaDescription")} />
                 </div>
 
                 <div className='flex justify-center'>
-                    <Button type='submit'>Submit</Button>
+                    <Button type='submit' className='w-full'>Submit</Button>
                 </div>
 
             </form>

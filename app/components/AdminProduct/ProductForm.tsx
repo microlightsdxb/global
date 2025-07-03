@@ -253,16 +253,16 @@ const ProductForm = ({ editMode }: { editMode?: boolean }) => {
 
     return (
         <div className='flex flex-col gap-5'>
-            <h1 className='text-lg font-bold'>{editMode ? "Edit Product" : "Add Product"}</h1>
-            <form className='flex flex-col gap-5 border p-2 rounded-md' onSubmit={handleSubmit(handleAddProduct)}>
+            <h1 className='text-md font-bold'>{editMode ? "Edit Product" : "Add Product"}</h1>
+            <form className='flex flex-col gap-5 border p-5 rounded-md bg-white' onSubmit={handleSubmit(handleAddProduct)}>
                 <div className='grid grid-cols-2 gap-2'>
                     <div>
-                        <Label className='pl-3 font-bold'>Name</Label>
+                        <Label className=''>Name</Label>
                         <Input type='text' placeholder='Product Name' {...register("name", { required: "Name is required" })} />
                         {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
                     </div>
                     <div>
-                        <Label className='pl-3 font-bold'>Slug</Label>
+                        <Label className=''>Slug</Label>
                         <Input type='text' placeholder='Product Slug' {...register("slug", { required: "Slug is required",pattern: {
         value: /^[a-z0-9]+(-[a-z0-9]+)*$/,
         message: "Slug must contain only lowercase letters, numbers, and hyphens (no spaces)"
@@ -271,29 +271,30 @@ const ProductForm = ({ editMode }: { editMode?: boolean }) => {
                     </div>
                     <div>
                         <div className='flex flex-col gap-2'>
-                        <Label className='pl-3 font-bold'>Thumbnail</Label>
+                        <Label className=''>Thumbnail</Label>
                         <ImageUploader onChange={(url) => setValue("thumbnail", url)} value={watch("thumbnail")}/>
                         {errors.thumbnail && <p className='text-red-500'>{errors.thumbnail.message}</p>}
                         <div>
-                        <Label className='pl-3 font-bold'>Alt Tag</Label>
+                        <Label className=''>Alt Tag</Label>
                         <Input type='text' placeholder='Alt Tag' {...register("altTag")} />
                         </div>
                     </div>
                     </div>
                     
                 </div>
+                <div className='grid grid-cols-4 gap-2'>
                 <div className='flex flex-col gap-2'>
-                    <Label className='pl-3 font-bold'>Wattage</Label>
+                    <Label className=''>Wattage</Label>
                     <Input type='text' placeholder='Wattage' {...register("wattage", { required: "Wattage is required" })} />
                     {errors.wattage && <p className='text-red-500'>{errors.wattage.message}</p>}
                 </div>
                 <div className='flex flex-col gap-2'>
-                    <Label className='pl-3 font-bold'>Lumen</Label>
+                    <Label className=''>Lumen</Label>
                     <Input type='text' placeholder='Lumen' {...register("lumen", { required: "Lumen is required" })} />
                     {errors.lumen && <p className='text-red-500'>{errors.lumen.message}</p>}
                 </div>
                 <div className='flex flex-col gap-2'>
-                    <Label className='pl-3 font-bold'>Type</Label>
+                    <Label className=''>Type</Label>
                     <Controller
                         name="type"
                         control={control}
@@ -322,7 +323,7 @@ const ProductForm = ({ editMode }: { editMode?: boolean }) => {
                 </div>
 
                 <div className='flex flex-col gap-2'>
-                    <Label className='pl-3 font-bold'>Category</Label>
+                    <Label className=''>Category</Label>
                     <Controller
                         name="category"
                         control={control}
@@ -349,14 +350,15 @@ const ProductForm = ({ editMode }: { editMode?: boolean }) => {
                     />
                     {errors.category && <p className="text-red-500">{errors.category.message}</p>}
                 </div>
+                </div>
 
                 <div className='flex flex-col gap-2'>
-                    <Label className='pl-3 font-bold'>Data Sheet</Label>
+                    <Label className=''>Data Sheet</Label>
                     <FileUploader onChange={(url)=>setValue("file",url)} value={watch("file")}/>
                 </div>
 
                 <div>
-                    <Label className="block text-sm font-bold text-gray-700">Gallery</Label>
+                    <Label className="">Gallery</Label>
                     <div className="mt-2">
                         <ImageUploader onChange={handleImageUpload} deleteAfterUpload={true} />
                     </div>
@@ -384,7 +386,7 @@ const ProductForm = ({ editMode }: { editMode?: boolean }) => {
 
                 <div className='flex flex-col gap-2'>
                     <div className='flex gap-2'>
-                        <Label className='pl-3 font-bold'>Specifications</Label>
+                        <Label className=''>Specifications</Label>
                         <Dialog>
                             <DialogTrigger><FaPlusCircle /></DialogTrigger>
                             <DialogContent>
@@ -419,11 +421,11 @@ const ProductForm = ({ editMode }: { editMode?: boolean }) => {
                                                                 <DialogTitle>Add Item</DialogTitle>
 
                                                                 <div className='flex gap-2'>
-                                                                    <Label className='text-sm'>Title</Label>
+                                                                    <Label className=''>Title</Label>
                                                                     <Input type="text" value={itemTitle} onChange={(e) => setItemTitle(e.target.value)} />
                                                                 </div>
                                                                 <div className='flex gap-2'>
-                                                                    <Label className='text-sm'>Value</Label>
+                                                                    <Label className=''>Value</Label>
                                                                     <Input type="text" value={itemValue} onChange={(e) => setItemValue(e.target.value)} />
                                                                 </div>
 
@@ -433,8 +435,9 @@ const ProductForm = ({ editMode }: { editMode?: boolean }) => {
 
                                                     </Dialog>
                                                 </div>
+                                                <div className="border p-2">
                                                 {specificationItems.map((item,itemIdex) => (
-                                                    <div className='flex justify-between border p-2 rounded-md gap-2 relative' key={itemIdex}>
+                                                    <div className='flex justify-between border-b gap-2 relative pb-5 pt-5' key={itemIdex}>
                                                         
                                                         <Dialog>
                                                         <DialogTrigger onClick={()=>{setEditItemId(itemIdex);setItemTitle(item.title);setItemValue(item.value);}}><MdEdit className='absolute top-1 right-10'/></DialogTrigger>
@@ -462,15 +465,16 @@ const ProductForm = ({ editMode }: { editMode?: boolean }) => {
 
 
                                                         <div>
-                                                            <Label className='text-sm font-bold'>Title</Label>
+                                                            <Label className=''>Title</Label>
                                                             <Input type='text' value={item.title} readOnly />
                                                         </div>
                                                         <div>
-                                                            <Label className='text-sm font-bold'>Value</Label>
+                                                            <Label className=''>Value</Label>
                                                             <Input type='text' value={item.value} readOnly />
                                                         </div>
                                                     </div>
                                                 ))}
+                                                </div>
 
                                                 <DialogClose onClick={handleSetSpecification} className='bg-black text-white px-2 py-1 rounded-md'>Confirm</DialogClose>
                                             </SheetHeader>
@@ -506,7 +510,7 @@ const ProductForm = ({ editMode }: { editMode?: boolean }) => {
 
                 <div className="h-fit w-full p-2 border-2 border-gray-300 rounded-md mt-5">
                     <div className="flex justify-between border-b-2 pb-2">
-                        <Label className="text-sm font-bold">Meta Section</Label>
+                        <Label className="text-sm">Meta Section</Label>
                     </div>
                     <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
                         <div>
@@ -521,7 +525,7 @@ const ProductForm = ({ editMode }: { editMode?: boolean }) => {
                 </div>
 
                 <div className='flex justify-center'>
-                    <Button type='submit'>Submit</Button>
+                    <Button type='submit' className='w-full cursor-pointer'>Submit</Button>
                 </div>
 
             </form>

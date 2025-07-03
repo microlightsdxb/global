@@ -417,9 +417,9 @@ export default function AdminHome() {
 
 
     return (
-        <div className="h-screen grid grid-cols-1 gap-5">
+        <div className="grid grid-cols-1 gap-5">
 
-            <div className="h-fit w-full p-2 border-2 border-gray-300 rounded-md mt-5">
+            <div className="h-fit w-full p-5 shadow-md border-gray-300 rounded-md mt-5 bg-white">
                 <div className="flex justify-between border-b-2 pb-2">
                     <Label className="text-sm font-bold">Meta Section</Label>
                     <Button onClick={submitMetaSection}>Save</Button>
@@ -436,7 +436,7 @@ export default function AdminHome() {
                 </div>
             </div>
 
-            <div className="h-fit w-full p-2 border-2 border-gray-300 rounded-md mt-5">
+            <div className="h-fit w-full p-5 shadow-md border-gray-300 rounded-md mt-5 bg-white">
                 <div className="flex justify-between border-b-2 pb-2">
                     <Label className="text-sm font-bold">Banners</Label>
                     <Dialog>
@@ -470,16 +470,16 @@ export default function AdminHome() {
                 </div>
                 <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
                     {banners.map((item, index) => (
-                        <div key={index} className="relative flex  justify-between border p-1 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300">
+                        <div key={index} className="relative flex  justify-between border p-2 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300">
                             <div className="flex gap-4 items-center">
                                 <div>
                                     <Image src={item.image} alt={item.title} width={100} height={100} />
                                 </div>
                                 <div>
-                                    <h3 className="text-sm font-bold">{item.title}</h3>
+                                    <h3 className="text-sm">{item.title}</h3>
                                 </div>
                             </div>
-                            <div className="absolute top-1 right-1 flex gap-2">
+                            <div className="flex gap-2">
                                 <Dialog>
                                     <DialogTrigger className=" text-white px-2 py-1 rounded-md" onClick={() => { setTitle(item.title); setSubTitle(item.subTitle); setImage(item.image); setBannerAltTag(item.bannerAltTag) }}>
                                         <MdEdit className="text-black cursor-pointer" />
@@ -520,7 +520,7 @@ export default function AdminHome() {
                 </div>
             </div>
 
-<form onSubmit={handleSubmit(submitIndustriesSection)} className='p-2 border-2 border-gray-300 rounded-md'>
+<form onSubmit={handleSubmit(submitIndustriesSection)} className='p-5 shadow-md border-gray-300 rounded-md bg-white'>
                 <div className="flex justify-between border-b-2 pb-2 mb-5">
                     <Label className="text-sm font-bold">Industries Section</Label>
                     <Button type="submit">Save</Button>
@@ -528,12 +528,12 @@ export default function AdminHome() {
                 <div className='flex flex-col gap-5'>
                 <div className='flex flex-col gap-2'>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='font-bold'>Title</Label>
+                                    <Label className=''>Title</Label>
                                     <Input type='text' placeholder='Title' {...register(`industries.title`)} />
                                 </div>
                             </div>
                             <div>
-                    <Label className='font-bold'>Items</Label>
+                    <Label className=''>Items</Label>
                 <div className='border p-2 rounded-md flex flex-col gap-5'>
 
 
@@ -544,7 +544,7 @@ export default function AdminHome() {
                             </div>
                             <div className='grid grid-cols-2 gap-2'>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Image</Label>
+                                    <Label className=''>Image</Label>
                                     <Controller
                                         name={`industries.items.${index}.image`}
                                         control={control}
@@ -558,12 +558,12 @@ export default function AdminHome() {
                                     />
                                     {errors.industries?.items?.[index]?.image && <p className='text-red-500'>{errors.industries?.items?.[index]?.image.message}</p>}
                                     <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Alt Tag</Label>
+                                    <Label className=''>Alt Tag</Label>
                                     <Input type='text' placeholder='Alt Tag' {...register(`industries.items.${index}.imageAlt`)} />
                                 </div>
                                 </div>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Logo</Label>
+                                    <Label className=''>Logo</Label>
                                     <Controller
                                         name={`industries.items.${index}.logo`}
                                         control={control}
@@ -572,18 +572,19 @@ export default function AdminHome() {
                                             <ImageUploader
                                                 value={field.value}
                                                 onChange={field.onChange}
+                                                isLogo
                                             />
                                         )}
                                     />
                                     {errors.industries?.items?.[index]?.logo && <p className='text-red-500'>{errors.industries?.items?.[index]?.logo.message}</p>}
                                     <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Alt Tag</Label>
+                                    <Label className=''>Alt Tag</Label>
                                     <Input type='text' placeholder='Alt Tag' {...register(`industries.items.${index}.logoAlt`)} />
                                 </div>
                                 </div>
                                 <div className='flex flex-col gap-2'>
                                 <div className='flex flex-col gap-2'>
-                                    <Label className='pl-3 font-bold'>Title</Label>
+                                    <Label className=''>Title</Label>
                                     <Input type='text' placeholder='Title' {...register(`industries.items.${index}.title`)} />
                                 </div>
                                 </div>
@@ -605,40 +606,42 @@ export default function AdminHome() {
                 </form>
 
 
-            <form className="h-full w-full p-2 border-2 border-gray-300 rounded-md" onSubmit={handleSubmit(submitAboutSection)}>
+            <form className="h-full w-full p-5 shadow-md border-gray-300 rounded-md bg-white" onSubmit={handleSubmit(submitAboutSection)}>
                 <div className="flex justify-between border-b-2 pb-2">
                     <Label className="text-sm font-bold">About Section</Label>
                     <Button type="submit">Save</Button>
                 </div>
                 <div className="mt-2 flex flex-col gap-2 h-fit">
                     <div>
-                        <Label className="text-sm font-bold">Title</Label>
+                        <Label className="text-sm">Title</Label>
                         <Input type="text" placeholder="Title" {...register("aboutTitle")} />
                     </div>
                     <div>
-                        <Label className="text-sm font-bold">Description</Label>
+                        <Label className="text-sm">Description</Label>
                         <Controller name="aboutDescription" control={control} rules={{ required: "Content is required" }} render={({ field }) => {
                             return <ReactQuill theme="snow" value={field.value} onChange={field.onChange} />
                         }} />
                     </div>
+                    <div className="grid grid-cols-3 gap-2">
                     <div>
-                        <Label className="text-sm font-bold">Years of Experience</Label>
+                        <Label className="text-sm">Years of Experience</Label>
                         <Input type="number" placeholder="Years of Experience" {...register("years")} />
                     </div>
                     <div>
-                        <Label className="text-sm font-bold">Projects</Label>
+                        <Label className="text-sm">Projects</Label>
                         <Input type="number" placeholder="Projects" {...register("projects")} />
                     </div>
                     <div>
-                        <Label className="text-sm font-bold">Clients</Label>
+                        <Label className="text-sm">Clients</Label>
                         <Input type="number" placeholder="Clients" {...register("clients")} />
                     </div>
+                    </div>
                     <div>
-                        <Label className="text-sm font-bold">Image</Label>
+                        <Label className="text-sm">Image</Label>
                         <ImageUploader onChange={(url) => setValue("aboutImage", url)} value={watch("aboutImage")} />
                     </div>
                     <div>
-                        <Label className="text-sm font-bold">Image Alt Tag</Label>
+                        <Label className="text-sm">Image Alt Tag</Label>
                         <Input type="text" placeholder="Image Alt Tag" {...register("aboutImageAltTag")} />
                     </div>
                 </div>
@@ -647,7 +650,7 @@ export default function AdminHome() {
 
 
 
-            <div className="h-fit w-full p-2 border-2 border-gray-300 rounded-md mt-5">
+            <div className="h-fit w-full p-5 shadow-md border-gray-300 rounded-md mt-5 bg-white">
                 <div className="flex justify-between border-b-2 pb-2">
                     <Label className="text-sm font-bold">Process</Label>
                     <Dialog>
@@ -672,7 +675,7 @@ export default function AdminHome() {
                         <div key={index} className="relative flex  justify-between border p-1 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300">
                             <div className="flex gap-4 items-center">
                                 <div>
-                                    <h3 className="text-sm font-bold">{item.title}</h3>
+                                    <h3 className="text-sm">{item.title}</h3>
                                 </div>
                             </div>
                             <div className="absolute top-1 right-1 flex gap-2">
@@ -705,7 +708,7 @@ export default function AdminHome() {
             </div>
 
 
-            <div className="h-fit w-full p-2 border-2 border-gray-300 rounded-md mt-5">
+            <div className="h-fit w-full p-5 shadow-md border-gray-300 rounded-md mt-5 bg-white">
                 <div className="flex justify-between border-b-2 pb-2">
                     <Label className="text-sm font-bold">Testimonials</Label>
                     <Dialog>
@@ -741,12 +744,12 @@ export default function AdminHome() {
 
                     </Dialog>
                 </div>
-                <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
+                <div className="mt-2 grid grid-cols-1 gap-2 h-fit">
                     {testimonials.map((item, index) => (
                         <div key={index} className="relative flex  justify-between border p-1 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300">
                             <div className="flex gap-4 items-center">
                                 <div>
-                                    <h3 className="text-sm font-bold">{item.name}</h3>
+                                    <h3 className="text-sm">{item.name}</h3>
                                 </div>
                             </div>
                             <div className="absolute top-1 right-1 flex gap-2">

@@ -254,7 +254,7 @@ const AdminContact = () => {
 
     return (
         <div className=" grid grid-cols-1 gap-10">
-            <div className="h-fit w-full p-2 border-2 border-gray-300 rounded-md mt-5">
+            <div className="h-fit w-full p-5 shadow-md border-gray-300 rounded-md mt-5 bg-white">
                             <div className="flex justify-between border-b-2 pb-2">
                                 <Label className="text-sm font-bold">Meta Section</Label>
                                 <Button onClick={handleSaveMeta}>Save</Button>
@@ -270,7 +270,7 @@ const AdminContact = () => {
                                 </div>
                             </div>
                         </div>
-            <div className="h-full w-full p-2 border-2 border-gray-300 rounded-md">
+            <div className="h-full w-full p-5 shadow-md border-gray-300 rounded-md bg-white">
                 <div className="flex justify-between border-b-2 pb-2">
                     <Label className="text-sm font-bold">Regions</Label>
                     <Dialog>

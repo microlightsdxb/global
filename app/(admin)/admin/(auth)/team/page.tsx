@@ -197,9 +197,9 @@ export default function Team() {
     }
 
     return (
-        <div className="h-screen grid grid-cols-1 gap-5">
+        <div className="grid grid-cols-1 gap-5">
 
-            <div className="h-fit w-full p-2 border-2 border-gray-300 rounded-md mt-5">
+            <div className="h-fit w-full p-5 shadow-md border-gray-300 rounded-md mt-5 bg-white">
                                         <div className="flex justify-between border-b-2 pb-2">
                                             <Label className="text-sm font-bold">Meta Section</Label>
                                             <Button onClick={submitMetaSection}>Save</Button>
@@ -216,30 +216,30 @@ export default function Team() {
                                         </div>
                                     </div>
 
-            <form className="h-full w-full p-2 border-2 border-gray-300 rounded-md" onSubmit={handleSubmit(onSubmit)}>
+            <form className="h-full w-full p-5 shadow-md border-gray-300 rounded-md bg-white" onSubmit={handleSubmit(onSubmit)}>
                 <div className="flex justify-between border-b-2 pb-2">
                     <Label className="text-sm font-bold">MD Section</Label>
                     <Button type="submit">Save</Button>
                 </div>
                 <div className="mt-2 flex flex-col gap-2 h-fit">
                     <div>
-                        <Label className="text-sm font-bold">Name</Label>
+                        <Label className="text-sm">Name</Label>
                         <Input type="text" placeholder="Name" {...register("name")} />
                     </div>
                     <div>
-                        <Label className="text-sm font-bold">Designation</Label>
+                        <Label className="text-sm">Designation</Label>
                         <Input type="text" placeholder="Designation" {...register("designation")} />
                     </div>
                     <div>
-                        <Label className="text-sm font-bold">Image</Label>
+                        <Label className="text-sm">Image</Label>
                         <ImageUploader onChange={(url) => setValue("image", url)} value={watch("image")} />
                     </div>
                     <div>
-                        <Label className="text-sm font-bold">Alt Tag</Label>
+                        <Label className="text-sm">Alt Tag</Label>
                         <Input type="text" placeholder="Alt Tag" {...register("mdImageAlt")} />
                     </div>
                     <div>
-                        <Label className="text-sm font-bold">Description</Label>
+                        <Label className="text-sm">Description</Label>
                         <Controller name="description" control={control} rules={{ required: "Content is required" }} render={({ field }) => {
                             return <ReactQuill theme="snow" value={field.value} onChange={field.onChange} />
                         }} />
@@ -250,7 +250,7 @@ export default function Team() {
 
 
 
-            <div className="h-full w-full p-2 border-2 border-gray-300 rounded-md">
+            <div className="h-full w-full p-5 shadow-md border-gray-300 rounded-md bg-white">
                 <div className="flex justify-between border-b-2 pb-2">
                     <Label className="text-sm font-bold">Members</Label>
                     <Dialog>
@@ -284,7 +284,7 @@ export default function Team() {
                 </div>
                 <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
                     {memberList.map((member, index) => (
-                        <div key={index} className="relative flex  justify-between border p-1 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300">
+                        <div key={index} className="relative flex  justify-between border-b p-2 px-4 items-center shadow-md hover:shadow-lg transition-all duration-300">
                             <div className="flex gap-4 items-center">
                                 <div>
                                     <Image src={member.image} alt={member.name} width={100} height={100} />
@@ -293,7 +293,7 @@ export default function Team() {
                                     <h3 className="text-sm font-bold">{member.name}</h3>
                                 </div>
                             </div>
-                            <div className="absolute top-1 right-1 flex gap-2">
+                            <div className=" flex gap-2">
                                 <Dialog>
                                     <DialogTrigger className=" text-white px-2 py-1 rounded-md" onClick={() => { setName(member.name); setDesignation(member.designation); setImage(member.image); setImageAlt(member.imageAlt) }}>
 

@@ -64,7 +64,7 @@ const CodePage = () => {
                 <Textarea {...register('bodyScript')}></Textarea>
             </div>
             <div className="flex justify-center">
-                <Button type="submit" className='w-fit cursor-pointer'>Submit</Button>
+                <Button type="submit" className='w-full cursor-pointer'>Submit</Button>
             </div>
         </form>
     )
