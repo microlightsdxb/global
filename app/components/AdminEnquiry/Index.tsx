@@ -74,13 +74,13 @@ const AdminEnquiry = () => {
                 </div>
                 <div className="mt-2 flex flex-col gap-2 h-[80%] overflow-y-auto">
                     {enquiryList.map((item) => (
-                        <div className="flex justify-between border p-1 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300" key={item._id}>
-                            <div className='text-sm'>
+                        <div className="flex justify-between border p-2 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300" key={item._id}>
+                            <div className='text-[16px]'>
                                 {item.name}
                             </div>
                             <div className="flex gap-5">
                                 <Dialog>
-                                    <DialogTrigger><BiExpandAlt /></DialogTrigger>
+                                    <DialogTrigger className='cursor-pointer'><BiExpandAlt /></DialogTrigger>
                                     <DialogContent>
                                         <DialogHeader>
                                             <DialogTitle>Details</DialogTitle>
@@ -115,7 +115,7 @@ const AdminEnquiry = () => {
                                 </Dialog>
 
 
-                                <MdDelete onClick={() => handleDeleteEnquiry(item._id)} />
+                                <MdDelete className='cursor-pointer' onClick={() => handleDeleteEnquiry(item._id)} />
 
                             </div>
                         </div>

@@ -185,11 +185,11 @@ export default function Blogs() {
                                       <Button onClick={submitMetaSection}>Save</Button>
                                   </div>
                                   <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
-                                      <div>
+                                      <div className="flex flex-col gap-1">
                                           <Label>Meta title</Label>
                                           <Input type="text" value={metaTitle} onChange={(e) => setMetaTitle(e.target.value)} />
                                       </div>
-                                      <div>
+                                      <div className="flex flex-col gap-1">
                                           <Label>Meta Description</Label>
                                           <Input type="text" value={metaDescription} onChange={(e) => setMetaDescription(e.target.value)} />
                                       </div>
@@ -215,8 +215,8 @@ export default function Blogs() {
           </div>
           <div className="mt-2 flex flex-col gap-2 overflow-y-scroll h-3/4">
             {categoryList.map((item)=>(
-              <div className="flex justify-between border p-1 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300" key={item._id}>
-              <div>
+              <div className="flex justify-between border p-3 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300" key={item._id}>
+              <div className="text-[16px]">
                 {item.name}
               </div>
               <div className="flex gap-5">
@@ -270,7 +270,7 @@ export default function Blogs() {
           {blogList.map((item)=>(
             <div className="flex justify-between border-b p-2 items-center shadow-md hover:shadow-lg transition-all duration-300 h-32" key={item._id}>
             <div className="h-24">
-              <div className="flex gap-2 items-center h-full">
+              <div className="flex gap-2 items-center h-full text-[16px]">
                 <Image src={item.image} alt={item.title} width={100} height={100} className="h-full object-cover"/>
                 {item.title}
               </div>

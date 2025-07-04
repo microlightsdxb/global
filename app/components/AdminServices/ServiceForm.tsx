@@ -160,7 +160,7 @@ const ServiceForm = () => {
             <h1 className='text-md font-bold'>{"Edit Service"}</h1>
             <form className='flex flex-col gap-5 p-2 rounded-md' onSubmit={handleSubmit(onSubmit)}>
                 <div className='grid grid-cols-1 gap-2 shadow-md p-5 bg-white rounded-md'>
-                    <div>
+                    <div className='flex flex-col gap-1'>
                         <Label className=''>Page Banner</Label>
                         <ImageUploader onChange={(url) => setValue("pageBanner", url)} value={watch("pageBanner")} />
                         {errors.pageBanner && <p className='text-red-500'>{errors.pageBanner.message}</p>}
@@ -207,12 +207,12 @@ const ServiceForm = () => {
                         defaultValue=""
                         render={({ field }) => (
                             <Select onValueChange={(value)=>{field.onChange(value)}} value={field.value}>
-                                <SelectTrigger className="w-full">
+                                <SelectTrigger className="w-full text-[16px]">
                                     <SelectValue placeholder="Style" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="icon">With icon</SelectItem>
-                                    <SelectItem value="image">With image</SelectItem>
+                                    <SelectItem value="icon" className='text-[16px]'>With icon</SelectItem>
+                                    <SelectItem value="image" className='text-[16px]'>With image</SelectItem>
                                 </SelectContent>
                             </Select>
                         )}
@@ -222,7 +222,7 @@ const ServiceForm = () => {
 
                 <div className='flex flex-col gap-5 p-3 border-2 border-dashed rounded-md'>
                     <div className='flex justify-between'>
-                        <h1 className=''>Items</h1>
+                        <h1 className='text-[16px]'>Items</h1>
                         <Dialog>
                             <DialogTrigger className="bg-black text-white px-2 py-1 rounded-md" onClick={()=>{setValue("itemTitle", "");setValue("itemDescription", "");setValue("itemImage", "");setValue("itemAnimImage", "");setValue("itemImageAlt", "")}}>Add Item</DialogTrigger>
                             <DialogContent>
@@ -263,7 +263,7 @@ const ServiceForm = () => {
                                     <Image src={item.image} width={100} height={100} alt='image' />
                                 </div>
                                 <div className='flex gap-5 items-center h-full'>
-                                    <div>{item.title}</div>
+                                    <div className='text-[16px]'>{item.title}</div>
                                 </div>
                                 <div className='flex gap-5'>
 

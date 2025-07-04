@@ -108,11 +108,11 @@ const AdminServices = () => {
                         <DialogHeader>
                             <DialogTitle>Add Item</DialogTitle>
                             <div className="flex flex-col gap-4 overflow-y-auto max-h-[500px]">
-                                <div>
+                                <div className='flex flex-col gap-1'>
                                     <Label>Name</Label>
                                     <Input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
                                 </div>
-                                <div>
+                                <div className='flex flex-col gap-1'>
                                     <Label>Slug</Label>
                                     <Input type="text" readOnly placeholder="Slug" value={slug} onChange={(e) => setSlug(e.target.value)} />
                                 </div>
@@ -127,7 +127,7 @@ const AdminServices = () => {
                 {services.map((service, index) => (
                     <div key={index} className='flex justify-between border p-4 rounded-md items-center shadow-md hover:shadow-lg transition-all duration-300'>
                         <div className='flex gap-5 items-center h-full'>
-                            <div>{service.name}</div>
+                            <div className='text-[16px]'>{service.name}</div>
                         </div>
                         <div className='flex gap-5'>
                             {/* <Link href={`/admin/services/edit/${service._id}`}><MdEdit /></Link> */}
@@ -135,13 +135,13 @@ const AdminServices = () => {
                                 <DialogTrigger onClick={() => { setName(service.name); setSlug(service.slug) }}><MdEdit /></DialogTrigger>
                                 <DialogContent>
                                     <DialogHeader>
-                                        <DialogTitle>Add Item</DialogTitle>
+                                        <DialogTitle>Edit Item</DialogTitle>
                                         <div className="flex flex-col gap-4 overflow-y-auto max-h-[500px]">
-                                            <div>
+                                            <div className='flex flex-col gap-1'>
                                                 <Label>Name</Label>
                                                 <Input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
                                             </div>
-                                            <div>
+                                            <div className='flex flex-col gap-1'>
                                                 <Label>Slug</Label>
                                                 <Input type="text" readOnly placeholder="Slug" value={slug} onChange={(e) => setSlug(e.target.value)} />
                                             </div>

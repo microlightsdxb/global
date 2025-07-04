@@ -260,11 +260,11 @@ export default function Projects() {
           <Button onClick={handleSaveMeta}>Save</Button>
         </div>
         <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
-          <div>
+          <div className="flex flex-col gap-1">
             <Label>Meta title</Label>
             <Input type="text" value={metaTitle} onChange={(e) => setMetaTitle(e.target.value)} />
           </div>
-          <div>
+          <div className="flex flex-col gap-1">
             <Label>Meta Description</Label>
             <Input type="text" value={metaDescription} onChange={(e) => setMetaDescription(e.target.value)} />
           </div>
@@ -291,10 +291,10 @@ export default function Projects() {
 
               </Dialog>
             </div>
-            <div className="mt-2 flex flex-col gap-2 overflow-y-scroll h-full">
+            <div className="mt-2 flex flex-col gap-2 overflow-y-scroll h-[80%]">
               {industryList.map((item) => (
-                <div className="flex justify-between border p-1 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300" key={item._id}>
-                  <div>
+                <div className="flex justify-between border p-2 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300" key={item._id}>
+                  <div className="text-[16px]">
                     {item.name}
                   </div>
                   <div className="flex gap-5">
@@ -356,10 +356,10 @@ export default function Projects() {
             </div>
             <div className="h-full">
 
-              <div className="mt-2 flex flex-col gap-2 overflow-y-scroll h-full">
+              <div className="mt-2 flex flex-col gap-2 overflow-y-scroll h-[80%]">
                 {locationList.map((item) => (
-                  <div className="flex justify-between border p-1 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300" key={item._id}>
-                    <div>
+                  <div className="flex justify-between border p-2 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300" key={item._id}>
+                    <div className="text-[16px]">
                       {item.name}
                     </div>
                     <div className="flex gap-5">
@@ -410,10 +410,10 @@ export default function Projects() {
             <Label className="text-sm font-bold">Projects</Label>
             <Button onClick={() => router.push("/admin/projects/add")}>Add Project</Button>
           </div>
-          <div className="mt-2 flex flex-col gap-2 overflow-y-scroll h-full">
+          <div className="mt-2 flex flex-col gap-2 overflow-y-scroll h-[90%]">
             {projectList.map((item) => (
-              <div className="flex justify-between border p-1 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300" key={item._id}>
-                <div>
+              <div className="flex justify-between border p-2 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300" key={item._id}>
+                <div className="text-[16px]">
                   {item.name}
                 </div>
                 <div className="flex gap-5">

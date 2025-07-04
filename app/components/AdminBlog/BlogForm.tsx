@@ -119,12 +119,12 @@ const BlogForm = ({ editMode }: { editMode?: boolean }) => {
             <h1 className='text-md font-bold'>{editMode ? "Edit Blog" : "Add Blog"}</h1>
             <form className='flex flex-col gap-5 border p-5 rounded-md shadow-md bg-white' onSubmit={handleSubmit(handleAddBlog)}>
 
-                <div>
+                <div className="flex flex-col gap-1">
                     <Label className=''>Title</Label>
                     <Input type='text' placeholder='Title' {...register("title", { required: "Title is required" })} />
                     {errors.title && <p className='text-red-500'>{errors.title.message}</p>}
                 </div>
-                <div>
+                <div className="flex flex-col gap-1">
                     <Label className=''>Slug</Label>
                     <Input type='text' placeholder='Blog Slug' {...register("slug", {
                         required: "Slug is required", pattern: {
@@ -164,18 +164,18 @@ const BlogForm = ({ editMode }: { editMode?: boolean }) => {
                 </div>
 
 
-                <div>
+                <div className="flex flex-col gap-1">
                     <Label className=''>Image</Label>
                     <ImageUploader onChange={(url) => setValue("image", url)} value={watch("image")} />
                     {errors.image && <p className='text-red-500'>{errors.image.message}</p>}
                 </div>
 
-                <div>
+                <div className="flex flex-col gap-1">
                     <Label className=''>Alt Tag</Label>
                     <Input type='text' placeholder='Alt Tag' {...register("imageAlt")} />
                 </div>
 
-                <div>
+                <div className="flex flex-col gap-1">
                     <Label className=''>Content</Label>
                     <Controller name="content" control={control} rules={{ required: "Content is required" }} render={({ field }) => {
                         return <ReactQuill theme="snow" value={field.value} onChange={field.onChange} />
@@ -188,11 +188,11 @@ const BlogForm = ({ editMode }: { editMode?: boolean }) => {
                         <Label className="text-sm font-bold">Meta Section</Label>
                     </div>
                     <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
-                        <div>
+                        <div className="flex flex-col gap-1">
                             <Label>Meta title</Label>
                             <Input type="text" {...register("metaTitle")} />
                         </div>
-                        <div>
+                        <div className="flex flex-col gap-1">
                             <Label>Meta Description</Label>
                             <Input type="text" {...register("metaDescription")} />
                         </div>
