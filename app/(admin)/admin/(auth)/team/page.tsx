@@ -205,11 +205,11 @@ export default function Team() {
                                             <Button onClick={submitMetaSection}>Save</Button>
                                         </div>
                                         <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
-                                            <div>
+                                            <div className="flex flex-col gap-1">
                                                 <Label>Meta title</Label>
                                                 <Input type="text" value={metaTitle} onChange={(e) => setMetaTitle(e.target.value)} />
                                             </div>
-                                            <div>
+                                            <div className="flex flex-col gap-1">
                                                 <Label>Meta Description</Label>
                                                 <Input type="text" value={metaDescription} onChange={(e) => setMetaDescription(e.target.value)} />
                                             </div>
@@ -222,24 +222,24 @@ export default function Team() {
                     <Button type="submit">Save</Button>
                 </div>
                 <div className="mt-2 flex flex-col gap-2 h-fit">
-                    <div>
-                        <Label className="text-sm">Name</Label>
+                    <div className="flex flex-col gap-1">
+                        <Label className="">Name</Label>
                         <Input type="text" placeholder="Name" {...register("name")} />
                     </div>
-                    <div>
-                        <Label className="text-sm">Designation</Label>
+                    <div className="flex flex-col gap-1">
+                        <Label className="">Designation</Label>
                         <Input type="text" placeholder="Designation" {...register("designation")} />
                     </div>
-                    <div>
-                        <Label className="text-sm">Image</Label>
+                    <div className="flex flex-col gap-1">
+                        <Label className="">Image</Label>
                         <ImageUploader onChange={(url) => setValue("image", url)} value={watch("image")} />
                     </div>
-                    <div>
-                        <Label className="text-sm">Alt Tag</Label>
+                    <div className="flex flex-col gap-1">
+                        <Label className="">Alt Tag</Label>
                         <Input type="text" placeholder="Alt Tag" {...register("mdImageAlt")} />
                     </div>
-                    <div>
-                        <Label className="text-sm">Description</Label>
+                    <div className="flex flex-col gap-1">
+                        <Label className="">Description</Label>
                         <Controller name="description" control={control} rules={{ required: "Content is required" }} render={({ field }) => {
                             return <ReactQuill theme="snow" value={field.value} onChange={field.onChange} />
                         }} />
@@ -290,7 +290,7 @@ export default function Team() {
                                     <Image src={member.image} alt={member.name} width={100} height={100} />
                                 </div>
                                 <div>
-                                    <h3 className="text-sm font-bold">{member.name}</h3>
+                                    <h3 className="text-[16px]">{member.name}</h3>
                                 </div>
                             </div>
                             <div className=" flex gap-2">

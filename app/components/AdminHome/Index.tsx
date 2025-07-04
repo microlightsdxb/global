@@ -425,11 +425,11 @@ export default function AdminHome() {
                     <Button onClick={submitMetaSection}>Save</Button>
                 </div>
                 <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
-                    <div>
-                        <Label>Meta title</Label>
-                        <Input type="text" value={metaTitle} onChange={(e) => setMetaTitle(e.target.value)} />
+                    <div className="flex flex-col gap-1">
+                        <Label className="">Meta title</Label>
+                        <Input type="text" className="text-[16px]" value={metaTitle} onChange={(e) => setMetaTitle(e.target.value)} />
                     </div>
-                    <div>
+                    <div className="flex flex-col gap-1">
                         <Label>Meta Description</Label>
                         <Input type="text" value={metaDescription} onChange={(e) => setMetaDescription(e.target.value)} />
                     </div>
@@ -476,7 +476,7 @@ export default function AdminHome() {
                                     <Image src={item.image} alt={item.title} width={100} height={100} />
                                 </div>
                                 <div>
-                                    <h3 className="text-sm">{item.title}</h3>
+                                    <h3 className="text-[16px]">{item.title}</h3>
                                 </div>
                             </div>
                             <div className="flex gap-2">
@@ -534,7 +534,7 @@ export default function AdminHome() {
                             </div>
                             <div>
                     <Label className=''>Items</Label>
-                <div className='border p-2 rounded-md flex flex-col gap-5'>
+                <div className='border p-2 rounded-md flex flex-col gap-5 mt-2'>
 
 
                     {industriesFields.map((field, index) => (
@@ -612,36 +612,36 @@ export default function AdminHome() {
                     <Button type="submit">Save</Button>
                 </div>
                 <div className="mt-2 flex flex-col gap-2 h-fit">
-                    <div>
-                        <Label className="text-sm">Title</Label>
+                    <div className='flex flex-col gap-1'>
+                        <Label className="">Title</Label>
                         <Input type="text" placeholder="Title" {...register("aboutTitle")} />
                     </div>
-                    <div>
-                        <Label className="text-sm">Description</Label>
+                    <div className='flex flex-col gap-1'>
+                        <Label className="">Description</Label>
                         <Controller name="aboutDescription" control={control} rules={{ required: "Content is required" }} render={({ field }) => {
                             return <ReactQuill theme="snow" value={field.value} onChange={field.onChange} />
                         }} />
                     </div>
-                    <div className="grid grid-cols-3 gap-2">
-                    <div>
-                        <Label className="text-sm">Years of Experience</Label>
+                    <div className="grid grid-cols-3 gap-2 mt-2">
+                    <div className='flex flex-col gap-1'>
+                        <Label className="">Years of Experience</Label>
                         <Input type="number" placeholder="Years of Experience" {...register("years")} />
                     </div>
-                    <div>
-                        <Label className="text-sm">Projects</Label>
+                    <div className='flex flex-col gap-1'>
+                        <Label className="">Projects</Label>
                         <Input type="number" placeholder="Projects" {...register("projects")} />
                     </div>
-                    <div>
-                        <Label className="text-sm">Clients</Label>
+                    <div className='flex flex-col gap-1'>
+                        <Label className="">Clients</Label>
                         <Input type="number" placeholder="Clients" {...register("clients")} />
                     </div>
                     </div>
-                    <div>
-                        <Label className="text-sm">Image</Label>
+                    <div className='flex flex-col gap-1'>
+                        <Label className="">Image</Label>
                         <ImageUploader onChange={(url) => setValue("aboutImage", url)} value={watch("aboutImage")} />
                     </div>
-                    <div>
-                        <Label className="text-sm">Image Alt Tag</Label>
+                    <div className='flex flex-col gap-1'>
+                        <Label className="">Image Alt Tag</Label>
                         <Input type="text" placeholder="Image Alt Tag" {...register("aboutImageAltTag")} />
                     </div>
                 </div>
@@ -672,10 +672,10 @@ export default function AdminHome() {
                 </div>
                 <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
                     {process.map((item, index) => (
-                        <div key={index} className="relative flex  justify-between border p-1 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300">
+                        <div key={index} className="relative flex  justify-between border p-2 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300">
                             <div className="flex gap-4 items-center">
                                 <div>
-                                    <h3 className="text-sm">{item.title}</h3>
+                                    <h3 className="text-[16px]">{item.title}</h3>
                                 </div>
                             </div>
                             <div className="absolute top-1 right-1 flex gap-2">
@@ -746,10 +746,10 @@ export default function AdminHome() {
                 </div>
                 <div className="mt-2 grid grid-cols-1 gap-2 h-fit">
                     {testimonials.map((item, index) => (
-                        <div key={index} className="relative flex  justify-between border p-1 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300">
+                        <div key={index} className="relative flex  justify-between border p-2 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300">
                             <div className="flex gap-4 items-center">
                                 <div>
-                                    <h3 className="text-sm">{item.name}</h3>
+                                    <h3 className="text-[16px]">{item.name}</h3>
                                 </div>
                             </div>
                             <div className="absolute top-1 right-1 flex gap-2">

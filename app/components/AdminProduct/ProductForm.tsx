@@ -405,7 +405,7 @@ const ProductForm = ({ editMode }: { editMode?: boolean }) => {
                         {specifications?.map((item, index) => (
                             <div className='flex justify-between border p-2 rounded-md' key={index}>
                                 <div className='flex gap-2'>
-                                    <div>{item.name}</div>
+                                    <div className='text-[16px]'>{item.name}</div>
                                 </div>
                                 <div className='flex gap-5 items-center'>
                                     <Sheet>
@@ -489,7 +489,6 @@ const ProductForm = ({ editMode }: { editMode?: boolean }) => {
                                                 <DialogTitle>Edit Specification</DialogTitle>
 
                                                 <div className='flex gap-2 flex-col'>
-                                                    <Label className='text-sm'>Name</Label>
                                                     <Input type="text" value={specificationName} onChange={(e) => setSpecificationName(e.target.value)} />
                                                 </div>
 

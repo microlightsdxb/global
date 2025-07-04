@@ -98,11 +98,11 @@ const ProductListing = () => {
                                 <Button onClick={submitMetaSection}>Save</Button>
                             </div>
                             <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
-                                <div>
+                                <div className='flex flex-col gap-1'>
                                     <Label>Meta title</Label>
                                     <Input type="text" value={metaTitle} onChange={(e) => setMetaTitle(e.target.value)} />
                                 </div>
-                                <div>
+                                <div className='flex flex-col gap-1'>
                                     <Label>Meta Description</Label>
                                     <Input type="text" value={metaDescription} onChange={(e) => setMetaDescription(e.target.value)} />
                                 </div>
@@ -121,7 +121,7 @@ const ProductListing = () => {
                         <div className='h-full w-24 relative'>
                         <Image src={product.thumbnail} alt={product.name} width={100} height={100} className='h-full w-full object-cover absolute top-0 left-0' />
                         </div>
-                    <div>{product.name}</div>
+                    <div className='text-[16px]'>{product.name}</div>
                 </div>
                 <div className='flex gap-5'>
                     <Link href={`/admin/products/edit/${product._id}`}><MdEdit/></Link>

@@ -143,12 +143,12 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
             <h1 className='text-md font-bold'>{editMode ? "Edit Project" : "Add Project"}</h1>
             <form className='flex flex-col gap-5 border p-5 rounded-md bg-white shadow-md' onSubmit={handleSubmit(handleAddProject)}>
                 <div className='grid grid-cols-2 gap-2'>
-                    <div>
+                    <div className='flex flex-col gap-1'>
                         <Label className=''>Name</Label>
                         <Input type='text' placeholder='Project Name' {...register("name", { required: "Name is required" })} />
                         {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
                     </div>
-                    <div>
+                    <div className='flex flex-col gap-1'>
                                             <Label className=''>Slug</Label>
                                             <Input type='text' placeholder='Product Slug' {...register("slug", { required: "Slug is required",pattern: {
                             value: /^[a-z0-9]+(-[a-z0-9]+)*$/,
@@ -156,13 +156,13 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                           } })} />
                                             {errors.slug && <p className='text-red-500'>{errors.slug.message}</p>}
                                         </div>
-                    <div className='flex flex-col gap-2'>
-                        <div>
+                    <div className='flex flex-col gap-1'>
+                        <div className='flex flex-col gap-1'>
                         <Label className=''>Thumbnail</Label>
                         <ImageUploader onChange={(url)=>setValue("thumbnail",url)} value={watch("thumbnail")} />
                         {errors.thumbnail && <p className='text-red-500'>{errors.thumbnail.message}</p>}
                         </div>
-                        <div>
+                        <div className='flex flex-col gap-1'>
                         <Label className=''>Alt Tag</Label>
                         <Input type='text' placeholder='Alt Tag' {...register("thumbnailAlt")} />
                     </div>
@@ -187,11 +187,11 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                                 defaultValue=""
                             >
                                 <SelectTrigger className="w-full">
-                                    <SelectValue placeholder="Select Industry" />
+                                    <SelectValue placeholder="Select Industry" className="text-[16px]"/>
                                 </SelectTrigger>
                                 <SelectContent>
                                     {industryList.map((item, index) => (
-                                        <SelectItem key={index} value={item.name}>
+                                        <SelectItem key={index} value={item.name} className="">
                                             {item.name}
                                         </SelectItem>
                                     ))}
@@ -220,11 +220,11 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                                 defaultValue=""
                             >
                                 <SelectTrigger className="w-full">
-                                    <SelectValue placeholder="Select Location" />
+                                    <SelectValue placeholder="Select Location" className="text-[16px]"/>
                                 </SelectTrigger>
                                 <SelectContent>
                                     {locationList.map((item, index) => (
-                                        <SelectItem key={index} value={item.name}>
+                                        <SelectItem key={index} value={item.name} className="text-[16px]">
                                             {item.name}
                                         </SelectItem>
                                     ))}
@@ -244,7 +244,7 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                 </div>
 
                 <div>
-                    <Label className="block text-sm  text-gray-700">Gallery</Label>
+                    <Label className="block text-[16px]  text-gray-700">Gallery</Label>
                     <div className="mt-2">
                         <ImageUploader onChange={handleImageUpload} deleteAfterUpload={true} />
                     </div>

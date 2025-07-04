@@ -494,11 +494,11 @@ export default function Sustainability() {
                                             <Button onClick={submitMetaSection}>Save</Button>
                                         </div>
                                         <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
-                                            <div>
+                                            <div className="flex flex-col gap-1">
                                                 <Label>Meta title</Label>
                                                 <Input type="text" {...register("metaTitle")} />
                                             </div>
-                                            <div>
+                                            <div className="flex flex-col gap-1">
                                                 <Label>Meta Description</Label>
                                                 <Input type="text" {...register("metaDescription")} />
                                             </div>
@@ -511,21 +511,21 @@ export default function Sustainability() {
                     <Button type="submit">Save</Button>
                 </div>
                 <div className="mt-2 flex flex-col gap-2 h-fit">
-                    <div>
+                    <div className="flex flex-col gap-1">
                         <Label className="">Title</Label>
                         <Input type="text" placeholder="Title" {...register("title")} />
                     </div>
-                    <div>
+                    <div className="flex flex-col gap-1">
                         <Label className="">Description</Label>
                         <Controller name="description" control={control} rules={{ required: "Content is required" }} render={({ field }) => {
                             return <ReactQuill theme="snow" value={field.value} onChange={field.onChange} />
                         }} />
                     </div>
-                    <div>
+                    <div className="flex flex-col gap-1">
                         <Label className="">Image</Label>
                         <ImageUploader onChange={(url) => setValue("image", url)} value={watch("image")}/>
                     </div>
-                    <div>
+                    <div className="flex flex-col gap-1">
                         <Label className="">Alt Tag</Label>
                         <Input type="text" placeholder="Alt Tag" {...register("imageAlt")} />
                     </div>
@@ -539,11 +539,11 @@ export default function Sustainability() {
                     <Button type="submit">Save</Button>
                 </div>
                 <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
-                    <div>
+                    <div className="flex flex-col gap-1">
                         <Label className="">Title</Label>
                         <Input type="text" placeholder="Title" {...register("secondSectionTitle")} />
                     </div>
-                    <div>
+                    <div className="flex flex-col gap-1">
                         <Label className="">Description</Label>
                         <Textarea placeholder="Description" {...register("secondSectionDescription")} className="min-h-36" />
                     </div>
@@ -586,7 +586,7 @@ export default function Sustainability() {
                                     <Image src={item.icon} alt={item.title} width={50} height={50} className="object-contain h-full w-full bg-black absolute" />
                                 </div>
                                 <div>
-                                    <h3 className="">{item.title}</h3>
+                                    <h3 className="text-[16px]">{item.title}</h3>
                                 </div>
                             </div>
                             <div className="flex gap-2">
@@ -660,7 +660,7 @@ export default function Sustainability() {
                         <div key={index} className="relative flex  justify-between border p-3 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300">
                             <div className="flex gap-4 items-center">
                                 <div>
-                                    <h3 className="">{item.title}</h3>
+                                    <h3 className="text-[16px]">{item.title}</h3>
                                 </div>
                             </div>
                             <div className="">
@@ -725,11 +725,11 @@ export default function Sustainability() {
                 </div>
                 <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
                     <div>
-                        <Label className="text-sm">Title</Label>
+                        <Label className="">Title</Label>
                         <Input type="text" placeholder="Title" {...register("goalsTitle")} />
                     </div>
                     <div>
-                        <Label className="text-sm">Description</Label>
+                        <Label className="">Description</Label>
                         <Textarea placeholder="Description" {...register("goalsDescription")} className="min-h-36" />
                     </div>
 
@@ -771,7 +771,7 @@ export default function Sustainability() {
                                     <Image src={item.image} alt={item.title} width={100} height={100} />
                                 </div>
                                 <div>
-                                    <h3 className="text-sm font-bold">{item.title}</h3>
+                                    <h3 className="text-[16px]">{item.title}</h3>
                                 </div>
                             </div>
                             <div className="absolute top-1 right-1 flex gap-2">
@@ -824,11 +824,11 @@ export default function Sustainability() {
                 </div>
                 <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
                     <div>
-                        <Label className="text-sm">Title</Label>
+                        <Label className="">Title</Label>
                         <Input type="text" placeholder="Title" {...register("outroTitle")} />
                     </div>
                     <div>
-                        <Label className="text-sm">Description</Label>
+                        <Label className="">Description</Label>
                         <Textarea placeholder="Description" {...register("outroDescription")} className="min-h-36" />
                     </div>
                 </div>
