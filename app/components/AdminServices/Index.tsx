@@ -99,8 +99,8 @@ const AdminServices = () => {
     }, [name])
 
     return (
-        <div className='flex flex-col gap-5'>
-            <div className='flex justify-between'>
+        <div className='flex flex-col gap-5 bg-white p-5 rounded-md shadow-md'>
+            <div className='flex justify-between border-b-2 pb-2'>
                 <h1 className='text-md font-bold'>Services</h1>
                 <Dialog>
                     <DialogTrigger className="bg-black text-white px-2 py-1 rounded-md" onClick={() => { setName(""); setSlug("") }}>Add Item</DialogTrigger>

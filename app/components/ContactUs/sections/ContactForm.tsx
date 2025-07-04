@@ -9,7 +9,7 @@ import {toast} from "sonner"
 
 interface ContactFormProps {
   name: string;
-  phone: string;
+  phone: number;
   email: string;
   message: string;
 }

@@ -254,7 +254,7 @@ export default function Projects() {
   return (
     <div className="flex flex-col gap-5">
 
-      <div className="h-fit w-full p-2 border-2 border-gray-300 rounded-md mt-5">
+      <div className="h-fit w-full p-5 shadow-md border-gray-300 rounded-md mt-5 bg-white">
         <div className="flex justify-between border-b-2 pb-2">
           <Label className="text-sm font-bold">Meta Section</Label>
           <Button onClick={handleSaveMeta}>Save</Button>
@@ -274,7 +274,7 @@ export default function Projects() {
       <div className="h-screen grid grid-cols-2 gap-5">
 
         <div className="flex flex-col gap-2 h-screen">
-          <div className="h-1/2 w-full p-2 border-2 border-gray-300 rounded-md overflow-y-hidden">
+          <div className="h-1/2 w-full p-5 shadow-md border-gray-300 rounded-md overflow-y-hidden bg-white">
             <div className="flex justify-between border-b-2 pb-2">
               <Label className="text-sm font-bold">Industry</Label>
               <Dialog>
@@ -337,7 +337,7 @@ export default function Projects() {
           </div>
 
 
-          <div className="h-1/2 w-full p-2 border-2 border-gray-300 rounded-md overflow-y-hidden">
+          <div className="h-1/2 w-full p-5 shadow-md border-gray-300 rounded-md overflow-y-hidden bg-white">
             <div className="flex justify-between border-b-2 pb-2">
               <Label className="text-sm font-bold">Location</Label>
               <Dialog>
@@ -405,7 +405,7 @@ export default function Projects() {
 
         </div>
 
-        <div className="h-screen w-full p-2 border-2 border-gray-300 rounded-md overflow-y-hidden">
+        <div className="h-screen w-full p-5 shadow-md border-gray-300 rounded-md overflow-y-hidden bg-white">
           <div className="flex justify-between border-b-2 pb-2">
             <Label className="text-sm font-bold">Projects</Label>
             <Button onClick={() => router.push("/admin/projects/add")}>Add Project</Button>

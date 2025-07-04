@@ -116,16 +116,16 @@ const BlogForm = ({ editMode }: { editMode?: boolean }) => {
 
     return (
         <div className='flex flex-col gap-5'>
-            <h1 className='text-lg font-bold'>{editMode ? "Edit Blog" : "Add Blog"}</h1>
-            <form className='flex flex-col gap-5 border p-2 rounded-md' onSubmit={handleSubmit(handleAddBlog)}>
+            <h1 className='text-md font-bold'>{editMode ? "Edit Blog" : "Add Blog"}</h1>
+            <form className='flex flex-col gap-5 border p-5 rounded-md shadow-md bg-white' onSubmit={handleSubmit(handleAddBlog)}>
 
                 <div>
-                    <Label className='pl-3'>Title</Label>
+                    <Label className=''>Title</Label>
                     <Input type='text' placeholder='Title' {...register("title", { required: "Title is required" })} />
                     {errors.title && <p className='text-red-500'>{errors.title.message}</p>}
                 </div>
                 <div>
-                    <Label className='pl-3 font-bold'>Slug</Label>
+                    <Label className=''>Slug</Label>
                     <Input type='text' placeholder='Blog Slug' {...register("slug", {
                         required: "Slug is required", pattern: {
                             value: /^[a-z0-9]+(-[a-z0-9]+)*$/,
@@ -135,7 +135,7 @@ const BlogForm = ({ editMode }: { editMode?: boolean }) => {
                     {errors.slug && <p className='text-red-500'>{errors.slug.message}</p>}
                 </div>
                 <div className='flex flex-col gap-2'>
-                    <Label className='pl-3'>Category</Label>
+                    <Label className=''>Category</Label>
                     <Controller
                         name="category"
                         control={control}
@@ -165,17 +165,18 @@ const BlogForm = ({ editMode }: { editMode?: boolean }) => {
 
 
                 <div>
-                    <Label className='pl-3'>Image</Label>
+                    <Label className=''>Image</Label>
                     <ImageUploader onChange={(url) => setValue("image", url)} value={watch("image")} />
                     {errors.image && <p className='text-red-500'>{errors.image.message}</p>}
                 </div>
 
                 <div>
-                    <Label className='pl-3'>Alt Tag</Label>
+                    <Label className=''>Alt Tag</Label>
                     <Input type='text' placeholder='Alt Tag' {...register("imageAlt")} />
                 </div>
 
                 <div>
+                    <Label className=''>Content</Label>
                     <Controller name="content" control={control} rules={{ required: "Content is required" }} render={({ field }) => {
                         return <ReactQuill theme="snow" value={field.value} onChange={field.onChange} />
                     }} />
@@ -200,7 +201,7 @@ const BlogForm = ({ editMode }: { editMode?: boolean }) => {
 
 
                 <div className='flex justify-center'>
-                    <Button type='submit'>Submit</Button>
+                    <Button type='submit' className="w-full cursor-pointer">Submit</Button>
                 </div>
 
             </form>

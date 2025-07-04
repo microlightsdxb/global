@@ -486,9 +486,9 @@ export default function Sustainability() {
 
 
     return (
-        <div className="h-screen grid grid-cols-1 gap-5">
+        <div className="grid grid-cols-1 gap-5">
 
-            <div className="h-fit w-full p-2 border-2 border-gray-300 rounded-md mt-5">
+            <div className="h-fit w-full p-5 shadow-md border-gray-300 rounded-md mt-5 bg-white">
                                         <div className="flex justify-between border-b-2 pb-2">
                                             <Label className="text-sm font-bold">Meta Section</Label>
                                             <Button onClick={submitMetaSection}>Save</Button>
@@ -505,46 +505,46 @@ export default function Sustainability() {
                                         </div>
                                     </div>
 
-            <form className="h-full w-full p-2 border-2 border-gray-300 rounded-md" onSubmit={handleSubmit(submitIntroSection)}>
+            <form className="h-full w-full p-5 shadow-md border-gray-300 rounded-md bg-white" onSubmit={handleSubmit(submitIntroSection)}>
                 <div className="flex justify-between border-b-2 pb-2">
                     <Label className="text-sm font-bold">Intro Section</Label>
                     <Button type="submit">Save</Button>
                 </div>
                 <div className="mt-2 flex flex-col gap-2 h-fit">
                     <div>
-                        <Label className="text-sm font-bold">Title</Label>
+                        <Label className="">Title</Label>
                         <Input type="text" placeholder="Title" {...register("title")} />
                     </div>
                     <div>
-                        <Label className="text-sm font-bold">Description</Label>
+                        <Label className="">Description</Label>
                         <Controller name="description" control={control} rules={{ required: "Content is required" }} render={({ field }) => {
                             return <ReactQuill theme="snow" value={field.value} onChange={field.onChange} />
                         }} />
                     </div>
                     <div>
-                        <Label className="text-sm font-bold">Image</Label>
+                        <Label className="">Image</Label>
                         <ImageUploader onChange={(url) => setValue("image", url)} value={watch("image")}/>
                     </div>
                     <div>
-                        <Label className="text-sm font-bold">Alt Tag</Label>
+                        <Label className="">Alt Tag</Label>
                         <Input type="text" placeholder="Alt Tag" {...register("imageAlt")} />
                     </div>
                 </div>
             </form>
 
 
-            <form className="h-fit w-full p-2 border-2 border-gray-300 rounded-md mt-5" onSubmit={handleSubmit(submitSecondSection)}>
+            <form className="h-fit w-full p-5 shadow-md border-gray-300 rounded-md bg-white mt-5" onSubmit={handleSubmit(submitSecondSection)}>
                 <div className="flex justify-between border-b-2 pb-2">
                     <Label className="text-sm font-bold">Second Section</Label>
                     <Button type="submit">Save</Button>
                 </div>
                 <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
                     <div>
-                        <Label className="text-sm font-bold">Title</Label>
+                        <Label className="">Title</Label>
                         <Input type="text" placeholder="Title" {...register("secondSectionTitle")} />
                     </div>
                     <div>
-                        <Label className="text-sm font-bold">Description</Label>
+                        <Label className="">Description</Label>
                         <Textarea placeholder="Description" {...register("secondSectionDescription")} className="min-h-36" />
                     </div>
 
@@ -557,7 +557,7 @@ export default function Sustainability() {
                                     <div className="flex flex-col gap-4 overflow-y-auto max-h-[500px]">
                                         <div>
                                             <Label>Icon</Label>
-                                            <ImageUploader onChange={(url) => setIcon(url)} value={icon} />
+                                            <ImageUploader onChange={(url) => setIcon(url)} value={icon} isLogo/>
                                         </div>
                                         <div>
                                             <Label>Alt Tag</Label>
@@ -580,16 +580,16 @@ export default function Sustainability() {
                     </div>
 
                     {secondSectionItems?.map((item, index) => (
-                        <div key={index} className="relative flex  justify-between border p-1 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300 h-32">
+                        <div key={index} className="relative flex  justify-between p-1 items-center shadow-md hover:shadow-lg transition-all duration-300 h-32">
                             <div className="flex gap-4 items-center h-full">
-                                <div className="h-full">
-                                    <Image src={item.icon} alt={item.title} width={100} height={100} className="object-cover h-full w-full" />
+                                <div className="h-3/4 w-24 relative p-2">
+                                    <Image src={item.icon} alt={item.title} width={50} height={50} className="object-contain h-full w-full bg-black absolute" />
                                 </div>
                                 <div>
-                                    <h3 className="text-sm font-bold">{item.title}</h3>
+                                    <h3 className="">{item.title}</h3>
                                 </div>
                             </div>
-                            <div className="absolute top-1 right-1 flex gap-2">
+                            <div className="flex gap-2">
                                 <Dialog>
                                     <DialogTrigger className=" text-white px-2 py-1 rounded-md" onClick={() => { setTitle(item.title); setDescription(item.description); setIcon(item.icon); setIconAlt(item.iconAlt) }}>
                                         <MdEdit className="text-black cursor-pointer" />
@@ -600,7 +600,7 @@ export default function Sustainability() {
                                             <div className="flex flex-col gap-4 overflow-y-auto max-h-[500px]">
                                                 <div>
                                                     <Label>Icon</Label>
-                                                    <ImageUploader onChange={(url) => setIcon(url)} value={icon} />
+                                                    <ImageUploader onChange={(url) => setIcon(url)} value={icon} isLogo/>
                                                 </div>
                                                 <div>
                                                     <Label>Alt Tag</Label>
@@ -630,7 +630,7 @@ export default function Sustainability() {
             </form>
 
 
-            <div className="h-fit w-full p-2 border-2 border-gray-300 rounded-md mt-5">
+            <div className="h-fit w-full p-5 shadow-md border-gray-300 rounded-md mt-5 bg-white">
                 <div className="flex justify-between border-b-2 pb-2">
                     <Label className="text-sm font-bold">Certifications</Label>
                     <Dialog>
@@ -660,7 +660,7 @@ export default function Sustainability() {
                         <div key={index} className="relative flex  justify-between border p-3 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300">
                             <div className="flex gap-4 items-center">
                                 <div>
-                                    <h3 className="text-sm font-bold">{item.title}</h3>
+                                    <h3 className="">{item.title}</h3>
                                 </div>
                             </div>
                             <div className="">
@@ -718,18 +718,18 @@ export default function Sustainability() {
             </div>
 
 
-            <form className="h-fit w-full p-2 border-2 border-gray-300 rounded-md mt-5" onSubmit={handleSubmit(submitGoalSection)}>
+            <form className="h-fit w-full p-5 shadow-md border-gray-300 rounded-md mt-5 bg-white" onSubmit={handleSubmit(submitGoalSection)}>
                 <div className="flex justify-between border-b-2 pb-2">
                     <Label className="text-sm font-bold">Goals Section</Label>
                     <Button type="submit">Save</Button>
                 </div>
                 <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
                     <div>
-                        <Label className="text-sm font-bold">Title</Label>
+                        <Label className="text-sm">Title</Label>
                         <Input type="text" placeholder="Title" {...register("goalsTitle")} />
                     </div>
                     <div>
-                        <Label className="text-sm font-bold">Description</Label>
+                        <Label className="text-sm">Description</Label>
                         <Textarea placeholder="Description" {...register("goalsDescription")} className="min-h-36" />
                     </div>
 
@@ -754,7 +754,7 @@ export default function Sustainability() {
                                         </div>
                                         <div>
                                             <Label>Icon</Label>
-                                            <ImageUploader onChange={(url) => setGoalIcon(url)} value={goalIcon} />
+                                            <ImageUploader onChange={(url) => setGoalIcon(url)} value={goalIcon} isLogo/>
                                         </div>
                                     </div>
                                 </DialogHeader>
@@ -765,7 +765,7 @@ export default function Sustainability() {
                     </div>
 
                     {goalsList.map((item, index) => (
-                        <div key={index} className="relative flex  justify-between border p-1 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300">
+                        <div key={index} className="relative flex  justify-between p-2 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300">
                             <div className="flex gap-4 items-center">
                                 <div>
                                     <Image src={item.image} alt={item.title} width={100} height={100} />
@@ -797,9 +797,9 @@ export default function Sustainability() {
                                                     <Label>Title</Label>
                                                     <Input type="text" placeholder="Title" value={goalTitle} onChange={(e) => setGoalTitle(e.target.value)} />
                                                 </div>
-                                                <div>
+                                                <div className="">
                                                     <Label>Icon</Label>
-                                                    <ImageUploader onChange={(url) => setGoalIcon(url)} value={goalIcon} />
+                                                    <ImageUploader onChange={(url) => setGoalIcon(url)} value={goalIcon} isLogoInBlack/>
                                                 </div>
                                             </div>
                                         </DialogHeader>
@@ -817,18 +817,18 @@ export default function Sustainability() {
             </form>
 
 
-            <form className="h-fit w-full p-2 border-2 border-gray-300 rounded-md mt-5 " onSubmit={handleSubmit(submitOutroSection)}>
+            <form className="h-fit w-full p-5 shadow-md border-gray-300 rounded-md mt-5 bg-white" onSubmit={handleSubmit(submitOutroSection)}>
                 <div className="flex justify-between border-b-2 pb-2">
                     <Label className="text-sm font-bold">Outro Section</Label>
                     <Button>Save</Button>
                 </div>
                 <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
                     <div>
-                        <Label className="text-sm font-bold ">Title</Label>
+                        <Label className="text-sm">Title</Label>
                         <Input type="text" placeholder="Title" {...register("outroTitle")} />
                     </div>
                     <div>
-                        <Label className="text-sm font-bold">Description</Label>
+                        <Label className="text-sm">Description</Label>
                         <Textarea placeholder="Description" {...register("outroDescription")} className="min-h-36" />
                     </div>
                 </div>
