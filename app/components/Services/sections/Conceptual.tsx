@@ -15,10 +15,10 @@ const Conceptual = ({ data }: { data: Service }) => {
     <motion.section variants={staggerContainer} initial="hidden" whileInView={"show"} viewport={{ once: true, amount: 0.1 }}>
         <motion.div variants={moveUp}
           className="bg-[#000] overflow-hidden relative">
-          <div className="container-fluid left-spacing">
+          <div className="container-fluid left-spacing ">
             <div>
               <div className="grid grid-cols-1 md:grid-cols-2 ">
-                <div className="py-70">
+                <div className="py-70 pe-3">
                   {data?.method?.items?.map((item, index: number) => {
                     const isInitiallyActive = index === 1 && hoveredId === null;
                     const isHovered = hoveredId === index + 1;
@@ -41,12 +41,14 @@ const Conceptual = ({ data }: { data: Service }) => {
                           <div className="flex flex-col ">
                             <p className="text-white text-lg">{item.title}</p>
                             <div
-                              className={`descd transition-all duration-100 ease-in transform mt-3 ${isHovered || isInitiallyActive
+                              className={`descd transition-all duration-100 ease-in transform  ${isHovered || isInitiallyActive
                                 ? "opacity-100 h-auto translate-y-0"
                                 : "opacity-0 h-0 translate-y-5"
                                 }`}
                             >
+                              <div className="mt-3"> 
                               <p>{item.description}</p>
+                              </div>
                             </div>
                           </div>
                         </motion.div>

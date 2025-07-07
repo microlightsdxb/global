@@ -19,7 +19,7 @@ const Footer = () => {
           >
             {/* Quick Links */}
             <div className="w-1/2">
-              <h3 className="text-lg text-primary mb-[35px] leading-none">Quick Links</h3>
+              <h3 className="text-lg text-primary mb-4 md:mb-[35px] leading-none">Quick Links</h3>
               <ul className="text-gray-500 mt-4 space-y-2">
                 <li className="transition-all ease-in-out duration-500 group hover:translate-x-1">
                   <Link className="text-xs text-[#7D7D7D] group-hover:text-black" href="/about-us">About Microlights</Link>
@@ -39,16 +39,16 @@ const Footer = () => {
 
             {/* Products */}
             <div className="w-1/2">
-              <h3 className="text-lg text-primary mb-[35px] leading-none">Products</h3>
+              <h3 className="text-lg text-primary mb-4 md:mb-[35px] leading-none">Products</h3>
               <ul className="text-gray-500 mt-4 space-y-2">
                 <li className="transition-all ease-in-out duration-500 group hover:translate-x-1">
-                  <Link className="text-xs text-[#7D7D7D] group-hover:text-black" href="#">Indoor Lighting</Link>
+                  <Link className="text-xs text-[#7D7D7D] group-hover:text-black" href="/products">Indoor Lighting</Link>
                 </li>
                 <li className="transition-all ease-in-out duration-500 group hover:translate-x-1">
-                  <Link className="text-xs text-[#7D7D7D] group-hover:text-black" href="#">Outdoor Lighting</Link>
+                  <Link className="text-xs text-[#7D7D7D] group-hover:text-black" href="/products">Outdoor Lighting</Link>
                 </li>
                 <li className="transition-all ease-in-out duration-500 group hover:translate-x-1">
-                  <Link className="text-xs text-[#7D7D7D] group-hover:text-black" href="#">Industrial Lighting</Link>
+                  <Link className="text-xs text-[#7D7D7D] group-hover:text-black" href="/products">Industrial Lighting</Link>
                 </li>
               </ul>
             </div>
@@ -57,9 +57,9 @@ const Footer = () => {
           whileInView={{opacity: 1, y: 0}}
           transition={{delay: 0, duration: 0.9}}
           viewport={{once: true, amount: 0.8}}>
-            <div className="flex justify-between items-center bg-primary p-[20px] lg:p-[25px] 2xl:p-[35px] mb-[30px] lg:mb-[90px]">
-              <span className="text-lg text-white">Download Brochure</span>
-              <div className="flex">
+            <div className="md:flex gap-3 justify-between items-center bg-primary p-[20px] lg:p-[25px] 2xl:p-[35px] mb-[30px] lg:mb-[90px]">
+              <span className="text-lg md:text-md xl:text-lg text-white">Download Brochure</span>
+              <div className="flex mt-4 md:mt-0">
               <Link
                 href="/"
                 className="flex gap-[20px] items-center border-t border-white text-sm text-white border-solid leading-none pt-[12px]   transition-colors duration-300 group"

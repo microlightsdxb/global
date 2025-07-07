@@ -131,7 +131,7 @@
     @apply pb-[50px] lg:pb-[60px] xl:pb-[80px] 2xl:pb-[150px];
   }
   .ptc-213  {
-    @apply pt-[90px] lg:pt-[140px] xl:pt-[180px] 2xl:pt-[213px];
+    @apply pt-[50px] lg:pt-[140px] xl:pt-[180px] 2xl:pt-[213px];
   }
   .ptc-130  {
     @apply pt-[50px] lg:pt-[60px] xl:pt-[80px] 2xl:pt-[130px];

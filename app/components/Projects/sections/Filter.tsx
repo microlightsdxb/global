@@ -289,7 +289,7 @@ const CustomDropdown: React.FC<CustomDropdownProps> = ({
         >
           <div className="flex gap-3">
             {selectedLocations.map((item, index) => (
-              <div className="px-1 bg-gray-500 flex gap-1" key={index}>
+              <div className="px-1 bg-gray-500 flex gap-1 items-center" key={index}>
                 {item}
                 <IoIosCloseCircle className="" onClick={() => handleRemoveLocation(item)} />
               </div>
