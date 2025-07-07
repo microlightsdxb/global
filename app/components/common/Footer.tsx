@@ -89,9 +89,9 @@ const Footer = () => {
               <Image src={'/assets/img/icons/fticons.svg'} width={150} height={30} className="w-auto" alt="ftr"/>
               </div>
             </div>
-            <div className="text-primary/50 text-center mt-6 text-[13px] flex justify-between">
-              <p>&copy;2025 microlights. All rights reserved </p>
-           <div className="flex space-x-4 items-center">
+            <div className="text-primary/50 text-center mt-6 text-[13px] flex xl:flex-row flex-col justify-between">
+              <p style={{marginBottom: "0px"}}>&copy;2025 microlights. All rights reserved </p>
+           <div className="flex space-x-4 items-center mt-3 xl:mt-0 justify-center">
                 <Link href="/privacy-policy" className=" border-r pr-4 last:border-r-0 last:pr-0 transition-all ease-in-out duration-500 hover:text-black">Privacy Policy</Link>
                 <Link href="/terms-and-conditions" className=" border-r pr-4 last:border-r-0 last:pr-0 transition-all ease-in-out duration-500 hover:text-black">Terms & Conditions</Link>
            </div>
