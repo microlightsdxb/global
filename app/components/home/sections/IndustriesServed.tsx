@@ -92,22 +92,22 @@ const IndustriesServed = ({data}: {data: Home}) => {
     const [refHeight, setRefHeight] = useState(0);
   
     useEffect(() => {
-      if (!data) return; // ⛔ Do nothing until data is loaded
+      if (!data) return; 
   
       const updateSpacing = () => {
         const element = refhtRef.current;
         if (element) {
-          const height = element.offsetHeight + 160;
+          const height = element.offsetHeight ;
           setRefHeight(height);
         }
       };
   
-      updateSpacing(); // ✅ Call immediately after data arrives
+      updateSpacing(); 
   
       window.addEventListener('resize', updateSpacing);
       return () => window.removeEventListener('resize', updateSpacing);
   
-    }, [data]); // ✅ Runs whenever 'data' changes (i.e., after server response)
+    }, [data]); 
   
     
   return (
@@ -150,15 +150,15 @@ const IndustriesServed = ({data}: {data: Home}) => {
       <section
       ref={sectionRef}
       className="section-spacing relative text-white   overflow-hidden"
-      style={{
-        height: `${refHeight}px`, 
-      }}
+      
     >
-      <div ref={refhtRef} className="refht">
+      <div  className="refht" style={{
+        height: `${refHeight}px`, 
+      }}>
         <figure className="absolute bg-primary w-full h-full inset-0 -z-10">
           <Image src={'/assets/img/banner/industry.jpg'} width={1900} height={900} alt="bnr" className="w-full h-full absolute object-center object-cover" />
         </figure>
-        <div className="contntbrd">
+        <div className="contntbrd" ref={refhtRef}>
           <div className="container">
             <div className="oveflow-hidden">
               <h2 className="text-xl mb-[30px] lg:mb-[60px]" >{data.industries.title}</h2>

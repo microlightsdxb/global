@@ -115,9 +115,9 @@ const HeroSection = ({ data }: { data: Home }) => {
       ref={triggerRef}
       suppressHydrationWarning
     >
-      <div className="absolute bottom-[80px] lg:bottom-[150px] w-full z-10">
+      <div className="absolute bottom-[80px] lg:bottom-[150px] w-full ">
         <div className="container flex justify-end">
-          <span className="text-[15px] text-white whitespace-nowrap font-light">
+          <span className="text-[15px] text-white whitespace-nowrap font-light relative z-10">
             <span className="font-medium "> {`0${currentSlide}`}</span> - {`0${totalSlides}`}
           </span>
         </div>
@@ -160,8 +160,10 @@ const HeroSection = ({ data }: { data: Home }) => {
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.6, delay: 0.6 }}
                         viewport={{ once: true, amount: 0.5 }}>
-                        <Link href={'/'} className="flex gap-[20px] items-center border-t border-white text-sm text-white border-solid leaing-none pt-[12px]">Explore <FiArrowUpRight className="text-[22px] text-white" />
-                        </Link></motion.div>
+                        <Link href={'/'} className="flex gap-[20px] items-center border-t border-white text-sm text-white border-solid leaing-none pt-[12px]">
+                        <span>Explore</span> <FiArrowUpRight className="text-[22px] text-white" />
+                        </Link>
+                        </motion.div>
                     </div>
                   </div>
 

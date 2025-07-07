@@ -92,12 +92,15 @@ const Header = () => {
 
           {/* Contact Button */}
           <div className="rghtsd">
-            <Link
-              href="/contact-us"
-              className="flex gap-[20px] items-center border-t border-primary text-sm text-primary border-solid leading-none pt-[12px]"
-            >
-              Contact <FiArrowUpRight className="text-[22px] text-[#7D7D7D]" />
-            </Link>
+          <Link
+  href="/contact-us"
+  className="flex gap-[20px] items-center border-t border-primary text-sm text-primary border-solid leading-none pt-[12px]   transition-colors duration-300 group"
+>
+  <span className="transition-transform duration-300 group-hover:translate-x-1">
+    Contact
+  </span>
+  <FiArrowUpRight className="text-[22px] text-[#7D7D7D] transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1" />
+</Link>
           </div>
         </div>
       </div>

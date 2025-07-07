@@ -21,17 +21,17 @@ const Footer = () => {
             <div className="w-1/2">
               <h3 className="text-lg text-primary mb-[35px] leading-none">Quick Links</h3>
               <ul className="text-gray-500 mt-4 space-y-2">
-                <li>
-                  <Link className="text-xs text-[#7D7D7D]" href="/about-us">About Microlights</Link>
+                <li className="transition-all ease-in-out duration-500 group hover:translate-x-1">
+                  <Link className="text-xs text-[#7D7D7D] group-hover:text-black" href="/about-us">About Microlights</Link>
                 </li>
-                <li>
-                  <Link className="text-xs text-[#7D7D7D]" href="/sustainability">Sustainability</Link>
+                <li className="transition-all ease-in-out duration-500 group hover:translate-x-1">
+                  <Link className="text-xs text-[#7D7D7D] group-hover:text-black" href="/sustainability">Sustainability</Link>
                 </li>
-                <li>
-                  <Link className="text-xs text-[#7D7D7D]" href="/projects">Projects</Link>
+                <li className="transition-all ease-in-out duration-500 group hover:translate-x-1">
+                  <Link className="text-xs text-[#7D7D7D] group-hover:text-black" href="/projects">Projects</Link>
                 </li>
-                <li>
-                  <Link className="text-xs text-[#7D7D7D]" href="/blogs">Blog</Link>
+                <li className="transition-all ease-in-out duration-500 group hover:translate-x-1">
+                  <Link className="text-xs text-[#7D7D7D] group-hover:text-black" href="/blogs">Blog</Link>
                 </li>
 
               </ul>
@@ -41,14 +41,14 @@ const Footer = () => {
             <div className="w-1/2">
               <h3 className="text-lg text-primary mb-[35px] leading-none">Products</h3>
               <ul className="text-gray-500 mt-4 space-y-2">
-                <li>
-                  <Link className="text-xs text-[#7D7D7D]" href="#">Indoor Lighting</Link>
+                <li className="transition-all ease-in-out duration-500 group hover:translate-x-1">
+                  <Link className="text-xs text-[#7D7D7D] group-hover:text-black" href="#">Indoor Lighting</Link>
                 </li>
-                <li>
-                  <Link className="text-xs text-[#7D7D7D]" href="#">Outdoor Lighting</Link>
+                <li className="transition-all ease-in-out duration-500 group hover:translate-x-1">
+                  <Link className="text-xs text-[#7D7D7D] group-hover:text-black" href="#">Outdoor Lighting</Link>
                 </li>
-                <li>
-                  <Link className="text-xs text-[#7D7D7D]" href="#">Industrial Lighting</Link>
+                <li className="transition-all ease-in-out duration-500 group hover:translate-x-1">
+                  <Link className="text-xs text-[#7D7D7D] group-hover:text-black" href="#">Industrial Lighting</Link>
                 </li>
               </ul>
             </div>
@@ -60,25 +60,28 @@ const Footer = () => {
             <div className="flex justify-between items-center bg-primary p-[20px] lg:p-[25px] 2xl:p-[35px] mb-[30px] lg:mb-[90px]">
               <span className="text-lg text-white">Download Brochure</span>
               <div className="flex">
-                <Link
-                  href={"/"}
-                  className="flex gap-[20px] items-center border-t border-white text-sm text-white border-solid leaing-none pt-[12px]"
-                >
-                  Download <FiArrowUpRight className="text-[22px] text-white" />
-                </Link>
+              <Link
+                href="/"
+                className="flex gap-[20px] items-center border-t border-white text-sm text-white border-solid leading-none pt-[12px]   transition-colors duration-300 group"
+              >
+                <span className="transition-transform duration-300 group-hover:translate-x-1">
+                  Download
+                </span>
+                <FiArrowUpRight className="text-[22px] text-white transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1" />
+              </Link>
               </div>
             </div>
 
             <div className="flex flex-col md:flex-row justify-between items-center mt-10 border-b pb-[30px]">
               <div className="flex space-x-[10px]">
-                <Link href="#" className="text-white bg-primary rounded-full text-center flex justify-center items-center w-[40px] h-[40px]">
-                  <FaLinkedin size={18}/>
+                <Link href="#" className="group hover:-translate-y-1 transition-all ease-in-out duration-500 text-white bg-primary rounded-full text-center flex justify-center items-center w-[40px] h-[40px]">
+                  <FaLinkedin size={18} className="group-hover:scale-111 transition-all ease-in-out duration-500"/>
                 </Link>
-                <Link href="#" className="text-white bg-primary rounded-full text-center flex justify-center items-center  w-[40px] h-[40px]">
-                  <FaInstagram size={18}/>
+                <Link href="#" className="group hover:-translate-y-1 transition-all ease-in-out duration-500 text-white bg-primary rounded-full text-center flex justify-center items-center  w-[40px] h-[40px]">
+                  <FaInstagram size={18} className="group-hover:scale-111 transition-all ease-in-out duration-500"/>
                 </Link>
-                <Link href="#" className="text-white bg-primary rounded-full text-center flex justify-center items-center  w-[40px] h-[40px]">
-                  <FaFacebookF size={18}/>
+                <Link href="#" className="group hover:-translate-y-1 transition-all ease-in-out duration-500 text-white bg-primary rounded-full text-center flex justify-center items-center  w-[40px] h-[40px]">
+                  <FaFacebookF size={18} className="group-hover:scale-111 transition-all ease-in-out duration-500"/>
                 </Link>
               </div>
 
@@ -89,8 +92,8 @@ const Footer = () => {
             <div className="text-primary/50 text-center mt-6 text-[13px] flex justify-between">
               <p>&copy;2025 microlights. All rights reserved </p>
            <div className="flex space-x-4 items-center">
-                <Link href="/privacy-policy" className=" border-r pr-4 last:border-r-0 last:pr-0">Privacy Policy</Link>
-                <Link href="/terms-and-conditions" className=" border-r pr-4 last:border-r-0 last:pr-0">Terms & Conditions</Link>
+                <Link href="/privacy-policy" className=" border-r pr-4 last:border-r-0 last:pr-0 transition-all ease-in-out duration-500 hover:text-black">Privacy Policy</Link>
+                <Link href="/terms-and-conditions" className=" border-r pr-4 last:border-r-0 last:pr-0 transition-all ease-in-out duration-500 hover:text-black">Terms & Conditions</Link>
            </div>
             </div>
             {/* sdfv */}
