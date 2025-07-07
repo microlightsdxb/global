@@ -30,7 +30,8 @@ interface Project {
     name: string,
     client: string,
     location: string,
-    thumbnail: string
+    thumbnail: string,
+    slug: string
   }[]
 }
 
@@ -82,7 +83,7 @@ const RecentProjects = ({ data }: { data: Project }) => {
             >
               {data?.data?.slice(0, 5).map((project) => (
                 <SwiperSlide key={project._id}>
-                  <Link href={`/project-details/${project._id}`} className="overflow-hidden" >
+                  <Link href={`/project-details/${project.slug}`} className="overflow-hidden" >
                     <div className="hdrsc">
                       <div className="flex justify-between items-center border-b border-primary/10 pb-[14px]">
                         <h3 className="text-lg font-normal leading-none text-primary">

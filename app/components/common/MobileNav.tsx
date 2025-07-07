@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef ,useEffect} from "react";
 import { menuItems } from "./menuItems";
 import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 import { gsap } from "gsap";
 
+import { useStore } from "@/app/store/productType";
 import {
   FaFacebookF,
   FaInstagram,
@@ -13,8 +14,24 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 import Link from "next/link";
+import { HoveredLink } from "../ui/navbar-menu";
 
 const MobileNav = () => {
+  const setType = useStore((state)=>state.setType)
+   const [services, setServices] = useState<{name:string,slug:string}[]>([]); 
+  
+    useEffect(()=>{
+      const fetchServices = async() =>{
+        try {
+          const response = await fetch(`/api/admin/service`)
+          const data = await response.json()
+          setServices(data.data)
+        } catch (error) {
+          console.log(error)
+        }
+      }
+      fetchServices()
+    },[])
   const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
   const [menuOpen, setMenuOpen] = useState(false); // State for menu visibility
   const pathRef = useRef(null);
@@ -158,21 +175,37 @@ const MobileNav = () => {
                     />
                   </div>
                   {/* Dropdown */}
-                  {activeDropdown === index && (
-                    <ul className="">
-                      {item.children.map((childItem, childIndex) => (
-                        <li key={childIndex} className="py-1">
-                          <Link
-                            href={childItem.url}
-                            onClick={() => setMenuOpen(false)}
-                          >
-                            {childItem.title}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
+                 
+
+                     {activeDropdown === index && item.title == "Services" && services.map((service: {name:string,slug:string}, subIndex) => (
+                                  <ul className="">  
+                                  <li>
+                                  <Link href={`/services/${service.slug}`} key={subIndex} onClick={()=>setMenuOpen(false)}>
+                                      <div className="hover:bg-black/5 pl-3 pr-[80px] py-2 rounded-[8px] transition-transform duration-300 hover:scale-105 flex justify-between items-center">
+                                        <p className="m-0 p-0 text-[16px]">
+                                          {service.name}
+                                        </p>
+                                      </div>
+                                    </Link>
+                                  </li> 
+                                    </ul> 
+                                  ))}
+                                  {activeDropdown === index && item.title !== "Services" && item.children?.length ? (
+                                      <li   className="py-1">
+                                      {item.children.map((item, subIndex) => (
+                                        <Link href={item.url} key={subIndex} onClick={()=>{setType(item.title.split(' ')[0]); setMenuOpen(false)}}>
+                                          <div className="hover:bg-black/5 pl-3 pr-[80px] py-2 rounded-[8px] transition-transform duration-300 hover:scale-105 flex justify-between items-center">
+                                            <p className="m-0 p-0 text-[16px]">
+                                              {item.title}
+                                            </p>
+                                          </div>
+                                        </Link>
+                                      ))}
+                                    </li>
+                                  ) : null}
                 </li>
+
+                
               ) : (
                 <li key={index} className="pb-2">
                   <Link
@@ -185,6 +218,7 @@ const MobileNav = () => {
                 </li>
               )
             )}
+            
 
             {/* Contact Link */}
             <li>
