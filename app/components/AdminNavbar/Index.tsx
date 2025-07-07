@@ -11,7 +11,6 @@ import {
     PresentationChartBarIcon,
     InformationCircleIcon,
   } from "@heroicons/react/24/outline";
-import { CodeIcon } from 'lucide-react';
 import { BiLeaf } from 'react-icons/bi';
 import { usePathname } from 'next/navigation';
 import { BsGear } from 'react-icons/bs';
