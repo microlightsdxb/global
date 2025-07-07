@@ -1,10 +1,15 @@
 import connectDB from "@/lib/mongodb";
 import Service from "@/models/Service";
 import { NextRequest, NextResponse } from "next/server";
+import { verifyAdmin } from "@/lib/verifyAdmin";
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
     try {
-        await connectDB()
+        await connectDB();
+        const isAdmin = await verifyAdmin(request);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const body = await request.json();
         const { name,slug } = body;
         const service = await Service.create({ name,slug });
@@ -48,6 +53,10 @@ export async function GET(request: NextRequest){
 export async function PATCH(request: NextRequest) {
     try {
         await connectDB();
+        const isAdmin = await verifyAdmin(request);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const body = await request.json();
         const {searchParams} = new URL(request.url);
         const id = searchParams.get("id");
@@ -66,6 +75,10 @@ export async function PATCH(request: NextRequest) {
 export async function DELETE(request: NextRequest) {
     try {
         await connectDB();
+        const isAdmin = await verifyAdmin(request);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const {searchParams} = new URL(request.url);
         const id = searchParams.get("id");
         const service = await Service.findOneAndDelete({ _id:id });

@@ -1,10 +1,15 @@
 import connectDB from "@/lib/mongodb";
 import Contact from "@/models/Contact";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { verifyAdmin } from "@/lib/verifyAdmin";
 
-export async function POST(request:Request){
+export async function POST(request:NextRequest){
     try {
         await connectDB();
+        const isAdmin = await verifyAdmin(request);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const {name,type,address,telephone,mobile,email,mapIframe,regionId} = await request.json();
         
             const region = await Contact.findById(regionId);
@@ -22,7 +27,7 @@ export async function POST(request:Request){
     }
 }
 
-export async function GET(request:Request){
+export async function GET(request:NextRequest){
     try {
         await connectDB();
         const {searchParams} = new URL(request.url);
@@ -43,9 +48,13 @@ export async function GET(request:Request){
     }
 }
 
-export async function PATCH(request:Request){
+export async function PATCH(request:NextRequest){
     try {
         await connectDB();
+        const isAdmin = await verifyAdmin(request);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const {id,name,type,address,telephone,mobile,email,mapIframe,regionId} = await request.json();
         
             const region = await Contact.findById(regionId);
@@ -74,9 +83,13 @@ export async function PATCH(request:Request){
     }
 }
 
-export async function DELETE(request:Request){
+export async function DELETE(request:NextRequest){
     try {
         await connectDB();
+        const isAdmin = await verifyAdmin(request);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const {id,regionId} = await request.json();
         if(id && regionId){
             const region = await Contact.findById(regionId);

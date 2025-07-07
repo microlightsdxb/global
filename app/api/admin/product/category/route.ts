@@ -1,10 +1,15 @@
 import connectDB from "@/lib/mongodb";
 import ProductType from "@/models/ProductType";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { verifyAdmin } from "@/lib/verifyAdmin";
 
-export async function POST(request:Request){
+export async function POST(request:NextRequest){
     try {
         await connectDB();
+        const isAdmin = await verifyAdmin(request);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const {category,typeId} = await request.json();
         if(category && typeId){
             const type = await ProductType.findById(typeId);
@@ -45,9 +50,13 @@ export async function GET(request:Request){
     }
 }
 
-export async function PATCH(request:Request){
+export async function PATCH(request:NextRequest){
     try {
         await connectDB();
+        const isAdmin = await verifyAdmin(request);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const {id,category,typeId} = await request.json();
         if(id && category && typeId){
             const type = await ProductType.findById(typeId);
@@ -72,9 +81,13 @@ export async function PATCH(request:Request){
     }
 }
 
-export async function DELETE(request:Request){
+export async function DELETE(request:NextRequest){
     try {
         await connectDB();
+        const isAdmin = await verifyAdmin(request);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const {id,typeId} = await request.json();
         if(id && typeId){
             const type = await ProductType.findById(typeId);

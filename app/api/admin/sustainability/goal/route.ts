@@ -1,10 +1,15 @@
 import connectDB from "@/lib/mongodb";
 import Sustainability from "@/models/Sustainability";
 import { NextRequest, NextResponse } from "next/server";
+import { verifyAdmin } from "@/lib/verifyAdmin";
 
 export async function POST(request: NextRequest) {
     try {
         await connectDB();
+        const isAdmin = await verifyAdmin(request);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const formData = await request.formData();
         const goalsTitle = formData.get("goalsTitle");
         const goalsDescription = formData.get("goalsDescription");
@@ -40,6 +45,10 @@ export async function GET(){
 export async function PATCH(request: NextRequest) {
     try {
         await connectDB();
+        const isAdmin = await verifyAdmin(request);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const {searchParams} = new URL(request.url)
         const id = searchParams.get("id")
         const {goalTitle,goalDescription,goalImage,goalIconAlt,goalIcon} = await request.json()
@@ -72,6 +81,10 @@ export async function PATCH(request: NextRequest) {
 export async function DELETE(request: NextRequest) {
     try {
         await connectDB();
+        const isAdmin = await verifyAdmin(request);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const {searchParams} = new URL(request.url)
         const id = searchParams.get("id")
         const sustainablity = await Sustainability.findOne({});

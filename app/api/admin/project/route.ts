@@ -1,10 +1,15 @@
 import connectDB from "@/lib/mongodb";
 import Project from "@/models/Project";
 import { NextRequest, NextResponse } from "next/server";
+import { verifyAdmin } from "@/lib/verifyAdmin";
 
 export async function POST(req:NextRequest) {
     try {
         await connectDB();
+        const isAdmin = await verifyAdmin(req);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const {name,slug,client,industry,scope,location,description,images,thumbnail,thumbnailAlt,metaTitle,metaDescription} = await req.json();
         const project = await Project.create({name,slug,client,industry,scope,location,description,images,thumbnail,thumbnailAlt,metaTitle,metaDescription});
         if(project){
@@ -22,6 +27,10 @@ export async function POST(req:NextRequest) {
 export async function PATCH(req:NextRequest) {
     try {
         await connectDB();
+        const isAdmin = await verifyAdmin(req);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const {searchParams} = new URL(req.url);
         const id = searchParams.get("id");
         const {name,slug,client,industry,scope,location,description,images,thumbnail,thumbnailAlt,metaTitle,metaDescription} = await req.json();
@@ -77,6 +86,10 @@ export async function GET(req:NextRequest) {
 export async function DELETE(req:NextRequest) {
     try {
         await connectDB();
+        const isAdmin = await verifyAdmin(req);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const {searchParams} = new URL(req.url);
         const id = searchParams.get("id");
         if(id){

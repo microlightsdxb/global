@@ -1,8 +1,10 @@
+import connectDB from "@/lib/mongodb";
 import About from "@/models/About";
 import { NextResponse } from "next/server";
 
 export async function GET() {
     try {
+        await connectDB();
         const about = await About.findOne({});
         if(about){
             return NextResponse.json({ message: "About fetched successfully", data: about });

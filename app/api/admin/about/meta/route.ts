@@ -1,9 +1,14 @@
 import connectDB from "@/lib/mongodb";
 import About from "@/models/About";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { verifyAdmin } from "@/lib/verifyAdmin";
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
     try {
+        const isAdmin = await verifyAdmin(request);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         await connectDB()
         const formData = await request.formData();
         const metaTitle = formData.get("metaTitle");
@@ -24,6 +29,7 @@ export async function POST(request: Request) {
 
 export async function GET() {
     try {
+        await connectDB();
         const about = await About.findOne({});
         if(!about){
             return NextResponse.json({ message: "About not found" }, { status: 404 });
