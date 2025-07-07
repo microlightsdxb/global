@@ -1,6 +1,7 @@
 import connectDB from "@/lib/mongodb";
 import Contact from "@/models/Contact";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { verifyAdmin } from "@/lib/verifyAdmin";
 
 export async function GET(){
     try {
@@ -17,9 +18,13 @@ export async function GET(){
     }
 }
 
-export async function POST(request:Request){
+export async function POST(request:NextRequest){
     try {
         await connectDB();
+        const isAdmin = await verifyAdmin(request);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const {region} = await request.json();
         console.log("region",region)
         if(region){
@@ -40,9 +45,13 @@ export async function POST(request:Request){
     }
 }
 
-export async function PATCH(request:Request){
+export async function PATCH(request:NextRequest){
     try {
         await connectDB();
+        const isAdmin = await verifyAdmin(request);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const {id,region} = await request.json();
         if(id && region){
             const updatedRegion = await Contact.findByIdAndUpdate(id,{region},{new:true});
@@ -60,9 +69,13 @@ export async function PATCH(request:Request){
     }
 }
 
-export async function DELETE(request:Request){
+export async function DELETE(request:NextRequest){
     try {
         await connectDB();
+        const isAdmin = await verifyAdmin(request);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const {id} = await request.json();
         if(id){
             const deletedRegion = await Contact.findByIdAndDelete(id);

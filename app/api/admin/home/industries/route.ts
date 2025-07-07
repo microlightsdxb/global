@@ -1,10 +1,15 @@
 import connectDB from "@/lib/mongodb";
 import Home from "@/models/Home";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { verifyAdmin } from "@/lib/verifyAdmin";
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
     try {
         await connectDB();
+        const isAdmin = await verifyAdmin(request);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const {industries,title} = await request.json();
         const home = await Home.findOne({});
         

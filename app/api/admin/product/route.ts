@@ -1,10 +1,15 @@
 import connectDB from "@/lib/mongodb";
 import Product from "@/models/Product";
 import { NextRequest, NextResponse } from "next/server";
+import { verifyAdmin } from "@/lib/verifyAdmin";
 
 export async function POST(request:NextRequest){
     try {
         await connectDB();
+        const isAdmin = await verifyAdmin(request);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const {name,slug,wattage,lumen,type,category,specifications,thumbnail,images,file,metaTitle,metaDescription,altTag} = await request.json();
         const product = await Product.create({
             name,
@@ -69,6 +74,10 @@ export async function GET(request:NextRequest){
 export async function PATCH(request:NextRequest){
     try {
         await connectDB();
+        const isAdmin = await verifyAdmin(request);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const {name,slug,wattage,lumen,type,category,specifications,thumbnail,images,file,metaTitle,metaDescription,altTag} = await request.json();
         const {searchParams} = new URL(request.url);
         const id = searchParams.get("id");
@@ -88,6 +97,10 @@ export async function PATCH(request:NextRequest){
 export async function DELETE(request:NextRequest){
     try {
         await connectDB();
+        const isAdmin = await verifyAdmin(request);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const {searchParams} = new URL(request.url);
         const id = searchParams.get("id");
         const product = await Product.findByIdAndDelete(id);

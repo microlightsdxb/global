@@ -1,10 +1,15 @@
 import connectDB from "@/lib/mongodb"
 import Enquiry from "@/models/Enquiry"
-import { NextResponse } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
+import { verifyAdmin } from "@/lib/verifyAdmin"
 
-export async function POST(req:Request){
+export async function POST(req:NextRequest){
     try {
         await connectDB()
+        const isAdmin = await verifyAdmin(req);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const {name,phone,email,message} = await req.json()
         console.log(name,phone,email,message)
         const enquiry = await Enquiry.create({name,phone,email,message})
@@ -32,9 +37,13 @@ export async function GET(){
     }
 }
 
-export async function DELETE(req:Request){
+export async function DELETE(req:NextRequest){
     try {
         await connectDB()
+        const isAdmin = await verifyAdmin(req);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const {id} = await req.json()
         const enquiry = await Enquiry.findByIdAndDelete(id)
         if(!enquiry){

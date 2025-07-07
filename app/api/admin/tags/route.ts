@@ -2,10 +2,15 @@ import connectDB from "@/lib/mongodb";
 import Tag from "@/models/Tags";
 import { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
+import { verifyAdmin } from "@/lib/verifyAdmin";
 
 export async function POST(request: NextRequest) {
     try {
         await connectDB();
+        const isAdmin = await verifyAdmin(request);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const body = await request.json();
         const { headerScript, bodyScript } = body;
         const tag = await Tag.findOne({});

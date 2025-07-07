@@ -1,10 +1,15 @@
 import connectDB from "@/lib/mongodb";
 import Team from "@/models/Team";
 import { NextRequest, NextResponse } from "next/server";
+import { verifyAdmin } from "@/lib/verifyAdmin";
 
 export async function POST(request: NextRequest) {
     try {
         await connectDB();
+        const isAdmin = await verifyAdmin(request);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const { name, designation, image, imageAlt } = await request.json();
         const team = await Team.findOne({});
         if(!team){
@@ -37,6 +42,10 @@ export async function GET() {
 export async function PATCH(request: NextRequest) {
     try {
         await connectDB();
+        const isAdmin = await verifyAdmin(request);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const {searchParams} = new URL(request.url);
         const id = searchParams.get("id");
         const { name, designation, image, imageAlt } = await request.json();
@@ -64,6 +73,10 @@ export async function PATCH(request: NextRequest) {
 export async function DELETE(request: NextRequest) {
     try {
         await connectDB();
+        const isAdmin = await verifyAdmin(request);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const {searchParams} = new URL(request.url);
         const id = searchParams.get("id");
         const team = await Team.findOne({});
