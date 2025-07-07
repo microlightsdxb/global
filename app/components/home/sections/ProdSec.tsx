@@ -18,27 +18,33 @@ import { useStore } from "@/app/store/productType";
 const ProdSec = ({data}:{data:{data:{_id:string,type: string, image: string, hoverImage: string}[]}}) => {
   const setType = useStore((state)=>state.setType);
 
-    const serrefhtRef = useRef<HTMLDivElement | null>(null);
-    const sectionRef = useRef<HTMLDivElement | null>(null);
+    const serrefhtRef = useRef<HTMLDivElement | null>(null); 
     const [refHeight, setRefHeight] = useState(0);
   
     useEffect(() => {
-      if (!data) return; // ⛔ Do nothing until data is loaded
-  
+      if (!data) return;
+    
       const updateSpacing = () => {
         const element = serrefhtRef.current;
         if (element) {
-          const height = element.offsetHeight + 160;
+          const height = element.offsetHeight ;
           setRefHeight(height);
         }
       };
-  
-      updateSpacing(); // ✅ Call immediately after data arrives
-  
-      window.addEventListener('resize', updateSpacing);
-      return () => window.removeEventListener('resize', updateSpacing);
-  
-    }, [data]); // ✅ Runs whenever 'data' changes (i.e., after server response)
+    
+      const timer = setTimeout(() => {
+        updateSpacing();
+        window.addEventListener('resize', updateSpacing); 
+      }, 1000);   
+    
+      return () => {
+        clearTimeout(timer);
+        window.removeEventListener('resize', updateSpacing);
+      };
+    
+    }, [data]);
+    
+    
   
     
   return (
@@ -94,42 +100,41 @@ const ProdSec = ({data}:{data:{data:{_id:string,type: string, image: string, hov
     //     </div>
     //   </div>
     // </section> 
-    <section
-      ref={sectionRef}
+    <section 
       className="section-spacing relative    "
-      style={{
-        height: `${refHeight}px`, 
-      }}
+     
     >
-      <div ref={serrefhtRef} className="refht s">
-    <div className="container">
+      <div  className="refht  "  >
+    <div className="container" >
       <div className="overflow-hidden">
         <h2
         className="text-xl leading-none mb-[50px] text-primary">
           Products
         </h2>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[40px]"
+      <div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[40px]" 
       >
         {data?.data?.map((product: {_id: string, type: string, image: string, hoverImage: string} ) => (
-          <Link key={product._id} onClick={()=>setType(product.type)} href={`/products`} className="relative last:before:hidden before:content-[] before:absolute before:h-full before:w-[1px] before:bg-primary/10 before:right-[-20px] ">
+          <Link key={product._id} onClick={()=>setType(product.type)} href={`/products`} className="relative last:before:hidden before:content-[] before:absolute before:h-full lg:before:w-[1px] lg:before:bg-primary/10 before:right-[-20px] ">
+            <div  style={{
+        height: `${refHeight}px`, 
+      }}>
             <div
-              className="prditm group cursor-pointer"
+              className="prditm group cursor-pointer" ref={serrefhtRef}
             >
-              <figure className="relative border border-black/10 mb-[35px] overflow-hidden">
+              <figure className="relative border h-[320px] lg:h-[380px] 2xl:h-[520px] border-black/10 mb-[35px] overflow-hidden">
                 <Image
                   src={product.image}
-                  alt={product.type}
-                  width={600}
-                  height={500}
-                  className="w-full transition-opacity duration-500 ease-in-out group-hover:opacity-0"
+                  alt={product.type} 
+                  fill
+                  className="w-full   object-cover h-full transition-opacity duration-500 ease-in-out group-hover:opacity-0"
                 />
                 <Image
                   src={product.hoverImage}
-                  alt={`Hover ${product.type}`}
-                  width={600}
-                  height={500}
-                  className="absolute inset-0 w-full opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100"
+                  alt={`Hover ${product.type}`} 
+                  fill
+                  className="absolute inset-0 w-full object-cover h-full opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100"
                 />
               </figure>
               <h3 className="text-lg mb-[30px]">{product.type}</h3>
@@ -139,8 +144,10 @@ const ProdSec = ({data}:{data:{data:{_id:string,type: string, image: string, hov
                 </span>
               </div>
             </div>
+            </div>
           </Link>
         ))}
+      </div>
       </div>
     </div>
     </div>

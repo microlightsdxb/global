@@ -51,13 +51,14 @@ const MobileNav = () => {
       <nav className="w-full bg-white text-white tanspheader py-4 absolute top-0 z-10 lg:hidden shadow-xs">
         <div className="container flex items-center justify-between">
           <div className="logo-sec">
-            <Image
+          <Link href="/"> <Image
               src="/assets/img/logo.svg"
               alt=""
               className="h-[45px] w-auto"
               width={100}
               height={250}
             />
+          </Link>
           </div>
           <div className="w-[30px] h-[30px]">
           <div

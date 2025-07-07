@@ -113,7 +113,7 @@ const AboutSec = ({ data }: { data: Home }) => {
                 <FiArrowUpRight className="text-[22px] text-[#7D7D7D] group-hover:scale-125 transition-all ease-in-out duration-500 " />
               </Link>
             </div>
-            <div className="grid grid-cols-3 justify-center gap-[15px] lg:gap-[30px] text-center mt-[30px] lg:mt-[80px]">
+            <div className="grid grid-cols-3 justify-center gap-[15px] lg:gap-[30px] text-center mt-[30px]  md:mt-[20px] xl:mt-[80px]">
               <Counter end={data?.years} label="Years of Expertise" />
               <Counter end={data?.projects} label="Projects Completed" />
               <Counter end={data?.clients} label="Happy Clients" />
