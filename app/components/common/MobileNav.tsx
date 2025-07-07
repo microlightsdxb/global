@@ -13,8 +13,7 @@ import {
   FaLinkedinIn,
   FaYoutube,
 } from "react-icons/fa";
-import Link from "next/link";
-import { HoveredLink } from "../ui/navbar-menu";
+import Link from "next/link"; 
 
 const MobileNav = () => {
   const setType = useStore((state)=>state.setType)
@@ -178,17 +177,15 @@ const MobileNav = () => {
                  
 
                      {activeDropdown === index && item.title == "Services" && services.map((service: {name:string,slug:string}, subIndex) => (
-                                  <ul className="">  
-                                  <li>
-                                  <Link href={`/services/${service.slug}`} key={subIndex} onClick={()=>setMenuOpen(false)}>
+                                  <li key={subIndex}>
+                                  <Link href={`/services/${service.slug}`} onClick={()=>setMenuOpen(false)}>
                                       <div className="hover:bg-black/5 pl-3 pr-[80px] py-2 rounded-[8px] transition-transform duration-300 hover:scale-105 flex justify-between items-center">
                                         <p className="m-0 p-0 text-[16px]">
                                           {service.name}
                                         </p>
                                       </div>
                                     </Link>
-                                  </li> 
-                                    </ul> 
+                                  </li>  
                                   ))}
                                   {activeDropdown === index && item.title !== "Services" && item.children?.length ? (
                                       <li   className="py-1">

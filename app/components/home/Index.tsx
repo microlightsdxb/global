@@ -17,7 +17,7 @@ import { Home } from '@/types/Home'
 const Index = ({ homeData }: { homeData: Home }) => {
   const fetcher = (...args: Parameters<typeof fetch>) => fetch(...args).then(res => res.json())
   const { data }: { data: { data: { _id: string, type: string, image: string, hoverImage: string }[] } } = useSWR(`/api/admin/product/type`, fetcher)
-  const { data: projectData }: { data: { data: { _id: string, name: string, client: string, location: string, thumbnail: string }[] } } = useSWR(`/api/admin/project`, fetcher)
+  const { data: projectData }: { data: { data: { _id: string,slug:string, name: string, client: string, location: string, thumbnail: string }[] } } = useSWR(`/api/admin/project`, fetcher)
 
   useEffect(() => {
     console.log(homeData)
