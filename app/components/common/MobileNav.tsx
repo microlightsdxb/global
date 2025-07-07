@@ -48,7 +48,7 @@ const MobileNav = () => {
   return (
     <div>
       {/* Navbar */}
-      <nav className="w-full bg-white text-white tanspheader py-4 absolute top-0 z-10 lg:hidden shadow-xs">
+      <nav className="w-full bg-white text-white tanspheader py-4 absolute top-[-1px] z-10 lg:hidden shadow-xs">
         <div className="container flex items-center justify-between">
           <div className="logo-sec">
           <Link href="/"> <Image

@@ -74,17 +74,17 @@ export const ToggleSection: React.FC<FrameworkSectionProps> = ({ typeSelected, s
 
   return (
     <div>
-      <div className="mb-6">
+      <div className="mb-4 md:mb-6">
         {/* Toggle Header */}
-        <div className="border-b mb-4 pb-3 flex justify-between items-center cursor-pointer" onClick={() => setIsTypeOpen(!isTypeOpen)}>
-          <p className="text-lg text-black leading-[1.4]">Type</p>
+        <div className="border-b mb-2 md:mb-4 md:pb-3 flex justify-between items-center cursor-pointer" onClick={() => setIsTypeOpen(!isTypeOpen)}>
+          <p className="text-[16px] lg:text-lg text-black leading-[1.4]">Type</p>
           {isTypeOpen ? <Minus size={20} /> : <Plus size={20} />}
         </div>
         {/* Toggle Content */}
         <motion.div variants={staggerContainer} initial="hidden" animate="show" viewport={{once:true, amount:0.2}} className={`transition-all duration-300 ${isTypeOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0 overflow-hidden" }`} >
           {data?.data?.map((type, index) => (
-            <motion.div variants={moveUp} key={type._id} className="flex justify-between items-center mb-3 cursor-pointer hover:bg-gray-100 p-2 rounded-md" onClick={() => toggleTypeSelection(index, type.type)} >
-              <p>{type.type}</p>
+            <motion.div variants={moveUp} key={type._id} className="flex justify-between items-center xl:mb-3 cursor-pointer hover:bg-gray-100 p-2 rounded-md" onClick={() => toggleTypeSelection(index, type.type)} >
+              <span>{type.type}</span>
               {typeSelected === type.type && (
                 <Check size={20} className="text-font" />
               )}
@@ -92,22 +92,22 @@ export const ToggleSection: React.FC<FrameworkSectionProps> = ({ typeSelected, s
           ))}
         </motion.div>
       </div>
-      <div className="mb-6">
+      <div className="mb-1 md:mb-6">
         {/* Toggle Header */}
-        <div className="border-b mb-4 pb-3 flex justify-between items-center cursor-pointer" onClick={() => setIsCategoryOpen(!isCategoryOpen)}>
-          <p className="text-lg text-black leading-[1.4]">Category</p>
+        <div className="border-b mb-2 md:mb-4 md:pb-3  flex justify-between items-center cursor-pointer" onClick={() => setIsCategoryOpen(!isCategoryOpen)}>
+          <p className="text-[16px] lg:text-lg text-black leading-[1.4]">Category</p>
           {isCategoryOpen ? <Minus size={20} /> : <Plus size={20} />}
         </div>
 
         {/* Toggle Content */}
-        <motion.div variants={staggerContainer} initial="hidden" animate="show" className={`transition-all duration-300 ${isCategoryOpen ? "max-h-40 opacity-100" : "max-h-0 opacity-0 overflow-hidden" }`}>
+        <motion.div variants={staggerContainer} initial="hidden" animate="show" className={`transition-all duration-300 ${isCategoryOpen ? "  opacity-100" : "max-h-0 opacity-0 overflow-hidden" }`}>
           {categories?.map((category, index) => (
             <motion.div variants={moveUp}
               key={category._id}
-              className="flex justify-between items-center mb-3 cursor-pointer hover:bg-gray-100 p-2 rounded-md"
+              className="flex justify-between items-center xl:mb-3 cursor-pointer hover:bg-gray-100 p-2 rounded-md"
               onClick={() => toggleCategorySelection(index, category.name)}
             >
-              <p>{category.name}</p>
+              <span>{category.name}</span>
               {selectedCategory === index && (
                 <Check size={20} className="text-font" />
               )}

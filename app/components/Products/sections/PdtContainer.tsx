@@ -56,8 +56,8 @@ const PdtContainer = () => {
           <h1 className="text-2xl text-black mb-8 md:mb-12 leading-[1.3]">
             {categorySelected}
           </h1>
-          <div className="flex gap-10">
-            <div className="w-1/4">
+          <div className="md:flex gap-5 xl:gap-10">
+            <div className="md:w-1/4">
               <ToggleSection type={type} typeSelected={typeSelected} setTypeSelected={setTypeSelected} setCategorySelected={setCategorySelected} />
               {/* <ToggleSection
                 title="Category"
@@ -69,12 +69,12 @@ const PdtContainer = () => {
             /> */}
             </div>
 
-            <div className="w-3/4   p-4 ">
+            <div className="md:w-3/4   p-4 ">
               <motion.div variants={staggerContainer} initial="hidden" animate="show" viewport={{once:true, amount:0.2}} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {products?.map((product, index) => (
                   <motion.div variants={moveUp} key={index}>
                     <Link href={`/product-details/${product.slug}`} >
-                      <div className="pdtcontainer min-h-[300px] md:min-h-[385px] xl:min-h-[435px] h-full border relative overflow-hidden cursor-pointer group">
+                      <div className="pdtcontainer min-h-[300px] md:min-h-[300px] xl:min-h-[435px] h-full border relative overflow-hidden cursor-pointer group">
                         <div className="flex h-full">
                           <figure className="relative w-full pt-8 mb-[82px]">
                             <Image

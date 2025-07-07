@@ -31,7 +31,7 @@ const Details: React.FC<FrameworkSectionProps> = ({
           </motion.h2>
         </div>
         <motion.div
-          className="flex items-center pt-8 pb-9"
+          className="lg:flex items-center pt-8 pb-9"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -44,7 +44,7 @@ const Details: React.FC<FrameworkSectionProps> = ({
           ].map((item, index) => (
             <motion.div
               key={index}
-              className="w-1/4"
+              className="lg:w-1/4"
               variants={fadeInUp}
               transition={{ delay: index * 0.2 }}
             >

@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { moveUp } from "../../scrollanims";
-import parse from "html-react-parser";
+// import parse from "html-react-parser";
 
 
 interface AddressProps {
@@ -51,11 +51,11 @@ const Address = ({ data }: { data: AddressProps }) => {
             transition={{ duration: 0.5, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            <div className="flex gap-3 md:gap-10 border-b mb-4 md:mb-30 lg:mb-[60px]">
+            <div className="flex gap-3 md:gap-10 border-b mb-7 md:mb-6 lg:mb-[60px]">
               {data?.data?.map((tab: { region: string }, index: number) => (
                 <div
                   key={index}
-                  className={`p-[10px] pl-0 pb-[20px] cursor-pointer relative top-[2px] text-black ${activeTab === index ? "border-b-3 border-black" : ""
+                  className={`p-[10px] pl-0 pb-2 md:pb-[20px] cursor-pointer relative top-[2px] text-black ${activeTab === index ? "border-b-3 border-black" : ""
                     }`}
                   onClick={() => setActiveTab(index)}
                 >
@@ -66,7 +66,8 @@ const Address = ({ data }: { data: AddressProps }) => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-[40px]">
               {data?.data[activeTab]?.area.map((location: { _id: string, name: string, type: string, address: string, telephone: string, mobile: string, email: string, mapIframe: string }) => (
-                <motion.div variants={moveUp} key={location._id}>
+                <motion.div variants={moveUp} key={location._id} className="flex flex-col justify-between">
+                  <div>
                   <div className="mb-5">
                     <p className="text-25 font-[600] leading-[1.2] text-black">
                       {location.name}
@@ -79,9 +80,11 @@ const Address = ({ data }: { data: AddressProps }) => {
                     {location.mobile && <p className="font-[600] text-black">Mob: {location.mobile}</p>}
                   </div>
                   {location.email && <p className="font-[600] text-black">Email: {location.email}</p>}
-                  <div className="mt-5" style={{ filter: "grayscale(100%)" }}>
+                  </div>
+                  <div className="mt-5  " style={{ filter: "grayscale(100%)" }}>
                     {/* <Image src={location.map} alt="Map" /> */}
-                    {parse(location.mapIframe || "")}
+                    {/* {parse(location.mapIframe || "")} */}
+                    <iframe src={location.mapIframe || ""}  className="w-full h-[450px]" style={{border:"0"}} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
 
                   </div>
                 </motion.div>
