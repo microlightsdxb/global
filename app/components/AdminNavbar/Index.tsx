@@ -14,6 +14,7 @@ import {
 import { CodeIcon } from 'lucide-react';
 import { BiLeaf } from 'react-icons/bi';
 import { usePathname } from 'next/navigation';
+import { BsGear } from 'react-icons/bs';
 
 const AdminNavbar = () => {
 
@@ -33,7 +34,7 @@ const AdminNavbar = () => {
         { name: "Blogs", href: "/admin/blogs", icon: NewspaperIcon },
         { name: "Team", href: "/admin/team", icon: UserGroupIcon },
         { name: "Contact", href: "#", icon: EnvelopeIcon,children:[{name:"Regions",href:"/admin/contact"},{name:"Enquiries",href:"/admin/contact/enquiry"}] },
-        { name: "Tag Codes", href: "/admin/codes", icon: CodeIcon },
+        { name: "Settings", href: "/admin/settings", icon: BsGear },
       ];
 
   return (
