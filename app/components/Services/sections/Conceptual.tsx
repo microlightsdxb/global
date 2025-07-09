@@ -65,8 +65,8 @@ const Conceptual = ({ data }: { data: Service }) => {
                       className="object-cover object-center h-full w-full"
                       src={hoveredId ? data?.method?.items[hoveredId - 1]?.image : data?.method?.items[1]?.image}
                       alt={hoveredId ? data?.method?.items[hoveredId - 1]?.imageAlt : data?.method?.items[1]?.imageAlt}
-                      width={1500}
-                      height={1500}
+                      width={852}
+                      height={966}
                     />
                   </figure>
                 </div>
