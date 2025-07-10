@@ -18,6 +18,7 @@ import { Button } from '@/components/ui/button'
 import { useRouter } from 'next/navigation'
 import { useParams } from 'next/navigation'
 import { ImageUploader } from '@/components/ui/image-uploader'
+import TinyEditor from "@/app/components/TinyMce/TinyEditor";
 
 interface BlogFormProps {
     title: string;
@@ -163,7 +164,8 @@ const BlogForm = ({ editMode }: { editMode?: boolean }) => {
 
                 </div>
 
-
+<div className='grid grid-cols-2 gap-2'>
+    <div className='flex flex-col gap-2'>
                 <div className="flex flex-col gap-1">
                     <Label className=''>Image</Label>
                     <ImageUploader onChange={(url) => setValue("image", url)} value={watch("image")} />
@@ -174,11 +176,26 @@ const BlogForm = ({ editMode }: { editMode?: boolean }) => {
                     <Label className=''>Alt Tag</Label>
                     <Input type='text' placeholder='Alt Tag' {...register("imageAlt")} />
                 </div>
+                </div>
+
+<div className='flex flex-col gap-2'>
+                <div className="flex flex-col gap-1">
+                    <Label className=''>Banner Image</Label>
+                    <ImageUploader onChange={(url) => setValue("bannerImage", url)} value={watch("bannerImage")} />
+                    {errors.bannerImage && <p className='text-red-500'>{errors.bannerImage.message}</p>}
+                </div>
+
+                <div className="flex flex-col gap-1">
+                    <Label className=''>Alt Tag</Label>
+                    <Input type='text' placeholder='Alt Tag' {...register("bannerImageAlt")} />
+                </div>
+                </div>
+                </div>
 
                 <div className="flex flex-col gap-1">
                     <Label className=''>Content</Label>
                     <Controller name="content" control={control} rules={{ required: "Content is required" }} render={({ field }) => {
-                        return <ReactQuill theme="snow" value={field.value} onChange={field.onChange} />
+                        return <TinyEditor setNewsContent={field.onChange} newsContent={field.value} />
                     }} />
                     {errors.content && <p className='text-red-500'>{errors.content.message}</p>}
                 </div>
