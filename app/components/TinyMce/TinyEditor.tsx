@@ -1,17 +1,10 @@
-import { Dispatch, FormEvent, SetStateAction, useRef } from 'react';
+import { Dispatch, SetStateAction, useRef } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import { Editor as TinyMCEEditor } from 'tinymce';
 
 export default function TinyEditor({ setNewsContent,newsContent }: {newsContent?:string | boolean, setNewsContent: Dispatch<SetStateAction<string>> }) {
     const editorRef = useRef<TinyMCEEditor | null>(null);
 
-    const log = (e: FormEvent) => {
-        e.preventDefault();
-        if (editorRef.current) {
-            setNewsContent(editorRef.current.getContent());
-            console.log(editorRef.current.getContent());
-        }
-    };
 
     const handleEditorChange = (content: string) => {
         console.log("called")
