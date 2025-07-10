@@ -46,7 +46,7 @@ const ProcessTimeline: React.FC<{ data: Home }> = ({ data }) => {
   
       // Cleanup function to revert GSAP context when unmounting
       return () => ctx.revert();
-    }, 3000); // 6000 ms = 6 seconds
+    }, 4000);  
   
     // Cleanup: clear the timer if unmounted before timeout triggers
     return () => clearTimeout(timer);

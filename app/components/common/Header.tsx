@@ -76,7 +76,7 @@ const Header = () => {
                 {menuItem.title !== "Services" && menuItem.children?.length ? (
                   <div className="grid grid-cols-1">
                     {menuItem.children.map((item, subIndex) => (
-                      <HoveredLink href={item.url} key={subIndex} onClick={()=>{setType(item.title.split(' ')[0]);console.log(item.title.split(' ')[0])}}>
+                      <HoveredLink href={item.url} key={subIndex} onClick={()=>{setType(item.title.split(' ')[0]);}}>
                         <div className="hover:bg-black/5 pl-3 pr-[80px] py-2 rounded-[8px] transition-transform duration-300 hover:scale-105 flex justify-between items-center">
                           <p className="m-0 p-0 text-[16px]">
                             {item.title}
@@ -92,12 +92,15 @@ const Header = () => {
 
           {/* Contact Button */}
           <div className="rghtsd">
-            <Link
-              href="/contact-us"
-              className="flex gap-[20px] items-center border-t border-primary text-sm text-primary border-solid leading-none pt-[12px]"
-            >
-              Contact <FiArrowUpRight className="text-[22px] text-[#7D7D7D]" />
-            </Link>
+          <Link
+  href="/contact-us"
+  className="flex gap-[20px] items-center border-t border-primary text-sm text-primary border-solid leading-none pt-[12px]   transition-colors duration-300 group"
+>
+  <span className="transition-transform duration-300 group-hover:translate-x-1">
+    Contact
+  </span>
+  <FiArrowUpRight className="text-[22px] text-[#7D7D7D] transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1" />
+</Link>
           </div>
         </div>
       </div>

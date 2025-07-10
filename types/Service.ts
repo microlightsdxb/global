@@ -17,4 +17,4 @@ export type Service = {
             imageAlt:string,
         }[]
     }
-}
+} 

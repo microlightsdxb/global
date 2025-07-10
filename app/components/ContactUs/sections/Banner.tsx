@@ -42,7 +42,7 @@ const Banner: React.FC<FrameworkSectionProps> = ({
       transition={{ duration: 0.8 }}
       viewport={{ once: true }}
     >
-      <div className="pt-[190px] md:pt-[240px] lg:pt-[290px]">
+      <div className="pt-[90px] md:pt-[240px] lg:pt-[290px]"> 
         <motion.h1
           className="select-none pointer-events-none text-white text-[100px] md:text-[150px] xl:text-[250px] 2xl:text-[300px] leading-[1] md:leading-[.7]"
           initial={{ opacity: 0, y: 50, scale: 0.9 }}

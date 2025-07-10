@@ -27,7 +27,7 @@ const OurFuture: React.FC<FrameworkSectionProps> = ({ data }) => {
               </motion.p>
             </motion.div>
             <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="grid grid-cols-1 lg:grid-cols-2 items-center gap-5 lg:gap-[50px] 2xl:gap-[83px]">
-              <motion.div variants={moveUp} className="h-[700px] w-full">
+              <motion.div variants={moveUp} className="h-[300px] lg:h-[600px] 2xl:h-[700px] w-full">
                 <Image
                   src={data?.data?.goals?.items[activeIndex]?.image || assets.sufe}
                   alt={data?.data?.goals?.items[activeIndex]?.iconAlt || ""}
