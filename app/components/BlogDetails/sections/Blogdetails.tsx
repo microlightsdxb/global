@@ -11,11 +11,12 @@ interface FrameworkItem {
   data:{
     _id:string,
     title:string,
-    image:string,
+    image: string,
+    bannerImage:string,
     imageAlt:string,
     content:string,
     category:string,
-    createdAt:string,
+    createdAt: string,
   }
 }
 
@@ -26,14 +27,16 @@ interface RecentBlogItem {
     imageAlt:string,
     category:string,
     createdAt:string,
+    slug: string;
   }
-  
+
 interface FrameworkSectionProps {
   data: FrameworkItem;
   recentBlogData: RecentBlogItem[];
 }
 
 const Blogdetails: React.FC<FrameworkSectionProps> = ({ data, recentBlogData }) => {
+  console.log(data, recentBlogData);
   return (
     <>
       <section className="ptc-120 pbc-135  ">
@@ -43,9 +46,9 @@ const Blogdetails: React.FC<FrameworkSectionProps> = ({ data, recentBlogData }) 
 
           <div>
               <div>
-                <figure className="w-full h-[300px]   md:h-[400px]   lg:h-[600px] overflow-hidden ">
+                <figure className="w-full   overflow-hidden ">
                   <Image
-                    src={data?.data?.image}
+                    src={data?.data?.bannerImage}
                     alt={data?.data?.imageAlt}
                     className=" w-full   object-cover"
                     width={500}
