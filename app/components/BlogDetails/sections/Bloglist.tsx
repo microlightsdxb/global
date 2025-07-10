@@ -2,14 +2,15 @@
 import React from "react";
 import Image from "next/image";
 import moment from "moment";
-
+import Link from "next/link";
 interface RecentBlogItem {
     _id:string,
     title:string,
     image:string,
     imageAlt:string,
     category:string,
-    createdAt:string,
+  createdAt: string,
+  slug: string;
   }
 
 interface FrameworkSectionProps {
@@ -46,9 +47,11 @@ const Bloglist: React.FC<FrameworkSectionProps> = ({ data }) => {
                   />
                 </div>
                 <div className="pt-2 md:pt-3 lg:pt-4 ">
+                  <Link href={`/blog-details/${member.slug}`} >
                   <p className=" text-black leading-[1.4]  ">
                     {member.title}
-                  </p>
+                    </p>
+                    </Link>
                 </div>
                 <div className="flex justify-between items-center pmargin0 pt-2 pb-8 border-b mb-5 md:mb-10">
                   <p className="text-[15px]">{member.category}</p>
