@@ -25,6 +25,8 @@ interface BlogFormProps {
     slug: string;
     content: string;
     category: string;
+    bannerImage: string;
+    bannerImageAlt: string;
     image: string;
     imageAlt: string;
     metaTitle: string;
@@ -65,6 +67,8 @@ const BlogForm = ({ editMode }: { editMode?: boolean }) => {
                 setValue("slug",data.data.slug);
                 setValue("content", data.data.content);
                 setValue("category", data.data.category);
+                setValue("bannerImage", data.data.bannerImage);
+                setValue("bannerImageAlt", data.data.bannerImageAlt);
                 setValue("image", data.data.image);
                 setValue("imageAlt", data.data.imageAlt);
                 setValue("metaTitle", data.data.metaTitle);
