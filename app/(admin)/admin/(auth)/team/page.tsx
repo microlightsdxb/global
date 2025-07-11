@@ -292,14 +292,14 @@ export default function Team() {
 
             <div className="h-full w-full p-5 shadow-md border-gray-300 rounded-md bg-white">
                 <div className="flex justify-between border-b-2 pb-2">
-                    <Label className="text-sm font-bold">Designations</Label>
+                    <Label className="text-sm font-bold">Departments</Label>
                     <div className="flex gap-2">
                     <Button type="button" onClick={() => reorderMode ? confirmPosition() : setReorderMode(!reorderMode)}>{reorderMode ? <GiConfirmed /> : <TbReorder />}</Button>
                     <Dialog>
-                        <DialogTrigger className="bg-black text-white px-2 py-1 rounded-md" onClick={() => { setTitle(""); }}>Add Designation</DialogTrigger>
+                        <DialogTrigger className="bg-black text-white px-2 py-1 rounded-md" onClick={() => { setTitle(""); }} disabled={reorderMode}>Add Department</DialogTrigger>
                         <DialogContent>
                             <DialogHeader>
-                                <DialogTitle>Add Designation</DialogTitle>
+                                <DialogTitle>Add Department</DialogTitle>
                                 <div className="flex flex-col gap-4">
                                     <div>
                                         <Label>Title</Label>
@@ -339,7 +339,7 @@ export default function Team() {
                                     <DialogTrigger onClick={() => { setTitle(item.title); }}><MdEdit /></DialogTrigger>
                                     <DialogContent>
                                         <DialogHeader>
-                                            <DialogTitle>Edit Designation</DialogTitle>
+                                            <DialogTitle>Edit Department</DialogTitle>
                                             <DialogDescription>
                                                 <Input type="text" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
                                             </DialogDescription>
