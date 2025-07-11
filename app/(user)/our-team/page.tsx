@@ -19,13 +19,11 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Home() {
   try {
-    const teamData = await fetch(`${process.env.BASE_URL}/api/admin/team/member`,{next:{revalidate:60}})
-    const mdData = await fetch(`${process.env.BASE_URL}/api/admin/team/md`,{next:{revalidate:60}})
-    const teamRes = await teamData.json()
-    const mdRes = await mdData.json()
+    const response = await fetch(`${process.env.BASE_URL}/api/admin/team`,{next:{revalidate:60}})
+    const data = await response.json()
     return (
       <>
-      <Index teamData={teamRes.data} mdData={mdRes.data}/>
+      <Index data={data.data}/>
       </>
     );
   } catch (error) {

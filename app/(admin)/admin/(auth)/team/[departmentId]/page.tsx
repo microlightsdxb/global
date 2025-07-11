@@ -29,7 +29,7 @@ interface TeamsData {
 
 const DepartmentPage =  () => {
 
-    const { register, handleSubmit, setValue, control, formState: { errors } } = useForm<TeamsData>();
+    const { register, handleSubmit, setValue, control } = useForm<TeamsData>();
     const [reorderMode, setReorderMode] = useState(false);
     const router = useRouter();
 
@@ -129,7 +129,6 @@ const handleDragEnd = (event: DragEndEvent) => {
                                         <Controller
                                             name={`members.${index}.image`}
                                             control={control}
-                                            rules={{ required: "Image is required" }}
                                             render={({ field }) => (
                                                 <ImageUploader
                                                     value={field.value}
@@ -137,7 +136,6 @@ const handleDragEnd = (event: DragEndEvent) => {
                                                 />
                                             )}
                                         />
-                                        {errors.members?.[index]?.image && <p className='text-red-500'>{errors.members?.[index]?.image.message}</p>}
                                         <div className='flex flex-col gap-2'>
                                         <Label className=''>Alt Tag</Label>
                                         <Input type='text' placeholder='Alt Tag' {...register(`members.${index}.imageAlt`)} />
