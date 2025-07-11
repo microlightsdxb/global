@@ -28,20 +28,26 @@ const TeamListing: React.FC<FrameworkSectionProps> = ({ data }) => {
             {data?.map((item, index) => (
               <div key={index}>
                 <p className=" text-lg font-medium">{item?.title}</p>
-                <motion.div variants={staggerContainer} viewport={{ once: true, amount: 0.2 }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  xl:grid-cols-4 team-grid ">
+                <motion.div variants={staggerContainer} viewport={{ once: true, amount: 0.2 }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3   team-grid overflow-hidden relative ">
                   {item?.members?.map((member, index) => (
                     <motion.div variants={moveUp}
                       key={index}
                       className="teammem teamsepaftr border-b pb-7 hover:border-[#000]  transition-all duration-500 mb-10 md:mb-15 lg:mb-20"
                     >
                       <div className="teamover">
-                        <Image
+                        {member?.image && member?.image != "" ? <Image
                           src={member?.image}
                           alt={member?.imageAlt}
                           width={300}
                           height={300}
                           className="w-full h-auto "
-                        />
+                        /> : <Image
+                        src="/assets/img/team/xc 1.png"
+                        alt="placeholder"
+                        width={300}
+                        height={300}
+                        className="w-full h-auto "
+                        />}
                       </div>
                       <p className="text-lg text-black leading-[1.4] mt-5 md:mt-10 mb-2">
                         {member?.name}
