@@ -11,14 +11,11 @@ interface FrameworkItem {
   image: string;
   imageAlt: string;
 }
-
+ 
 interface FrameworkSectionProps {
   data: FrameworkItem[];
 }
-const TeamListing: React.FC<FrameworkSectionProps> = ({
-  data
-
-}) => {
+const TeamListing: React.FC<FrameworkSectionProps> = () => {
   return (
     <>
       <section className="ptc-130 pb-10  ">
