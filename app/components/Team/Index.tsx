@@ -6,29 +6,31 @@ import TeamListing from "./sections/TeamListing";
 // import useSWR from "swr";
 
 interface Props {
-  mdData:{
-    mdName: string;
-    mdDescription: string;
-    mdImage: string;
-    mdDesignation:string;
-    mdImageAlt: string;
-  }
-  teamData:{
-    name: string;
-    designation: string;
-    image: string;
-    imageAlt: string;
-  }[]
+  mdName:string;
+  mdDesignation:string;
+  mdImage:string;
+  mdDescription:string;
+  mdImageAlt:string;
+  departments:[{
+    title: string,
+    members:[{
+        name: string,
+        image: string,
+        designation: string,
+        imageAlt: string
+    }]
+}
+]
 }
 
 
-const Index = ({teamData,mdData}: Props) => {
+const Index = ({data}: {data:Props}) => {
   return (
     <>
       <div className="headerpadding"> </div>
 
-      <Banner data={mdData}/>
-      <TeamListing data={teamData}/>
+      <Banner data={data}/>
+      <TeamListing data={data.departments}/>
      
 
     </>
