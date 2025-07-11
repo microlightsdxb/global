@@ -97,7 +97,7 @@ const handleDragEnd = (event: DragEndEvent) => {
                         <Label className="text-sm font-bold">Members Section</Label>
                         <div className='flex gap-2'>
                         <Button type="button" onClick={() => setReorderMode(!reorderMode)}>{reorderMode ? <GiConfirmed /> : <TbReorder />}</Button>
-                        <Button type="submit">Save</Button>
+                        <Button type="submit" disabled={reorderMode}>Save</Button>
                         </div>
                     </div>
                     <div className='flex flex-col gap-5'>
@@ -158,7 +158,7 @@ const handleDragEnd = (event: DragEndEvent) => {
     
                     </div>
                     <div className='flex justify-end mt-2'>
-                            <Button type='button' className="cursor-pointer" onClick={() => membersAppend({ image: "", imageAlt: "", name: "",designation:"" })}>Add Member</Button>
+                            <Button type='button' className="cursor-pointer" disabled={reorderMode} onClick={() => membersAppend({ image: "", imageAlt: "", name: "",designation:"" })}>Add Member</Button>
                         </div>
                     </div>
     
