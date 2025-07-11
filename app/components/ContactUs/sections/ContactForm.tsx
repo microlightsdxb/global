@@ -24,11 +24,12 @@ export default function ContactForm() {
         method:"POST",
         body:JSON.stringify(data)
       })
-      if(response.ok){
-        toast.success("Thank you for your message, we will get back to you soon.")
+      const res = await response.json()
+      if(res.success){
+        toast.success(res.message)
         reset()
       }else{
-        toast.error("Sorry, something went wrong. Please try again later.")
+        toast.error(res.message)
       }
     } catch (error) {
       console.log("Error sending message",error)
@@ -95,7 +96,7 @@ export default function ContactForm() {
               <div className="flex">
                 <button
                  type="submit"
-                  className="flex gap-[20px] items-center border-t border-white text-sm text-white border-solid leaing-none pt-[12px]"
+                  className="flex gap-[20px] items-center border-t border-white text-sm text-white border-solid leaing-none pt-[12px] cursor-pointer"
                 >
                   Send <FiArrowUpRight className="text-[22px] text-white" />
                 </button>
