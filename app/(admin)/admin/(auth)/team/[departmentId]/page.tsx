@@ -29,7 +29,7 @@ interface TeamsData {
 
 const DepartmentPage =  () => {
 
-    const { register, handleSubmit, setValue, control, formState: { errors } } = useForm<TeamsData>();
+    const { register, handleSubmit, setValue, control } = useForm<TeamsData>();
     const [reorderMode, setReorderMode] = useState(false);
     const router = useRouter();
 
