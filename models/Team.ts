@@ -6,11 +6,14 @@ const teamSchema = new mongoose.Schema({
     mdImage: String,
     mdDescription: String,
     mdImageAlt: String,
-    members:[{
-        name: String,
-        designation: String,
-        image: String,
-        imageAlt: String,
+    departments:[{
+        title: String,
+        members:[{
+            name: String,
+            image: String,
+            designation: String,
+            imageAlt: String
+        }]
     }]
 });
 
