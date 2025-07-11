@@ -16,7 +16,7 @@ export const contactSchema = z.object({
         required_error: "Enter a valid phone number",
         invalid_type_error: "Enter a valid phone number",
       })
-      .min(1000000000, { message: "Enter a valid phone number" })
+      .min(100000000000, { message: "Enter a valid phone number" })
   ),
   email: z.preprocess(
     (val) => typeof val === "string" ? xss(val) : val,

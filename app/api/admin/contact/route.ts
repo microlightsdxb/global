@@ -3,6 +3,7 @@ import Contact from "@/models/Contact";
 import { NextRequest, NextResponse } from "next/server";
 import { verifyAdmin } from "@/lib/verifyAdmin";
 
+
 export async function GET(){
     try {
         await connectDB();
@@ -92,3 +93,5 @@ export async function DELETE(request:NextRequest){
         return NextResponse.json({message:"Error in deleting region"},{status:500});
     }
 }
+
+
