@@ -1,8 +1,8 @@
 "use client"
 
 import React from "react";
-import Banner from "./sections/Banner";
-import TeamList from "./sections/TeamList";
+import Banner from "./sections/Banner"; 
+import TeamListing from "./sections/TeamListing";
 // import useSWR from "swr";
 
 interface Props {
@@ -28,7 +28,8 @@ const Index = ({teamData,mdData}: Props) => {
       <div className="headerpadding"> </div>
 
       <Banner data={mdData}/>
-      <TeamList data={teamData} />
+      <TeamListing data={teamData}/>
+     
 
     </>
   );
