@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
@@ -41,6 +41,11 @@ const RecentProjects = ({ data }: { data: Project }) => {
   const prevRef = useRef<HTMLButtonElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
 
+
+  useEffect(() => {
+    console.log(data)
+  }, [data])
+
   return (
     <section className="section-spacing">
       <div className="container">
@@ -71,6 +76,15 @@ const RecentProjects = ({ data }: { data: Project }) => {
               modules={[Navigation]}
               slidesPerView={1}
               spaceBetween={40}
+              onBeforeInit={(swiper) => {
+                if (
+                  swiper.params.navigation &&
+                  typeof swiper.params.navigation !== "boolean"
+                ) {
+                  swiper.params.navigation.prevEl = prevRef.current;
+                  swiper.params.navigation.nextEl = nextRef.current;
+                }
+              }}
               navigation={{
                 prevEl: prevRef.current,
                 nextEl: nextRef.current,
@@ -85,7 +99,7 @@ const RecentProjects = ({ data }: { data: Project }) => {
                 <SwiperSlide key={project._id}>
                   <Link href={`/project-details/${project.slug}`} className="overflow-hidden" >
                     <div className="hdrsc">
-                      <div className="flex justify-between items-center border-b border-primary/10 pb-[14px]">
+                      <div className="flex justify-between  border-b border-primary/10 pb-[14px] h-[100px]">
                         <h3 className="text-lg font-normal leading-none text-primary">
                           {project.name}
                         </h3>
