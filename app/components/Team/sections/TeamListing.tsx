@@ -27,7 +27,7 @@ const TeamListing: React.FC<FrameworkSectionProps> = ({ data }) => {
           <motion.div variants={staggerContainer} viewport={{ once: true, amount: 0.2 }} >
             {data?.map((item, index) => (
               <div key={index}>
-                <p className="text-lg font-medium">{item?.title.split("").map((word,index)=>index==0?word.toUpperCase():word.toLowerCase()).join("")}</p>
+                <p className="text-lg font-medium">{item?.title}</p>
                 <motion.div variants={staggerContainer} viewport={{ once: true, amount: 0.2 }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 team-grid overflow-hidden relative ">
                   {item?.members?.map((member, index) => (
                     <motion.div variants={moveUp}
