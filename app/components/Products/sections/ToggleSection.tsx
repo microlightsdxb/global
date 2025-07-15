@@ -31,14 +31,6 @@ export const ToggleSection: React.FC<FrameworkSectionProps> = ({ typeSelected, s
   const { data }: { data: Type } = useSWR(`/api/admin/product/type`, fetcher)
 
 
-  useEffect(() => {
-    if (data?.data) {
-      console.log(data?.data)
-    }
-  }, [data])
-
-
-
   const [isTypeOpen, setIsTypeOpen] = useState(true);
   const [isCategoryOpen, setIsCategoryOpen] = useState(true);
   const [selectedType, setSelectedType] = useState<number>(0);
