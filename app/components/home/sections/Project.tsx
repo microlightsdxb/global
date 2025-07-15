@@ -99,7 +99,7 @@ const RecentProjects = ({ data }: { data: Project }) => {
                 <SwiperSlide key={project._id}>
                   <Link href={`/project-details/${project.slug}`} className="overflow-hidden" >
                     <div className="hdrsc">
-                      <div className="flex justify-between  border-b border-primary/10 pb-[14px] h-[100px]">
+                      <div className="flex justify-between  border-b border-primary/10 pb-[14px] h-[80px]">
                         <h3 className="text-lg font-normal leading-none text-primary">
                           {project.name}
                         </h3>
