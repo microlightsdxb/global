@@ -36,6 +36,7 @@ const PdtContainer = () => {
     if (data?.data) {
       console.log(data?.data)
       setProducts(data?.data.filter((product: { type: string, category: string, altTag: string }) => product.type === typeSelected && product.category === categorySelected))
+      console.log(data?.data.filter((product: { type: string, category: string, altTag: string }) => product.type === typeSelected && product.category === categorySelected))
     }
   }, [data, typeSelected, categorySelected])
 
@@ -47,6 +48,10 @@ const PdtContainer = () => {
       setTypeSelected(type)
     }
   }, [data, type])
+
+  useEffect(() => {
+    console.log(categorySelected)
+  },  [categorySelected])
 
 
   return (

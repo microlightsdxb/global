@@ -5,9 +5,12 @@ import { FaLinkedin, FaInstagram, FaFacebookF } from "react-icons/fa";
 /* import { BsWhatsapp } from "react-icons/bs"; */
 import { FiArrowUpRight } from "react-icons/fi";
 import {motion} from 'framer-motion';
+import { useStore } from "@/app/store/productType";
 
 
 const Footer = () => {
+  const setType = useStore((state)=>state.setType)
+  
   return (
     <footer className="pt-[60px] lg:pt-[80px] 2xl:pt-[120px] pb-[40px]">
       <div className="container">
@@ -41,13 +44,13 @@ const Footer = () => {
             <div className="w-1/2">
               <h3 className="text-lg text-primary mb-4 md:mb-[35px] leading-none">Products</h3>
               <ul className="text-gray-500 mt-4 space-y-2">
-                <li className="transition-all ease-in-out duration-500 group hover:translate-x-1">
+                <li className="transition-all ease-in-out duration-500 group hover:translate-x-1" onClick={()=>{setType("Indoor")}}>
                   <Link className="text-xs text-[#7D7D7D] group-hover:text-black" href="/products">Indoor Lighting</Link>
                 </li>
-                <li className="transition-all ease-in-out duration-500 group hover:translate-x-1">
+                <li className="transition-all ease-in-out duration-500 group hover:translate-x-1" onClick={()=>{setType("Outdoor")}}>
                   <Link className="text-xs text-[#7D7D7D] group-hover:text-black" href="/products">Outdoor Lighting</Link>
                 </li>
-                <li className="transition-all ease-in-out duration-500 group hover:translate-x-1">
+                <li className="transition-all ease-in-out duration-500 group hover:translate-x-1" onClick={()=>{setType("Industrial")}}>
                   <Link className="text-xs text-[#7D7D7D] group-hover:text-black" href="/products">Industrial Lighting</Link>
                 </li>
               </ul>
