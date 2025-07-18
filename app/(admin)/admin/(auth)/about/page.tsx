@@ -62,6 +62,7 @@ export default function About() {
     const [bottomIcon, setBottomIcon] = useState<string>("");
     const [iconAltTag, setIconAltTag] = useState<string>("");
     const [whyUsList, setWhyUsList] = useState<WhyUs[]>([]);
+    const [whyUsTitle, setWhyUsTitle] = useState<string>("");
 
     const handleFetchIntroSection = async () => {
         try {
@@ -118,7 +119,8 @@ export default function About() {
             const response = await fetch("/api/admin/about/why-us");
             if (response.ok) {
                 const data = await response.json();
-                setWhyUsList(data.data);
+                setWhyUsTitle(data.data.whyTitle);
+                setWhyUsList(data.data.whyUs);
             } else {
                 const data = await response.json();
                 alert(data.message);
@@ -198,6 +200,25 @@ export default function About() {
             }
         } catch (error) {
             console.log("Error deleting item", error);
+        }
+    }
+
+    const saveWhyUsSection = async () => {
+        try {
+            const response = await fetch("/api/admin/about/why-us/title", {
+                method: "POST",
+                body: JSON.stringify({ title: whyUsTitle }),
+            });
+            if (response.ok) {
+                const data = await response.json();
+                alert(data.message);
+                handleFetchWhyUs();
+            } else {
+                const data = await response.json();
+                alert(data.message);
+            }
+        } catch (error) {
+            console.log("Error saving details", error);
         }
     }
 
@@ -445,9 +466,20 @@ export default function About() {
             </form>
 
             <div className="h-fit w-full p-5 border-2 border-gray-300 rounded-md mt-5 bg-white">
-                <div className="flex justify-between border-b-2 pb-2">
+                <div className="flex flex-col">
+                    <div className="border-b-2 pb-2 flex justify-between">
                     <Label className="text-sm font-bold">Why Us</Label>
-                    <Dialog>
+                    <Button onClick={() => saveWhyUsSection()}>Save</Button>
+                    </div>
+                    <div className="mt-3 flex flex-col gap-2">
+                                        <Label>Title</Label>
+                                        <Input type="text" placeholder="Title" value={whyUsTitle} onChange={(e) => setWhyUsTitle(e.target.value)} />
+                                    </div>
+                    
+                </div>
+                <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
+                    <div className="flex justify-end">
+                <Dialog>
                         <DialogTrigger className="bg-black text-white px-2 py-1 rounded-md" onClick={() => { setIcon(""); setTitle(""); setDescription(""); setIconAltTag("") }}>Add Item</DialogTrigger>
                         <DialogContent>
                             <DialogHeader>
@@ -479,8 +511,7 @@ export default function About() {
                         </DialogContent>
 
                     </Dialog>
-                </div>
-                <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
+                    </div>
                     {whyUsList.map((item, index) => (
                         <div key={index} className="relative flex  justify-between border p-2 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300">
                             <div className="flex gap-4 items-center">

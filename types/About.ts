@@ -11,6 +11,7 @@ export type About = {
     mission:{description:string,icon:string,altTag:string};
     vision:{description:string,icon:string,altTag:string};
     values:{description:string,icon:string,altTag:string};
+    whyTitle: string;
     whyItems: {
       _id: string;
       icon: string;
