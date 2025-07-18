@@ -10,7 +10,8 @@ export async function GET() {
         const about = await About.findOne({});
         if(about){
             const whyUs = about.whyItems;
-            return NextResponse.json({message:"Data fetched successfully",data:whyUs});
+            const whyTitle = about.whyTitle;
+            return NextResponse.json({message:"Data fetched successfully",data:{whyUs,whyTitle}});
         }else{
             return NextResponse.json({ message: "No data found" }, { status: 404 });
         }
@@ -101,6 +102,8 @@ export async function DELETE(req: NextRequest) {
         return NextResponse.json({ message: "Error deleting data" }, { status: 500 });
     }
 }
+
+
 
 
 

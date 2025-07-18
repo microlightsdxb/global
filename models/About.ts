@@ -24,6 +24,7 @@ const aboutSchema = new mongoose.Schema({
         icon: String,
         altTag: String,
     },
+    whyTitle: String,
     whyItems:[
         {
             title: String,

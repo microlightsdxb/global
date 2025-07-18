@@ -11,6 +11,7 @@ interface FrameworkSectionProps {
   setTypeSelected: (type: string) => void;
   setCategorySelected: (category: string) => void;
   type: string;
+  categorySelected: string;
 }
 
 interface Type {
@@ -25,7 +26,7 @@ interface Type {
 
 }
 
-export const ToggleSection: React.FC<FrameworkSectionProps> = ({ typeSelected, setTypeSelected, setCategorySelected, type }) => {
+export const ToggleSection: React.FC<FrameworkSectionProps> = ({ typeSelected, setTypeSelected, setCategorySelected, type, categorySelected }) => {
 
   const fetcher = (...args: Parameters<typeof fetch>) => fetch(...args).then(res => res.json())
   const { data }: { data: Type } = useSWR(`/api/admin/product/type`, fetcher)
@@ -44,30 +45,53 @@ export const ToggleSection: React.FC<FrameworkSectionProps> = ({ typeSelected, s
     setTypeSelected(typeInSelection)
     setType(typeInSelection)
     setSelectedType(index)
-    setSelectedCategory(0)
-    setCategorySelected(data?.data[index].category[0].name)
+    // setSelectedCategory(0)
+    // setCategorySelected(data?.data[index].category[0].name)
   };
 
   const toggleCategorySelection = (index: number, category: string) => {
     setCategorySelected(category)
-    setSelectedCategory(index)
+    // setSelectedCategory(index)
   };
 
   useEffect(() => {
     setTypeSelected(data?.data[0]?.type)
-    setCategorySelected(data?.data[0].category[0].name)
+    // setCategorySelected(data?.data[0].category[0].name)
   }, [data])
 
 
   useEffect(() => {
     setSelectedType(data?.data.findIndex((item) => item.type === type) || 0)
-    setSelectedCategory(0)
-    setCategorySelected(data?.data.find((item) => item.type === type)?.category[0].name || "")
+    // setSelectedCategory(0)
+    setCategorySelected("")
   }, [type])
 
 
   return (
     <div>
+      <div className="mb-1 md:mb-6">
+        {/* Toggle Header */}
+        <div className="border-b mb-2 md:mb-4 md:pb-3  flex justify-between items-center cursor-pointer" onClick={() => setIsCategoryOpen(!isCategoryOpen)}>
+          <p className="text-[16px] lg:text-lg text-black leading-[1.4]">Category</p>
+          {isCategoryOpen ? <Minus size={20} /> : <Plus size={20} />}
+        </div>
+
+        {/* Toggle Content */}
+        <motion.div variants={staggerContainer} initial="hidden" animate="show" className={`transition-all duration-300 ${isCategoryOpen ? "  opacity-100" : "max-h-0 opacity-0 overflow-hidden" }`}>
+          {categories?.map((category, index) => (
+            <motion.div variants={moveUp}
+              key={category._id}
+              className="flex justify-between items-center xl:mb-3 cursor-pointer hover:bg-gray-100 p-2 rounded-md"
+              onClick={() => {toggleCategorySelection(index, category.name);setSelectedCategory(index)}}
+            >
+              <span>{category.name}</span>
+              {selectedCategory === index && categorySelected !="" && (
+                <Check size={20} className="text-font" />
+              )}
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
       <div className="mb-4 md:mb-6">
         {/* Toggle Header */}
         <div className="border-b mb-2 md:mb-4 md:pb-3 flex justify-between items-center cursor-pointer" onClick={() => setIsTypeOpen(!isTypeOpen)}>
@@ -86,29 +110,7 @@ export const ToggleSection: React.FC<FrameworkSectionProps> = ({ typeSelected, s
           ))}
         </motion.div>
       </div>
-      <div className="mb-1 md:mb-6">
-        {/* Toggle Header */}
-        <div className="border-b mb-2 md:mb-4 md:pb-3  flex justify-between items-center cursor-pointer" onClick={() => setIsCategoryOpen(!isCategoryOpen)}>
-          <p className="text-[16px] lg:text-lg text-black leading-[1.4]">Category</p>
-          {isCategoryOpen ? <Minus size={20} /> : <Plus size={20} />}
-        </div>
-
-        {/* Toggle Content */}
-        <motion.div variants={staggerContainer} initial="hidden" animate="show" className={`transition-all duration-300 ${isCategoryOpen ? "  opacity-100" : "max-h-0 opacity-0 overflow-hidden" }`}>
-          {categories?.map((category, index) => (
-            <motion.div variants={moveUp}
-              key={category._id}
-              className="flex justify-between items-center xl:mb-3 cursor-pointer hover:bg-gray-100 p-2 rounded-md"
-              onClick={() => toggleCategorySelection(index, category.name)}
-            >
-              <span>{category.name}</span>
-              {selectedCategory === index && (
-                <Check size={20} className="text-font" />
-              )}
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
+      
     </div>
   );
 };

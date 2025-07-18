@@ -21,7 +21,7 @@ const WhyMicolights = ({
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true, amount: 0.5 }} className="text-xl text-black mb-[20px] md:mb-[57px] leading-[1.3]">
-              Why Micolights?
+              {data?.whyTitle}
             </motion.h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-[40px] lg:gap-[77px]">
 

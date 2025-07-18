@@ -35,8 +35,13 @@ const PdtContainer = () => {
   useEffect(() => {
     if (data?.data) {
       console.log(data?.data)
-      setProducts(data?.data.filter((product: { type: string, category: string, altTag: string }) => product.type === typeSelected && product.category === categorySelected))
-      console.log(data?.data.filter((product: { type: string, category: string, altTag: string }) => product.type === typeSelected && product.category === categorySelected))
+      console.log("categorySelected is",categorySelected)
+      if(categorySelected == ""){
+        setProducts(data?.data.filter((product: { type: string, category: string, altTag: string }) => product.type === typeSelected))
+      }else{
+        setProducts(data?.data.filter((product: { type: string, category: string, altTag: string }) => product.type === typeSelected && product.category === categorySelected))
+      }
+      // console.log(data?.data.filter((product: { type: string, category: string, altTag: string }) => product.type === typeSelected && product.category === categorySelected))
     }
   }, [data, typeSelected, categorySelected])
 
@@ -49,9 +54,6 @@ const PdtContainer = () => {
     }
   }, [data, type])
 
-  useEffect(() => {
-    console.log(categorySelected)
-  },  [categorySelected])
 
 
   return (
@@ -63,7 +65,7 @@ const PdtContainer = () => {
           </h1>
           <div className="md:flex gap-5 xl:gap-10">
             <div className="md:w-1/4">
-              <ToggleSection type={type} typeSelected={typeSelected} setTypeSelected={setTypeSelected} setCategorySelected={setCategorySelected} />
+              <ToggleSection type={type} typeSelected={typeSelected} setTypeSelected={setTypeSelected} setCategorySelected={setCategorySelected} categorySelected={categorySelected} />
               {/* <ToggleSection
                 title="Category"
                 options={["Home", "Office", "Commercial"]}
