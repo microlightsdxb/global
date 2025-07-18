@@ -166,7 +166,7 @@ const IndustriesServed = ({data}: {data: Home}) => {
             <div className="bomsx grid grid-cols-1 lg:grid-cols-3 ">
               {data.industries.items.map((industry, i) => (
                 <div
-                  className="bitms p-[20px] lg:p-[40px] 2xl:p-[50px] border-r border-b border-[#595959] border-l border-t relative overflow-hidden group cursor-pointer" key={i}>
+                  className="bitms p-[20px] lg:p-[40px] 2xl:p-[50px] border-r border-b border-[#595959] border-l border-t relative overflow-hidden group" key={i}>
                   <figure className="absolute w-full h-[0px] inset-0 z-[0] before:content-[]  before:absolute before:w-full before:h-full before:bg-gradient-to-t before:from-black/80 before:to-transparent transition-all ease-in-out duration-300 top-[50%] -translate-y-[50%] group-hover:h-full overflow-hidden">
                     <Image src={industry.image} width={600} height={600} alt={industry.imageAlt} />
 
