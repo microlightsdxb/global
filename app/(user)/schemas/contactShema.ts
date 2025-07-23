@@ -27,6 +27,10 @@ export const contactSchema = z.object({
     (val) => typeof val === "string" ? xss(val) : val,
     z.string({ required_error: "Message is required" }).min(1, "Message is required")
   ),
+  company: z.preprocess(
+    (val) => typeof val === "string" ? xss(val) : val,
+    z.string({ required_error: "Company is required" }).min(1, "Company is required")
+  ),
 });
 
 export type ContactSchema = z.infer<typeof contactSchema>;
