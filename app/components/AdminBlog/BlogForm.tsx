@@ -170,26 +170,32 @@ const BlogForm = ({ editMode }: { editMode?: boolean }) => {
     <div className='flex flex-col gap-2'>
                 <div className="flex flex-col gap-1">
                     <Label className=''>Image</Label>
-                    <ImageUploader onChange={(url) => setValue("image", url)} value={watch("image")} />
+                    <Controller name="image" control={control} rules={{ required: "Image is required" }} render={({}) => {
+                        return <ImageUploader onChange={(url) => setValue("image", url)} value={watch("image")} />
+                    }} />
                     {errors.image && <p className='text-red-500'>{errors.image.message}</p>}
                 </div>
 
                 <div className="flex flex-col gap-1">
                     <Label className=''>Alt Tag</Label>
-                    <Input type='text' placeholder='Alt Tag' {...register("imageAlt")} />
+                    <Input type='text' placeholder='Alt Tag' {...register("imageAlt",{required: "Alt Tag is required"})} />
+                    {errors.imageAlt && <p className='text-red-500'>{errors.imageAlt.message}</p>}
                 </div>
                 </div>
 
 <div className='flex flex-col gap-2'>
                 <div className="flex flex-col gap-1">
                     <Label className=''>Banner Image</Label>
-                    <ImageUploader onChange={(url) => setValue("bannerImage", url)} value={watch("bannerImage")} />
+                    <Controller name="bannerImage" control={control} rules={{ required: "Banner Image is required" }} render={({}) => {
+                        return <ImageUploader onChange={(url) => setValue("bannerImage", url)} value={watch("bannerImage")} />
+                    }} />
                     {errors.bannerImage && <p className='text-red-500'>{errors.bannerImage.message}</p>}
                 </div>
 
                 <div className="flex flex-col gap-1">
                     <Label className=''>Alt Tag</Label>
-                    <Input type='text' placeholder='Alt Tag' {...register("bannerImageAlt")} />
+                    <Input type='text' placeholder='Alt Tag' {...register("bannerImageAlt",{required: "Alt Tag is required"})} />
+                    {errors.bannerImageAlt && <p className='text-red-500'>{errors.bannerImageAlt.message}</p>}
                 </div>
                 </div>
                 </div>
