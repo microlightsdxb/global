@@ -61,7 +61,7 @@ const PdtContainer = () => {
       <div className="container ">
         <div className="pt-16 pb-150 border-b border-black">
           <h1 className="text-2xl text-black mb-8 md:mb-12 leading-[1.3]">
-            {categorySelected}
+            {categorySelected == "" ? typeSelected : categorySelected}
           </h1>
           <div className="md:flex gap-5 xl:gap-10">
             <div className="md:w-1/4">

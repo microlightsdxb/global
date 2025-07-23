@@ -19,7 +19,7 @@ import { BiExpandAlt } from "react-icons/bi";
 
 
 const AdminEnquiry = () => {
-    const [enquiryList, setEnquiryList] = useState<{ _id: string, name: string, email: string, phone: string, message: string }[]>([]);
+    const [enquiryList, setEnquiryList] = useState<{ _id: string, name: string, email: string, company: string, phone: string, message: string }[]>([]);
 
 
     const handleFetchEnquiry = async () => {
@@ -87,22 +87,27 @@ const AdminEnquiry = () => {
                                             <div className='flex flex-col gap-3'>
                                                 <div className='flex flex-col gap-2'>
                                                     <Label>Name</Label>
-                                                    <Input type="text" placeholder="Name" value={item.name} readOnly/>
+                                                    <Input type="text" value={item.name} readOnly/>
                                                 </div>
 
                                                 <div className='flex flex-col gap-2'>
                                                     <Label>Email</Label>
-                                                    <Input type="text" placeholder="Email" value={item.email} readOnly/>
+                                                    <Input type="text" value={item.email} readOnly/>
                                                 </div>
 
                                                 <div className='flex flex-col gap-2'>
                                                     <Label>Phone</Label>
-                                                    <Input type="text" placeholder="Phone" value={item.phone} readOnly/>
+                                                    <Input type="text" value={item.phone} readOnly/>
+                                                </div>
+
+                                                <div className='flex flex-col gap-2'>
+                                                    <Label>Company</Label>
+                                                    <Input type="text" value={item.company} readOnly/>
                                                 </div>
 
                                                 <div className='flex flex-col gap-2'>
                                                     <Label>Message</Label>
-                                                    <Textarea placeholder="Message" value={item.message} readOnly/>
+                                                    <Textarea value={item.message} readOnly/>
                                                 </div>
 
 

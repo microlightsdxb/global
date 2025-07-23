@@ -11,9 +11,8 @@ export async function POST(req:NextRequest){
             return NextResponse.json({message:"Too many requests. Please try again later."},{status:429})
         }
         await connectDB()
-        const {name,phone,email,message} = await req.json()
-        console.log(name,phone,email,message)
-        const enquiry = await Enquiry.create({name,phone,email,message})
+        const {name,phone,email,message,company} = await req.json()
+        const enquiry = await Enquiry.create({name,phone,email,message,company})
         if(!enquiry){
             return NextResponse.json({message:"Error sending message",success:false},{status:500})
         }
