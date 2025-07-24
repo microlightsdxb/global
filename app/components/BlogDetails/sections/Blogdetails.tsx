@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { assets } from "@/public/assets/assets";
 import {categories} from "../data/dataBox"
@@ -37,7 +37,14 @@ interface FrameworkSectionProps {
 }
 
 const Blogdetails: React.FC<FrameworkSectionProps> = ({ data, recentBlogData }) => {
-  console.log(data, recentBlogData);
+  const [currentUrl, setCurrentUrl] = useState("");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setCurrentUrl(window.location.href);
+    }
+  }, []);
+
   return (
     <>
       <section className="ptc-120 pbc-135  ">
@@ -89,7 +96,7 @@ const Blogdetails: React.FC<FrameworkSectionProps> = ({ data, recentBlogData }) 
                   transition={{ duration: 0.5, delay: 0.3 }}
                   viewport={{ once: true }}
                 >
-                  <Link href={"http://www.linkedin.com/shareArticle?mini=true&url="+window.location.href} target="_blank"><motion.div
+                  <Link href={`http://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(currentUrl)}`} target="_blank"><motion.div
                     className="w-10 h-10 bg-black flex justify-center items-center rounded-3xl"
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.2 }}
