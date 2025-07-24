@@ -6,6 +6,7 @@ import {categories} from "../data/dataBox"
 import Bloglist from "./Bloglist";
 import parse from "html-react-parser";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 interface FrameworkItem {
   data:{
@@ -88,13 +89,14 @@ const Blogdetails: React.FC<FrameworkSectionProps> = ({ data, recentBlogData }) 
                   transition={{ duration: 0.5, delay: 0.3 }}
                   viewport={{ once: true }}
                 >
-                  <motion.div
+                  <Link href={"http://www.linkedin.com/shareArticle?mini=true&url="+window.location.href} target="_blank"><motion.div
                     className="w-10 h-10 bg-black flex justify-center items-center rounded-3xl"
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.2 }}
                   >
                     <Image src={assets.lin} alt="LinkedIn" />
                   </motion.div>
+                  </Link>
 
                   <motion.div
                     className="w-10 h-10 bg-black flex justify-center items-center rounded-3xl"

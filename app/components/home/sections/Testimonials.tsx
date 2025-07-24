@@ -7,6 +7,7 @@ import "swiper/css/pagination";
 import Image from "next/image";
 import { motion } from 'framer-motion';
 import { Home } from "@/types/Home";
+import { useEffect, useState } from "react";
 
 
 const slideVariant = {
@@ -21,6 +22,17 @@ const slideVariant = {
 
 
 const Testimonials: React.FC<{ data: Home }> = ({ data }: { data: Home }) => {
+
+  const [activeTestimonialReadMore, setActiveTestimonialReadMore] = useState<string | null>(null);
+
+  useEffect(() => {
+    console.log(activeTestimonialReadMore)
+  }, [activeTestimonialReadMore]);
+
+  const toggleReadMore = (id: string) => {
+    setActiveTestimonialReadMore(prev => (prev === id ? null : id));
+  };
+
   return (
     <section className="section-spacing relative text-white">
       <figure className="absolute bg-primary w-full h-full inset-0 -z-10">
@@ -34,7 +46,7 @@ const Testimonials: React.FC<{ data: Home }> = ({ data }: { data: Home }) => {
           modules={[Pagination]}
           slidesPerView={1}
           spaceBetween={20}
-          loop={true}
+          loop={false}
           pagination={{ clickable: true }}
           breakpoints={{
             768: { slidesPerView: 2 },
@@ -43,13 +55,31 @@ const Testimonials: React.FC<{ data: Home }> = ({ data }: { data: Home }) => {
           className="tsmnls"
         >
           {data?.testimonials?.map((testimonial, i) => (
-            <SwiperSlide key={testimonial.id}>
+            <SwiperSlide key={testimonial._id}>
               <motion.div className="pt-[40px] relative before:absolute before:h-[1px] before:w-full before:top-0 before:bg-white itms" initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.5 }}
                 variants={slideVariant}
                 custom={i}>
-                <p className="text-sm leading-relaxed text-[#B8B8B8]" dangerouslySetInnerHTML={{ __html: testimonial.content }} />
+                <div className="lg:min-h-[200px]">
+                  <p className="text-sm leading-relaxed text-[#B8B8B8]">
+                    {testimonial.content.split(" ").length > 40 && activeTestimonialReadMore !== testimonial._id
+                      ? testimonial.content.split(" ").slice(0, 40).join(" ") + "..."
+                      : <motion.span initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.5 }} variants={slideVariant} custom={i}>{testimonial.content}</motion.span>}
+
+                    {testimonial.content.split(" ").length > 40 && (
+                      <motion.span initial="hidden" whileInView="visible" viewport={{ once: true, amount: 0.5 }} variants={slideVariant} custom={i}
+                        className="text-white cursor-pointer ml-2"
+                        onClick={() =>
+                          toggleReadMore(testimonial._id)
+                        }
+                      >
+                        {activeTestimonialReadMore === testimonial._id ? " Read Less" : " Read More"}
+                      </motion.span>
+                    )}
+                  </p>
+                </div>
+
 
                 <div className="flex items-center gap-[15px] mt-[40px]">
                   <div className="w-[45px] h-[45px] bg-gray-500 rounded-full"></div>
