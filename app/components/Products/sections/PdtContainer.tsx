@@ -22,11 +22,23 @@ interface Product {
   }[]
 }
 
+interface Type {
+  data: {
+    type: string;
+    _id: string;
+    category: {
+      name: string;
+      _id: string;
+    }[];
+  }[]
+}
+
 
 const PdtContainer = () => {
 
   const fetcher = (...args: Parameters<typeof fetch>) => fetch(...args).then(res => res.json())
   const { data }: { data: Product } = useSWR(`/api/admin/product`, fetcher)
+  const { data:categories }: { data: Type } = useSWR(`/api/admin/product/type`, fetcher)
   const [products, setProducts] = useState<{ name: string, slug: string, thumbnail: string, wattage: string, lumen: string, _id: string, altTag: string }[]>([])
   const [typeSelected, setTypeSelected] = useState<string>("")
   const [categorySelected, setCategorySelected] = useState<string>("")
@@ -34,26 +46,31 @@ const PdtContainer = () => {
 
   useEffect(() => {
     if (data?.data) {
-      console.log(data?.data)
-      console.log("categorySelected is",categorySelected)
       if(categorySelected == ""){
-        setProducts(data?.data.filter((product: { type: string, category: string, altTag: string }) => product.type === typeSelected))
+        if(!categories){
+          return
+        }
+        setProducts(categories?.data
+          .find(item => item.type === typeSelected)
+          ?.category.flatMap((category: { name: string }) =>
+            data?.data.filter(
+              (product: { type: string; category: string }) =>
+                product.type === typeSelected && product.category === category.name
+            )
+          ) || [])
       }else{
         setProducts(data?.data.filter((product: { type: string, category: string, altTag: string }) => product.type === typeSelected && product.category === categorySelected))
       }
-      // console.log(data?.data.filter((product: { type: string, category: string, altTag: string }) => product.type === typeSelected && product.category === categorySelected))
     }
-  }, [data, typeSelected, categorySelected])
+  }, [data, typeSelected, categorySelected, categories])
 
   useEffect(() => {
-    console.log(type)
     if (type == "") {
       setTypeSelected(data?.data[0].type)
     } else {
       setTypeSelected(type)
     }
   }, [data, type])
-
 
 
   return (
@@ -65,15 +82,7 @@ const PdtContainer = () => {
           </h1>
           <div className="md:flex gap-5 xl:gap-10">
             <div className="md:w-1/4">
-              <ToggleSection type={type} typeSelected={typeSelected} setTypeSelected={setTypeSelected} setCategorySelected={setCategorySelected} categorySelected={categorySelected} />
-              {/* <ToggleSection
-                title="Category"
-                options={["Home", "Office", "Commercial"]}
-              /> */}
-              {/* <ToggleSection
-              title="Usage"
-              options={["Heavy Duty", "Lightweight", "Medium"]}
-            /> */}
+              <ToggleSection type={type} typeSelected={typeSelected} setTypeSelected={setTypeSelected} setCategorySelected={setCategorySelected} categorySelected={categorySelected} categories={categories}/>
             </div>
 
             <div className="md:w-3/4   p-4 ">
