@@ -17,6 +17,7 @@ import { useRouter } from 'next/navigation'
 import { useParams } from 'next/navigation'
 import { ImageUploader } from '@/components/ui/image-uploader'
 import TinyEditor from "@/app/components/TinyMce/TinyEditor";
+import { Textarea } from '@/components/ui/textarea'
 
 interface BlogFormProps {
     title: string;
@@ -124,7 +125,7 @@ const BlogForm = ({ editMode }: { editMode?: boolean }) => {
 
                 <div className="flex flex-col gap-1">
                     <Label className=''>Title</Label>
-                    <Input type='text' placeholder='Title' {...register("title", { required: "Title is required" })} />
+                    <Textarea placeholder='Title' {...register("title", { required: "Title is required" })} />
                     {errors.title && <p className='text-red-500'>{errors.title.message}</p>}
                 </div>
                 <div className="flex flex-col gap-1">
