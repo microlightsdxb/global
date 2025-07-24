@@ -23,7 +23,7 @@ export type Home = {
             title: string;
         }[];
         testimonials: {
-            id: number;
+            _id: string;
             content: string;
             name: string;
             company: string;
