@@ -128,8 +128,15 @@ const Bloglist: React.FC<FrameworkSectionProps> = ({ data, categories }) => {
 
           <div
             className="pb-5 md:pb-8 lg:pb-[48px] border-b"
-          >
-            <p className="text-lg text-black leading-[1.4]">{member.title}</p>
+          > 
+            <p className="text-lg text-black leading-[1.4]">
+            {member.title.split('\n').map((line, index) => (
+              <React.Fragment key={index}>
+                {line}
+                <br />
+              </React.Fragment>
+            ))}
+          </p>
           </div>
           </motion.div>
         </motion.div>
