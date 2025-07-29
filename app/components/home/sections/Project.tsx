@@ -99,7 +99,7 @@ const RecentProjects = ({ data }: { data: Project }) => {
                 <SwiperSlide key={project._id}>
                   <Link href={`/project-details/${project.slug}`} className="overflow-hidden" >
                     <div className="hdrsc">
-                      <div className="flex justify-between  border-b border-primary/10 pb-[14px] h-[80px]">
+                      <div className="flex justify-between  border-b border-primary/10 pb-[14px] h-[60px]">
                         <h3 className="text-lg font-normal leading-none text-primary">
                           {project.name}
                         </h3>
@@ -109,7 +109,7 @@ const RecentProjects = ({ data }: { data: Project }) => {
                           </span>
                         </div>
                       </div>
-                      <div className="flex justify-between items-center py-[30px]">
+                      {/* <div className="flex justify-between items-center py-[30px]">
                         <div>
                           <p className="text-sm text-[#7D7D7D]">
                             Client: {project.client}
@@ -120,7 +120,7 @@ const RecentProjects = ({ data }: { data: Project }) => {
                             Location: {project.location}
                           </p>
                         </div>
-                      </div>
+                      </div> */}
                     </div>
 
                     <figure className="h-[280px]   lg:h-[300px] xl:h-[350px] w-full overflow-hidden">
