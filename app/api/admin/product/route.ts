@@ -58,7 +58,7 @@ export async function GET(request:NextRequest){
                 return NextResponse.json({message:"Product not found"},{status:404})
             }
         }else{
-            const products = await Product.find();
+            const products = await Product.find().sort({index:1});
             if(products){
                 return NextResponse.json({data:products},{status:200})
             }else{
