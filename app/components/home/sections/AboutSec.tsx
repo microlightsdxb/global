@@ -62,7 +62,7 @@ const Counter: React.FC<CounterProps> = ({ end, label ,index }) => {
     >
       {/* <p className="text-lg font-normal text-primary leading-none">{count}'s of</p> */}
       <p className="text-lg font-normal text-primary leading-none">
-        {index === 0 ? `${count}+` : `${count}'s of`}
+        {index === 0 ? `${count}+` : `${count}'s`}
       </p>
       <p className="text-gray-600 text-sm">{label}</p>
     </div>
