@@ -62,7 +62,7 @@ const Counter: React.FC<CounterProps> = ({ end, label ,index }) => {
     >
       {/* <p className="text-lg font-normal text-primary leading-none">{count}'s of</p> */}
       <p className="text-lg font-normal text-primary leading-none">
-        {index === 0 ? `${count}+` : `${count}'s of`}
+        {index === 0 ? `${count}+` : `${count}'s`}
       </p>
       <p className="text-gray-600 text-sm">{label}</p>
     </div>
@@ -119,8 +119,8 @@ const AboutSec = ({ data }: { data: Home }) => {
             </div>
             <div className="grid grid-cols-3 justify-center gap-[15px] lg:gap-[30px] text-center mt-[30px]  md:mt-[20px] xl:mt-[80px]">
               <Counter end={data?.years} label="Years of Expertise" index={0} />
-              <Counter end={data?.projects} label="Projects Completed" index={1} />
-              <Counter end={data?.clients} label="Happy Clients" index={2} />
+              <Counter end={data?.projects} label="of Projects Completed" index={1} />
+              <Counter end={data?.clients} label="of Happy Clients" index={2} />
             </div>
           </motion.div>
         </div>
