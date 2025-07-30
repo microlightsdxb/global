@@ -85,7 +85,8 @@ const ProjectList: React.FC<FrameworkSectionProps> = ({
                 </div>
                 <div className="flex items-center justify-between border-b border-[#00000010] pb-3">
                   <div className="flex gap-5">
-                    <p>{project.industry}</p> <p>-</p> <p>{project.location}</p>
+                    <p>{project.industry}</p>
+                    {/* <p>-</p> <p>{project.location}</p> */}
                   </div>
                   <div>
                     <div className="flex group-hover:flex transition-all ease-in-out duration-500 justify-end">

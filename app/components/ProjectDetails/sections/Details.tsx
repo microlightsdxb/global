@@ -40,11 +40,11 @@ const Details: React.FC<FrameworkSectionProps> = ({
             { label: "Client", value: data?.data.client },
             { label: "Industry", value: data?.data.industry },
             { label: "Scope", value: data?.data.scope },
-            { label: "Location", value: data?.data.location },
+            // { label: "Location", value: data?.data.location },
           ].map((item, index) => (
             <motion.div
               key={index}
-              className="lg:w-1/4"
+              className="lg:w-1/3"
               variants={fadeInUp}
               transition={{ delay: index * 0.2 }}
             >
