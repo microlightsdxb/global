@@ -89,7 +89,7 @@ const Filter = ({ industryData, locationData, setIndustrySelected, setLocationSe
           viewport={{ once: true, amount: 0.5 }}>
           <div className="block md:flex bg-black p-6 md:p-10 pt-5 items-center">
             <div className="w-full md:w-4/5">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-[40px]">
+              <div className="grid grid-cols-1 ">
                 <div>
                   <div className="relative w-full">
                     <Select
@@ -168,17 +168,9 @@ const Filter = ({ industryData, locationData, setIndustrySelected, setLocationSe
                     </div> */}
                   </div>
                 </div>
-                <div><div className="relative w-full">
-                  {/* <select className="w-full bg-transparent text-white py-2 pr-8 pl-3 border-b border-white appearance-none focus:outline-none focus:border-gray-300 transition duration-300" value={locationSelected} onChange={(e) => setLocationSelected(e.target.value)}>
-                    <option className="bg-black text-white" value="Location">
-                      Location
-                    </option>
-                    {locationData?.data?.map((item: { name: string }, index: number) => (
-                      <option className="bg-black text-white" value={item.name} key={index}>
-                        {item.name}
-                      </option>
-                    ))}
-                  </select> */}
+                <div>
+                  {/* <div className="relative w-full">
+
                   <CustomDropdown
                     options={locationOptions}
                     selected={selectedLocation}
@@ -189,10 +181,9 @@ const Filter = ({ industryData, locationData, setIndustrySelected, setLocationSe
                     selectedLocations={selectedLocations}
                     placeholder="Location"
                   />
-                  {/* <div className="absolute inset-y-0 right-2 flex items-center pointer-events-none text-white">
-                    <Image src={assets.arrdn} alt=""></Image>
+
                   </div> */}
-                </div></div>
+                </div>
               </div>
             </div>
             <div className="w-1/5 ml-auto  ">
