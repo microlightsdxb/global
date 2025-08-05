@@ -2,6 +2,8 @@ import connectDB from "@/lib/mongodb";
 import ProductType from "@/models/ProductType";
 import { NextRequest, NextResponse } from "next/server";
 import { verifyAdmin } from "@/lib/verifyAdmin";
+import Product from "@/models/Product";
+import mongoose from "mongoose";
 
 export async function POST(request:NextRequest){
     try {
@@ -51,7 +53,9 @@ export async function GET(request:Request){
 }
 
 export async function PATCH(request:NextRequest){
+    const session = await mongoose.startSession();
     try {
+        session.startTransaction();
         await connectDB();
         const isAdmin = await verifyAdmin(request);
         if(!isAdmin){
@@ -64,25 +68,38 @@ export async function PATCH(request:NextRequest){
                 const categoryIndex = type.category.findIndex((item:{_id:string})=>item._id == id);
                 if(categoryIndex != -1){
                     type.category[categoryIndex].name = category;
+                    const products = type.category[categoryIndex].products;
+                    products.map(async (product:string) => {
+                        await Product.findByIdAndUpdate(product, { category: category }, { new: true });
+                    });
                     await type.save();
+                    await session.commitTransaction();
                     return NextResponse.json({success:true,message:"Category updated successfully"},{status:200})
                 }else{
+                    await session.abortTransaction();
                     return NextResponse.json({success:false,message:"Category not found"},{status:404})
                 }
             }else{
+                await session.abortTransaction();
                 return NextResponse.json({success:false,message:"Type not found"},{status:404})
             }
         }else{
+            await session.abortTransaction();
             return NextResponse.json({success:false,message:"Id, category and typeId are required"},{status:400})
         }
     } catch (error) {
+        await session.abortTransaction();
         console.log("Error in editing category",error);
         return NextResponse.json({success:false,message:"Error in editing category"},{status:500})
+    }finally{
+        await session.endSession();
     }
 }
 
 export async function DELETE(request:NextRequest){
+    const session = await mongoose.startSession();
     try {
+        session.startTransaction();
         await connectDB();
         const isAdmin = await verifyAdmin(request);
         if(!isAdmin){
@@ -95,19 +112,30 @@ export async function DELETE(request:NextRequest){
                 const categoryIndex = type.category.findIndex((item:{_id:string})=>item._id == id);
                 if(categoryIndex != -1){
                     type.category.splice(categoryIndex,1);
+                    const products = type.category[categoryIndex].products;
+                    products.map(async (product:string) => {
+                        await Product.findByIdAndUpdate(product, { category: "" }, { new: true });
+                    });
                     await type.save();
+                    await session.commitTransaction();
                     return NextResponse.json({success:true,message:"Category deleted successfully"},{status:200})
                 }else{
+                    await session.abortTransaction();
                     return NextResponse.json({success:false,message:"Category not found"},{status:404})
                 }
             }else{
+                await session.abortTransaction();
                 return NextResponse.json({success:false,message:"Type not found"},{status:404})
             }
         }else{
+            await session.abortTransaction();
             return NextResponse.json({success:false,message:"Id and typeId are required"},{status:400})
         }
     } catch (error) {
+        await session.abortTransaction();
         console.log("Error in deleting category",error);
         return NextResponse.json({success:false,message:"Error in deleting category"},{status:500})
+    }finally{
+        await session.endSession();
     }
 }

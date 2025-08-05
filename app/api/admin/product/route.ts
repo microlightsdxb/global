@@ -1,10 +1,14 @@
 import connectDB from "@/lib/mongodb";
 import Product from "@/models/Product";
+import ProductType from "@/models/ProductType";
 import { NextRequest, NextResponse } from "next/server";
 import { verifyAdmin } from "@/lib/verifyAdmin";
+import mongoose from "mongoose";
 
 export async function POST(request:NextRequest){
+    const session = await mongoose.startSession();
     try {
+        session.startTransaction();
         await connectDB();
         const isAdmin = await verifyAdmin(request);
         if(!isAdmin){
@@ -27,13 +31,27 @@ export async function POST(request:NextRequest){
             altTag
         })
         if(product){
+            const categoryInCategory = await ProductType.findOne({"category.name":category})
+            console.log("categoryInCategory",categoryInCategory)
+            if(categoryInCategory){
+                const categoryObj = categoryInCategory.category.find((cat:{name:string}) => cat.name === category);
+                if(categoryObj){
+                    categoryObj.products.push(product._id)
+                    await categoryInCategory.save()
+                }
+            }
+            await session.commitTransaction();
             return NextResponse.json({message:"Product added successfully"},{status:200})
         }else{
+            await session.abortTransaction();
             return NextResponse.json({message:"Error in adding product"},{status:500})
         }
     } catch (error) {
+        await session.abortTransaction();
         console.log("Error in adding product",error)
         return NextResponse.json({message:"Error in adding product"},{status:500})
+    }finally{
+        await session.endSession();
     }
 }
 
@@ -72,7 +90,9 @@ export async function GET(request:NextRequest){
 }
 
 export async function PATCH(request:NextRequest){
+    const session = await mongoose.startSession();
     try {
+        session.startTransaction();
         await connectDB();
         const isAdmin = await verifyAdmin(request);
         if(!isAdmin){
@@ -83,19 +103,37 @@ export async function PATCH(request:NextRequest){
         const id = searchParams.get("id");
         const product = await Product.findByIdAndUpdate(id,{name,slug,wattage,lumen,type,category,specifications,thumbnail,images,file,metaTitle,metaDescription,altTag})
         if(product){
+            const categoryInCategory = await ProductType.findOne({"category.name":category})
+            if(categoryInCategory){
+                const categoryObj = categoryInCategory.category.find((cat:{name:string}) => cat.name === category);
+                if(categoryObj){
+                    const productIndex = categoryObj.products.findIndex((item:string) => item === product._id);
+                    if(productIndex == -1){
+                        categoryObj.products.push(product._id)
+                        await categoryInCategory.save()
+                    }
+                }
+            }
+            await session.commitTransaction();
             return NextResponse.json({message:"Product updated successfully"},{status:200})
         }else{
+            await session.abortTransaction();
             return NextResponse.json({message:"Error in updating product"},{status:500})
         }
     } catch (error) {
+        await session.abortTransaction();
         console.log("Error in updating product",error)
         return NextResponse.json({message:"Error in updating product"},{status:500})
+    }finally{
+        await session.endSession();
     }
 }
 
 
 export async function DELETE(request:NextRequest){
+    const session = await mongoose.startSession();
     try {
+        session.startTransaction();
         await connectDB();
         const isAdmin = await verifyAdmin(request);
         if(!isAdmin){
@@ -105,12 +143,26 @@ export async function DELETE(request:NextRequest){
         const id = searchParams.get("id");
         const product = await Product.findByIdAndDelete(id);
         if(product){
+            const categoryInCategory = await ProductType.findOne({"category.name":product.category})
+            if(categoryInCategory){
+                const categoryObj = categoryInCategory.category.find((cat:{name:string}) => cat.name === product.category);
+                if(categoryObj){
+                    // Example: remove productId from array
+                    categoryObj.products = categoryObj.products.filter((id:string) => id.toString() !== product._id.toString());
+                    await categoryInCategory.save()
+                }
+            }
+            await session.commitTransaction();
             return NextResponse.json({message:"Product deleted successfully"},{status:200})
         }else{
+            await session.abortTransaction();
             return NextResponse.json({message:"Error in deleting product"},{status:500})
         }
     } catch (error) {
+        await session.abortTransaction();
         console.log("Error in deleting product",error)
         return NextResponse.json({message:"Error in deleting product"},{status:500})
+    }finally{
+        await session.endSession();
     }
 }

@@ -178,10 +178,11 @@ const ProductForm = ({ editMode }: { editMode?: boolean }) => {
     }
 
     const handleEditItem = () => {
+        console.log("editItemId",editItemId)
         const item = specificationItems.find((_,i)=>i===editItemId);
         if(!item) return;
-        setSpecificationItems(()=>specificationItems.map((prev) =>
-            prev.title === item.title ? { ...prev, title:itemTitle , value: itemValue } : prev
+        setSpecificationItems(()=>specificationItems.map((prev,index) =>
+            index === editItemId ? { ...prev, title:itemTitle , value: itemValue } : prev
         ))
     }
 

@@ -7,7 +7,7 @@ const productTypeSchema = new mongoose.Schema({
     category:[{
         name:{type:String,required:true},
         products:[{type:mongoose.Schema.Types.ObjectId,ref:"Product",default:[]}],
-        index:{type:Number,required:true}
+        index:{type:Number}
     }]
 });
 
