@@ -100,7 +100,7 @@ const PdtContainer = () => {
 
                         <div
                           className={`px-10 pb-3 w-full absolute  bottom-0 group-hover:translate-y-[10px] transition-all duration-500 ease-in-out group-hover:bg-[#7D7D7D] group-hover:text-white`} >
-                          <p className="text-25 text-black  group-hover:text-white transition-500 mt-5 mb-8">
+                          <p className="text-25 text-black  group-hover:text-white transition-500 mt-5 mb-8 uppercase">
                             {product?.name}
                           </p>
 
