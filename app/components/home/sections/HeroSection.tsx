@@ -10,7 +10,7 @@ import { FiArrowUpRight } from "react-icons/fi";
 import { motion } from "framer-motion";
 import { Home } from "@/types/Home";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
+import { Autoplay, EffectFade, EffectCreative } from "swiper/modules";
 import { Swiper as SwiperClass } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
@@ -23,6 +23,7 @@ const HeroSection = ({ data }: { data: Home }) => {
   const [currentSlide, setCurrentSlide] = useState(1);
   const totalSlides = data.banners.length;
 
+  const [textVersion, setTextVersion] = useState(0);
 
   return (
     <section
@@ -41,15 +42,31 @@ const HeroSection = ({ data }: { data: Home }) => {
       <div className="prject-sec h-full flex flex-wrap" style={{ width: `${data?.banners?.length * 100}vw` }} ref={sectionRef}>
 
       <Swiper
-        modules={[Autoplay]}
-        autoplay={{ delay: 5000 }}
-        slidesPerView={1}
-        spaceBetween={0}
-        loop
-        onSwiper={(swiper) => {
-          swiperRef.current = swiper;
-        }}
-        onSlideChange={(swiper) => setCurrentSlide(swiper.realIndex + 1)}
+         modules={[Autoplay, EffectFade, EffectCreative]}
+         
+         effect="creative"
+         creativeEffect={{
+           prev: {
+             translate: [0, 0, 0],
+           },
+           next: {
+             translate: [200, 0, 0],
+           },
+         }}
+         autoplay={{ delay: 5000,
+         disableOnInteraction: false, }}
+         slidesPerView={1}
+         spaceBetween={0}
+         loop
+         onSwiper={(swiper) => {
+           swiperRef.current = swiper;
+         }}
+        
+         
+         onSlideChange={(swiper) => {
+           setCurrentSlide(swiper.realIndex + 1);
+           setTextVersion(v => v + 1);
+         }}
         className="w-full h-full"
       >
 
@@ -64,14 +81,14 @@ const HeroSection = ({ data }: { data: Home }) => {
               <div className="absolute w-full h-full">
                 <div className="container h-full">
                   <div className="h-full relative">
-                    <div
+                    <div key={`${index}-${textVersion}`}
                       className="title absolute bottom-[80px] lg:bottom-[150px] transition-all ease-in-out flex flex-col"
 
                     >
-                      <div className="overflow-hidden mb-[20px] lg:mb-[30px]">
+                      <div className="overflow-hidden mb-[20px] lg:mb-[30px]"  key={`${index}-${textVersion}`}>
                         <motion.h1 initial={{ opacity: 0, x: -50 }}
                           whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.6 }}
+                          transition={{ duration: 0.6  }}
                           viewport={{ once: true, amount: 0.5 }} className="text-2xl text-white leading-none font-custom font-normal lg:w-[70%] ">
                           {project.title}
                         </motion.h1>
