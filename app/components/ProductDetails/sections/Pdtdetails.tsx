@@ -103,7 +103,7 @@ const Pdtdetails = ({data}: {data: ProductProps}) => {
               </div>
               </div>
 
-            <Link href={data?.data?.file || "#"} target="_blank"><div className="px-7 py-4 bg-black text-white w-fit">
+            <Link href={data?.data?.file || "#"}><div className="px-7 py-4 bg-black text-white w-fit">
             Download Datasheet
             </div></Link>
               </div>
