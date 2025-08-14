@@ -100,8 +100,8 @@ const PdtContainer = () => {
 
                         <div
                           className={`px-10 pb-3 w-full absolute  bottom-0 group-hover:translate-y-[10px] transition-all duration-500 ease-in-out group-hover:bg-[#7D7D7D] group-hover:text-white`} >
-                          <p className="text-25 text-black  group-hover:text-white transition-500 mt-5 mb-8 uppercase">
-                            {product?.name}
+                          <p className="text-25 text-black  group-hover:text-white transition-500 mt-5 mb-8">
+                            {product?.name.includes("W/m") ? product?.name.split(" ").filter((item) => item !== "W/m").join(" ").toUpperCase() + " W/m" : product?.name.split(" ").join(" ").toUpperCase()}
                           </p>
 
                           <div className={`text-gray-600  text-sm transition-opacity duration-500 h-0 group-hover:text-white group-hover:h-full opacity-0 group-hover:opacity-100 `} >
