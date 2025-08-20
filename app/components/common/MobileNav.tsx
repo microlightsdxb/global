@@ -191,7 +191,13 @@ const MobileNav = () => {
                                   {activeDropdown === index && item.title !== "Services" && item.children?.length ? (
                                       <div   className="py-1">
                                       {item.children.map((item, subIndex) => (
-                                        <Link href={item.url} key={subIndex} onClick={()=>{setType(item.title.split(' ')[0]); setMenuOpen(false); item.title == "Our Testimonials" ? setScrollToSection("testimonials") : null}}>
+                                        <Link href={item.url} key={subIndex} onClick={() => {
+                                          setType(item.title.split(" ")[0]);
+                                          setMenuOpen(false);
+                                          if (item.title === "Our Testimonials") {
+                                            setScrollToSection("testimonials");
+                                          }
+                                        }}>
                                           <div className="hover:bg-black/5 pl-3 pr-[80px] py-2 rounded-[8px] transition-transform duration-300 hover:scale-105 flex justify-between items-center">
                                             <p className="m-0 p-0 text-[16px]">
                                               {item.title}

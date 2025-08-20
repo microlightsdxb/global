@@ -1,16 +1,14 @@
 "use client"
 
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import HeroSection from './sections/HeroSection'
 import RecentProjects from './sections/Project'
 import Testimonials from './sections/Testimonials'
 import ProdSec from './sections/ProdSec'
 
-import ProcessTimeline from './sections/ProcessTimeline'
 import AboutSec from './sections/AboutSec'
 import IndustriesServed from './sections/IndustriesServed'
-import useSWR from 'swr'
 import { Home } from '@/types/Home'
 
 

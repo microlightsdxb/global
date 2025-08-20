@@ -77,7 +77,12 @@ const Header = () => {
                 {menuItem.title !== "Services" && menuItem.children?.length ? (
                   <div className="grid grid-cols-1">
                     {menuItem.children.map((item, subIndex) => (
-                      <HoveredLink href={item.url} key={subIndex} onClick={()=>{setType(item.title.split(' ')[0]); item.title == "Our Testimonials" ? setScrollToSection("testimonials") : null}}>
+                      <HoveredLink href={item.url} key={subIndex} onClick={() => {
+                        setType(item.title.split(" ")[0]);
+                        if (item.title === "Our Testimonials") {
+                          setScrollToSection("testimonials");
+                        }
+                      }}>
                         <div className="hover:bg-black/5 pl-3 pr-[80px] py-2 rounded-[8px] transition-transform duration-300 hover:scale-105 flex justify-between items-center">
                           <p className="m-0 p-0 text-[16px]">
                             {item.title}
