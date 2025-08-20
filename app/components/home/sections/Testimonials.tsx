@@ -7,7 +7,8 @@ import "swiper/css/pagination";
 import Image from "next/image";
 import { motion } from 'framer-motion';
 import { Home } from "@/types/Home";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useStore } from "@/app/store/productType";
 
 
 const slideVariant = {
@@ -25,16 +26,30 @@ const Testimonials: React.FC<{ data: Home }> = ({ data }: { data: Home }) => {
 
   const [activeTestimonialReadMore, setActiveTestimonialReadMore] = useState<string | null>(null);
 
-  useEffect(() => {
-    console.log(activeTestimonialReadMore)
-  }, [activeTestimonialReadMore]);
+  const testimonialsRef = useRef<HTMLDivElement | null>(null);
+const {scrollToSection} = useStore()
 
   const toggleReadMore = (id: string) => {
     setActiveTestimonialReadMore(prev => (prev === id ? null : id));
   };
 
+  useEffect(() => {
+    if (scrollToSection === "testimonials" && testimonialsRef?.current) {
+    const scrollToTestimonials = async () => {
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      window.scrollTo({
+        top: testimonialsRef.current?.offsetTop ? testimonialsRef.current.offsetTop: 0,
+        behavior: "smooth",
+      });
+    };
+    scrollToTestimonials();
+  }
+  }, [scrollToSection]);
+
+
+
   return (
-    <section className="section-spacing relative text-white">
+    <section className="section-spacing relative text-white" ref={testimonialsRef}>
       <figure className="absolute bg-primary w-full h-full inset-0 -z-10">
         <Image src={'/assets/img/banner/testimonial.jpg'} width={1900} height={900} alt="bnr" className="w-full h-full absolute object-center object-cover" />
       </figure>

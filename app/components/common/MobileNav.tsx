@@ -17,6 +17,7 @@ import Link from "next/link";
 
 const MobileNav = () => {
   const setType = useStore((state)=>state.setType)
+  const setScrollToSection = useStore((state)=>state.setScrollToSection)
    const [services, setServices] = useState<{name:string,slug:string}[]>([]); 
   
     useEffect(()=>{
@@ -67,7 +68,7 @@ const MobileNav = () => {
       <nav className="w-full bg-white text-white tanspheader py-4 absolute top-[-1px] z-10 lg:hidden shadow-xs">
         <div className="container flex items-center justify-between">
           <div className="logo-sec">
-          <Link href="/"> <Image
+          <Link href="/" onClick={()=>{setScrollToSection('')}}> <Image
               src="/assets/img/logo.svg"
               alt=""
               className="h-[45px] w-auto"
@@ -177,7 +178,7 @@ const MobileNav = () => {
                  
 
                      {activeDropdown === index && item.title == "Services" && services.map((service: {name:string,slug:string}, subIndex) => (
-                                  <li key={subIndex}>
+                                  <div key={subIndex}>
                                   <Link href={`/services/${service.slug}`} onClick={()=>setMenuOpen(false)}>
                                       <div className="hover:bg-black/5 pl-3 pr-[80px] py-2 rounded-[8px] transition-transform duration-300 hover:scale-105 flex justify-between items-center">
                                         <p className="m-0 p-0 text-[16px]">
@@ -185,12 +186,12 @@ const MobileNav = () => {
                                         </p>
                                       </div>
                                     </Link>
-                                  </li>  
+                                  </div>  
                                   ))}
                                   {activeDropdown === index && item.title !== "Services" && item.children?.length ? (
-                                      <li   className="py-1">
+                                      <div   className="py-1">
                                       {item.children.map((item, subIndex) => (
-                                        <Link href={item.url} key={subIndex} onClick={()=>{setType(item.title.split(' ')[0]); setMenuOpen(false)}}>
+                                        <Link href={item.url} key={subIndex} onClick={()=>{setType(item.title.split(' ')[0]); setMenuOpen(false); item.title == "Our Testimonials" ? setScrollToSection("testimonials") : null}}>
                                           <div className="hover:bg-black/5 pl-3 pr-[80px] py-2 rounded-[8px] transition-transform duration-300 hover:scale-105 flex justify-between items-center">
                                             <p className="m-0 p-0 text-[16px]">
                                               {item.title}
@@ -198,7 +199,7 @@ const MobileNav = () => {
                                           </div>
                                         </Link>
                                       ))}
-                                    </li>
+                                    </div>
                                   ) : null}
                 </li>
 

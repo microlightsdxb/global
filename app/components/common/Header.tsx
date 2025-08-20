@@ -20,6 +20,7 @@ const Header = () => {
   const [active, setActive] = useState<string | null>(null);
   const [services, setServices] = useState<{name:string,slug:string}[]>([]);
   const setType = useStore((state)=>state.setType)
+  const setScrollToSection = useStore((state)=>state.setScrollToSection)
 
   useEffect(()=>{
     const fetchServices = async() =>{
@@ -40,7 +41,7 @@ const Header = () => {
       <div className="container-fluid left-spacing pr-[47px] lg:flex items-center justify-between gap-20 hidden">
         {/* Logo Section */}
         <div className="logo-sec">
-          <Link href="/">
+          <Link href="/" onClick={()=>{setScrollToSection('')}}>
           <Image
             src="/assets/img/logo.svg"
             alt="Logo"
@@ -76,7 +77,7 @@ const Header = () => {
                 {menuItem.title !== "Services" && menuItem.children?.length ? (
                   <div className="grid grid-cols-1">
                     {menuItem.children.map((item, subIndex) => (
-                      <HoveredLink href={item.url} key={subIndex} onClick={()=>{setType(item.title.split(' ')[0]);}}>
+                      <HoveredLink href={item.url} key={subIndex} onClick={()=>{setType(item.title.split(' ')[0]); item.title == "Our Testimonials" ? setScrollToSection("testimonials") : null}}>
                         <div className="hover:bg-black/5 pl-3 pr-[80px] py-2 rounded-[8px] transition-transform duration-300 hover:scale-105 flex justify-between items-center">
                           <p className="m-0 p-0 text-[16px]">
                             {item.title}
