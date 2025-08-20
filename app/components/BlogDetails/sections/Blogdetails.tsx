@@ -105,13 +105,13 @@ const Blogdetails: React.FC<FrameworkSectionProps> = ({ data, recentBlogData }) 
                   </motion.div>
                   </Link>
 
-                  <motion.div
+                  {/* <motion.div
                     className="w-10 h-10 bg-black flex justify-center items-center rounded-3xl"
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.2 }}
                   >
                     <Image src={assets.insta} alt="Instagram" />
-                  </motion.div>
+                  </motion.div> */}
                 </motion.div>
               </div>
 

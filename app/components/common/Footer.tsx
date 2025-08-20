@@ -11,6 +11,7 @@ import { useStore } from "@/app/store/productType";
 const Footer = () => {
   const setType = useStore((state)=>state.setType)
   
+  
   return (
     <footer className="pt-[60px] lg:pt-[80px] 2xl:pt-[120px] pb-[40px]">
       <div className="container">
@@ -34,7 +35,7 @@ const Footer = () => {
                   <Link className="text-xs text-[#7D7D7D] group-hover:text-black" href="/projects">Projects</Link>
                 </li>
                 <li className="transition-all ease-in-out duration-500 group hover:translate-x-1">
-                  <Link className="text-xs text-[#7D7D7D] group-hover:text-black" href="/blogs">Blog</Link>
+                  <Link className="text-xs text-[#7D7D7D] group-hover:text-black" href="/blog">Blog</Link>
                 </li>
 
               </ul>

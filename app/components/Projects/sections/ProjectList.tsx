@@ -7,10 +7,6 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 
 
-
-
-
-
 interface FrameworkItem {
   _id: string;
   name: string;
@@ -62,11 +58,7 @@ const ProjectList: React.FC<FrameworkSectionProps> = ({
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-[40px]">
           {data?.map((project, index) => (
             <Link href={`/project-details/${project.slug}`} key={index}>
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true, amount: 0.5 }}
+              <div
                 className="group">
                 <div className="mb-10 ">
                   <figure className="h-[325px] md:h-[380px] lg:h-[425px] xl:h-[475px] w-full overflow-hidden">
@@ -101,7 +93,7 @@ const ProjectList: React.FC<FrameworkSectionProps> = ({
                 </div>
                 <div className="mt-4 mb-4 md:mb-6 xl:mb-20">
                   <h2 className="text-lg text-black leading-[1.4]">{project.name}</h2>
-                </div></motion.div>
+                </div></div>
             </Link>
           ))}
         </div>

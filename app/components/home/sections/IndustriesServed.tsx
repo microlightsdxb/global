@@ -58,6 +58,7 @@ const slideVariants = {
 
 
 const IndustriesServed = ({data}: {data: Home}) => {
+
   /* const headerRef = useRef<HTMLHeadingElement | null>(null); */
   /*
     useEffect(() => {
@@ -107,7 +108,9 @@ const IndustriesServed = ({data}: {data: Home}) => {
       window.addEventListener('resize', updateSpacing);
       return () => window.removeEventListener('resize', updateSpacing);
   
-    }, [data]); 
+    }, [data]);
+    
+  
   
     
   return (
