@@ -11,8 +11,10 @@ import "swiper/css/thumbs";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-const Pjctslider = ({ data }: { data: { data: { images: string[] } } }) => {
+const Pjctslider = ({ data }: { data: { data: { images: string[], name:string } } }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperClass | null>(null);
+
+  console.log(data)
   return (
     <section className="">
       <motion.div
@@ -28,12 +30,12 @@ const Pjctslider = ({ data }: { data: { data: { images: string[] } } }) => {
             spaceBetween={40}
             navigation={false}
             thumbs={{ swiper: thumbsSwiper }}
-            className="w-full h-[400px] md:h-[500px] lg:h-[825px] overlayslider"
+            className={`w-full h-[400px] md:h-[500px] lg:h-[825px] ${data.data.name === "Bateel " ? "" : "overlayslider"}`}
           >
             {data?.data?.images?.map((project: string, index: number) => (
               <SwiperSlide key={index} className="h-full flex">
                 <div className="overflow-hidden w-full h-full flex">
-                  <figure className="relative w-full h-full    flex">
+                  <figure className="relative w-full h-full flex">
                     <Image
                       className="object-cover w-full h-full"
                       src={project}
@@ -41,10 +43,12 @@ const Pjctslider = ({ data }: { data: { data: { images: string[] } } }) => {
                       width={1920}
                       height={1500}
                     />
+                    
                   </figure>
                 </div>
               </SwiperSlide>
             ))}
+            
           </Swiper>
 
           {/* Thumbnail Swiper */}
