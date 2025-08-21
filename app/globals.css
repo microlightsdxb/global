@@ -275,7 +275,7 @@ body {
   .fullslider .swiper-wrapper{justify-content: center;}
   .overlayslider::after{content: '';
     position: absolute;
-    top: 0;
+    top: 40%;
     width: 100%;
     height: 100%;
     z-index: 1;
