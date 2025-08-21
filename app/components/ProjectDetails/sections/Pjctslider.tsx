@@ -34,10 +34,10 @@ const Pjctslider = ({ data }: { data: { data: { images: string[], name:string } 
           >
             {data?.data?.images?.map((project: string, index: number) => (
               <SwiperSlide key={index} className="h-full flex">
-                <div className="overflow-hidden w-full h-full flex">
+                <div className="overflow-hidden w-full h-full flex bg-black">
                   <figure className="relative w-full h-full flex">
                     <Image
-                      className="object-cover w-full h-full"
+                      className="object-contain w-full h-full"
                       src={project}
                       alt="Apollo"
                       width={1920}
