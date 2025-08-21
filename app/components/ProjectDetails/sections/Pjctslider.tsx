@@ -30,14 +30,14 @@ const Pjctslider = ({ data }: { data: { data: { images: string[], name:string } 
             spaceBetween={40}
             navigation={false}
             thumbs={{ swiper: thumbsSwiper }}
-            className={`w-full h-[400px] md:h-[500px] lg:h-[825px] ${data.data.name === "Bateel " ? "" : "overlayslider"}`}
+            className={`w-full h-[400px] md:h-[500px] lg:h-[750px] overlayslider`}
           >
             {data?.data?.images?.map((project: string, index: number) => (
               <SwiperSlide key={index} className="h-full flex">
-                <div className="overflow-hidden w-full h-full flex bg-black">
+                <div className="overflow-hidden w-full h-full flex">
                   <figure className="relative w-full h-full flex">
                     <Image
-                      className="object-contain w-full h-full"
+                      className="object-cover w-full h-full"
                       src={project}
                       alt="Apollo"
                       width={1920}
@@ -66,7 +66,7 @@ const Pjctslider = ({ data }: { data: { data: { images: string[], name:string } 
                   <div className="border-1 flex  mb-4 transition-all duration-300 min-h-full overflow-hidden"
                     style={{ width: "60px", height: "60px" }}>
                     <Image
-                      className=" h-auto   m-auto"
+                      className="object-cover h-full m-auto"
                       src={project}
                       alt="Apollo"
                       width={60}
