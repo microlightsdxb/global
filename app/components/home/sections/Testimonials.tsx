@@ -97,7 +97,7 @@ const {scrollToSection} = useStore()
 
 
                 <div className="flex items-center gap-[15px] mt-[40px]">
-                  <div className="w-[45px] h-[45px] bg-gray-500 rounded-full"></div>
+                  {/* <div className="w-[45px] h-[45px] bg-gray-500 rounded-full"></div> */}
                   <div>
                     <h3 className="font-semibold text-[20px]">{testimonial.name}</h3>
                     <p className="text-sm text-[#B8B8B8] text-[17px]">{testimonial.company}</p>
