@@ -7,6 +7,8 @@ import Bloglist from "./Bloglist";
 import parse from "html-react-parser";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { FaFacebookF } from "react-icons/fa6";
+import { FaXTwitter } from "react-icons/fa6";
 
 interface FrameworkItem {
   data:{
@@ -105,13 +107,24 @@ const Blogdetails: React.FC<FrameworkSectionProps> = ({ data, recentBlogData }) 
                   </motion.div>
                   </Link>
 
-                  {/* <motion.div
+                  <Link href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`} target="_blank"><motion.div
                     className="w-10 h-10 bg-black flex justify-center items-center rounded-3xl"
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <Image src={assets.insta} alt="Instagram" />
-                  </motion.div> */}
+                    <FaFacebookF className="text-white"/>
+                  </motion.div>
+                  </Link>
+
+                  <Link href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent("Check this out!")}`} target="_blank"><motion.div
+                    className="w-10 h-10 bg-black flex justify-center items-center rounded-3xl"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <FaXTwitter className="text-white"/>
+                  </motion.div>
+                  </Link>
+
                 </motion.div>
               </div>
 
