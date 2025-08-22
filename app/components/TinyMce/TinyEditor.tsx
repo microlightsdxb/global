@@ -33,6 +33,10 @@ export default function TinyEditor({ setNewsContent,newsContent }: {newsContent?
                     content_style: `
         @import url('https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css');
         body { padding: 10px; }
+        p:not(:last-child) {
+ margin-bottom: calc(4px * 3);
+}
+}
     `,
                     plugins: [
                         'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
