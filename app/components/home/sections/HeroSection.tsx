@@ -106,7 +106,7 @@ const HeroSection = ({ data }: { data: Home }) => {
                           whileInView={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.6, delay: 0.6 }}
                           viewport={{ once: true, amount: 0.5 }}>
-                          <Link href={'/'} className="flex gap-[20px] items-center border-t border-white text-sm text-white border-solid leaing-none pt-[12px]">
+                          <Link href={'/about-us'} className="flex gap-[20px] items-center border-t border-white text-sm text-white border-solid leaing-none pt-[12px]">
                             <span>Explore</span> <FiArrowUpRight className="text-[22px] text-white" />
                           </Link>
                         </motion.div>
