@@ -64,15 +64,15 @@ const Footer = () => {
             <div className="md:flex gap-3 justify-between items-center bg-primary p-[20px] lg:p-[25px] 2xl:p-[35px] mb-[30px] lg:mb-[90px]">
               <span className="text-lg md:text-md xl:text-lg text-white">Download Brochure</span>
               <div className="flex mt-4 md:mt-0">
-              <Link
-                href="/"
+              <a
+                href="/api/download"
                 className="flex gap-[20px] items-center border-t border-white text-sm text-white border-solid leading-none pt-[12px]   transition-colors duration-300 group"
               >
                 <span className="transition-transform duration-300 group-hover:translate-x-1">
                   Download
                 </span>
                 <FiArrowUpRight className="text-[22px] text-white transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1" />
-              </Link>
+              </a>
               </div>
             </div>
 
