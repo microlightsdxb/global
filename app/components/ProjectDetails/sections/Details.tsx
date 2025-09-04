@@ -37,7 +37,7 @@ const Details: React.FC<FrameworkSectionProps> = ({
           viewport={{ once: true }}
         >
           {[
-            { label: "Client", value: data?.data.client },
+            { label: "Project", value: data?.data.client },
             { label: "Industry", value: data?.data.industry },
             { label: "Scope", value: data?.data.scope },
             // { label: "Location", value: data?.data.location },
