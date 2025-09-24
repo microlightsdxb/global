@@ -10,8 +10,8 @@ export async function POST(req:NextRequest) {
         if(!isAdmin){
             return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
         }
-        const {title,slug,content,image,imageAlt,category,metaTitle,metaDescription,bannerImage,bannerImageAlt} = await req.json();
-        const blog = await Blog.create({title,slug,content,image,imageAlt,category,metaTitle,metaDescription,bannerImage,bannerImageAlt});
+        const {title,slug,content,image,imageAlt,category,date,metaTitle,metaDescription,bannerImage,bannerImageAlt} = await req.json();
+        const blog = await Blog.create({title,slug,content,image,imageAlt,category,date,metaTitle,metaDescription,bannerImage,bannerImageAlt});
         if(blog){
             return NextResponse.json({message: "Blog added successfully"},{status: 200});
         }
@@ -33,8 +33,8 @@ export async function PATCH(req:NextRequest) {
         }
         const {searchParams} = new URL(req.url);
         const id = searchParams.get("id");
-        const {title,slug,content,image,imageAlt,category,metaTitle,metaDescription,bannerImage,bannerImageAlt} = await req.json();
-        const blog = await Blog.findByIdAndUpdate(id,{title,slug,content,image,imageAlt,category,metaTitle,metaDescription,bannerImage,bannerImageAlt});
+        const {title,slug,content,image,imageAlt,category,date,metaTitle,metaDescription,bannerImage,bannerImageAlt} = await req.json();
+        const blog = await Blog.findByIdAndUpdate(id,{title,slug,content,image,imageAlt,category,date,metaTitle,metaDescription,bannerImage,bannerImageAlt});
         if(blog){
             return NextResponse.json({message: "Blog updated successfully"},{status: 200});
         }
