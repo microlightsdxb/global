@@ -86,7 +86,7 @@ const PdtContainer = () => {
             </div>
 
             <div className="md:w-3/4   p-4 ">
-              <motion.div variants={staggerContainer} initial="hidden" animate="show" viewport={{once:true, amount:0.2}} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <motion.div variants={staggerContainer} initial="hidden" animate="show" viewport={{once:true, amount:0.2}} className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                 {products?.map((product, index) => (
                   <motion.div variants={moveUp} key={index}>
                     <Link href={`/product-details/${product.slug}`} >
@@ -99,7 +99,7 @@ const PdtContainer = () => {
                         </div>
 
                         <div
-                          className={`px-10 pb-3 w-full absolute  bottom-0 group-hover:translate-y-[10px] transition-all duration-500 ease-in-out group-hover:bg-[#7D7D7D] group-hover:text-white`} >
+                          className={`px-5 2xl:px-10 pb-3 w-full absolute  bottom-0 group-hover:translate-y-[10px] transition-all duration-500 ease-in-out group-hover:bg-[#7D7D7D] group-hover:text-white`} >
                           <p className="text-25 text-black  group-hover:text-white transition-500 mt-5 mb-8">
                             {product?.name.includes("W/m") ? product?.name.split(" ").filter((item) => item !== "W/m").join(" ").toUpperCase() + " W/m" : product?.name.split(" ").join(" ").toUpperCase()}
                           </p>
@@ -107,15 +107,15 @@ const PdtContainer = () => {
                           <div className={`text-gray-600  text-sm transition-opacity duration-500 h-0 group-hover:text-white group-hover:h-full opacity-0 group-hover:opacity-100 `} >
                             <div className="flex justify-between ">
                               {" "}
-                              <p className="text-red group-hover:text-white">
+                              <p className="text-red group-hover:text-white text-sm md:text-[14px] lg:text-sm">
                                 Wattage
                               </p>{" "}
-                              <p>{product?.wattage}</p>
+                              <p className="text-sm md:text-[14px] lg:text-sm">{product?.wattage}</p>
                             </div>
-                            <div className="flex justify-between ">
+                            <div className="flex justify-between  ">
                               {" "}
-                              <p className=" group-hover:text-white">Lumen</p>{" "}
-                              <p>{product?.lumen}</p>
+                              <p className="group-hover:text-white text-sm md:text-[14px] lg:text-sm">Lumen</p>{" "}
+                              <p className="text-sm md:text-[14px] lg:text-sm">{product?.lumen}</p>
                             </div>
                           </div>
                         </div>
