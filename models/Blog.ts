@@ -9,6 +9,7 @@ const blogSchema = new mongoose.Schema({
     bannerImage: { type: String, required: true },
     bannerImageAlt: { type: String },
     category: { type: String, required: true },
+    date: { type: Date},
     createdAt: { type: Date, default: Date.now },
     metaTitle: { type: String },
     metaDescription: { type: String },
