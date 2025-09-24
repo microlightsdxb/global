@@ -56,7 +56,7 @@ const Strength: React.FC<FrameworkSectionProps> = ({ data }) => {
                     <div className="h-0 group-hover:h-full mt-6 md:mt-0">
                       <div className="flex mt-[15px] 2xl:mt-[30px] md:opacity-0 group-hover:opacity-100 group-hover:flex transition-all ease-in-out duration-500">
                         <Link
-                          href={"/"}
+                          href={"/contact-us"}
                           className="flex gap-[20px] items-center border-t border-primary text-sm text-primary border-solid leading-none pt-[12px] cursor-pointer group"
                         >
                           Get in Touch{" "}
