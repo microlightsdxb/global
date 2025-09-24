@@ -26,6 +26,7 @@ interface BlogFormProps {
     category: string;
     bannerImage: string;
     bannerImageAlt: string;
+    date: string;
     image: string;
     imageAlt: string;
     metaTitle: string;
@@ -69,6 +70,8 @@ const BlogForm = ({ editMode }: { editMode?: boolean }) => {
                 setValue("bannerImage", data.data.bannerImage);
                 setValue("bannerImageAlt", data.data.bannerImageAlt);
                 setValue("image", data.data.image);
+                const isoDate = new Date(data.data.date).toISOString().split("T")[0];
+                setValue("date", isoDate);
                 setValue("imageAlt", data.data.imageAlt);
                 setValue("metaTitle", data.data.metaTitle);
                 setValue("metaDescription", data.data.metaDescription);
@@ -165,6 +168,12 @@ const BlogForm = ({ editMode }: { editMode?: boolean }) => {
                     />
                     {errors.category && <p className="text-red-500">{errors.category.message}</p>}
 
+                </div>
+
+                <div>
+                    <Label className=''>Date</Label>
+                    <Input type='date' placeholder='Date' max={new Date().toISOString().split("T")[0]} {...register("date")} />
+                    {errors.date && <p className='text-red-500'>{errors.date.message}</p>}
                 </div>
 
 <div className='grid grid-cols-2 gap-2'>

@@ -22,6 +22,7 @@ interface FrameworkSectionProps {
     _id:string,
     title:string,
     createdAt:string
+    date:string
   }[];
   }
 }
@@ -123,7 +124,7 @@ const Bloglist: React.FC<FrameworkSectionProps> = ({ data, categories }) => {
             className="flex justify-between items-center pmargin0 py-5"
           >
             <p className="text-[15px]">{member.category}</p>
-            <p className="text-[15px]">{moment(member.createdAt).format('ll')}</p>
+            <p className="text-[15px]">{moment(member.date ? member.date : member.createdAt).format('ll')}</p>
           </div>
 
           <div
