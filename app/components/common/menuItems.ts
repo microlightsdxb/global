@@ -16,10 +16,10 @@ export const menuItems: MenuItem[] = [
         title:"Our Team",
         url:"/our-team"
       },
-      {
-        title:"Our Testimonials",
-        url:"/"
-      }
+      // {
+      //   title:"Our Testimonials",
+      //   url:"/"
+      // }
     ]
     },
     {
