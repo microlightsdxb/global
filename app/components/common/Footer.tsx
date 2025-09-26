@@ -78,13 +78,13 @@ const Footer = () => {
 
             <div className="flex flex-col md:flex-row justify-between items-center mt-10 border-b pb-[30px]">
               <div className="flex space-x-[10px]">
-                <Link href="#" className="group hover:-translate-y-1 transition-all ease-in-out duration-500 text-white bg-primary rounded-full text-center flex justify-center items-center w-[40px] h-[40px]">
+                <Link href="https://www.linkedin.com/company/microlights/" target="_blank" className="group hover:-translate-y-1 transition-all ease-in-out duration-500 text-white bg-primary rounded-full text-center flex justify-center items-center w-[40px] h-[40px]">
                   <FaLinkedin size={18} className="group-hover:scale-111 transition-all ease-in-out duration-500"/>
                 </Link>
-                <Link href="#" className="group hover:-translate-y-1 transition-all ease-in-out duration-500 text-white bg-primary rounded-full text-center flex justify-center items-center  w-[40px] h-[40px]">
+                <Link href="https://www.instagram.com/microlightsgroup/" target="_blank" className="group hover:-translate-y-1 transition-all ease-in-out duration-500 text-white bg-primary rounded-full text-center flex justify-center items-center  w-[40px] h-[40px]">
                   <FaInstagram size={18} className="group-hover:scale-111 transition-all ease-in-out duration-500"/>
                 </Link>
-                <Link href="#" className="group hover:-translate-y-1 transition-all ease-in-out duration-500 text-white bg-primary rounded-full text-center flex justify-center items-center  w-[40px] h-[40px]">
+                <Link href="https://www.facebook.com/MicrolightsGroup" target="_blank" className="group hover:-translate-y-1 transition-all ease-in-out duration-500 text-white bg-primary rounded-full text-center flex justify-center items-center  w-[40px] h-[40px]">
                   <FaFacebookF size={18} className="group-hover:scale-111 transition-all ease-in-out duration-500"/>
                 </Link>
               </div>
