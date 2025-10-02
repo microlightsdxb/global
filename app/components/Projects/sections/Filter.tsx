@@ -51,7 +51,7 @@ const Filter = ({ industryData, locationData, setIndustrySelected, setLocationSe
   }, [selectedLocation])
 
   const handleClear = () => {
-    setIndustrySelected("Industry")
+    setIndustrySelected("")
     setLocationSelected("Location")
     setSelectedIndustry(null)
     setSelectedLocation(null)
@@ -60,7 +60,7 @@ const Filter = ({ industryData, locationData, setIndustrySelected, setLocationSe
 
   useEffect(() => {
     if (industryData?.data?.length > 0) {
-      setIndustryOptions([{ value: "Industry", label: "Industry" }, ...industryData?.data?.map((item: { name: string }) => ({ value: item.name, label: item.name }))]);
+      setIndustryOptions([  ...industryData?.data?.map((item: { name: string }) => ({ value: item.name, label: item.name }))]);
     }
 
     if (locationData?.data?.length > 0) {
