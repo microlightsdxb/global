@@ -121,7 +121,7 @@ export default function ContactForm() {
                 {/* Send Button */}
                 <div
 
-                  className="flex items-center gap-2   mt-6 md:mt-[81px] transition duration-300"
+                  className="flex justify-end items-center gap-2   mt-6 md:mt-[81px] transition duration-300"
                 >
                   <div className="flex">
                     <button
