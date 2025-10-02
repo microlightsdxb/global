@@ -87,7 +87,7 @@ const Filter = ({ industryData, locationData, setIndustrySelected, setLocationSe
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true, amount: 0.5 }}>
-          <div className="block md:flex bg-black p-6 md:p-10 pt-5 items-center">
+          <div className="block md:flex bg-black/85 p-6 md:p-10 pt-5 items-center">
             <div className="w-full md:w-4/5">
               <div className="grid grid-cols-1 ">
                 <div>
@@ -97,7 +97,7 @@ const Filter = ({ industryData, locationData, setIndustrySelected, setLocationSe
                       value={selectedIndustry}
                       onChange={handleIndustryChange}
                       isSearchable={true}
-                      placeholder="Industry"
+                      placeholder="Filters"
                       styles={{
                         control: (provided) => ({
                           ...provided,
