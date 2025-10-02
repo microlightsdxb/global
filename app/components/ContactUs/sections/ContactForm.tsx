@@ -1,11 +1,12 @@
 "use client";
 import { contactSchema } from "@/app/(user)/schemas/contactShema";
 import { motion } from "motion/react";
-import React from "react";
+import React,{useRef,useState} from "react";
 import { useForm } from "react-hook-form";
 import { FiArrowUpRight } from "react-icons/fi";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner"
+import ReCAPTCHA from 'react-google-recaptcha';
 
 interface ContactFormProps {
   name: string;
@@ -17,10 +18,19 @@ interface ContactFormProps {
 
 export default function ContactForm() {
 
-  const { register, handleSubmit, formState: { errors }, reset } = useForm<ContactFormProps>({ resolver: zodResolver(contactSchema) });
+  const { register, handleSubmit, formState: { errors,isSubmitting }, reset } = useForm<ContactFormProps>({ resolver: zodResolver(contactSchema) });
+
+  const recaptcha = useRef<ReCAPTCHA>(null)
+        const [error,setError] = useState("")
 
   const onSubmit = async (data: ContactFormProps) => {
     try {
+      const captchaValue = recaptcha?.current?.getValue()
+                if (!captchaValue) {
+                  setError("Please verify yourself to continue")
+                  return;
+                }
+                setError("")
       const response = await fetch("/api/admin/contact/enquiry", {
         method: "POST",
         body: JSON.stringify(data)
@@ -29,6 +39,7 @@ export default function ContactForm() {
       if (res.success) {
         toast.success(res.message)
         reset()
+        recaptcha?.current?.reset()
       } else {
         toast.error(res.message)
       }
@@ -103,6 +114,10 @@ export default function ContactForm() {
                   </div>
                 </div>
 
+                <ReCAPTCHA sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""} ref={recaptcha} className='mt-5'/>
+    
+        {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
+
                 {/* Send Button */}
                 <div
 
@@ -111,6 +126,7 @@ export default function ContactForm() {
                   <div className="flex">
                     <button
                       type="submit"
+                      disabled={isSubmitting}
                       className="flex gap-[20px] items-center border-t border-white text-sm text-white border-solid leaing-none pt-[12px] cursor-pointer"
                     >
                       Send <FiArrowUpRight className="text-[22px] text-white" />
