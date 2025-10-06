@@ -24,7 +24,12 @@ const HeroSection = ({ data }: { data: Home }) => {
   const totalSlides = data.banners.length;
 
   const [textVersion, setTextVersion] = useState(0);
+// const [mounted, setMounted] = useState(false);
+// useEffect(() => {
+//   setMounted(true);
+// }, []);
 
+// if (!mounted) return null;
   return (
     <section
       className="h-screen relative overflow-hidden bg-primary"
@@ -54,6 +59,7 @@ const HeroSection = ({ data }: { data: Home }) => {
            },
          }}
          autoplay={{ delay: 5000,
+        
          disableOnInteraction: false, }}
          slidesPerView={1}
          spaceBetween={0}
@@ -83,15 +89,24 @@ const HeroSection = ({ data }: { data: Home }) => {
                   <div className="h-full relative">
                     <div key={`${index}-${textVersion}`}
                       className="title absolute bottom-[80px] lg:bottom-[150px] transition-all ease-in-out flex flex-col"
-
+style={{ opacity: currentSlide === index + 1 ? 1 : 0 }}
                     >
                       <div className="overflow-hidden mb-[20px] lg:mb-[30px]"  key={`${index}-${textVersion}`}>
-                        <motion.h1 initial={{ opacity: 0, x: -50 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.6  }}
-                          viewport={{ once: true, amount: 0.5 }} className="text-2xl text-white leading-none font-custom font-normal lg:w-[70%] ">
-                          {project.title}
-                        </motion.h1>
+                        
+                      <motion.h1
+  // initial={false}
+  initial={{ opacity: 0, x: -50 }} 
+whileInView={{ opacity: 1, x: 0 }} 
+transition={{ duration: 0.6 }} 
+viewport={{ once: true, amount: 0.5 }} 
+  // whileInView={{ opacity: 1, x: 0 }}
+  // animate={{ opacity: 1, x: 0 }}
+  // transition={{ duration: 0.6 }}
+  className="text-2xl text-white leading-none font-custom font-normal lg:w-[70%]"
+>
+  {project.title}
+</motion.h1>
+
                       </div>
                       <div className="overflow-hidden mb-[30px] lg:mb-[50px]">
                         <motion.p initial={{ opacity: 0, x: -50 }}
