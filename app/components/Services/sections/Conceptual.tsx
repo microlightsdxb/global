@@ -37,7 +37,7 @@ const Conceptual = ({ data }: { data: Service }) => {
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true, amount: 0.1 }}
-                    className={`flex items-center gap-5 pmargin0 py-10 border-b border-[#595959] justify-between pr-0 md:pr-[20px] xl:pr-[60px] transition-all duration-300 last:border-0
+                    className={`flex items-center gap-5 pmargin0 py-10 border-b border-[#595959] justify-between pr-0 md:pr-[20px] xl:pr-[60px] transition-all duration-[1200ms] last:border-0
                       ${
                         activeIndex === index
                           ? "befst scale-[1.02]"
@@ -52,14 +52,14 @@ const Conceptual = ({ data }: { data: Service }) => {
                       <div className="flex flex-col">
                         <p className="text-white text-lg">{item.title}</p>
                         <div
-                          className={`descd transition-all duration-100 ease-in transform ${
+                          className={`descd transition-all duration-400 ease-in transform ${
                             activeIndex === index
                               ? "opacity-100 h-auto translate-y-0"
                               : "opacity-0 h-0 translate-y-5"
                           }`}
                         >
                           <div className="mt-3">
-                            <p>{item.description}</p>
+                            <p className="text-[#9e9e9e]">{item.description}</p>
                           </div>
                         </div>
                       </div>
