@@ -6,7 +6,8 @@ const productTypeSchema = new mongoose.Schema({
     hoverImage: { type: String, required: true },
     category:[{
         name:{type:String,required:true},
-        products:[{type:mongoose.Schema.Types.ObjectId,ref:"Product",default:[]}]
+        products:[{type:mongoose.Schema.Types.ObjectId,ref:"Product",default:[]}],
+        index:{type:Number}
     }]
 });
 

@@ -157,61 +157,62 @@ const ServiceForm = () => {
 
     return (
         <div className='flex flex-col gap-5'>
-            <h1 className='text-lg font-bold'>{"Edit Service"}</h1>
+            <h1 className='text-md font-bold'>{"Edit Service"}</h1>
             <form className='flex flex-col gap-5 p-2 rounded-md' onSubmit={handleSubmit(onSubmit)}>
-                <div className='grid grid-cols-1 gap-2 border-2 border-dashed p-2'>
-                    <div>
-                        <Label className='pl-3 font-bold'>Page Banner</Label>
+                <div className='grid grid-cols-1 gap-2 shadow-md p-5 bg-white rounded-md'>
+                    <div className='flex flex-col gap-1'>
+                        <Label className=''>Page Banner</Label>
                         <ImageUploader onChange={(url) => setValue("pageBanner", url)} value={watch("pageBanner")} />
                         {errors.pageBanner && <p className='text-red-500'>{errors.pageBanner.message}</p>}
                     </div>
 
                     <div className='flex flex-col gap-2'>
-                            <Label className='pl-3 font-bold'>Banner Alt</Label>
+                            <Label className=''>Banner Alt</Label>
                             <Input type='text' placeholder='Alt' {...register("bannerAlt")} />
                         </div>
 
                 </div>
-                <div className='flex flex-col gap-5'>
+                <div className='flex flex-col gap-5 shadow-md p-5 bg-white rounded-md'>
                     <Label className='font-bold'>Intro Section</Label>
 
-                    <div className='border-2 border-dashed p-2 flex flex-col gap-2'>
+                    <div className='border p-2 flex flex-col gap-2 rounded-md'>
                         <div className='flex flex-col gap-2'>
-                            <Label className='pl-3 font-bold'>Title</Label>
+                            <Label className=''>Title</Label>
                             <Input type='text' placeholder='Title' {...register("introTitle", { required: "Title is required" })} />
                             {errors.introTitle && <p className='text-red-500'>{errors.introTitle.message}</p>}
                         </div>
                         <div className='flex flex-col gap-2'>
-                            <Label className='pl-3 font-bold'>Description</Label>
+                            <Label className=''>Description</Label>
                             <Textarea placeholder='Description' {...register("introDescription", { required: "Description is required" })} />
                             {errors.introDescription && <p className='text-red-500'>{errors.introDescription.message}</p>}
                         </div>
                         <div className='flex flex-col gap-2'>
-                            <Label className='pl-3 font-bold'>Image</Label>
+                            <Label className=''>Image</Label>
                             <ImageUploader onChange={(url) => setValue("introImage", url)} value={watch("introImage")} />
                             {errors.introImage && <p className='text-red-500'>{errors.introImage.message}</p>}
                         </div>
                         <div className='flex flex-col gap-2'>
-                            <Label className='pl-3 font-bold'>Alt Tag</Label>
+                            <Label className=''>Alt Tag</Label>
                             <Input type='text' placeholder='Alt Tag' {...register("introImageAlt")} />
                         </div>
                     </div>
                 </div>
 
+<div className='flex flex-col gap-5 shadow-md p-5 bg-white rounded-md'>
                 <div className='flex flex-col gap-2'>
-                    <Label className='pl-3 font-bold'>Display Item Type</Label>
+                    <Label className=''>Display Item Type</Label>
                     <Controller
                         name="type"
                         control={control}
                         defaultValue=""
                         render={({ field }) => (
                             <Select onValueChange={(value)=>{field.onChange(value)}} value={field.value}>
-                                <SelectTrigger className="w-full">
+                                <SelectTrigger className="w-full text-[16px]">
                                     <SelectValue placeholder="Style" />
                                 </SelectTrigger>
                                 <SelectContent>
-                                    <SelectItem value="icon">With icon</SelectItem>
-                                    <SelectItem value="image">With image</SelectItem>
+                                    <SelectItem value="icon" className='text-[16px]'>With icon</SelectItem>
+                                    <SelectItem value="image" className='text-[16px]'>With image</SelectItem>
                                 </SelectContent>
                             </Select>
                         )}
@@ -221,7 +222,7 @@ const ServiceForm = () => {
 
                 <div className='flex flex-col gap-5 p-3 border-2 border-dashed rounded-md'>
                     <div className='flex justify-between'>
-                        <h1 className='text-md font-bold'>Items</h1>
+                        <h1 className='text-[16px]'>Items</h1>
                         <Dialog>
                             <DialogTrigger className="bg-black text-white px-2 py-1 rounded-md" onClick={()=>{setValue("itemTitle", "");setValue("itemDescription", "");setValue("itemImage", "");setValue("itemAnimImage", "");setValue("itemImageAlt", "")}}>Add Item</DialogTrigger>
                             <DialogContent>
@@ -238,7 +239,7 @@ const ServiceForm = () => {
                                         </div>
                                         <div>
                                             <Label>Image</Label>
-                                            <ImageUploader onChange={(url) => setValue("itemImage", url)} value={watch("itemImage")} />
+                                            <ImageUploader onChange={(url) => setValue("itemImage", url)} value={watch("itemImage")} isLogo={watch("type") === "icon"}/>
                                         </div>
                                         <div>
                                             <Label>Image Alt</Label>
@@ -246,7 +247,7 @@ const ServiceForm = () => {
                                         </div>
                                         <div>
                                             <Label>Anim Image</Label>
-                                            <ImageUploader onChange={(url) => setValue("itemAnimImage", url)} value={watch("itemAnimImage")} />
+                                            <ImageUploader onChange={(url) => setValue("itemAnimImage", url)} value={watch("itemAnimImage")} isLogo={watch("type") === "icon"}/>
                                         </div>
                                     </div>
                                 </DialogHeader>
@@ -257,12 +258,12 @@ const ServiceForm = () => {
                     </div>
                     <div className='flex flex-col gap-2 overflow-y-auto'>
                         {items.map((item, index) => (
-                            <div key={index} className='flex justify-between border p-4 rounded-md items-center shadow-md hover:shadow-lg transition-all duration-300'>
+                            <div key={index} className='flex justify-between p-4 items-center shadow-md hover:shadow-lg transition-all duration-300'>
                                 <div className='flex gap-5 items-center h-full'>
                                     <Image src={item.image} width={100} height={100} alt='image' />
                                 </div>
                                 <div className='flex gap-5 items-center h-full'>
-                                    <div>{item.title}</div>
+                                    <div className='text-[16px]'>{item.title}</div>
                                 </div>
                                 <div className='flex gap-5'>
 
@@ -282,7 +283,7 @@ const ServiceForm = () => {
                                         </div>
                                         <div>
                                             <Label>Image</Label>
-                                            <ImageUploader onChange={(url) => setValue("itemImage", url)} value={watch("itemImage")} />
+                                            <ImageUploader onChange={(url) => setValue("itemImage", url)} value={watch("itemImage")} isLogo={watch("type") === "icon"}/>
                                         </div>
                                         <div>
                                             <Label>Image Alt</Label>
@@ -290,7 +291,7 @@ const ServiceForm = () => {
                                         </div>
                                         <div>
                                             <Label>Anim Image</Label>
-                                            <ImageUploader onChange={(url) => setValue("itemAnimImage", url)} value={watch("itemAnimImage")} />
+                                            <ImageUploader onChange={(url) => setValue("itemAnimImage", url)} value={watch("itemAnimImage")} isLogo={watch("type") === "icon"}/>
                                         </div>
                                     </div>
                                     </DialogHeader>
@@ -304,20 +305,21 @@ const ServiceForm = () => {
                         ))}
                     </div>
                 </div>
+                </div>
 
                 <div className='flex flex-col gap-2'>
-                    <Label className='pl-3 font-bold'>Meta Title</Label>
+                    <Label className=''>Meta Title</Label>
                     <Input type='text' placeholder='Meta Title' {...register("metaTitle")} />
                     {errors.metaTitle && <p className='text-red-500'>{errors.metaTitle.message}</p>}
                 </div>
                 <div className='flex flex-col gap-2'>
-                    <Label className='pl-3 font-bold'>Meta Description</Label>
+                    <Label className=''>Meta Description</Label>
                     <Textarea placeholder='Meta Description' {...register("metaDescription")} />
                     {errors.metaDescription && <p className='text-red-500'>{errors.metaDescription.message}</p>}
                 </div>
                 
                 <div className='flex justify-center'>
-                    <Button type='submit'>Submit</Button>
+                    <Button type='submit' className="w-full cursor-pointer">Submit</Button>
                 </div>
 
             </form>

@@ -5,8 +5,12 @@ const nextConfig: NextConfig = {
   reactStrictMode: false,
   images: {
     dangerouslyAllowSVG:true,
-    domains: ["dl.dropboxusercontent.com"], // Add Dropbox domain here
+    domains: ["dl.dropboxusercontent.com"],
+    unoptimized: true // Add Dropbox domain here
   },
+  compiler:{
+    removeConsole : process.env.NODE_ENV === 'production'
+  }
 };
 
 export default nextConfig;

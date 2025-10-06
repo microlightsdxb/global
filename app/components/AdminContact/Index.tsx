@@ -254,23 +254,23 @@ const AdminContact = () => {
 
     return (
         <div className=" grid grid-cols-1 gap-10">
-            <div className="h-fit w-full p-2 border-2 border-gray-300 rounded-md mt-5">
+            <div className="h-fit w-full p-5 shadow-md border-gray-300 rounded-md mt-5 bg-white">
                             <div className="flex justify-between border-b-2 pb-2">
                                 <Label className="text-sm font-bold">Meta Section</Label>
                                 <Button onClick={handleSaveMeta}>Save</Button>
                             </div>
                             <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
-                                <div>
+                                <div className="flex flex-col gap-1">
                                     <Label>Meta title</Label>
                                     <Input type="text" value={metaTitle} onChange={(e) => setMetaTitle(e.target.value)} />
                                 </div>
-                                <div>
+                                <div className="flex flex-col gap-1">
                                     <Label>Meta Description</Label>
                                     <Input type="text" value={metaDescription} onChange={(e) => setMetaDescription(e.target.value)} />
                                 </div>
                             </div>
                         </div>
-            <div className="h-full w-full p-2 border-2 border-gray-300 rounded-md">
+            <div className="h-full w-full p-5 shadow-md border-gray-300 rounded-md bg-white">
                 <div className="flex justify-between border-b-2 pb-2">
                     <Label className="text-sm font-bold">Regions</Label>
                     <Dialog>
@@ -289,8 +289,8 @@ const AdminContact = () => {
                 </div>
                 <div className="mt-2 flex flex-col gap-2 h-[80%] overflow-y-auto">
                     {regionList.map((item) => (
-                        <div className="flex justify-between border p-1 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300" key={item._id}>
-                            <div className='text-sm'>
+                        <div className="flex justify-between border p-2 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300" key={item._id}>
+                            <div className='text-[16px]'>
                                 {item.region}
                             </div>
                             <div className="flex gap-5">
@@ -352,7 +352,7 @@ const AdminContact = () => {
 
                                             <div className='flex flex-col gap-2 mt-5'>
                                                 {areaList.map((item) => (
-                                                    <div key={item._id} className="flex justify-between border p-1 items-center rounded-md">
+                                                    <div key={item._id} className="flex justify-between border p-2 items-center rounded-md text-[16px]">
                                                         {item.name}
                                                         <div className='flex gap-5'>
                                                             <Dialog>

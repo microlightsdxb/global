@@ -51,7 +51,7 @@ const Filter = ({ industryData, locationData, setIndustrySelected, setLocationSe
   }, [selectedLocation])
 
   const handleClear = () => {
-    setIndustrySelected("Industry")
+    setIndustrySelected("")
     setLocationSelected("Location")
     setSelectedIndustry(null)
     setSelectedLocation(null)
@@ -60,7 +60,7 @@ const Filter = ({ industryData, locationData, setIndustrySelected, setLocationSe
 
   useEffect(() => {
     if (industryData?.data?.length > 0) {
-      setIndustryOptions([{ value: "Industry", label: "Industry" }, ...industryData?.data?.map((item: { name: string }) => ({ value: item.name, label: item.name }))]);
+      setIndustryOptions([  ...industryData?.data?.map((item: { name: string }) => ({ value: item.name, label: item.name }))]);
     }
 
     if (locationData?.data?.length > 0) {
@@ -87,9 +87,9 @@ const Filter = ({ industryData, locationData, setIndustrySelected, setLocationSe
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true, amount: 0.5 }}>
-          <div className="block md:flex bg-black p-6 md:p-10 pt-5 items-center">
+          <div className="block md:flex bg-black/85 p-6 md:p-10 pt-5 items-center">
             <div className="w-full md:w-4/5">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-[40px]">
+              <div className="grid grid-cols-1 ">
                 <div>
                   <div className="relative w-full">
                     <Select
@@ -97,7 +97,7 @@ const Filter = ({ industryData, locationData, setIndustrySelected, setLocationSe
                       value={selectedIndustry}
                       onChange={handleIndustryChange}
                       isSearchable={true}
-                      placeholder="Industry"
+                      placeholder="Filters"
                       styles={{
                         control: (provided) => ({
                           ...provided,
@@ -168,17 +168,9 @@ const Filter = ({ industryData, locationData, setIndustrySelected, setLocationSe
                     </div> */}
                   </div>
                 </div>
-                <div><div className="relative w-full">
-                  {/* <select className="w-full bg-transparent text-white py-2 pr-8 pl-3 border-b border-white appearance-none focus:outline-none focus:border-gray-300 transition duration-300" value={locationSelected} onChange={(e) => setLocationSelected(e.target.value)}>
-                    <option className="bg-black text-white" value="Location">
-                      Location
-                    </option>
-                    {locationData?.data?.map((item: { name: string }, index: number) => (
-                      <option className="bg-black text-white" value={item.name} key={index}>
-                        {item.name}
-                      </option>
-                    ))}
-                  </select> */}
+                <div>
+                  <div className="relative w-full hidden">
+
                   <CustomDropdown
                     options={locationOptions}
                     selected={selectedLocation}
@@ -189,10 +181,9 @@ const Filter = ({ industryData, locationData, setIndustrySelected, setLocationSe
                     selectedLocations={selectedLocations}
                     placeholder="Location"
                   />
-                  {/* <div className="absolute inset-y-0 right-2 flex items-center pointer-events-none text-white">
-                    <Image src={assets.arrdn} alt=""></Image>
-                  </div> */}
-                </div></div>
+
+                  </div>
+                </div>
               </div>
             </div>
             <div className="w-1/5 ml-auto  ">
@@ -289,7 +280,7 @@ const CustomDropdown: React.FC<CustomDropdownProps> = ({
         >
           <div className="flex gap-3">
             {selectedLocations.map((item, index) => (
-              <div className="px-1 bg-gray-500 flex gap-1" key={index}>
+              <div className="px-1 bg-gray-500 flex gap-1 items-center" key={index}>
                 {item}
                 <IoIosCloseCircle className="" onClick={() => handleRemoveLocation(item)} />
               </div>

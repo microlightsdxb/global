@@ -17,14 +17,14 @@ const Introducing = ({
       <div className="container">
 
         <div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-[40px]">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-[40px]">
             <div>
               <motion.h2
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6 }}
                 viewport={{ once: true, amount: 0.5 }}
-                className="text-xl text-black mb-[45px] md:mb-[57px] leading-[1.3]">{data?.introTitle}</motion.h2>
+                className="text-xl text-black mb-[45px] md:mb-[57px] leading-[1.3] max-w-[14ch]">{data?.introTitle}</motion.h2>
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: [0, 10, -10, 0] }} // Moves back and forth

@@ -16,14 +16,14 @@ const Index = ({data}:{data:Project}) => {
   const fetcher = (...args: Parameters<typeof fetch>) => fetch(...args).then(res => res.json())
   const {data:allProjects} = useSWR(`/api/admin/project`, fetcher)
 
-  
+
   return (
     <>
       <div className="headerpadding"> </div>
-      <Details data={data} />   
+      <Details data={data} />
       <Pjctslider data={data} />
       <Contents data={data} />
-      <MoreProjects data={allProjects} industry={data?.data?.industry}/>
+      <MoreProjects data={allProjects} industry={data?.data?.industry} projectName={data?.data?.name}/>
 
     </>
   );

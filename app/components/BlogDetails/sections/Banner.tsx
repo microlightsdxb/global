@@ -3,7 +3,7 @@ import React from "react";
 import moment from "moment";
 import { motion } from "framer-motion";
 
-const Banner = ({ data }: { data: { data: { createdAt: string, category: string, title: string } } }) => {
+const Banner = ({ data }: { data: { data: {date:string, createdAt: string, category: string, title: string } } }) => {
   return (
     <section className="pt-20 md:pt-20 lg:pt-30 xl:pt-40 pb-100 relative bg-[#f8f8f8] overflow-hidden">
       <div className="container ">
@@ -14,7 +14,7 @@ const Banner = ({ data }: { data: { data: { createdAt: string, category: string,
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true, amount: 0.5 }}>
-              <p>{moment(data?.data?.createdAt).format("ll")}</p>
+              <p>{moment(data?.data?.date ? data?.data?.date : data?.data?.createdAt).format("ll")}</p>
               <p>{data?.data?.category}</p>
             </motion.div>
           </div>
@@ -24,9 +24,13 @@ const Banner = ({ data }: { data: { data: { createdAt: string, category: string,
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true, amount: 0.5 }}>
-              <p className="text-2xl text-black leading-[1.18]">
-                {data?.data?.title}
-              </p>
+                <div className="">
+                  {data?.data?.title.split("\n").map((item, index) => (
+                    <p key={index} className="text-2xl text-black leading-[1.18]">
+                      {item}
+                    </p>
+                  ))}
+                </div>
             </motion.div>
           </div>
         </div>

@@ -21,7 +21,7 @@ const Banner = ({data}:{data:MdData}) => {
         <motion.div variants={staggerContainer} initial="hidden" animate="show" viewport={{ once: true, amount: 0.2 }} className="flex flex-col-reverse lg:flex-row 2xl:pt-20">
           <motion.div variants={moveUp} className="w-full lg:w-1/2 pb-100">
             <h1 className="text-2xl text-black mb-2 lg:mb-4 leading-[1.2]">
-              Word from the MD
+              Word from the CEO
           </h1>
           <div className="font-[300]">
             {parse(data?.mdDescription || "")}

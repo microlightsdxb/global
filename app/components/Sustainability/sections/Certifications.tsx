@@ -23,7 +23,7 @@ const Certifications: React.FC<FrameworkSectionProps> = ({
           viewport={{ once: true, amount: 0.5 }}>
           Certifications & Standards
         </motion.h2>
-        <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{once:true, amount:0.2}} className="grid grid-cols-1 md:grid-cols-3  border border-[#00000015]">
+        <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{once:true, amount:0.2}} className="grid grid-cols-1 md:grid-cols-2  border border-[#00000015]">
           {data.data.certifications.map((item) => (
 
             <motion.div

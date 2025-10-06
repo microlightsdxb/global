@@ -1,6 +1,7 @@
 import connectDB from "@/lib/mongodb";
 import Home from "@/models/Home";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { verifyAdmin } from "@/lib/verifyAdmin";
 
 
 export async function GET() {
@@ -18,9 +19,13 @@ export async function GET() {
     }
 }
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
     try {
         await connectDB();
+        const isAdmin = await verifyAdmin(request);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const { title } = await request.json();
         const home = await Home.findOne({})
         if(home){
@@ -36,9 +41,13 @@ export async function POST(request: Request) {
     }
 }
 
-export async function PATCH(request: Request) {
+export async function PATCH(request: NextRequest) {
     try {
         await connectDB();
+        const isAdmin = await verifyAdmin(request);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const {searchParams} = new URL(request.url)
         const id = searchParams.get("id")
         const { title } = await request.json();
@@ -61,9 +70,13 @@ export async function PATCH(request: Request) {
 
 
 
-export async function DELETE(request: Request){
+export async function DELETE(request: NextRequest){
     try {
         await connectDB();
+        const isAdmin = await verifyAdmin(request);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const {searchParams} = new URL(request.url)
         const id = searchParams.get("id")
         const home = await Home.findOne({})

@@ -15,12 +15,16 @@ export const menuItems: MenuItem[] = [
       {
         title:"Our Team",
         url:"/our-team"
-      }
+      },
+      // {
+      //   title:"Our Testimonials",
+      //   url:"/"
+      // }
     ]
     },
     {
       title:"Products",
-      url:"/products",
+      url:"#",
         children:[
         {
           title:"Indoor Lighting",
@@ -60,7 +64,7 @@ export const menuItems: MenuItem[] = [
       url:"/sustainability",
     },
     {
-      title:"Blogs",
-      url:"/blogs",
+      title:"Blog",
+      url:"/blog",
     },
   ]

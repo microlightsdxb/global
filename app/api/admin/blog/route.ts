@@ -1,12 +1,17 @@
 import connectDB from "@/lib/mongodb";
 import Blog from "@/models/Blog";
 import { NextRequest, NextResponse } from "next/server";
+import { verifyAdmin } from "@/lib/verifyAdmin";
 
 export async function POST(req:NextRequest) {
     try {
         await connectDB();
-        const {title,slug,content,image,imageAlt,category,metaTitle,metaDescription} = await req.json();
-        const blog = await Blog.create({title,slug,content,image,imageAlt,category,metaTitle,metaDescription});
+        const isAdmin = await verifyAdmin(req);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
+        const {title,slug,content,image,imageAlt,category,date,metaTitle,metaDescription,bannerImage,bannerImageAlt} = await req.json();
+        const blog = await Blog.create({title,slug,content,image,imageAlt,category,date,metaTitle,metaDescription,bannerImage,bannerImageAlt});
         if(blog){
             return NextResponse.json({message: "Blog added successfully"},{status: 200});
         }
@@ -22,10 +27,14 @@ export async function POST(req:NextRequest) {
 export async function PATCH(req:NextRequest) {
     try {
         await connectDB();
+        const isAdmin = await verifyAdmin(req);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const {searchParams} = new URL(req.url);
         const id = searchParams.get("id");
-        const {title,slug,content,image,imageAlt,category,metaTitle,metaDescription} = await req.json();
-        const blog = await Blog.findByIdAndUpdate(id,{title,slug,content,image,imageAlt,category,metaTitle,metaDescription});
+        const {title,slug,content,image,imageAlt,category,date,metaTitle,metaDescription,bannerImage,bannerImageAlt} = await req.json();
+        const blog = await Blog.findByIdAndUpdate(id,{title,slug,content,image,imageAlt,category,date,metaTitle,metaDescription,bannerImage,bannerImageAlt});
         if(blog){
             return NextResponse.json({message: "Blog updated successfully"},{status: 200});
         }
@@ -77,6 +86,10 @@ export async function GET(req:NextRequest) {
 export async function DELETE(req:NextRequest) {
     try {
         await connectDB();
+        const isAdmin = await verifyAdmin(req);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const {searchParams} = new URL(req.url);
         const id = searchParams.get("id");
         if(id){

@@ -55,16 +55,16 @@ const CodePage = () => {
     return (
         <form className='flex flex-col gap-5' onSubmit={handleSubmit(onSubmit)}>
             <div className="space-y-4">
-                <Label className='font-bold'>Header Script</Label>
+                <Label className=''>Header Script</Label>
                 <Textarea {...register('headerScript')}></Textarea>
             </div>
 
             <div className="space-y-4">
-                <Label className='font-bold'>Body Script</Label>
+                <Label className=''>Body Script</Label>
                 <Textarea {...register('bodyScript')}></Textarea>
             </div>
             <div className="flex justify-center">
-                <Button type="submit" className='w-fit cursor-pointer'>Submit</Button>
+                <Button type="submit" className='w-full cursor-pointer'>Submit</Button>
             </div>
         </form>
     )

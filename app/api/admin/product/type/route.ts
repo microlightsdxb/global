@@ -1,6 +1,7 @@
 import connectDB from "@/lib/mongodb";
 import ProductType from "@/models/ProductType";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { verifyAdmin } from "@/lib/verifyAdmin";
 
 export async function GET(){
     try {
@@ -17,9 +18,13 @@ export async function GET(){
     }
 }
 
-export async function POST(request:Request){
+export async function POST(request:NextRequest){
     try {
         await connectDB();
+        const isAdmin = await verifyAdmin(request);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const {type,image,hoverImage} = await request.json();
         console.log("type",type)
         if(type){
@@ -40,9 +45,13 @@ export async function POST(request:Request){
     }
 }
 
-export async function PATCH(request:Request){
+export async function PATCH(request:NextRequest){
     try {
         await connectDB();
+        const isAdmin = await verifyAdmin(request);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const {id,type,image,hoverImage} = await request.json();
         if(id && type){
             const updatedType = await ProductType.findByIdAndUpdate(id,{type,image,hoverImage},{new:true});
@@ -60,9 +69,13 @@ export async function PATCH(request:Request){
     }
 }
 
-export async function DELETE(request:Request){
+export async function DELETE(request:NextRequest){
     try {
         await connectDB();
+        const isAdmin = await verifyAdmin(request);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const {id} = await request.json();
         if(id){
             const deletedType = await ProductType.findByIdAndDelete(id);

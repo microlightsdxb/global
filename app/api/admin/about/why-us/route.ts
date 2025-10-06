@@ -1,12 +1,17 @@
+import connectDB from "@/lib/mongodb";
 import About from "@/models/About";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { verifyAdmin } from "@/lib/verifyAdmin";
 
 export async function GET() {
     try {
+        
+        await connectDB();
         const about = await About.findOne({});
         if(about){
             const whyUs = about.whyItems;
-            return NextResponse.json({message:"Data fetched successfully",data:whyUs});
+            const whyTitle = about.whyTitle;
+            return NextResponse.json({message:"Data fetched successfully",data:{whyUs,whyTitle}});
         }else{
             return NextResponse.json({ message: "No data found" }, { status: 404 });
         }
@@ -16,8 +21,13 @@ export async function GET() {
     }
 }
 
-export async function POST(req: Request) {
+export async function POST(req: NextRequest) {
     try {
+        await connectDB();
+        const isAdmin = await verifyAdmin(req);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const {title, description,icon,iconAltTag} = await req.json();
         const about = await About.findOne({});
         if(about){
@@ -33,8 +43,13 @@ export async function POST(req: Request) {
     }
 }
 
-export async function PATCH(req: Request) {
+export async function PATCH(req: NextRequest) {
     try {
+        await connectDB();
+        const isAdmin = await verifyAdmin(req);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const {searchParams} = new URL(req.url);
         const id = searchParams.get("id");
         const {title, description, icon, iconAltTag} = await req.json();
@@ -60,8 +75,13 @@ export async function PATCH(req: Request) {
     }
 }
 
-export async function DELETE(req: Request) {
+export async function DELETE(req: NextRequest) {
     try {
+        await connectDB();
+        const isAdmin = await verifyAdmin(req);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const {searchParams} = new URL(req.url);
         const id = searchParams.get("id");
         const about = await About.findOne({});
@@ -82,6 +102,8 @@ export async function DELETE(req: Request) {
         return NextResponse.json({ message: "Error deleting data" }, { status: 500 });
     }
 }
+
+
 
 
 

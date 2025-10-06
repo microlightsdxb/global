@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
@@ -30,7 +30,8 @@ interface Project {
     name: string,
     client: string,
     location: string,
-    thumbnail: string
+    thumbnail: string,
+    slug: string
   }[]
 }
 
@@ -39,6 +40,11 @@ interface Project {
 const RecentProjects = ({ data }: { data: Project }) => {
   const prevRef = useRef<HTMLButtonElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
+
+
+  useEffect(() => {
+    console.log(data)
+  }, [data])
 
   return (
     <section className="section-spacing">
@@ -70,6 +76,15 @@ const RecentProjects = ({ data }: { data: Project }) => {
               modules={[Navigation]}
               slidesPerView={1}
               spaceBetween={40}
+              onBeforeInit={(swiper) => {
+                if (
+                  swiper.params.navigation &&
+                  typeof swiper.params.navigation !== "boolean"
+                ) {
+                  swiper.params.navigation.prevEl = prevRef.current;
+                  swiper.params.navigation.nextEl = nextRef.current;
+                }
+              }}
               navigation={{
                 prevEl: prevRef.current,
                 nextEl: nextRef.current,
@@ -82,9 +97,9 @@ const RecentProjects = ({ data }: { data: Project }) => {
             >
               {data?.data?.slice(0, 5).map((project) => (
                 <SwiperSlide key={project._id}>
-                  <Link href={`/project-details/${project._id}`} className="overflow-hidden" >
+                  <Link href={`/project-details/${project.slug}`} className="overflow-hidden" >
                     <div className="hdrsc">
-                      <div className="flex justify-between items-center border-b border-primary/10 pb-[14px]">
+                      <div className="flex justify-between  border-b border-primary/10 pb-[14px] h-[60px]">
                         <h3 className="text-lg font-normal leading-none text-primary">
                           {project.name}
                         </h3>
@@ -94,7 +109,7 @@ const RecentProjects = ({ data }: { data: Project }) => {
                           </span>
                         </div>
                       </div>
-                      <div className="flex justify-between items-center py-[30px]">
+                      {/* <div className="flex justify-between items-center py-[30px]">
                         <div>
                           <p className="text-sm text-[#7D7D7D]">
                             Client: {project.client}
@@ -105,7 +120,7 @@ const RecentProjects = ({ data }: { data: Project }) => {
                             Location: {project.location}
                           </p>
                         </div>
-                      </div>
+                      </div> */}
                     </div>
 
                     <figure className="h-[280px]   lg:h-[300px] xl:h-[350px] w-full overflow-hidden">

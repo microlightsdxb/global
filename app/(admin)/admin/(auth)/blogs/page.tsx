@@ -179,24 +179,24 @@ export default function Blogs() {
 
   return (
     <div className="h-fit grid grid-cols-1 gap-5">
-                              <div className="h-fit w-full p-2 border-2 border-gray-300 rounded-md mt-5">
+                              <div className="h-fit w-full p-5 shadow-md border-gray-300 rounded-md mt-5 bg-white">
                                   <div className="flex justify-between border-b-2 pb-2">
                                       <Label className="text-sm font-bold">Meta Section</Label>
                                       <Button onClick={submitMetaSection}>Save</Button>
                                   </div>
                                   <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
-                                      <div>
+                                      <div className="flex flex-col gap-1">
                                           <Label>Meta title</Label>
                                           <Input type="text" value={metaTitle} onChange={(e) => setMetaTitle(e.target.value)} />
                                       </div>
-                                      <div>
+                                      <div className="flex flex-col gap-1">
                                           <Label>Meta Description</Label>
                                           <Input type="text" value={metaDescription} onChange={(e) => setMetaDescription(e.target.value)} />
                                       </div>
                                   </div>
                               </div>
 
-        <div className="h-[300px] w-full p-2 border-2 border-gray-300 rounded-md overflow-y-hidden">
+        <div className="h-[300px] w-full p-5 shadow-md border-gray-300 rounded-md overflow-y-hidden bg-white">
           <div className="flex justify-between border-b-2 pb-2">
             <Label className="text-sm font-bold">Category</Label>
             <Dialog>
@@ -215,8 +215,8 @@ export default function Blogs() {
           </div>
           <div className="mt-2 flex flex-col gap-2 overflow-y-scroll h-3/4">
             {categoryList.map((item)=>(
-              <div className="flex justify-between border p-1 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300" key={item._id}>
-              <div>
+              <div className="flex justify-between border p-3 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300" key={item._id}>
+              <div className="text-[16px]">
                 {item.name}
               </div>
               <div className="flex gap-5">
@@ -261,16 +261,16 @@ export default function Blogs() {
 
 
 
-      <div className="h-[300px] w-full p-2 border-2 border-gray-300 rounded-md overflow-y-hidden">
+      <div className="h-[300px] w-full p-5 shadow-md border-gray-300 rounded-md overflow-y-hidden bg-white">
         <div className="flex justify-between border-b-2 pb-2">
           <Label className="text-sm font-bold">Blogs</Label>
           <Button onClick={()=>router.push("/admin/blogs/add")}>Add Blog</Button>
         </div>
         <div className="mt-2 flex flex-col gap-2 overflow-y-scroll h-3/4">
           {blogList.map((item)=>(
-            <div className="flex justify-between border p-1 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300 h-32" key={item._id}>
+            <div className="flex justify-between border-b p-2 items-center shadow-md hover:shadow-lg transition-all duration-300 h-32" key={item._id}>
             <div className="h-24">
-              <div className="flex gap-2 items-center h-full">
+              <div className="flex gap-2 items-center h-full text-[16px]">
                 <Image src={item.image} alt={item.title} width={100} height={100} className="h-full object-cover"/>
                 {item.title}
               </div>

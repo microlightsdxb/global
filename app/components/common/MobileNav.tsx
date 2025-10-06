@@ -1,20 +1,37 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef ,useEffect} from "react";
 import { menuItems } from "./menuItems";
 import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 import { gsap } from "gsap";
 
+import { useStore } from "@/app/store/productType";
 import {
   FaFacebookF,
   FaInstagram,
   FaLinkedinIn,
   FaYoutube,
 } from "react-icons/fa";
-import Link from "next/link";
+import Link from "next/link"; 
 
 const MobileNav = () => {
+  const setType = useStore((state)=>state.setType)
+  const setScrollToSection = useStore((state)=>state.setScrollToSection)
+   const [services, setServices] = useState<{name:string,slug:string}[]>([]); 
+  
+    useEffect(()=>{
+      const fetchServices = async() =>{
+        try {
+          const response = await fetch(`/api/admin/service`)
+          const data = await response.json()
+          setServices(data.data)
+        } catch (error) {
+          console.log(error)
+        }
+      }
+      fetchServices()
+    },[])
   const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
   const [menuOpen, setMenuOpen] = useState(false); // State for menu visibility
   const pathRef = useRef(null);
@@ -48,16 +65,17 @@ const MobileNav = () => {
   return (
     <div>
       {/* Navbar */}
-      <nav className="w-full bg-white text-white tanspheader py-4 absolute top-0 z-10 lg:hidden shadow-xs">
+      <nav className="w-full bg-white text-white tanspheader py-4 absolute top-[-1px] z-10 lg:hidden shadow-xs">
         <div className="container flex items-center justify-between">
           <div className="logo-sec">
-            <Image
+          <Link href="/" onClick={()=>{setScrollToSection('')}}> <Image
               src="/assets/img/logo.svg"
               alt=""
               className="h-[45px] w-auto"
               width={100}
               height={250}
             />
+          </Link>
           </div>
           <div className="w-[30px] h-[30px]">
           <div
@@ -157,21 +175,41 @@ const MobileNav = () => {
                     />
                   </div>
                   {/* Dropdown */}
-                  {activeDropdown === index && (
-                    <ul className="">
-                      {item.children.map((childItem, childIndex) => (
-                        <li key={childIndex} className="py-1">
-                          <Link
-                            href={childItem.url}
-                            onClick={() => setMenuOpen(false)}
-                          >
-                            {childItem.title}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
+                 
+
+                     {activeDropdown === index && item.title == "Services" && services.map((service: {name:string,slug:string}, subIndex) => (
+                                  <div key={subIndex}>
+                                  <Link href={`/services/${service.slug}`} onClick={()=>setMenuOpen(false)}>
+                                      <div className="hover:bg-black/5 pl-3 pr-[80px] py-2 rounded-[8px] transition-transform duration-300 hover:scale-105 flex justify-between items-center">
+                                        <p className="m-0 p-0 text-[16px]">
+                                          {service.name}
+                                        </p>
+                                      </div>
+                                    </Link>
+                                  </div>  
+                                  ))}
+                                  {activeDropdown === index && item.title !== "Services" && item.children?.length ? (
+                                      <div   className="py-1">
+                                      {item.children.map((item, subIndex) => (
+                                        <Link href={item.url} key={subIndex} onClick={() => {
+                                          setType(item.title.split(" ")[0]);
+                                          setMenuOpen(false);
+                                          if (item.title === "Our Testimonials") {
+                                            setScrollToSection("testimonials");
+                                          }
+                                        }}>
+                                          <div className="hover:bg-black/5 pl-3 pr-[80px] py-2 rounded-[8px] transition-transform duration-300 hover:scale-105 flex justify-between items-center">
+                                            <p className="m-0 p-0 text-[16px]">
+                                              {item.title}
+                                            </p>
+                                          </div>
+                                        </Link>
+                                      ))}
+                                    </div>
+                                  ) : null}
                 </li>
+
+                
               ) : (
                 <li key={index} className="pb-2">
                   <Link
@@ -184,6 +222,7 @@ const MobileNav = () => {
                 </li>
               )
             )}
+            
 
             {/* Contact Link */}
             <li>

@@ -31,20 +31,20 @@ const Details: React.FC<FrameworkSectionProps> = ({
           </motion.h2>
         </div>
         <motion.div
-          className="flex items-center pt-8 pb-9"
+          className="lg:flex items-center pt-8 pb-9"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
         >
           {[
-            { label: "Client", value: data?.data.client },
+            { label: "Project", value: data?.data.client },
             { label: "Industry", value: data?.data.industry },
             { label: "Scope", value: data?.data.scope },
-            { label: "Location", value: data?.data.location },
+            // { label: "Location", value: data?.data.location },
           ].map((item, index) => (
             <motion.div
               key={index}
-              className="w-1/4"
+              className="lg:w-1/3"
               variants={fadeInUp}
               transition={{ delay: index * 0.2 }}
             >

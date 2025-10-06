@@ -38,6 +38,16 @@ const homeSchema = new mongoose.Schema({
         company: String,
         testimonialImageAltTag: String,
     }],
+    industries:{
+        title: String,
+        items:[{
+            title: String,
+            logo: String,
+            logoAlt: String,
+            image: String,
+            imageAlt: String,
+        }]
+    },
     metaTitle: String,
     metaDescription: String,
 });
