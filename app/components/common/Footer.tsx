@@ -23,7 +23,7 @@ const Footer = () => {
           >
             {/* Quick Links */}
             <div className="w-1/2">
-              <h3 className="text-lg text-primary mb-4 md:mb-[35px] leading-none">Quick Links</h3>
+              <p className="text-lg text-primary !mb-4 md:!mb-[35px] leading-none">Quick Links</p>
               <ul className="text-gray-500 mt-4 space-y-2">
                 <li className="transition-all ease-in-out duration-500 group hover:translate-x-1">
                   <Link className="text-xs text-[#7D7D7D] group-hover:text-black" href="/about-us">About Microlights</Link>
@@ -43,16 +43,16 @@ const Footer = () => {
 
             {/* Products */}
             <div className="w-1/2">
-              <h3 className="text-lg text-primary mb-4 md:mb-[35px] leading-none">Products</h3>
+              <p className="text-lg text-primary !mb-4 md:!mb-[35px] leading-none">Products</p>
               <ul className="text-gray-500 mt-4 space-y-2">
                 <li className="transition-all ease-in-out duration-500 group hover:translate-x-1" onClick={()=>{setType("Indoor")}}>
-                  <Link className="text-xs text-[#7D7D7D] group-hover:text-black" href="/products">Indoor Lighting</Link>
+                  <Link className="text-xs text-[#7D7D7D] group-hover:text-black" href="/lighting-products">Indoor Lighting</Link>
                 </li>
                 <li className="transition-all ease-in-out duration-500 group hover:translate-x-1" onClick={()=>{setType("Outdoor")}}>
-                  <Link className="text-xs text-[#7D7D7D] group-hover:text-black" href="/products">Outdoor Lighting</Link>
+                  <Link className="text-xs text-[#7D7D7D] group-hover:text-black" href="/lighting-products">Outdoor Lighting</Link>
                 </li>
                 <li className="transition-all ease-in-out duration-500 group hover:translate-x-1" onClick={()=>{setType("Industrial")}}>
-                  <Link className="text-xs text-[#7D7D7D] group-hover:text-black" href="/products">Industrial Lighting</Link>
+                  <Link className="text-xs text-[#7D7D7D] group-hover:text-black" href="/lighting-products">Industrial Lighting</Link>
                 </li>
               </ul>
             </div>

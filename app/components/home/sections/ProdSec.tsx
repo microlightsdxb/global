@@ -120,7 +120,7 @@ const ProdSec = ({data}:{data:{data:{_id:string,type: string, image: string, hov
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[40px]" 
       >
         {data?.data?.map((product: {_id: string, type: string, image: string, hoverImage: string}, index:number) => (
-          <Link key={product._id} onClick={()=>setType(product.type)} href={`/products`} className="relative last:before:hidden before:content-[] before:absolute before:h-full lg:before:w-[1px] lg:before:bg-primary/10 before:right-[-20px] ">
+          <Link key={product._id} onClick={()=>setType(product.type)} href={`/lighting-products`} className="relative last:before:hidden before:content-[] before:absolute before:h-full lg:before:w-[1px] lg:before:bg-primary/10 before:right-[-20px] ">
             <div  style={{
         height: `${refHeight}px`, 
       }}>
