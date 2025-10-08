@@ -63,7 +63,7 @@ const ProjectList: React.FC<FrameworkSectionProps> = ({
           <>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-[40px]">
           {data?.map((project, index) => (
-            <Link href={`/project-details/${project.slug}`} key={index}>
+            <Link href={`/projects/${project.slug}`} key={index}>
               <div
                 className="group">
                 <div className="mb-10 ">

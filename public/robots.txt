@@ -1,0 +1,27 @@
+User-agent: *
+
+Allow: /
+Disallow: /static/
+Disallow: /build/
+Disallow: /scripts/
+Disallow: /admin/
+Disallow: /api/
+Disallow: /node_modules/
+Disallow: /server/
+Disallow: /*?*
+Disallow: /*utm_*
+Disallow: /*?sessionid=
+
+Sitemap: https://www.microlights.com/sitemap.xml
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
