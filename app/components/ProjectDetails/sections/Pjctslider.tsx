@@ -11,10 +11,11 @@ import "swiper/css/thumbs";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-const Pjctslider = ({ data }: { data: { data: { images: string[], name:string } } }) => {
+const Pjctslider = ({ data }: { data: { data: { images: string[], name:string ,thumbnailAlt:string} } }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperClass | null>(null);
 
   console.log(data)
+  const thumbnailalts = data?.data?.thumbnailAlt;
   return (
     <section className="">
       <motion.div
@@ -39,7 +40,7 @@ const Pjctslider = ({ data }: { data: { data: { images: string[], name:string } 
                     <Image
                       className="object-cover w-full h-full"
                       src={project}
-                      alt="Apollo"
+                      alt={thumbnailalts}
                       width={1920}
                       height={1500}
                     />

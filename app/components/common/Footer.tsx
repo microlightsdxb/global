@@ -37,6 +37,9 @@ const Footer = () => {
                 <li className="transition-all ease-in-out duration-500 group hover:translate-x-1">
                   <Link className="text-xs text-[#7D7D7D] group-hover:text-black" href="/blog">Blog</Link>
                 </li>
+                <li className="transition-all ease-in-out duration-500 group hover:translate-x-1">
+                  <Link className="text-xs text-[#7D7D7D] group-hover:text-black" href="/sitemap">Sitemap</Link>
+                </li>
 
               </ul>
             </div>
@@ -93,10 +96,10 @@ const Footer = () => {
               <Image src={'/assets/img/icons/fticons.svg'} width={150} height={30} className="w-auto" alt="ftr"/>
               </div>
             </div>
-            <div className="text-primary/50 text-center mt-6 text-[13px] flex xl:flex-row flex-col justify-between">
-              <p style={{marginBottom: "0px"}}>&copy;2025 microlights. All rights reserved. | <span className="text-primary/35 text-[13px] ">by</span> <a className="text-primary/35 text-[13px] transition-all ease-in-out duration-500 hover:text-black/60" href="https://www.globalsurf.ae/" target="_blank">Global Surf </a> </p>
-           <div className="flex space-x-4 items-center mt-3 xl:mt-0 justify-center">
-                <Link href="/privacy-policy" className=" border-r pr-4 last:border-r-0 last:pr-0 transition-all ease-in-out duration-500 hover:text-black">Privacy Policy</Link>
+            <div className="text-primary/50 text-center mt-6 text-[12px] flex xl:flex-row flex-col justify-between">
+              <p style={{marginBottom: "0px"}}>&copy;2026 Lighting Solutions Dubai - microlights.com. All rights reserved. | <span className="text-primary/35 text-[11px] ">by</span> <a className="text-primary/35 text-[11px] transition-all ease-in-out duration-500 hover:text-black/60" href="https://www.globalsurf.ae/" target="_blank">Global Surf </a> </p>
+           <div className="flex space-x-2 items-center mt-3 xl:mt-0 justify-center">
+                <Link href="/privacy-policy" className=" border-r pr-2 last:border-r-0 last:pr-0 transition-all ease-in-out duration-500 hover:text-black">Privacy Policy</Link>
                 <Link href="/terms-and-conditions" className=" border-r pr-4 last:border-r-0 last:pr-0 transition-all ease-in-out duration-500 hover:text-black">Terms & Conditions</Link>
            </div>
             </div>

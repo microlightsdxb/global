@@ -1,18 +1,19 @@
 import Index from "../components/home/Index";
 import type { Metadata } from "next";
 
-
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const response = await fetch(`${process.env.BASE_URL}/api/admin/home`, { next: { revalidate: 60 } });
-  const data = await response.json();
-
+  const data = await response.json(); 
   const metadataTitle = data?.data?.metaTitle || "Microlights";
   const metadataDescription =
-    data?.data?.metaDescription || "Microlights";
+    data?.data?.metaDescription || "Microlights";  
 
   return {
     title: metadataTitle,
-    description: metadataDescription,
+    description: metadataDescription, 
+      alternates: {
+      canonical: `/`,  
+    },
   };
 }
 

@@ -8,7 +8,7 @@ import Footer from "../components/common/Footer";
 /* import Header from "./componennts/common/Header"; */
 import { Toaster } from "@/components/ui/sonner"
 import parse from 'html-react-parser'
-
+import Script from 'next/script'
 
 const parkinSans = Parkinsans({
   variable: "--font-parkin-sans",
@@ -36,7 +36,7 @@ export default async function RootLayout({
     <html lang="en">
       <head>{
       parse(tagData.tag.headerScript)}
-      <script
+      <Script
           dangerouslySetInnerHTML={{
             __html: `
               (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -46,6 +46,7 @@ export default async function RootLayout({
               })(window,document,'script','dataLayer','GTM-KS6RFWNV');
             `,
           }}
+          strategy="afterInteractive"
         />
       </head>
       <body className={`${parkinSans.variable} antialiased`}>

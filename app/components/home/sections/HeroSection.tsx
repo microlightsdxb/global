@@ -92,20 +92,28 @@ const HeroSection = ({ data }: { data: Home }) => {
 style={{ opacity: currentSlide === index + 1 ? 1 : 0 }}
                     >
                       <div className="overflow-hidden mb-[20px] lg:mb-[30px]"  key={`${index}-${textVersion}`}>
-                        
-                      <motion.h1
-  // initial={false}
-  initial={{ opacity: 0, x: -50 }} 
-whileInView={{ opacity: 1, x: 0 }} 
-transition={{ duration: 0.6 }} 
-viewport={{ once: true, amount: 0.5 }} 
-  // whileInView={{ opacity: 1, x: 0 }}
-  // animate={{ opacity: 1, x: 0 }}
-  // transition={{ duration: 0.6 }}
-  className="text-2xl text-white leading-none font-custom font-normal lg:w-[70%]"
->
-  {project.title}
-</motion.h1>
+                        {index === 0 ?
+                        (<motion.h1 
+                          initial={{ opacity: 0, x: -50 }} 
+                        whileInView={{ opacity: 1, x: 0 }} 
+                        transition={{ duration: 0.6 }} 
+                        viewport={{ once: true, amount: 0.5 }}  
+                          className="text-2xl text-white leading-none font-custom font-normal lg:w-[70%]"
+                        >
+                          {project.title}
+                        </motion.h1> ):(
+                          <motion.p 
+                          initial={{ opacity: 0, x: -50 }} 
+                        whileInView={{ opacity: 1, x: 0 }} 
+                        transition={{ duration: 0.6 }} 
+                        viewport={{ once: true, amount: 0.5 }}  
+                          className="text-2xl text-white leading-none font-custom font-normal lg:w-[70%]"
+                        >
+                          {project.title}
+                        </motion.p>
+                        )
+                        }
+                      
 
                       </div>
                       <div className="overflow-hidden mb-[30px] lg:mb-[50px]">

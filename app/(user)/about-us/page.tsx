@@ -3,8 +3,7 @@ import type { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
   const response = await fetch(`${process.env.BASE_URL}/api/admin/about`, { next: { revalidate: 60 } });
-  const data = await response.json();
-
+  const data = await response.json(); 
   const metadataTitle = data?.data?.metaTitle || "Microlights";
   const metadataDescription =
     data?.data?.metaDescription || "Microlights";
@@ -12,6 +11,9 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: metadataTitle,
     description: metadataDescription,
+     alternates: {
+      canonical: `/about-us`,  
+    },
   };
 }
 

@@ -25,3 +25,10 @@ Allow: /
 
 User-agent: ClaudeBot
 Allow: /
+
+# OpenAI SearchBot 
+User-agent: OAI-SearchBot
+Disallow:
+# Common Crawl
+User-agent: CCBot
+Disallow:
