@@ -1,6 +1,5 @@
 "use client";
-import React from "react";
-import Image from "next/image";
+import React from "react"; 
 import "/app/globals.css";
 
 import { MdOutlineArrowForward } from "react-icons/md";
@@ -37,7 +36,7 @@ const page = () => {
           <div className="w-1/6 pt-10 m-auto border-t-1"></div>
           <div>
           <h2 className="mb-3 flex items-center justify-center uppercase md:text-[35px]  lg:mb-[17px] lg:text-[47px] ">
-            <span className="font-bold">UH OH! You're lost. </span>
+            <span className="font-bold">UH OH! You&apos;re lost. </span>
             
           </h2>
 

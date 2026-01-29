@@ -37,6 +37,7 @@ export default async function RootLayout({
       <head>{
       parse(tagData.tag.headerScript)}
       <Script
+      id="data-layer-init"
           dangerouslySetInnerHTML={{
             __html: `
               (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':

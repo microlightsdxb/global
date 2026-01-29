@@ -14,7 +14,7 @@ import { motion } from "framer-motion";
 const Pjctslider = ({ data }: { data: { data: { images: string[], name:string ,thumbnailAlt:string} } }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperClass | null>(null);
 
-  console.log(data)
+  // console.log(data)
   const thumbnailalts = data?.data?.thumbnailAlt;
   return (
     <section className="">
