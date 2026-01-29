@@ -8,5 +8,6 @@ export type Project =  {
       scope: string;
       description: string;
       images: string[];
+      thumbnailAlt: string;
     }
 }

@@ -77,9 +77,9 @@ const Filter = ({ industryData, locationData, setIndustrySelected, setLocationSe
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true, amount: 0.5 }}>
-          <h2 className="text-2xl text-black mb-[15px] md:mb-[28px] leading-[1.3]">
-            Projects
-          </h2>
+          <h1 className="text-2xl text-black mb-[15px] md:mb-[28px] leading-[1.3]">
+            Our Lighting Projects
+          </h1>
         </motion.div>
         </div>
         <motion.div
