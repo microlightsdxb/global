@@ -15,6 +15,10 @@ export async function generateMetadata(): Promise<Metadata> {
     alternates: {
       canonical: `/blog`,  
     },
+     robots: {
+      index: true,
+      follow: true, 
+    },
   };
 }
 
