@@ -16,6 +16,10 @@ export async function generateMetadata({params}:{params:Promise<{slug:string}>})
     alternates: {
       canonical: `/blog-details/${slug}`,  
     },
+     robots: {
+      index: true,
+      follow: true, 
+    },
   };
 }
 

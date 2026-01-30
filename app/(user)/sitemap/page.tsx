@@ -14,6 +14,9 @@ export async function generateMetadata(): Promise<Metadata> {
     description: metadataDescription,
      alternates: {
       canonical: `/sitemap`,  
+    }, robots: {
+      index: true,
+      follow: true, 
     },
   };
 }

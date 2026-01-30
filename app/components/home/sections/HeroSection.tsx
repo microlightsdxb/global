@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 
 /* import { motion } from "framer-motion"; */
 // import c01web2 from "@/public/assets/img/home/slide1.jpg";
@@ -24,18 +24,12 @@ const HeroSection = ({ data }: { data: Home }) => {
   const totalSlides = data.banners.length;
 
   const [textVersion, setTextVersion] = useState(0);
-  const [motionReady, setMotionReady] = useState(false);
 // const [mounted, setMounted] = useState(false);
 // useEffect(() => {
 //   setMounted(true);
 // }, []);
 
 // if (!mounted) return null;
-useEffect(() => {
-  requestAnimationFrame(() => {
-    setMotionReady(true);
-  });
-}, []);
   return (
     <section
       className="h-screen relative overflow-hidden bg-primary"
@@ -71,13 +65,8 @@ useEffect(() => {
          spaceBetween={0}
          loop
          onSwiper={(swiper) => {
-  swiperRef.current = swiper;
-  swiper.allowTouchMove = false;
-
-  setTimeout(() => {
-    swiper.allowTouchMove = true;
-  }, 500);
-}}
+           swiperRef.current = swiper;
+         }}
         
          
          onSlideChange={(swiper) => {
@@ -90,24 +79,8 @@ useEffect(() => {
         {data?.banners?.map((project, index) => (
           <SwiperSlide key={index}>
             <div key={index} className="slide h-full w-screen relative overflow-hidden text-white">
-         <link
-  rel="preload"
-  as="image"
-  href={data?.banners?.[0]?.image}
-/>     <figure className="h-full w-full absolute -z-50">
-             
-                  <Image
-  src={project.image}
-  alt={project.bannerAltTag}
-  fill
-  sizes="100vw"
-  quality={80}
-  priority={index === 0}
-  loading={index === 0 ? "eager" : "lazy"}
-  fetchPriority={index === 0 ? "high" : "auto"}
-  className="h-full w-full absolute object-cover object-center"
-/>
-
+              <figure className="h-full w-full absolute -z-50">
+                <Image className="h-full w-full absolute object-cover object-center" src={project.image} alt={project.bannerAltTag} width={2500} height={1000} />
               </figure>
               <div className="h-full w-full -z-40 absolute bg-gradient-to-t from-black to-transparent opacity-70"></div>
 
@@ -116,13 +89,13 @@ useEffect(() => {
                   <div className="h-full relative">
                     <div key={`${index}-${textVersion}`}
                       className="title absolute bottom-[80px] lg:bottom-[150px] transition-all ease-in-out flex flex-col"
-style={{ opacity: index === 0 || currentSlide === index + 1 ? 1 : 0 }}
+style={{ opacity: currentSlide === index + 1 ? 1 : 0 }}
                     >
                       <div className="overflow-hidden mb-[20px] lg:mb-[30px]"  key={`${index}-${textVersion}`}>
                         {index === 0 ?
                         (<motion.h1 
                           initial={{ opacity: 0, x: -50 }} 
-  animate={motionReady ? { opacity: 1, x: 0 } : false}
+                        whileInView={{ opacity: 1, x: 0 }} 
                         transition={{ duration: 0.6 }} 
                         viewport={{ once: true, amount: 0.5 }}  
                           className="text-2xl text-white leading-none font-custom font-normal lg:w-[70%]"
@@ -131,7 +104,7 @@ style={{ opacity: index === 0 || currentSlide === index + 1 ? 1 : 0 }}
                         </motion.h1> ):(
                           <motion.p 
                           initial={{ opacity: 0, x: -50 }} 
-  animate={motionReady ? { opacity: 1, x: 0 } : false}
+                        whileInView={{ opacity: 1, x: 0 }} 
                         transition={{ duration: 0.6 }} 
                         viewport={{ once: true, amount: 0.5 }}  
                           className="text-2xl text-white leading-none font-custom font-normal lg:w-[70%]"

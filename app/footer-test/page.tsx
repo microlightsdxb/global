@@ -1,4 +1,4 @@
-import Index from "../../components/AboutUs/Index";
+import Index from "../components/AboutUs/Index";
 import type { Metadata } from "next";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -10,14 +10,12 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     title: metadataTitle,
-    description: metadataDescription,
-     alternates: {
-      canonical: `/about-us`,  
+    description: metadataDescription, 
+    robots: {
+      index: false,
+      follow: false, 
     },
-     robots: {
-      index: true,
-      follow: true, 
-    },
+
   };
 }
 
