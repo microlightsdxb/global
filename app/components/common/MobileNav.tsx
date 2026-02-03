@@ -69,8 +69,9 @@ const MobileNav = () => {
         <div className="container flex items-center justify-between">
           <div className="logo-sec">
           <Link href="/" onClick={()=>{setScrollToSection('')}}> <Image
-              src="/assets/img/logo.svg"
-              alt=""
+              src="/assets/img/logo.svg" 
+            alt="Lighting Solutions Dubai"
+            title="Microlights"
               className="h-[45px] w-auto"
               width={100}
               height={250}
