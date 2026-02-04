@@ -15,13 +15,14 @@ import { Swiper as SwiperClass } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 
-
 const HeroSection = ({ data }: { data: Home }) => {
   const sectionRef = useRef(null);
   const triggerRef = useRef(null);
   const swiperRef = useRef<SwiperClass | null>(null);
   const [currentSlide, setCurrentSlide] = useState(1);
   const totalSlides = data.banners.length;
+
+// const firstBanner = data?.banners?.[0];
 
   const [textVersion, setTextVersion] = useState(0);
 // const [mounted, setMounted] = useState(false);
@@ -36,7 +37,7 @@ const HeroSection = ({ data }: { data: Home }) => {
       ref={triggerRef}
       suppressHydrationWarning
     >
-      <div className="absolute bottom-[80px] lg:bottom-[150px] w-full ">
+<div className="absolute bottom-[80px] lg:bottom-[150px] w-full ">
         <div className="container flex justify-end">
           <span className="text-[15px] text-white whitespace-nowrap font-light relative z-10">
             <span className="font-medium "> {`0${currentSlide}`}</span> - {`0${totalSlides}`}
@@ -45,10 +46,30 @@ const HeroSection = ({ data }: { data: Home }) => {
       </div>
 
       <div className="prject-sec h-full flex flex-wrap" style={{ width: `${data?.banners?.length * 100}vw` }} ref={sectionRef}>
+{/* <div className="absolute h-screen w-screen overflow-hidden text-white">
+  <Image
+    src={firstBanner.image}
+    alt={firstBanner.bannerAltTag}
+    fill
+    priority
+    className="object-cover"
+  />
+
+  <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
+
+  <div className="absolute bottom-[80px] lg:bottom-[150px] container">
+    <h1 className="text-2xl lg:w-[70%]">
+      {firstBanner.title}
+    </h1>
+    <p className="mt-4 text-lg">
+      {firstBanner.subTitle}
+    </p>
+  </div>
+</div> */}
 
       <Swiper
-         modules={[Autoplay, EffectFade, EffectCreative]}
-         
+         modules={[Autoplay, EffectFade, EffectCreative]} 
+   
          effect="creative"
          creativeEffect={{
            prev: {
@@ -76,11 +97,14 @@ const HeroSection = ({ data }: { data: Home }) => {
         className="w-full h-full"
       >
 
-        {data?.banners?.map((project, index) => (
+   {data?.banners?.map((project, index) => (
           <SwiperSlide key={index}>
             <div key={index} className="slide h-full w-screen relative overflow-hidden text-white">
               <figure className="h-full w-full absolute -z-50">
-                <Image className="h-full w-full absolute object-cover object-center" src={project.image} alt={project.bannerAltTag} width={2500} height={1000} />
+                <Image className="h-full w-full absolute object-cover object-center" src={project.image} alt={project.bannerAltTag} 
+ fill
+  priority={index === 0}
+  loading={index === 0 ? "eager" : "lazy"} />
               </figure>
               <div className="h-full w-full -z-40 absolute bg-gradient-to-t from-black to-transparent opacity-70"></div>
 
