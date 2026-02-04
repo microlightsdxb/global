@@ -7,7 +7,7 @@ import React, { useRef, useState } from "react";
 // import c01web3 from "@/public/assets/img/home/secbnr.jpg";
 import Link from "next/link";
 import { FiArrowUpRight } from "react-icons/fi";
-import { motion } from "framer-motion";
+import {Motiondiv,MotionH1,MotionP} from "./MotionComp";
 import { Home } from "@/types/Home";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade, EffectCreative } from "swiper/modules";
@@ -88,7 +88,7 @@ const HeroSection = ({ data }: { data: Home }) => {
          onSwiper={(swiper) => {
            swiperRef.current = swiper;
          }}
-        
+        watchSlidesProgress
          
          onSlideChange={(swiper) => {
            setCurrentSlide(swiper.realIndex + 1);
@@ -103,8 +103,9 @@ const HeroSection = ({ data }: { data: Home }) => {
               <figure className="h-full w-full absolute -z-50">
                 <Image className="h-full w-full absolute object-cover object-center" src={project.image} alt={project.bannerAltTag} 
  fill
-  priority={index === 0}
-  loading={index === 0 ? "eager" : "lazy"} />
+  
+  fetchPriority="high"
+  loading="lazy"/>
               </figure>
               <div className="h-full w-full -z-40 absolute bg-gradient-to-t from-black to-transparent opacity-70"></div>
 
@@ -117,7 +118,7 @@ style={{ opacity: currentSlide === index + 1 ? 1 : 0 }}
                     >
                       <div className="overflow-hidden mb-[20px] lg:mb-[30px]"  key={`${index}-${textVersion}`}>
                         {index === 0 ?
-                        (<motion.h1 
+                        (<MotionH1 
                           initial={{ opacity: 0, x: -50 }} 
                         whileInView={{ opacity: 1, x: 0 }} 
                         transition={{ duration: 0.6 }} 
@@ -125,8 +126,8 @@ style={{ opacity: currentSlide === index + 1 ? 1 : 0 }}
                           className="text-2xl text-white leading-none font-custom font-normal lg:w-[70%]"
                         >
                           {project.title}
-                        </motion.h1> ):(
-                          <motion.p 
+                        </MotionH1> ):(
+                          <MotionP 
                           initial={{ opacity: 0, x: -50 }} 
                         whileInView={{ opacity: 1, x: 0 }} 
                         transition={{ duration: 0.6 }} 
@@ -134,29 +135,29 @@ style={{ opacity: currentSlide === index + 1 ? 1 : 0 }}
                           className="text-2xl text-white leading-none font-custom font-normal lg:w-[70%]"
                         >
                           {project.title}
-                        </motion.p>
+                        </MotionP>
                         )
                         }
                       
 
                       </div>
                       <div className="overflow-hidden mb-[30px] lg:mb-[50px]">
-                        <motion.p initial={{ opacity: 0, x: -50 }}
+                        <MotionP initial={{ opacity: 0, x: -50 }}
                           whileInView={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.6, delay: 0.3 }}
                           viewport={{ once: true, amount: 0.5 }} className="text-lg text-white leading-tight font-custom font-light">
                           {project.subTitle}
-                        </motion.p>
+                        </MotionP>
                       </div>
                       <div className="overflow-hidden">
-                        <motion.div className="flex" initial={{ opacity: 0, x: -50 }}
+                        <Motiondiv className="flex" initial={{ opacity: 0, x: -50 }}
                           whileInView={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.6, delay: 0.6 }}
                           viewport={{ once: true, amount: 0.5 }}>
                           <Link href={'/about-us'} className="flex gap-[20px] items-center border-t border-white text-sm text-white border-solid leaing-none pt-[12px]">
                             <span>Explore</span> <FiArrowUpRight className="text-[22px] text-white" />
                           </Link>
-                        </motion.div>
+                        </Motiondiv>
                       </div>
                     </div>
 
