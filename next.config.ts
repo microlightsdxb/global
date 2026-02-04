@@ -1,16 +1,46 @@
-import type { NextConfig } from "next";
+ 
+  import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   reactStrictMode: false,
+
+  /* Cache headers */
+  async headers() {
+    return [
+      {
+        source: "/:all*(svg|webp|avif|gif|ico|woff|woff2|ttf|otf|js|css)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      // {
+      //   source: "/_next/static/:path*",
+      //   headers: [
+      //     {
+      //       key: "Cache-Control",
+      //       value: "public, max-age=31536000, immutable",
+      //     },
+      //   ],
+      // },
+    ];
+  },
+
+  /* Image config */
   images: {
-    dangerouslyAllowSVG:true,
+    dangerouslyAllowSVG: true,
     domains: ["dl.dropboxusercontent.com"],
-    unoptimized: true // Add Dropbox domain here
+    unoptimized: true,
   },
-  compiler:{
-    removeConsole : process.env.NODE_ENV === 'production'
+ 
+  /* Remove console logs in production */
+  compiler: {
+    removeConsole: process.env.NODE_ENV === "production",
   },
+
+  /* Redirects */
   async redirects() {
     return [
       {
