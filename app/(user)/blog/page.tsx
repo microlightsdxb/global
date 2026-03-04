@@ -12,6 +12,13 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: metadataTitle,
     description: metadataDescription,
+    alternates: {
+      canonical: `/blog`,  
+    },
+     robots: {
+      index: true,
+      follow: true, 
+    },
   };
 }
 

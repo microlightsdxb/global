@@ -1,9 +1,8 @@
 "use client";
 import { About } from "@/types/About";
 import { motion } from "framer-motion";
-import React from "react";
-
-
+import React from "react"; 
+import Image from "next/image";
 interface FrameworkSectionProps {
   data?: About;
 }
@@ -21,14 +20,10 @@ const Banner: React.FC<FrameworkSectionProps> = ({
 
       <div
         className="relative gd-blacktrans"
-        style={{
-          backgroundImage: `url(${data?.banner})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
+        
+       
       >
-        <img src={'assets/img/tandc/tandcbanner.avif'} alt={data?.bannerAltTag} className="hidden" />
+        <Image src={data?.banner || ''} alt={data?.bannerAltTag || ''} fill fetchPriority="high"    className="absolute top-0 left-0 w-full h-full max-h-[505px] object-cover" />
         <div className="container relative z-1">
           <div className="  pt-[190px] md:pt-[280px] lg:pt-[343px] pb-[30px] md:pb-[50px] lg:pb-[93px]">
             <motion.h1 className="text-white text-2xl leading-[1.2]"

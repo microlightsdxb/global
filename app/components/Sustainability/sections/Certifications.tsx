@@ -35,9 +35,9 @@ const Certifications: React.FC<FrameworkSectionProps> = ({
               </div>
               <div className="border-t   mt-10 "></div>
               <div className="pt-8">
-                <h4 className="text-lg text-black mb-5 leading-[1.2]">
+                <h3 className="text-lg text-black mb-5 leading-[1.2]">
                   {item.title}
-                </h4>
+                </h3>
                 <p className="text-[#555555] font-[300] leading-[1.7]">
                   {item.description}
                 </p>

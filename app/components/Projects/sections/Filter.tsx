@@ -51,7 +51,7 @@ const Filter = ({ industryData, locationData, setIndustrySelected, setLocationSe
   }, [selectedLocation])
 
   const handleClear = () => {
-    setIndustrySelected("Industry")
+    setIndustrySelected("")
     setLocationSelected("Location")
     setSelectedIndustry(null)
     setSelectedLocation(null)
@@ -60,7 +60,7 @@ const Filter = ({ industryData, locationData, setIndustrySelected, setLocationSe
 
   useEffect(() => {
     if (industryData?.data?.length > 0) {
-      setIndustryOptions([{ value: "Industry", label: "Industry" }, ...industryData?.data?.map((item: { name: string }) => ({ value: item.name, label: item.name }))]);
+      setIndustryOptions([  ...industryData?.data?.map((item: { name: string }) => ({ value: item.name, label: item.name }))]);
     }
 
     if (locationData?.data?.length > 0) {
@@ -77,9 +77,9 @@ const Filter = ({ industryData, locationData, setIndustrySelected, setLocationSe
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true, amount: 0.5 }}>
-          <h2 className="text-2xl text-black mb-[15px] md:mb-[28px] leading-[1.3]">
-            Projects
-          </h2>
+          <h1 className="text-2xl text-black mb-[15px] md:mb-[28px] leading-[1.3]">
+            Our Lighting Projects
+          </h1>
         </motion.div>
         </div>
         <motion.div
@@ -87,7 +87,7 @@ const Filter = ({ industryData, locationData, setIndustrySelected, setLocationSe
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true, amount: 0.5 }}>
-          <div className="block md:flex bg-black p-6 md:p-10 pt-5 items-center">
+          <div className="block md:flex bg-black/85 p-6 md:p-10 pt-5 items-center">
             <div className="w-full md:w-4/5">
               <div className="grid grid-cols-1 ">
                 <div>
@@ -97,7 +97,7 @@ const Filter = ({ industryData, locationData, setIndustrySelected, setLocationSe
                       value={selectedIndustry}
                       onChange={handleIndustryChange}
                       isSearchable={true}
-                      placeholder="Industry"
+                      placeholder="Filters"
                       styles={{
                         control: (provided) => ({
                           ...provided,

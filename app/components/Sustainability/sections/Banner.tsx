@@ -18,11 +18,11 @@ const Banner: React.FC<FrameworkSectionProps> = ({
 
         <div className="lg:flex">
           <div className="w-full lg:w-1/2 mb-5 lg:mb-0">
-            <motion.p className="text-2xl text-black max-w-[14ch] leading-[1.15]"
+            <motion.h2 className="text-2xl text-black max-w-[14ch] leading-[1.15]"
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
-              viewport={{ once: true, amount: 0.5 }}> {data.data.introTitle}</motion.p>
+              viewport={{ once: true, amount: 0.5 }}> {data.data.introTitle}</motion.h2>
           </div>
           <div className="w-full lg:w-1/2">
             <motion.div className="font-[300] leading-[1.7]"

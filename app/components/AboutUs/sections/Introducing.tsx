@@ -12,6 +12,7 @@ const Introducing = ({
   data,
 
 }: { data: About }) => {
+  console.log(data);
   return (
     <section className="section-spacing ">
       <div className="container">
@@ -37,7 +38,7 @@ const Introducing = ({
             <div>
 
               <motion.div
-                className="text-sm leading-[1.7] font-light"
+                className="text-sm leading-[1.7] font-light innera"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.2 }}

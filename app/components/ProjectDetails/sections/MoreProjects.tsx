@@ -53,7 +53,7 @@ const MoreProjects: React.FC<FrameworkSectionProps> = ({
           More From {industry}</motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-[40px]">
           {filteredData.map((project, index) => (
-            <Link href={`/project-details/${project.slug}`} key={index} className="group">
+            <Link href={`/projects/${project.slug}`} key={index} className="group">
             <motion.div
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}

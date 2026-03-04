@@ -4,7 +4,7 @@ import { Parkinsans } from "next/font/google"; // Import ParkinSans
 import "../globals.css";
 import SmoothScroll from "../components/common/SmoothScroll";
 import Header from "../components/common/Header";
-import Footer from "../components/common/Footer";
+import FooterNew from "../components/common/FooterNew";
 /* import Header from "./componennts/common/Header"; */
 import { Toaster } from "@/components/ui/sonner"
 import parse from 'html-react-parser'
@@ -17,7 +17,7 @@ const parkinSans = Parkinsans({
 
 export const metadata: Metadata = {
   title: "Your Project Title",
-  description: "Your project description",
+  description: "Your project description", 
   icons: {
     icon: "/favicon.ico",  
   },
@@ -59,10 +59,11 @@ export default async function RootLayout({
 
         {parse(tagData.tag.bodyScript)}
         <SmoothScroll />
-        <Header />
-        {children}
-        <Toaster />
-        <Footer />
+          <Header />
+          {children}
+          <Toaster />
+          {/* <Footer /> */}
+          <FooterNew />
       </body>
     </html>
   );
