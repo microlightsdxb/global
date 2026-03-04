@@ -35,10 +35,10 @@ export default async function RootLayout({
       <body className={`${parkinSans.variable} antialiased`}>
         {parse(tagData.tag.bodyScript)}
         <SmoothScroll />
-          <Header />
-          {children}
-          <Toaster />
-          <Footer />
+        <Header />
+        {children}
+        <Toaster />
+        <Footer />
       </body>
     </html>
   );
