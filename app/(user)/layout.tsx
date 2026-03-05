@@ -48,7 +48,7 @@ export default async function RootLayout({
           }}
           strategy="afterInteractive"
         />
-        <meta name="google-site-verification" content="LQa3Dbctxr8x55L9o0fNw6aURwCKHlA6oRBbjY0VWXE" />
+           <meta name="google-site-verification" content="LQa3Dbctxr8x55L9o0fNw6aURwCKHlA6oRBbjY0VWXE" />
       </head>
       <body className={`${parkinSans.variable} antialiased`}>
       <noscript>
