@@ -1,5 +1,4 @@
 User-agent: *
-
 Allow: /
 Disallow: /static/
 Disallow: /build/
@@ -12,12 +11,13 @@ Disallow: /*?*
 Disallow: /*utm_*
 Disallow: /*?sessionid=
 
-Sitemap: https://www.microlights.com/sitemap.xml
-
 User-agent: GPTBot
 Allow: /
 
 User-agent: Google-Extended
+Allow: /
+
+User-agent: Googlebot
 Allow: /
 
 User-agent: Bingbot
@@ -26,9 +26,10 @@ Allow: /
 User-agent: ClaudeBot
 Allow: /
 
-# OpenAI SearchBot 
 User-agent: OAI-SearchBot
-Disallow:
-# Common Crawl
+Disallow: /
+
 User-agent: CCBot
-Disallow:
+Disallow: /
+
+Sitemap: https://www.microlights.com/sitemap.xml
