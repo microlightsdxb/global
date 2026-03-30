@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
-        source: "/:all*(svg|webp|avif|gif|ico|woff|woff2|ttf|otf|js|css)",
+        source: "/:path*\\.(svg|webp|avif|gif|jpg|jpeg|png|ico|woff|woff2|ttf|otf|js|css)",
         headers: [
           {
             key: "Cache-Control",
@@ -16,29 +16,55 @@ const nextConfig: NextConfig = {
           },
         ],
       },
-      // {
-      //   source: "/_next/static/:path*",
-      //   headers: [
-      //     {
-      //       key: "Cache-Control",
-      //       value: "public, max-age=31536000, immutable",
-      //     },
-      //   ],
-      // },
+      {
+        source: "/_next/static/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
     ];
   },
 
   /* Image config */
-  images: {
-    dangerouslyAllowSVG: true,
-    domains: ["dl.dropboxusercontent.com"],
-    unoptimized: true,
-  },
+  // images: {
+  //   dangerouslyAllowSVG: true,
+  //   domains: ["dl.dropboxusercontent.com"],
+  //   unoptimized: true,
+  // },
  
-  /* Remove console logs in production */
+  experimental: {
+    optimizeCss: true,
+    // optimizePackageImports: ["gsap", "swiper"],
+  },
   compiler: {
     removeConsole: process.env.NODE_ENV === "production",
   },
+  images: {
+  dangerouslyAllowSVG: true,
+
+  // ✅ allow external images (modern way)
+  remotePatterns: [
+    {
+      protocol: "https",
+      hostname: "dl.dropboxusercontent.com",
+      pathname: "/**",
+    }, 
+  ],
+
+  // ✅ modern formats
+  formats: ["image/webp", "image/avif"],
+
+  // ✅ responsive breakpoints
+  deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+  imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+
+  // ✅ cache optimization
+  minimumCacheTTL: 60,
+},
+
 
   /* Redirects */
   async redirects() {
