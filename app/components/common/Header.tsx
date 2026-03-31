@@ -45,10 +45,9 @@ const Header = () => {
           <Image
             src="/assets/img/logo.svg"
             alt="Lighting Solutions Dubai"
-            title="Microlights"
-            className="h-[58px] w-auto"
-            width={100}
-            height={250}
+            title="Microlights" 
+            width={220}
+            height={58}
           />
           </Link>
         </div>
