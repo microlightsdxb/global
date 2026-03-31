@@ -102,7 +102,7 @@ const HeroSection = ({ data }: { data: Home }) => {
             <div key={index} className="slide h-full w-screen relative overflow-hidden text-white">
               <figure className="h-full w-full absolute -z-50">
                 <Image className="h-full w-full absolute object-cover object-center" src={project.image} alt={project.bannerAltTag}  fill
- fetchPriority="high"    
+ priority    
  sizes="100vw"/>
               </figure>
               <div className="h-full w-full -z-40 absolute bg-gradient-to-t from-black to-transparent opacity-70"></div>
