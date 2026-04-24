@@ -80,7 +80,7 @@ const MobileNav = () => {
           </div>
           <div className="w-[30px] h-[30px]">
           <div
-            className="cursor-pointer bg-white rounded-full top-5 absolute"
+            className="cursor-pointer bg-white rounded-full top-6 absolute"
             onClick={handleMenuOpen}
           >
             <svg
