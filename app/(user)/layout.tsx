@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   title: "Your Project Title",
   description: "Your project description",
   icons: {
-    icon: "/favicon.ico",  
+    icon: "/favicon.ico",
   },
 };
 
@@ -35,8 +35,8 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <head>{parse(tagData.tag.headerScript)}
-      <Script
-      id="data-layer-init"
+        <Script
+          id="data-layer-init"
           dangerouslySetInnerHTML={{
             __html: `
               (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -51,19 +51,19 @@ export default async function RootLayout({
            <meta name="google-site-verification" content="LQa3Dbctxr8x55L9o0fNw6aURwCKHlA6oRBbjY0VWXE" />
       </head>
       <body className={`${parkinSans.variable} antialiased`}>
-      <noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KS6RFWNV"
-                height="0" 
-                width="0" 
-                style={{ display: "none", visibility: "hidden" }}></iframe>
+        <noscript>
+          <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KS6RFWNV"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}></iframe>
         </noscript>
 
         {parse(tagData.tag.bodyScript)}
         <SmoothScroll />
-          <Header />
-          {children}
-          <Toaster />
-          <Footer />
+        <Header />
+        {children}
+        <Toaster />
+        <Footer />
       </body>
     </html>
   );
