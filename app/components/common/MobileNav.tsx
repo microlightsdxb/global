@@ -241,10 +241,16 @@ const MobileNav = () => {
           <div className="mt-auto">
             <hr />
             <div className="flex space-x-4 mt-4">
+              <Link href="https://www.facebook.com/MicrolightsGroup" target="_blank">
               <FaFacebookF className="cursor-pointer w-6 h-6 hover:text-primary transition-all duration-500" />
+              </Link>
+              <Link href="https://www.linkedin.com/company/microlights/" target="_blank">
               <FaLinkedinIn className="cursor-pointer w-6 h-6 hover:text-primary transition-all duration-500" />
+              </Link>
+              <Link href="https://www.instagram.com/microlightsgroup/" target="_blank">
               <FaInstagram className="cursor-pointer w-6 h-6 hover:text-primary transition-all duration-500" />
-              <FaYoutube className="cursor-pointer w-6 h-6 hover:text-primary transition-all duration-500" />
+              </Link>
+              {/* <FaYoutube className="cursor-pointer w-6 h-6 hover:text-primary transition-all duration-500" /> */}
             </div>
           </div>
         </div>
