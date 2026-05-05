@@ -10,7 +10,7 @@ export async function PATCH(request: NextRequest) {
         if(!isAdmin){
             return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
         }
-        const {introTitle, introDescription, introImage,introImageAlt,pageBanner,bannerAlt,type,items,metaTitle,metaDescription} = await request.json();
+        const {introTitle, introDescription, introImage,introImageAlt,pageBanner,pageTitle,bannerAlt,type,items,metaTitle,metaDescription} = await request.json();
         const {searchParams} = new URL(request.url);
         const id = searchParams.get("id");
         const service = await Service.findById(id);
@@ -23,6 +23,7 @@ export async function PATCH(request: NextRequest) {
         service.introImage = introImage;
         service.introImageAlt = introImageAlt;
         service.pageBanner = pageBanner;
+        service.pageTitle = pageTitle;
         service.bannerAlt = bannerAlt;
         service.metaTitle = metaTitle;
         service.metaDescription = metaDescription;
