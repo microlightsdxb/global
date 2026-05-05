@@ -34,6 +34,7 @@ interface ServiceFormProps {
     name: string;
     type: string;
     pageBanner: string;
+    pageTitle: string;
     bannerAlt: string;
     pageHeading: string;
     introTitle: string;
@@ -65,6 +66,7 @@ const ServiceForm = () => {
                 setValue("name", data.data.name)
                 setValue("pageHeading", data.data.pageHeading)
                 setValue("pageBanner", data.data.pageBanner)
+                setValue("pageTitle", data.data.pageTitle)
                 setValue("bannerAlt", data.data.bannerAlt)
                 setValue("introTitle", data.data.introTitle)
                 setValue("introDescription", data.data.introDescription)
@@ -169,6 +171,11 @@ const ServiceForm = () => {
                     <div className='flex flex-col gap-2'>
                             <Label className=''>Banner Alt</Label>
                             <Input type='text' placeholder='Alt' {...register("bannerAlt")} />
+                        </div>
+
+                        <div className='flex flex-col gap-2'>
+                            <Label className=''>Page Title</Label>
+                            <Input type='text' placeholder='Page Title' {...register("pageTitle")} />
                         </div>
 
                 </div>

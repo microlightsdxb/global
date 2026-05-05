@@ -24,6 +24,9 @@ const ServiceSchema = new mongoose.Schema({
     pageBanner:{
         type:String
     },
+    pageTitle:{
+        type:String
+    },
     bannerAlt:{
         type:String
     },
