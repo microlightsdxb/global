@@ -14,6 +14,7 @@ import {
 import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { FaGear } from "react-icons/fa6";
+import { RiAiGenerateText } from 'react-icons/ri'
 
 const AdminServices = () => {
     const [services, setServices] = useState<{ _id: string, name: string, thumbnail: string, slug: string }[]>([]);
@@ -94,9 +95,19 @@ const AdminServices = () => {
         }
     }
 
-    useEffect(() => {
-        setSlug(name.toLowerCase().replace(/\s+/g, '-'))
-    }, [name])
+    // useEffect(() => {
+    //     setSlug(name.toLowerCase().replace(/\s+/g, '-'))
+    // }, [name])
+
+        const handleAutoGenerate = () => {
+        if (!name) return;
+        const slug = name
+            .toLowerCase()
+            .trim()
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/^-+|-+$/g, ''); // remove leading/trailing dashes
+        setSlug(slug);
+    };
 
     return (
         <div className='flex flex-col gap-5 bg-white p-5 rounded-md shadow-md'>
@@ -113,8 +124,14 @@ const AdminServices = () => {
                                     <Input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
                                 </div>
                                 <div className='flex flex-col gap-1'>
-                                    <Label>Slug</Label>
-                                    <Input type="text" readOnly placeholder="Slug" value={slug} onChange={(e) => setSlug(e.target.value)} />
+                                    <div className='flex gap-2'>
+                                        <Label className=''>Slug</Label>
+                                        <div className='flex gap-2 items-center bg-green-600 text-white p-1 rounded-md cursor-pointer w-fit h-[30px]' onClick={handleAutoGenerate}>
+                                            <div>Auto Generate</div>
+                                            <RiAiGenerateText />
+                                        </div>
+                                    </div>
+                                    <Input type="text" placeholder="Slug" value={slug} onChange={(e) => setSlug(e.target.value)} />
                                 </div>
                             </div>
                         </DialogHeader>
@@ -142,8 +159,14 @@ const AdminServices = () => {
                                                 <Input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
                                             </div>
                                             <div className='flex flex-col gap-1'>
-                                                <Label>Slug</Label>
-                                                <Input type="text" readOnly placeholder="Slug" value={slug} onChange={(e) => setSlug(e.target.value)} />
+                                                <div className='flex gap-2'>
+                                        <Label className='font-bold'>Slug</Label>
+                                        <div className='flex gap-2 items-center bg-green-600 text-white p-1 rounded-md cursor-pointer w-fit h-[30px]' onClick={handleAutoGenerate}>
+                                            <div>Auto Generate</div>
+                                            <RiAiGenerateText />
+                                        </div>
+                                    </div>
+                                                <Input type="text" placeholder="Slug" value={slug} onChange={(e) => setSlug(e.target.value)} />
                                             </div>
                                         </div>
                                     </DialogHeader>

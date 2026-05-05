@@ -34,7 +34,8 @@ export default async function RootLayout({
   const tagData = await tagResponse.json();
   return (
     <html lang="en">
-      <head>{parse(tagData.tag.headerScript)}
+      <head>
+        {parse(tagData.tag.headerScript)}
         <Script
           id="data-layer-init"
           dangerouslySetInnerHTML={{
