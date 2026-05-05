@@ -101,9 +101,18 @@ const HeroSection = ({ data }: { data: Home }) => {
           <SwiperSlide key={index}>
             <div key={index} className="slide h-full w-screen relative overflow-hidden text-white">
               <figure className="h-full w-full absolute -z-50">
-                <Image className="h-full w-full absolute object-cover object-center" src={project.image} alt={project.bannerAltTag}  fill
+                {/* <Image className="h-full w-full absolute object-cover object-center" src={project.image} alt={project.bannerAltTag}  fill
  fetchPriority="high"    
- sizes="100vw"/>
+ sizes="100vw"/> */}
+        <Image
+          className="h-full w-full absolute object-cover object-center"
+          src={project.image}
+          alt={project.bannerAltTag}
+          fill
+          sizes="100vw"
+          priority={index === 0}
+          loading={index === 0 ? "eager" : "lazy"}
+        />
               </figure>
               <div className="h-full w-full -z-40 absolute bg-gradient-to-t from-black to-transparent opacity-70"></div>
 
