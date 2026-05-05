@@ -37,7 +37,7 @@ const Imgbanner: React.FC<FrameworkSectionProps> = ({
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true, amount: 0.5 }}>
-              {data?.name}</motion.h1>
+              {data?.pageTitle}</motion.h1>
           </div>
         </div>
       </div>
