@@ -1,5 +1,6 @@
 export type Service = {
     name:string,
+    pageTitle?:string,
     pageHeading:string,
     pageBanner:string,
     bannerAlt:string,
