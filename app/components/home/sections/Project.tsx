@@ -131,8 +131,8 @@ const RecentProjects = ({ data }: { data: Project }) => {
                           className="h-full w-full object-cover object-center   group-hover:scale-[1.1] transition-all ease-in-out duration-500"
                           src={project.thumbnail}
                           alt={project.name}
-                          width={950}
-                          height={950}
+                          width={600}
+                          height={350}
                         />
                       </motion.div>
                     </figure>
