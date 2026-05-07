@@ -17,17 +17,7 @@ const Banner: React.FC<FrameworkSectionProps> = ({
   console.log(data)
   return (
     <section>
-
-
-      <div
-        className="relative gd-blacktrans"
-        style={{
-          backgroundImage: `url(${data?.banner})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
-      >
+      <div className="relative gd-blacktrans" style={{ backgroundImage: `url(${data?.banner})`, backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat", }}>
         <img src={'assets/img/tandc/tandcbanner.avif'} alt={data?.bannerAltTag} className="hidden" />
         <div className="container relative z-1">
           <div className="  pt-[190px] md:pt-[280px] lg:pt-[343px] pb-[30px] md:pb-[50px] lg:pb-[93px]">

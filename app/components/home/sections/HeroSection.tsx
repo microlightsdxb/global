@@ -1,43 +1,12 @@
 "use client";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
-import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-/* import { motion } from "framer-motion"; */
-// import c01web2 from "@/public/assets/img/home/slide1.jpg";
-// import c01web3 from "@/public/assets/img/home/secbnr.jpg";
 import Link from "next/link";
 import { FiArrowUpRight } from "react-icons/fi";
-import { motion } from "framer-motion";
 import { Home } from "@/types/Home";
-
-
-
-// const projects = [
-//   {
-//     id: 1,
-//     title: "Innovate. Illuminate. Inspire.",
-//     subtitle: "Smart & Sustainable Lighting Solutions",
-//     client: "MR Properties",
-//     type: "5 Star Hilton Hotel & Branded Residences",
-//     description:
-//       "Perched on the captivating Al Marjan Island, the Hilton 5-star hotel masterfully balances serene beach front luxury with the thrilling allure of a vibrant casino. Nestled beside the existing Hampton by Hilton Al Marjan Island, this architectural marvel offers guests and residents an unparalleled experience that fuses relaxation and entertainment.",
-//     image: c01web2,
-//     status: "Completed",
-//   },
-//   {
-//     id: 2,
-//     title: "Innovate. Illuminate. Inspire.",
-//     subtitle: "Smart & Sustainable Lighting Solutions",
-//     client: "MR Properties",
-//     type: "5 Star Hilton Hotel & Branded Residences",
-//     description:
-//       "Perched on the captivating Al Marjan Island, the Hilton 5-star hotel masterfully balances serene beach front luxury with the thrilling allure of a vibrant casino. Nestled beside the existing Hampton by Hilton Al Marjan Island, this architectural marvel offers guests and residents an unparalleled experience that fuses relaxation and entertainment.",
-//     image: c01web3,
-//     status: "Completed",
-//   }
-
-// ];
+import { gsap } from "gsap";
+import { motion } from "framer-motion";
 
 const HeroSection = ({ data }: { data: Home }) => {
   const sectionRef = useRef(null);

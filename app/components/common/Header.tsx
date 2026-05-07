@@ -18,11 +18,11 @@ type MenuItemType = {
 
 const Header = () => {
   const [active, setActive] = useState<string | null>(null);
-  const [services, setServices] = useState<{name:string,slug:string}[]>([]);
-  const setType = useStore((state)=>state.setType)
+  const [services, setServices] = useState<{ name: string, slug: string }[]>([]);
+  const setType = useStore((state) => state.setType)
 
-  useEffect(()=>{
-    const fetchServices = async() =>{
+  useEffect(() => {
+    const fetchServices = async () => {
       try {
         const response = await fetch(`/api/admin/service`)
         const data = await response.json()
@@ -32,7 +32,7 @@ const Header = () => {
       }
     }
     fetchServices()
-  },[])
+  }, [])
 
   return (
     <header className="lg:py-[22px] fixed w-full z-10 bg-white shadow-xs">
@@ -40,14 +40,14 @@ const Header = () => {
       <div className="container-fluid left-spacing pr-[47px] lg:flex items-center justify-between gap-20 hidden">
         {/* Logo Section */}
         <div className="logo-sec">
-          <Link href="/">
-          <Image
-            src="/assets/img/logo.svg"
-            alt="Logo"
-            className="h-[58px] w-auto"
-            width={100}
-            height={250}
-          />
+          <Link href="/" title="Lighting Solutions Dubai - Microlights">
+            <Image
+              src="/assets/img/logo.svg"
+              alt="Lighting Solutions Dubai - Microlights"
+              className="h-[58px] w-auto"
+              width={100}
+              height={250}
+            />
           </Link>
         </div>
 
@@ -64,7 +64,7 @@ const Header = () => {
                 nomenu={!menuItem.children?.length} // If no submenu, set `nomenu=true`
               >
                 {/* Render submenus only if `children` exist */}
-                {menuItem.title == "Services" && services.map((service: {name:string,slug:string}, subIndex) => (
+                {menuItem.title == "Services" && services.map((service: { name: string, slug: string }, subIndex) => (
                   <HoveredLink href={`/services/${service.slug}`} key={subIndex}>
                     <div className="hover:bg-black/5 pl-3 pr-[80px] py-2 rounded-[8px] transition-transform duration-300 hover:scale-105 flex justify-between items-center">
                       <p className="m-0 p-0 text-[16px]">
@@ -76,7 +76,7 @@ const Header = () => {
                 {menuItem.title !== "Services" && menuItem.children?.length ? (
                   <div className="grid grid-cols-1">
                     {menuItem.children.map((item, subIndex) => (
-                      <HoveredLink href={item.url} key={subIndex} onClick={()=>{setType(item.title.split(' ')[0]);console.log(item.title.split(' ')[0])}}>
+                      <HoveredLink href={item.url} key={subIndex} onClick={() => { setType(item.title.split(' ')[0]); console.log(item.title.split(' ')[0]) }}>
                         <div className="hover:bg-black/5 pl-3 pr-[80px] py-2 rounded-[8px] transition-transform duration-300 hover:scale-105 flex justify-between items-center">
                           <p className="m-0 p-0 text-[16px]">
                             {item.title}
