@@ -2,6 +2,7 @@
 import { contactSchema } from "@/app/(user)/schemas/contactShema";
 import { motion } from "motion/react";
 import React,{useRef,useState} from "react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { FiArrowUpRight } from "react-icons/fi";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -17,7 +18,7 @@ interface ContactFormProps {
 }
 
 export default function ContactForm() {
-
+  const router = useRouter();
   const { register, handleSubmit, formState: { errors,isSubmitting }, reset } = useForm<ContactFormProps>({ resolver: zodResolver(contactSchema) });
 
   const recaptcha = useRef<ReCAPTCHA>(null)
@@ -40,6 +41,7 @@ export default function ContactForm() {
         toast.success(res.message)
         reset()
         recaptcha?.current?.reset()
+        router.push("/thankyou")
       } else {
         toast.error(res.message)
       }

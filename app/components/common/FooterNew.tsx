@@ -6,6 +6,7 @@ import { FaLinkedin, FaInstagram, FaFacebookF } from "react-icons/fa";
 import { FiArrowUpRight } from "react-icons/fi";
 import {motion} from 'framer-motion';
 import { useStore } from "@/app/store/productType";
+import BrochureDownloadModal from "@/app/components/common/BrochureDownloadModal";
 
 
 const Footer = () => {
@@ -57,15 +58,17 @@ const Footer = () => {
             <div className="md:flex gap-3 justify-between items-center bg-primary px-[20px] py-3 md:py-1 lg:p-3 2xl:px-[35px] 2xl:py-3 mb-6 lg:mb-8">
                 <span className="text-lg md:text-md xl:text-lg text-white">Download Brochure</span>
                 <div className="flex mt-4 md:mt-0">
-                <a
-                  href="/api/download"
-                  className="flex gap-[20px] items-center border-t border-white text-sm text-white border-solid leading-none pt-[12px]   transition-colors duration-300 group"
-                >
-                  <span className="transition-transform duration-300 group-hover:translate-x-1">
-                    Download
-                  </span>
-                  <FiArrowUpRight className="text-[22px] text-white transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1" />
-                </a>
+                  <BrochureDownloadModal brochureUrl="/api/download">
+                    <button
+                      type="button"
+                      className="flex gap-[20px] items-center border-t border-white text-sm text-white border-solid leading-none pt-[12px] transition-colors duration-300 group"
+                    >
+                      <span className="transition-transform duration-300 group-hover:translate-x-1">
+                        Download
+                      </span>
+                      <FiArrowUpRight className="text-[22px] text-white transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1" />
+                    </button>
+                  </BrochureDownloadModal>
                 </div>
               </div>
               <motion.div className="flex" initial={{opacity: 0, y: -50}}
