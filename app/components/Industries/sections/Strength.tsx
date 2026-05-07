@@ -36,9 +36,25 @@ const Strength: React.FC<FrameworkSectionProps> = ({ data }) => {
                   viewport={{ once: true }}
                   onMouseOver={() => setAnimateIcon(index)}
                 >
-                  <div className="w-[85px] h-[85px] p-4 md:p-0 md:w-[115px] md:h-[115px] group-hover:bg-black rounded-full border border-[#00000015] flex justify-center items-center bg-[#f2f2f2] relative z-1">
-                    {animateIcon === index ? <Image src={item.animImage} alt={item.imageAlt} width={55} height={55} /> : <Image src={item.image} alt={item.imageAlt} width={55} height={55} />}
-                  </div>
+                 <div className="w-[85px] h-[85px] p-4 md:p-0 md:w-[115px] md:h-[115px] group-hover:bg-black rounded-full border border-[#00000015] flex justify-center items-center bg-[#f2f2f2] relative z-1 group">
+    {animateIcon === index ? (
+        <Image
+            src={item.animImage}
+            alt={item.imageAlt}
+            width={55}
+            height={55}
+            className="filter brightness-0 group-hover:filter group-hover:brightness-0 group-hover:invert"
+        />
+    ) : (
+        <Image
+            src={item.image}
+            alt={item.imageAlt}
+            width={55}
+            height={55}
+            className="filter brightness-0 group-hover:filter group-hover:brightness-0 group-hover:invert"
+        />
+    )}
+</div>
 
 
                   <div className="relative top-[-43px] md:top-[-56px]">
@@ -53,10 +69,10 @@ const Strength: React.FC<FrameworkSectionProps> = ({ data }) => {
                       {item.description}
                     </p>
 
-                    <div className="h-0 group-hover:h-full">
+                    <div className="h-0 group-hover:h-full mt-6 md:mt-0">
                       <div className="flex mt-[15px] 2xl:mt-[30px] md:opacity-0 group-hover:opacity-100 group-hover:flex transition-all ease-in-out duration-500">
                         <Link
-                          href={"/"}
+                          href={"/contact-us"}
                           className="flex gap-[20px] items-center border-t border-primary text-sm text-primary border-solid leading-none pt-[12px] cursor-pointer group"
                         >
                           Get in Touch{" "}

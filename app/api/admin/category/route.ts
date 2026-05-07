@@ -3,6 +3,7 @@ import connectDB from "@/lib/mongodb";
 import Blog from "@/models/Blog";
 import mongoose from "mongoose";
 import Category from "@/models/Category";
+import { verifyAdmin } from "@/lib/verifyAdmin";
 
 export async function GET() {
     try {
@@ -22,6 +23,10 @@ export async function GET() {
 export async function POST(req:NextRequest) {
     try {
         await connectDB();
+        const isAdmin = await verifyAdmin(req);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const { name } = await req.json();
         const category = await Category.create({ name });
         if(category){
@@ -39,6 +44,10 @@ export async function PATCH(req:NextRequest) {
     const session = await mongoose.startSession();
     try {
         await connectDB();
+        const isAdmin = await verifyAdmin(req);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const searchParams = req.nextUrl.searchParams;
         const id = searchParams.get("id");
         session.startTransaction();
@@ -70,6 +79,10 @@ export async function DELETE(req:NextRequest) {
     const session = await mongoose.startSession();
     try {
         await connectDB();
+        const isAdmin = await verifyAdmin(req);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const searchParams = req.nextUrl.searchParams;
         const id = searchParams.get("id");
         session.startTransaction();

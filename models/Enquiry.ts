@@ -5,6 +5,7 @@ const enquirySchema = new mongoose.Schema({
     phone:String,
     email:String,
     message:String,
+    company:String,
     createdAt:{
         type:Date,
         default:Date.now

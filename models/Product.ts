@@ -47,6 +47,10 @@ const productSchema = new mongoose.Schema({
     file:{
         type:String,
     },
+    index:{
+        type:Number,
+        default:0
+    },
     metaTitle:{
         type:String
     },

@@ -29,7 +29,7 @@ const Pdtdetails = ({data}: {data: ProductProps}) => {
     <section className="">
       <div className="container ">
         <div className="pt-16 pb-150  ">
-          <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{once:true, amount:0.2}} className="grid grid-cols-1 md:grid-cols-2 gap:[30px] lg:gap-[90px]">
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{once:true, amount:0.2}} className="grid grid-cols-1 md:grid-cols-2 gap-[30px] lg:gap-[90px]">
             <motion.div variants={moveUp} className=" ">
               <div>
                 {/* Main Swiper */}
@@ -84,7 +84,7 @@ const Pdtdetails = ({data}: {data: ProductProps}) => {
               </div>
             </motion.div>
             <motion.div variants={moveUp} className=" ">
-              <div className="flex flex-col gap-30 justify-between">
+              <div className="flex flex-col gap-10 md:gap-17 justify-between">
               <div>
               <div>
                  <h1 className="text-xl text-black leading-[1.4] mb-4 md:mb-10">{data?.data?.name} </h1>
@@ -103,7 +103,7 @@ const Pdtdetails = ({data}: {data: ProductProps}) => {
               </div>
               </div>
 
-            <Link href={data?.data?.file || "#"} target="_blank"><div className="px-7 py-4 bg-black text-white w-fit">
+            <Link href={data?.data?.file || "#"}><div className="px-7 py-4 bg-black text-white w-fit">
             Download Datasheet
             </div></Link>
               </div>

@@ -23,7 +23,7 @@ const Certifications: React.FC<FrameworkSectionProps> = ({
           viewport={{ once: true, amount: 0.5 }}>
           Certifications & Standards
         </motion.h2>
-        <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{once:true, amount:0.2}} className="grid grid-cols-1 md:grid-cols-3  border border-[#00000015]">
+        <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{once:true, amount:0.2}} className="grid grid-cols-1 md:grid-cols-2  border border-[#00000015]">
           {data.data.certifications.map((item) => (
 
             <motion.div
@@ -35,9 +35,9 @@ const Certifications: React.FC<FrameworkSectionProps> = ({
               </div>
               <div className="border-t   mt-10 "></div>
               <div className="pt-8">
-                <h4 className="text-lg text-black mb-5 leading-[1.2]">
+                <h3 className="text-lg text-black mb-5 leading-[1.2]">
                   {item.title}
-                </h4>
+                </h3>
                 <p className="text-[#555555] font-[300] leading-[1.7]">
                   {item.description}
                 </p>

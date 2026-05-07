@@ -39,7 +39,7 @@ const Mission = ({
 
               
                   <motion.div
-                className="prditm group cursor-pointer "
+                className="prditm group "
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.5 }}
@@ -54,7 +54,7 @@ const Mission = ({
                   </motion.div>
 
                   <motion.div
-                className="prditm group cursor-pointer "
+                className="prditm group "
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.5 }}
@@ -69,7 +69,7 @@ const Mission = ({
                   </motion.div>
 
                   <motion.div
-                className="prditm group cursor-pointer "
+                className="prditm group "
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.5 }}

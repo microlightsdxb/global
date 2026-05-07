@@ -19,7 +19,7 @@ import { BiExpandAlt } from "react-icons/bi";
 
 
 const AdminEnquiry = () => {
-    const [enquiryList, setEnquiryList] = useState<{ _id: string, name: string, email: string, phone: string, message: string }[]>([]);
+    const [enquiryList, setEnquiryList] = useState<{ _id: string, name: string, email: string, company: string, phone: string, message: string }[]>([]);
 
 
     const handleFetchEnquiry = async () => {
@@ -68,41 +68,46 @@ const AdminEnquiry = () => {
 
     return (
         <div className="h-screen grid grid-cols-1 gap-5">
-            <div className="h-full w-full p-2 border-2 border-gray-300 rounded-md">
+            <div className="h-full w-full p-5 shadow-md border-gray-300 rounded-md bg-white">
                 <div className="flex justify-between border-b-2 pb-2">
                     <Label className="text-sm font-bold">Enquiries</Label>
                 </div>
                 <div className="mt-2 flex flex-col gap-2 h-[80%] overflow-y-auto">
                     {enquiryList.map((item) => (
-                        <div className="flex justify-between border p-1 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300" key={item._id}>
-                            <div className='text-sm'>
+                        <div className="flex justify-between border p-2 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300" key={item._id}>
+                            <div className='text-[16px]'>
                                 {item.name}
                             </div>
                             <div className="flex gap-5">
                                 <Dialog>
-                                    <DialogTrigger><BiExpandAlt /></DialogTrigger>
+                                    <DialogTrigger className='cursor-pointer'><BiExpandAlt /></DialogTrigger>
                                     <DialogContent>
                                         <DialogHeader>
                                             <DialogTitle>Details</DialogTitle>
                                             <div className='flex flex-col gap-3'>
                                                 <div className='flex flex-col gap-2'>
                                                     <Label>Name</Label>
-                                                    <Input type="text" placeholder="Name" value={item.name} readOnly/>
+                                                    <Input type="text" value={item.name} readOnly/>
                                                 </div>
 
                                                 <div className='flex flex-col gap-2'>
                                                     <Label>Email</Label>
-                                                    <Input type="text" placeholder="Email" value={item.email} readOnly/>
+                                                    <Input type="text" value={item.email} readOnly/>
                                                 </div>
 
                                                 <div className='flex flex-col gap-2'>
                                                     <Label>Phone</Label>
-                                                    <Input type="text" placeholder="Phone" value={item.phone} readOnly/>
+                                                    <Input type="text" value={item.phone} readOnly/>
+                                                </div>
+
+                                                <div className='flex flex-col gap-2'>
+                                                    <Label>Company</Label>
+                                                    <Input type="text" value={item.company} readOnly/>
                                                 </div>
 
                                                 <div className='flex flex-col gap-2'>
                                                     <Label>Message</Label>
-                                                    <Textarea placeholder="Message" value={item.message} readOnly/>
+                                                    <Textarea value={item.message} readOnly/>
                                                 </div>
 
 
@@ -115,7 +120,7 @@ const AdminEnquiry = () => {
                                 </Dialog>
 
 
-                                <MdDelete onClick={() => handleDeleteEnquiry(item._id)} />
+                                <MdDelete className='cursor-pointer' onClick={() => handleDeleteEnquiry(item._id)} />
 
                             </div>
                         </div>

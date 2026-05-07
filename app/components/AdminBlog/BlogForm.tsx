@@ -10,20 +10,23 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false })
-import 'react-quill-new/dist/quill.snow.css';
-import dynamic from 'next/dynamic'
+
 import { useForm, Controller } from "react-hook-form";
 import { Button } from '@/components/ui/button'
 import { useRouter } from 'next/navigation'
 import { useParams } from 'next/navigation'
 import { ImageUploader } from '@/components/ui/image-uploader'
+import TinyEditor from "@/app/components/TinyMce/TinyEditor";
+import { Textarea } from '@/components/ui/textarea'
 
 interface BlogFormProps {
     title: string;
     slug: string;
     content: string;
     category: string;
+    bannerImage: string;
+    bannerImageAlt: string;
+    date: string;
     image: string;
     imageAlt: string;
     metaTitle: string;
@@ -64,7 +67,11 @@ const BlogForm = ({ editMode }: { editMode?: boolean }) => {
                 setValue("slug",data.data.slug);
                 setValue("content", data.data.content);
                 setValue("category", data.data.category);
+                setValue("bannerImage", data.data.bannerImage);
+                setValue("bannerImageAlt", data.data.bannerImageAlt);
                 setValue("image", data.data.image);
+                const isoDate = new Date(data.data.date).toISOString().split("T")[0];
+                setValue("date", isoDate);
                 setValue("imageAlt", data.data.imageAlt);
                 setValue("metaTitle", data.data.metaTitle);
                 setValue("metaDescription", data.data.metaDescription);
@@ -116,16 +123,16 @@ const BlogForm = ({ editMode }: { editMode?: boolean }) => {
 
     return (
         <div className='flex flex-col gap-5'>
-            <h1 className='text-lg font-bold'>{editMode ? "Edit Blog" : "Add Blog"}</h1>
-            <form className='flex flex-col gap-5 border p-2 rounded-md' onSubmit={handleSubmit(handleAddBlog)}>
+            <h1 className='text-md font-bold'>{editMode ? "Edit Blog" : "Add Blog"}</h1>
+            <form className='flex flex-col gap-5 border p-5 rounded-md shadow-md bg-white' onSubmit={handleSubmit(handleAddBlog)}>
 
-                <div>
-                    <Label className='pl-3'>Title</Label>
-                    <Input type='text' placeholder='Title' {...register("title", { required: "Title is required" })} />
+                <div className="flex flex-col gap-1">
+                    <Label className=''>Title</Label>
+                    <Textarea placeholder='Title' {...register("title", { required: "Title is required" })} />
                     {errors.title && <p className='text-red-500'>{errors.title.message}</p>}
                 </div>
-                <div>
-                    <Label className='pl-3 font-bold'>Slug</Label>
+                <div className="flex flex-col gap-1">
+                    <Label className=''>Slug</Label>
                     <Input type='text' placeholder='Blog Slug' {...register("slug", {
                         required: "Slug is required", pattern: {
                             value: /^[a-z0-9]+(-[a-z0-9]+)*$/,
@@ -135,7 +142,7 @@ const BlogForm = ({ editMode }: { editMode?: boolean }) => {
                     {errors.slug && <p className='text-red-500'>{errors.slug.message}</p>}
                 </div>
                 <div className='flex flex-col gap-2'>
-                    <Label className='pl-3'>Category</Label>
+                    <Label className=''>Category</Label>
                     <Controller
                         name="category"
                         control={control}
@@ -163,21 +170,50 @@ const BlogForm = ({ editMode }: { editMode?: boolean }) => {
 
                 </div>
 
-
                 <div>
-                    <Label className='pl-3'>Image</Label>
-                    <ImageUploader onChange={(url) => setValue("image", url)} value={watch("image")} />
+                    <Label className=''>Date</Label>
+                    <Input type='date' placeholder='Date' max={new Date().toISOString().split("T")[0]} {...register("date")} />
+                    {errors.date && <p className='text-red-500'>{errors.date.message}</p>}
+                </div>
+
+<div className='grid grid-cols-2 gap-2'>
+    <div className='flex flex-col gap-2'>
+                <div className="flex flex-col gap-1">
+                    <Label className=''>Image</Label>
+                    <Controller name="image" control={control} rules={{ required: "Image is required" }} render={({}) => {
+                        return <ImageUploader onChange={(url) => setValue("image", url)} value={watch("image")} />
+                    }} />
                     {errors.image && <p className='text-red-500'>{errors.image.message}</p>}
                 </div>
 
-                <div>
-                    <Label className='pl-3'>Alt Tag</Label>
-                    <Input type='text' placeholder='Alt Tag' {...register("imageAlt")} />
+                <div className="flex flex-col gap-1">
+                    <Label className=''>Alt Tag</Label>
+                    <Input type='text' placeholder='Alt Tag' {...register("imageAlt",{required: "Alt Tag is required"})} />
+                    {errors.imageAlt && <p className='text-red-500'>{errors.imageAlt.message}</p>}
+                </div>
                 </div>
 
-                <div>
+<div className='flex flex-col gap-2'>
+                <div className="flex flex-col gap-1">
+                    <Label className=''>Banner Image</Label>
+                    <Controller name="bannerImage" control={control} rules={{ required: "Banner Image is required" }} render={({}) => {
+                        return <ImageUploader onChange={(url) => setValue("bannerImage", url)} value={watch("bannerImage")} />
+                    }} />
+                    {errors.bannerImage && <p className='text-red-500'>{errors.bannerImage.message}</p>}
+                </div>
+
+                <div className="flex flex-col gap-1">
+                    <Label className=''>Alt Tag</Label>
+                    <Input type='text' placeholder='Alt Tag' {...register("bannerImageAlt",{required: "Alt Tag is required"})} />
+                    {errors.bannerImageAlt && <p className='text-red-500'>{errors.bannerImageAlt.message}</p>}
+                </div>
+                </div>
+                </div>
+
+                <div className="flex flex-col gap-1">
+                    <Label className=''>Content</Label>
                     <Controller name="content" control={control} rules={{ required: "Content is required" }} render={({ field }) => {
-                        return <ReactQuill theme="snow" value={field.value} onChange={field.onChange} />
+                        return <TinyEditor setNewsContent={field.onChange} newsContent={field.value} />
                     }} />
                     {errors.content && <p className='text-red-500'>{errors.content.message}</p>}
                 </div>
@@ -187,11 +223,11 @@ const BlogForm = ({ editMode }: { editMode?: boolean }) => {
                         <Label className="text-sm font-bold">Meta Section</Label>
                     </div>
                     <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
-                        <div>
+                        <div className="flex flex-col gap-1">
                             <Label>Meta title</Label>
                             <Input type="text" {...register("metaTitle")} />
                         </div>
-                        <div>
+                        <div className="flex flex-col gap-1">
                             <Label>Meta Description</Label>
                             <Input type="text" {...register("metaDescription")} />
                         </div>
@@ -200,7 +236,7 @@ const BlogForm = ({ editMode }: { editMode?: boolean }) => {
 
 
                 <div className='flex justify-center'>
-                    <Button type='submit'>Submit</Button>
+                    <Button type='submit' className="w-full cursor-pointer">Submit</Button>
                 </div>
 
             </form>

@@ -1,100 +1,79 @@
-export const metadata = {
-  title: "Page Not Found - Microlights",
-  description:
-    "Welcome to Microlights. Click here to visit our website's sitemap! Learn more about our online plant shop in Dubai.",
-  robots: {
-    index: false,
-    follow: false,
-  },
-};
-import { Home, Map, Phone } from "lucide-react";
+"use client";
+import React from "react"; 
+import "/app/globals.css";
+
+import { MdOutlineArrowForward } from "react-icons/md";
 import Link from "next/link";
-import "./globals.css";
 
-export default function NotFound() {
+
+export const dynamic = "force-dynamic";
+
+const page = () => {
   return (
-    <section className="h-screen bg-white flex items-center justify-center px-4 overflow-hidden relative">
-      <div className="container text-center border border-gray-200 py-40">
+    <div className="er-pg">
+      <div className="text-center cdedd">
+          <div className="flex justify-center h-[48dvh] alnbase items-center px-4">
+  
+            <p className="rtts text-[11em] md:text-[13em] animate-[float2_6s_ease-in-out_infinite] text-black">
+              4
+            </p>
 
-        {/* Bars */}
-        <div className="flex items-center justify-center gap-8 mb-12">
-          <div className="flex gap-2 items-end h-24">
-            <div className="bar-wrap">
-              <div className="bar bar-1" />
+            <div className="xemn animate-[float_3s_ease-in-out_infinite]">
+              <p className="zerost text-[13em] md:text-[18em] 
+                animate-[colorShift_4s_linear_infinite]">
+                <span>0</span>
+              </p>
             </div>
-            <div className="bar-wrap">
-              <div className="bar bar-2" />
-            </div>
-            <div className="bar-wrap">
-              <div className="bar bar-3" />
-            </div>
+
+            <p className="rtts text-[11em] md:text-[13em] animate-[float2_6s_ease-in-out_infinite] text-black">
+              4
+            </p>
+
           </div>
 
-          <div className="text-9xl font-bold tracking-tighter fade-404">
-            <span>4</span>
-            <span className="text-gray-600">0</span>
-            <span className="text-gray-400">4</span>
-          </div>
 
-          <div className="flex gap-2 items-end h-24">
-            <div className="bar-wrap">
-              <div className="bar bar-4" />
-            </div>
-            <div className="bar-wrap">
-              <div className="bar bar-5" />
-            </div>
-            <div className="bar-wrap">
-              <div className="bar bar-6" />
-            </div>
-          </div>
-        </div>
-
-        {/* Text */}
-        <div className="fade-up space-y-4 mb-8">
-          <h1 className="text-4xl font-bold text-red-500">Page Not Found</h1>
-          <p className="text-gray-600 max-w-md mx-auto">
-            The page you&apos;re looking for seems to have wandered off.
-          </p>
-        </div>
-
-        {/* Buttons */}
-        <div className="flex flex-col items-center gap-4 fade-up delay-3">
-
-          {/* Home */}
+        <div className="h-[38dvh] h38dd">
+          <div className="w-1/6 pt-10 m-auto border-t-1"></div>
           <div>
-            <Link href="/" className="flex items-center gap-2 text-sm  bg-black/10 text-black px-6 py-3 leading-[1] hover:bg-transparent border-2 
-            border-black/10 hover:text-black transition-all duration-300 ease-in-out" >
-              <Home size={18} />
-              Return Home
+          <h2 className="mb-3 flex items-center justify-center uppercase md:text-[35px]  lg:mb-[17px] lg:text-[47px] ">
+            <span className="font-bold">UH OH! You&apos;re lost. </span>
+            
+          </h2>
+
+          <p className="fnt-lexend fnt404 mb-3 pe-2 ps-2 text-font16 text-[#909496] md:text-[20px] lg:mb-[57px]">
+            Looks like the page you were looking for is no longer here.
+          </p>
+          <div className="flex gap-2 md:gap-4  justify-center">
+            <div className="mt-4 flex justify-center group">
+            <Link
+              href="/contact-us"
+              className="min-w-[150px] justify-center p404 flex w-fit items-center justify-between gap-10 rounded-full border border-primary
+                        px-[25px] py-[15px] text-font16 uppercase leading-lh1p66 text-black transition-all   duration-300 ease-in group-hover:shadow-lg"
+            >
+              <span className="flex items-center justify-center gap-3 text-[12px] md:text-[14px] transition-transform duration-300 ease-in-out group-hover:translate-x-1 group-hover:text-gray1 md:text-font16">
+                Contact Us
+                <MdOutlineArrowForward className="bg-[#333] group-hover:bg-black text-white" />
+              </span>
             </Link>
           </div>
-
-          {/* Sitemap + Contact */}
-          <div className="flex justify-center items-center gap-4">
-
+          <div className="mt-4 flex justify-center group">
             <Link
               href="/sitemap"
-              className="flex items-center gap-2 text-12 uppercase bg-black/80 text-white px-6 py-2
-                 leading-[1] hover:bg-transparent border-2 border-black hover:text-black
-                 transition-all duration-300 ease-in-out"
+              className="min-w-[150px] justify-center p404 flex w-fit items-center justify-between gap-10 rounded-full border border-primary
+                        px-[25px] py-[15px] text-font16 uppercase leading-lh1p66 text-black transition-all   duration-300 ease-in group-hover:shadow-lg"
             >
-              <Map size={14} />
-              Sitemap
+              <span className="flex items-center justify-center gap-3 text-[12px] md:text-[14px] transition-transform duration-300 ease-in-out group-hover:translate-x-1 group-hover:text-gray1 md:text-font16">
+                Sitemap
+                <MdOutlineArrowForward className="bg-[#333] group-hover:bg-black text-white" />
+              </span>
             </Link>
-
-            <Link
-              href="/contact"
-              className="flex items-center gap-2 text-12 uppercase bg-black/80 text-white px-6 py-2
-                 leading-[1] hover:bg-transparent border-2 border-black hover:text-black
-                 transition-all duration-300 ease-in-out"
-            >
-              <Phone size={14} />
-              Contact
-            </Link>
-
+          </div>
+          </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
-}
+};
+
+export default page;

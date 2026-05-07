@@ -6,8 +6,8 @@ export default function ContentArea() {
   return (
     <motion.section variants={staggerContainer} initial="hidden" animate="show" viewport={{ once: true, amount: 0.2 }} className="pt-10 lg:pt-[120px]">
       <motion.div variants={moveUp} className="container">
-        <div className="pt-16 lg:pb-20 border-b border-black ">
-          <div className="mx-auto p-6 bg-white text-black">
+        <div className="pt-16 pb-12 lg:pb-20 border-b border-black ">
+          <div className="mx-auto   bg-white text-black">
             <h1 className="text-2xl mb-6 md:mb-8 leading-[1.3]">Microlights Lighting LLC Website Terms and Conditions</h1>
             <p className="mb-4">Welcome to our Website www.microlights.com (“Website”). This Website is operated by Microlights Lighting LLC (“Microlights”) (also referred to as “us”, “we”, “our” in these Terms and Conditions). Please read these Terms and Conditions carefully, they govern your access and use of the Website. The Website is provided for your personal use subject to these Terms and Conditions and any other rules posted on the Website (including our Privacy Policy and Cookie Policy) – (together “Terms and Conditions”). These Terms and Conditions apply to all users of this Website including without limitation users who are browsers, vendors, customers, merchants, and/or contributors of Content. By continuing to use or view the Website, and/or use any of the services on the Website, you agree to be bound by, comply with and consent to the practices described in these Terms and Conditions.</p>
             <p className="mb-4">We may change these Terms and Conditions from time to time without notice to you by posting the updated Terms and Conditions on the Website, so please ensure that you check for updates on a regular basis.</p>

@@ -1,11 +1,16 @@
 import connectDB from "@/lib/mongodb";
 import Service from "@/models/Service";
 import { NextRequest, NextResponse } from "next/server";
+import { verifyAdmin } from "@/lib/verifyAdmin";
 
 export async function PATCH(request: NextRequest) {
     try {
-        await connectDB()
-        const {introTitle, introDescription, introImage,introImageAlt,pageBanner,bannerAlt,type,items,metaTitle,metaDescription} = await request.json();
+        await connectDB();
+        const isAdmin = await verifyAdmin(request);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
+        const {introTitle, introDescription, introImage,introImageAlt,pageBanner,pageTitle,bannerAlt,type,items,metaTitle,metaDescription} = await request.json();
         const {searchParams} = new URL(request.url);
         const id = searchParams.get("id");
         const service = await Service.findById(id);
@@ -18,6 +23,7 @@ export async function PATCH(request: NextRequest) {
         service.introImage = introImage;
         service.introImageAlt = introImageAlt;
         service.pageBanner = pageBanner;
+        service.pageTitle = pageTitle;
         service.bannerAlt = bannerAlt;
         service.metaTitle = metaTitle;
         service.metaDescription = metaDescription;
@@ -54,6 +60,10 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
     try {
         await connectDB();
+        const isAdmin = await verifyAdmin(request);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const {type,itemTitle, itemDescription, itemImage,metaTitle,metaDescription} = await request.json();
         const {searchParams} = new URL(request.url);
         const id = searchParams.get("id");

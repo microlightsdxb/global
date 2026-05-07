@@ -17,6 +17,9 @@ const parkinSans = Parkinsans({
 export const metadata: Metadata = {
   title: "Your Project Title",
   description: "Your project description",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export const dynamic = 'force-dynamic';

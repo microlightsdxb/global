@@ -6,7 +6,7 @@ export default function ContentArea() {
   return (
     <motion.section variants={staggerContainer} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} className="pt-10 lg:pt-[120px]">
       <motion.div variants={moveUp} className="container">
-        <div className="pt-16 lg:pb-20 border-b border-black text-black">
+        <div className="pt-16 pb-12 lg:pb-20 border-b border-black text-black">
           <h1 className="text-2xl mb-6 md:mb-8 leading-[1.3]"> Microlights Lighting LLC – Website Privacy and Cookie Policy</h1>
           <p className="mb-6">Microlights Lighting LLC is committed to ensuring that your privacy is protected.</p>
           <p className="mb-8">This privacy and cookie policy sets out how we collect, use, process and protect the information that we collect from you or you provide to us when you use our website.</p>

@@ -32,8 +32,8 @@ const PdtSpec = ({ data }: { data: ProductProps }) => {
   return (
     <section className="bg-[#f2f2f2]">
       <div className="container ">
-        <div className="py-100  ">
-          <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{once:true, amount:0.2}} className="grid grid-cols-1 md:grid-cols-2 gap:[30px] lg:gap-[90px]">
+        <div className="pt-25 pb-10 ">
+          <motion.div variants={staggerContainer} initial="hidden" whileInView="show" viewport={{once:true, amount:0.2}} className="grid grid-cols-1 md:grid-cols-2 gap-[30px] lg:gap-[90px]">
 
             {Array.from({ length: divRequired }).map((_, index) => {
               if (divRequired === 1) {

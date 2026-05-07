@@ -15,24 +15,28 @@ export const menuItems: MenuItem[] = [
       {
         title:"Our Team",
         url:"/our-team"
-      }
+      },
+      // {
+      //   title:"Our Testimonials",
+      //   url:"/"
+      // }
     ]
     },
     {
       title:"Products",
-      url:"/products",
+      url:"#",
         children:[
         {
           title:"Indoor Lighting",
-          url:"/products"
+          url:"/lighting-products"
         },
         {
           title:"Outdoor Lighting",
-          url:"/products"
+          url:"/lighting-products"
         },
         {
           title:"Industrial Lighting",
-          url:"/products"
+          url:"/lighting-products"
         }
       ]
     },
@@ -60,7 +64,7 @@ export const menuItems: MenuItem[] = [
       url:"/sustainability",
     },
     {
-      title:"Blogs",
-      url:"/blogs",
+      title:"Blog",
+      url:"/blog",
     },
   ]

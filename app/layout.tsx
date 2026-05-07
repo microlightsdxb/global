@@ -1,12 +1,17 @@
-import "./globals.css"
-const Layout = ({children}: {children: React.ReactNode}) => {
+ 
+export const metadata = {
+  title: "Page Not Found - Microlights",
+  description: "Page Not Found - Microlights",
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html>
-    <body>
-    {children}
-    </body>
+    <html lang="en">
+      <body>{children}</body>
     </html>
   );
 }
- 
-export default Layout;

@@ -18,7 +18,7 @@ const ImageSec = ({ data }: { data: Service }) => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true, amount: 0.3 }}>
-          <figure className="relative w-full h-[572px] flex pb-150">
+          <figure className="relative w-full h-[350px] md:h-[450px] lg:h-[572px] flex pb-150">
             <Image
               className="object-cover w-full h-full"
               src={data?.introImage}

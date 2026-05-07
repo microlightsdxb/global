@@ -1,7 +1,7 @@
 "use client";
 import { contactSchema } from "@/app/(user)/schemas/contactShema";
 import { motion } from "motion/react";
-import React from "react";
+import React,{useRef,useState} from "react";
 import { useForm } from "react-hook-form";
 import { FiArrowUpRight } from "react-icons/fi";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -10,9 +10,10 @@ import { useRouter } from "next/navigation";
 
 interface ContactFormProps {
   name: string;
-  phone: string;
+  phone: number;
   email: string;
   message: string;
+  company: string;
 }
 
 export default function ContactForm() {

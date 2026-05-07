@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import connectDB from "@/lib/mongodb";
 import mongoose from "mongoose";
 import Project from "@/models/Project";
+import { verifyAdmin } from "@/lib/verifyAdmin";
 
 export async function GET() {
     try {
@@ -22,6 +23,10 @@ export async function GET() {
 export async function POST(req:NextRequest) {
     try {
         await connectDB();
+        const isAdmin = await verifyAdmin(req);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const { name } = await req.json();
         const location = await Location.create({ name });
         if(location){
@@ -39,6 +44,10 @@ export async function PATCH(req:NextRequest) {
     const session = await mongoose.startSession();
     try {
         await connectDB();
+        const isAdmin = await verifyAdmin(req);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         session.startTransaction();
         const searchParams = req.nextUrl.searchParams;
         const id = searchParams.get("id");
@@ -70,6 +79,10 @@ export async function DELETE(req:NextRequest) {
     const session = await mongoose.startSession();
     try {
         await connectDB();
+        const isAdmin = await verifyAdmin(req);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         session.startTransaction();
         const searchParams = req.nextUrl.searchParams;
         const id = searchParams.get("id");

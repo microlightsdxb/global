@@ -18,9 +18,9 @@ const Introducing: React.FC<FrameworkSectionProps> = ({
       <div className="container">
 
         <div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-[40px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-[40px]">
             <div>
-              <motion.h2 className="text-xl text-black mb-[45px] md:mb-[57px] leading-[1.3]"
+              <motion.h2 className="text-xl text-black    leading-[1.3]"
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6 }}

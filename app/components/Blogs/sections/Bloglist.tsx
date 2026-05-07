@@ -22,6 +22,7 @@ interface FrameworkSectionProps {
     _id:string,
     title:string,
     createdAt:string
+    date:string
   }[];
   }
 }
@@ -123,13 +124,20 @@ const Bloglist: React.FC<FrameworkSectionProps> = ({ data, categories }) => {
             className="flex justify-between items-center pmargin0 py-5"
           >
             <p className="text-[15px]">{member.category}</p>
-            <p className="text-[15px]">{moment(member.createdAt).format('ll')}</p>
+            <p className="text-[15px]">{moment(member.date ? member.date : member.createdAt).format('ll')}</p>
           </div>
 
           <div
             className="pb-5 md:pb-8 lg:pb-[48px] border-b"
-          >
-            <p className="text-lg text-black leading-[1.4]">{member.title}</p>
+          > 
+            <p className="text-lg text-black leading-[1.4]">
+            {member.title.split('\n').map((line, index) => (
+              <React.Fragment key={index}>
+                {line}
+                <br />
+              </React.Fragment>
+            ))}
+          </p>
           </div>
           </motion.div>
         </motion.div>

@@ -1,21 +1,25 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { assets } from "@/public/assets/assets";
 import {categories} from "../data/dataBox"
 import Bloglist from "./Bloglist";
 import parse from "html-react-parser";
 import { motion } from "framer-motion";
+import Link from "next/link";
+import { FaFacebookF } from "react-icons/fa6";
+import { FaXTwitter } from "react-icons/fa6";
 
 interface FrameworkItem {
   data:{
     _id:string,
     title:string,
-    image:string,
+    image: string,
+    bannerImage:string,
     imageAlt:string,
     content:string,
     category:string,
-    createdAt:string,
+    createdAt: string,
   }
 }
 
@@ -26,14 +30,23 @@ interface RecentBlogItem {
     imageAlt:string,
     category:string,
     createdAt:string,
+    slug: string;
   }
-  
+
 interface FrameworkSectionProps {
   data: FrameworkItem;
   recentBlogData: RecentBlogItem[];
 }
 
 const Blogdetails: React.FC<FrameworkSectionProps> = ({ data, recentBlogData }) => {
+  const [currentUrl, setCurrentUrl] = useState("");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setCurrentUrl(window.location.href);
+    }
+  }, []);
+
   return (
     <>
       <section className="ptc-120 pbc-135  ">
@@ -43,9 +56,9 @@ const Blogdetails: React.FC<FrameworkSectionProps> = ({ data, recentBlogData }) 
 
           <div>
               <div>
-                <figure className="w-full h-[300px]   md:h-[400px]   lg:h-[600px] overflow-hidden ">
+                <figure className="w-full   overflow-hidden ">
                   <Image
-                    src={data?.data?.image}
+                    src={data?.data?.bannerImage}
                     alt={data?.data?.imageAlt}
                     className=" w-full   object-cover"
                     width={500}
@@ -85,21 +98,33 @@ const Blogdetails: React.FC<FrameworkSectionProps> = ({ data, recentBlogData }) 
                   transition={{ duration: 0.5, delay: 0.3 }}
                   viewport={{ once: true }}
                 >
-                  <motion.div
+                  <Link href={`http://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(currentUrl)}`} target="_blank"><motion.div
                     className="w-10 h-10 bg-black flex justify-center items-center rounded-3xl"
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.2 }}
                   >
                     <Image src={assets.lin} alt="LinkedIn" />
                   </motion.div>
+                  </Link>
 
-                  <motion.div
+                  <Link href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`} target="_blank"><motion.div
                     className="w-10 h-10 bg-black flex justify-center items-center rounded-3xl"
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <Image src={assets.insta} alt="Instagram" />
+                    <FaFacebookF className="text-white"/>
                   </motion.div>
+                  </Link>
+
+                  <Link href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent("Check this out!")}`} target="_blank"><motion.div
+                    className="w-10 h-10 bg-black flex justify-center items-center rounded-3xl"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <FaXTwitter className="text-white"/>
+                  </motion.div>
+                  </Link>
+
                 </motion.div>
               </div>
 

@@ -1,10 +1,15 @@
 import connectDB from "@/lib/mongodb";
 import BlogMeta from "@/models/BlogMeta";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { verifyAdmin } from "@/lib/verifyAdmin";
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
     try {
         await connectDB()
+        const isAdmin = await verifyAdmin(request);
+        if(!isAdmin){
+            return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+        }
         const { metaTitle, metaDescription } = await request.json();
         const blogMeta = await BlogMeta.findOne({});
         if(!blogMeta){

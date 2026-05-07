@@ -38,7 +38,7 @@ export const MenuItem = ({
     <div onMouseEnter={() => (nomenu ? setActive(null) : setActive(item))} className="relative ">
       <Link href={url}><motion.p
         transition={{ duration: 0.3 }}
-        className="cursor-pointer text-black hover:opacity-[0.9]"
+        className="cursor-pointer text-black hover:opacity-[0.9] text-[14px] xl:text-[18px]"
         onClick={()=> item === "Products" ? localStorage.setItem("type","") : null}
       >
         {item}
@@ -81,7 +81,7 @@ export const Menu = ({
   return (
     <nav
       onMouseLeave={() => setActive(null)} // resets the state
-      className="relative rounded-full border border-transparent text-black bg-transparent shadow-input flex justify-center space-x-4 px-4 py-4 gap-5"
+      className="relative rounded-full border border-transparent text-black bg-transparent shadow-input flex justify-center space-x-4 px-4 py-4 gap-2 xl:gap-5"
     >
       {children}
     </nav>

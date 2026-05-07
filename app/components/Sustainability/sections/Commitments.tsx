@@ -17,11 +17,11 @@ const Commitments: React.FC<FrameworkSectionProps> = ({ data }) => {
   return (
     <section className="pb-150 ptc-130">
       <div className="container">
-        <motion.h2 className="text-xl text-black leading-[1.3] max-w-[22ch] mb-3 md:mb-4"
+        <motion.h1 className="text-xl text-black leading-[1.3] max-w-[22ch] mb-3 md:mb-4"
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: true, amount: 0.5 }}>    {data.data.sectionTwoTitle}</motion.h2>
+          viewport={{ once: true, amount: 0.5 }}>    {data.data.sectionTwoTitle}</motion.h1>
         <motion.p className="font-[300] max-w-[105ch] leading-[1.7]"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

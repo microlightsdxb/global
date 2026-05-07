@@ -23,6 +23,12 @@ import {
 import { FaPlusCircle } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa";
 import { ImageUploader } from '@/components/ui/image-uploader';
+import { TbReorder } from "react-icons/tb";
+import { Button } from '@/components/ui/button';
+import { closestCorners, DndContext, DragEndEvent } from '@dnd-kit/core'
+import { arrayMove, SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
+import CategoryCard from './CategoryCard';
+import { GiConfirmed } from "react-icons/gi";
 
 
 
@@ -34,6 +40,7 @@ const TypePage = () => {
     const [category, setCategory] = useState<string>("");
     const [typeId, setTypeId] = useState<string>("");
     const [categoryList, setCategoryList] = useState<{ _id: string, name: string }[]>([]);
+    const [reorderMode, setReorderMode] = useState(false);
 
     const handleFetchType = async () => {
         try {
@@ -190,9 +197,52 @@ const TypePage = () => {
         }
     }, [typeId])
 
+
+    const confirmPosition = async () => {
+        setReorderMode(!reorderMode);
+
+        const updatedCategoryList = categoryList.map((category, index) => ({
+            ...category,
+            index: index + 1,
+        }));
+
+        setCategoryList(updatedCategoryList);
+
+        const formData = new FormData()
+        formData.append('categoryList', JSON.stringify(updatedCategoryList))
+        formData.append('typeId', typeId)
+        const response = await fetch(`/api/admin/product/category/reorder`, {
+            method: "POST",
+            body: formData
+        })
+        if (response.ok) {
+            const data = await response.json()
+            if (data.success) {
+                alert(data.message)
+            }else{
+                alert(data.message)
+            }
+        }
+    };
+
+    const getTaskPos = (id: number | string) => categoryList.findIndex((item: { _id: string }) => (item._id == id))
+    const handleDragEnd = (event: DragEndEvent) => {
+        const { active, over } = event;
+
+        if (!over || active.id === over.id) return;
+
+        setCategoryList((categoryList: { _id: string; name: string }[]) => {
+            const originalPos = getTaskPos(active.id);
+            const newPos = getTaskPos(over.id);
+            return arrayMove(categoryList, originalPos, newPos);
+        });
+    };
+
+
+
     return (
         <div className="h-screen grid grid-cols-1 gap-5">
-            <div className="h-full w-full p-2 border-2 border-gray-300 rounded-md">
+            <div className="h-full w-full p-5 shadow-md border-gray-300 rounded-md bg-white">
                 <div className="flex justify-between border-b-2 pb-2">
                     <Label className="text-sm font-bold">Types</Label>
                     <Dialog>
@@ -220,8 +270,8 @@ const TypePage = () => {
                 </div>
                 <div className="mt-2 flex flex-col gap-2 h-[80%] overflow-y-auto">
                     {typeList.map((item) => (
-                        <div className="flex justify-between border p-1 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300" key={item._id}>
-                            <div className='text-sm'>
+                        <div className="flex justify-between border p-3 items-center rounded-md shadow-md hover:shadow-lg transition-all duration-300" key={item._id}>
+                            <div className='text-[16px]'>
                                 {item.type}
                             </div>
                             <div className="flex gap-5">
@@ -243,12 +293,24 @@ const TypePage = () => {
                                                     </DialogContent>
 
                                                 </Dialog>
+                                                <Button
+                                                    className="h-7"
+                                                    onClick={() => {
+                                                        if (!reorderMode) {
+                                                            setReorderMode(true);
+                                                        } else {
+                                                            confirmPosition();
+                                                        }
+                                                    }}
+                                                >
+                                                    {!reorderMode ? <TbReorder /> : <GiConfirmed />}
+                                                </Button>
 
                                             </SheetTitle>
 
                                             <div className='flex flex-col gap-2 mt-5'>
-                                                {categoryList.map((item) => (
-                                                    <div key={item._id} className="flex justify-between border p-1 items-center rounded-md">
+                                                {!reorderMode && categoryList.map((item) => (
+                                                    <div key={item._id} className="flex justify-between border p-3 items-center rounded-md text-[16px]">
                                                         {item.name}
                                                         <div className='flex gap-5'>
                                                             <Dialog>
@@ -269,6 +331,15 @@ const TypePage = () => {
                                                         </div>
                                                     </div>
                                                 ))}
+                                                {reorderMode &&
+                                                    <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
+                                                        <SortableContext items={categoryList.map((category) => category._id)} strategy={verticalListSortingStrategy}>
+                                                            {categoryList?.map((category, index) => (
+                                                                <CategoryCard key={index} category={category} id={category._id} />
+                                                            ))}
+                                                        </SortableContext>
+                                                    </DndContext>
+                                                }
                                             </div>
 
                                         </SheetHeader>

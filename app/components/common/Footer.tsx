@@ -9,6 +9,9 @@ import BrochureDownloadModal from "./BrochureDownloadModal";
 
 
 const Footer = () => {
+  const setType = useStore((state)=>state.setType)
+  
+  
   return (
     <footer className="pt-[60px] lg:pt-[80px] 2xl:pt-[120px] pb-[40px]">
       <div className="container">
@@ -20,35 +23,38 @@ const Footer = () => {
           >
             {/* Quick Links */}
             <div className="w-1/2">
-              <h3 className="text-lg text-primary mb-[35px] leading-none">Quick Links</h3>
+              <p className="text-lg text-primary !mb-4 md:!mb-[35px] leading-none">Quick Links</p>
               <ul className="text-gray-500 mt-4 space-y-2">
-                <li>
-                  <Link className="text-xs text-[#7D7D7D]" href="/about-us">About Microlights</Link>
+                <li className="transition-all ease-in-out duration-500 group hover:translate-x-1">
+                  <Link className="text-xs text-[#7D7D7D] group-hover:text-black" href="/about-us">About Microlights</Link>
                 </li>
-                <li>
-                  <Link className="text-xs text-[#7D7D7D]" href="/sustainability">Sustainability</Link>
+                <li className="transition-all ease-in-out duration-500 group hover:translate-x-1">
+                  <Link className="text-xs text-[#7D7D7D] group-hover:text-black" href="/sustainability">Sustainability</Link>
                 </li>
-                <li>
-                  <Link className="text-xs text-[#7D7D7D]" href="/projects">Projects</Link>
+                <li className="transition-all ease-in-out duration-500 group hover:translate-x-1">
+                  <Link className="text-xs text-[#7D7D7D] group-hover:text-black" href="/projects">Projects</Link>
                 </li>
-                <li>
-                  <Link className="text-xs text-[#7D7D7D]" href="/blogs">Blog</Link>
+                <li className="transition-all ease-in-out duration-500 group hover:translate-x-1">
+                  <Link className="text-xs text-[#7D7D7D] group-hover:text-black" href="/blog">Blog</Link>
+                </li>
+                <li className="transition-all ease-in-out duration-500 group hover:translate-x-1">
+                  <Link className="text-xs text-[#7D7D7D] group-hover:text-black" href="/sitemap">Sitemap</Link>
                 </li>
               </ul>
             </div>
 
             {/* Products */}
             <div className="w-1/2">
-              <h3 className="text-lg text-primary mb-[35px] leading-none">Products</h3>
+              <p className="text-lg text-primary !mb-4 md:!mb-[35px] leading-none">Products</p>
               <ul className="text-gray-500 mt-4 space-y-2">
-                <li>
-                  <Link className="text-xs text-[#7D7D7D]" href="#">Indoor Lighting</Link>
+                <li className="transition-all ease-in-out duration-500 group hover:translate-x-1" onClick={()=>{setType("Indoor")}}>
+                  <Link className="text-xs text-[#7D7D7D] group-hover:text-black" href="/lighting-products">Indoor Lighting</Link>
                 </li>
-                <li>
-                  <Link className="text-xs text-[#7D7D7D]" href="#">Outdoor Lighting</Link>
+                <li className="transition-all ease-in-out duration-500 group hover:translate-x-1" onClick={()=>{setType("Outdoor")}}>
+                  <Link className="text-xs text-[#7D7D7D] group-hover:text-black" href="/lighting-products">Outdoor Lighting</Link>
                 </li>
-                <li>
-                  <Link className="text-xs text-[#7D7D7D]" href="#">Industrial Lighting</Link>
+                <li className="transition-all ease-in-out duration-500 group hover:translate-x-1" onClick={()=>{setType("Industrial")}}>
+                  <Link className="text-xs text-[#7D7D7D] group-hover:text-black" href="/lighting-products">Industrial Lighting</Link>
                 </li>
               </ul>
             </div>

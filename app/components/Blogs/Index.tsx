@@ -13,7 +13,6 @@ const Index = () => {
   useEffect(()=>{
     console.log(blogData?.data,categoryData?.data)
   },[blogData,categoryData])
-
   return (
     <>
       <div className="headerpadding"> </div>

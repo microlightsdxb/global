@@ -1,9 +1,16 @@
-import React from "react";
-import AdminHome from "@/app/components/AdminHome/Index";
+import React from 'react';
 
-export default function Home() {
+const Welcome = () => {
   return (
-    <AdminHome/>
+    <div className=" h-screen w-full flex justify-center items-center flex-col">
+      <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">
+        Welcome to the Microlights Dashboard
+      </h1>
+      <p className="text-gray-600">
+        Use this dashboard to manage and update your website content.
+      </p>
+    </div>
   );
-}
+};
 
+export default Welcome;
