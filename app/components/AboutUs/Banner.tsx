@@ -31,7 +31,7 @@ const Banner: React.FC<FrameworkSectionProps> = ({
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true, amount: 0.5 }}>
-              About Us</motion.h1>
+              About microlights</motion.h1>
           </div>
         </div>
       </div>
