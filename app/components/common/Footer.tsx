@@ -100,8 +100,8 @@ const Footer = () => {
               </div>
             </div>
             <div className="text-primary/50 text-center mt-6 text-[12px] flex xl:flex-row flex-col justify-between">
-              <p style={{ marginBottom: "0px" }}>&copy;2026 Lighting Solutions Dubai - microlights.com. All rights reserved. | <span className="text-primary/35 text-[11px] ">by</span> <a className="text-primary/35 text-[11px] transition-all ease-in-out duration-500 hover:text-black/60" href="https://www.globalsurf.ae/" target="_blank">Global Surf </a> </p>
-              <div className="flex space-x-2 items-center mt-3 xl:mt-0 justify-center">
+              <p style={{marginBottom: "0px"}}>&copy;2026 Lighting Solutions Dubai - microlights.com. All rights reserved. | <span className="text-primary/35 text-[11px] ">by</span> <a className="text-primary/35 text-[11px] transition-all ease-in-out duration-500 hover:text-black/60" href="https://www.globalsurf.ae/" target="_blank">GS Digital</a> </p>
+           <div className="flex space-x-2 items-center mt-3 xl:mt-0 justify-center">
                 <Link href="/privacy-policy" className=" border-r pr-2 last:border-r-0 last:pr-0 transition-all ease-in-out duration-500 hover:text-black">Privacy Policy</Link>
                 <Link href="/terms-and-conditions" className=" border-r pr-4 last:border-r-0 last:pr-0 transition-all ease-in-out duration-500 hover:text-black">Terms & Conditions</Link>
               </div>
