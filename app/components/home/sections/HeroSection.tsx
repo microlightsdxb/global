@@ -103,6 +103,7 @@ const HeroSection = ({ data }: { data: Home }) => {
             alt={project.bannerAltTag}
             fill
             sizes="100vw"
+            quality={75}
             priority={index === 0}
             loading={index === 0 ? "eager" : "lazy"}
           />
@@ -122,12 +123,10 @@ const HeroSection = ({ data }: { data: Home }) => {
                 <div className="overflow-hidden mb-[20px] lg:mb-[30px]">
                   {index === 0 ? (
                     <MotionH1
-                      initial={{ opacity: 0, x: -50 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.6 }}
-                      viewport={{ once: true, amount: 0.5 }}
-                      className="text-2xl text-white leading-none font-custom font-normal lg:w-[70%]"
-                    >
+  initial={{ opacity: 0, x: -50 }}
+  animate={{ opacity: 1, x: 0 }}       
+  transition={{ duration: 0.6, delay: 0.3 }}   
+>
                       {project.title}
                     </MotionH1>
                   ) : (
