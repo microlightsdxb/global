@@ -123,9 +123,21 @@ const RecentProjects = ({ data }: { data: Project }) => {
                       </div> */}
                     </div>
 
-                    <figure className="h-[280px] lg:h-[300px] xl:h-[350px] w-full overflow-hidden">
-                      <motion.div className="h-full w-full">
+                    <figure className="h-[280px]   lg:h-[300px] xl:h-[350px] w-full overflow-hidden">
+                      <motion.div
+                        className="h-full w-full"
+                      >
                         <Image
+                          className="h-full w-full object-cover object-center   group-hover:scale-[1.1] transition-all ease-in-out duration-500"
+                          src={project.thumbnail}
+                          alt={project.name}
+                          width={600}
+                          height={350}
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          quality={65}
+                          loading="lazy"
+                        />
+                        {/* <Image
                           className="h-full w-full object-cover object-center group-hover:scale-[1.1] transition-transform ease-in-out duration-500"
                           src={project.thumbnail}
                           alt={project.name}
@@ -136,7 +148,7 @@ const RecentProjects = ({ data }: { data: Project }) => {
                           loading="lazy"                                                       // ✅ not LCP, lazy is correct
                           placeholder="blur"                                                   // ✅ no layout shift
                           blurDataURL="data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAADQAQCdASoBAAEAAkA4JYgCdAEO/gHOAAD++P/////3n/8pf/8A" // ✅ tiny blur placeholder
-                        />
+                        /> */}
                       </motion.div>
                     </figure>
                   </Link>
