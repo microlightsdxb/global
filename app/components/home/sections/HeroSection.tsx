@@ -8,8 +8,7 @@ import { Home } from "@/types/Home";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectCreative } from "swiper/modules";
 import { Swiper as SwiperClass } from "swiper";
-import "swiper/css";
-import "swiper/css/pagination";
+import "swiper/css"; 
 
 const HeroSection = ({ data }: { data: Home }) => {
   const sectionRef = useRef(null);
