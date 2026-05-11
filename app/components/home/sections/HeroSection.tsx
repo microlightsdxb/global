@@ -67,118 +67,119 @@ const HeroSection = ({ data }: { data: Home }) => {
   </div>
 </div> */}
 
-    <Swiper
-      modules={[Autoplay, EffectCreative]}
-      effect="creative"
-      creativeEffect={{
-        prev: { translate: [0, 0, 0] },
-        next: { translate: ["100%", 0, 0] },
-      }}
-      autoplay={{
-        delay: 5000,
-        disableOnInteraction: false,
-      }}
-      slidesPerView={1}
-      spaceBetween={0}
-      loop
-      onSwiper={(swiper) => {
-        swiperRef.current = swiper
-      }}
-      onSlideChange={(swiper) => {
-        React.startTransition(() => {
-          setCurrentSlide(swiper.realIndex + 1)
-          setTextVersion(v => v + 1)
-        })
-      }}
-      className="w-full h-full"
-    >
-      {data?.banners?.map((project, index) => (
-        <SwiperSlide key={index}>
-          <div className="slide h-full w-screen relative overflow-hidden text-white">
-            <figure className="h-full w-full absolute -z-50">
-              <Image
-                className="h-full w-full absolute object-cover object-center"
-                src={project.image}
-                alt={project.bannerAltTag}
-                fill
-                sizes="100vw"
-                priority={index === 0}           // ✅ LCP first image
-                loading={index === 0 ? "eager" : "lazy"}
-              />
-            </figure>
+     <Swiper
+  modules={[Autoplay, EffectCreative]}   // ✅ remove EffectFade if unused
+  effect="creative"
+  creativeEffect={{
+    prev: { translate: [0, 0, 0] },
+    next: { translate: ["100%", 0, 0] }, // ✅ % not px
+  }}
+  autoplay={{
+    delay: 5000,
+    disableOnInteraction: false,
+  }}
+  slidesPerView={1}
+  spaceBetween={0}
+  loop
+  onSwiper={(swiper) => {
+    swiperRef.current = swiper
+  }}
+  // ✅ removed watchSlidesProgress
+  onSlideChange={(swiper) => {
+    React.startTransition(() => {          // ✅ batched, low priority
+      setCurrentSlide(swiper.realIndex + 1)
+      setTextVersion(v => v + 1)
+    })
+  }}
+  className="w-full h-full"
+>
+  {data?.banners?.map((project, index) => (
+    <SwiperSlide key={index}>
+      <div className="slide h-full w-screen relative overflow-hidden text-white">
+        <figure className="h-full w-full absolute -z-50">
+          <Image
+            className="h-full w-full absolute object-cover object-center"
+            src={project.image}
+            alt={project.bannerAltTag}
+            fill
+            sizes="100vw"
+            priority={index === 0}
+            loading={index === 0 ? "eager" : "lazy"}
+          />
+        </figure>
 
-            <div className="h-full w-full -z-40 absolute bg-gradient-to-t from-black to-transparent opacity-70" />
+        <div className="h-full w-full -z-40 absolute bg-gradient-to-t from-black to-transparent opacity-70" />
 
-            <div className="absolute w-full h-full">
-              <div className="container h-full">
-                <div className="h-full relative">
-                  <div
-                    key={`${index}-${textVersion}`}
-                    className={`title absolute bottom-[80px] lg:bottom-[150px] flex flex-col
-                      transition-opacity duration-500 ease-in-out
-                      ${currentSlide === index + 1 ? 'opacity-100' : 'opacity-0'}`}
+        <div className="absolute w-full h-full">
+          <div className="container h-full">
+            <div className="h-full relative">
+              <div
+                key={`${index}-${textVersion}`}
+                className={`title absolute bottom-[80px] lg:bottom-[150px] flex flex-col
+                  transition-opacity duration-500 ease-in-out
+                  ${currentSlide === index + 1 ? 'opacity-100' : 'opacity-0'}`}  // ✅ no inline style
+              >
+                <div className="overflow-hidden mb-[20px] lg:mb-[30px]">
+                  {index === 0 ? (
+                    <MotionH1
+                      initial={{ opacity: 0, x: -50 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.6 }}
+                      viewport={{ once: true, amount: 0.5 }}
+                      className="text-2xl text-white leading-none font-custom font-normal lg:w-[70%]"
+                    >
+                      {project.title}
+                    </MotionH1>
+                  ) : (
+                    <MotionP
+                      initial={{ opacity: 0, x: -50 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.6 }}
+                      viewport={{ once: true, amount: 0.5 }}
+                      className="text-2xl text-white leading-none font-custom font-normal lg:w-[70%]"
+                    >
+                      {project.title}
+                    </MotionP>
+                  )}
+                </div>
+
+                <div className="overflow-hidden mb-[30px] lg:mb-[50px]">
+                  <MotionP
+                    initial={{ opacity: 0, x: -50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                    viewport={{ once: true, amount: 0.5 }}
+                    className="text-lg text-white leading-tight font-custom font-light"
                   >
-                    <div className="overflow-hidden mb-[20px] lg:mb-[30px]">
-                      {index === 0 ? (
-                        <MotionH1
-                          initial={{ opacity: 0, x: -50 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.6 }}
-                          viewport={{ once: true, amount: 0.5 }}
-                          className="text-2xl text-white leading-none font-custom font-normal lg:w-[70%]"
-                        >
-                          {project.title}
-                        </MotionH1>
-                      ) : (
-                        <MotionP
-                          initial={{ opacity: 0, x: -50 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.6 }}
-                          viewport={{ once: true, amount: 0.5 }}
-                          className="text-2xl text-white leading-none font-custom font-normal lg:w-[70%]"
-                        >
-                          {project.title}
-                        </MotionP>
-                      )}
-                    </div>
+                    {project.subTitle}
+                  </MotionP>
+                </div>
 
-                    <div className="overflow-hidden mb-[30px] lg:mb-[50px]">
-                      <MotionP
-                        initial={{ opacity: 0, x: -50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.6, delay: 0.3 }}
-                        viewport={{ once: true, amount: 0.5 }}
-                        className="text-lg text-white leading-tight font-custom font-light"
-                      >
-                        {project.subTitle}
-                      </MotionP>
-                    </div>
-
-                    <div className="overflow-hidden">
-                      <Motiondiv
-                        className="flex"
-                        initial={{ opacity: 0, x: -50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.6, delay: 0.6 }}
-                        viewport={{ once: true, amount: 0.5 }}
-                      >
-                        <Link
-                          href="/about-us"
-                          className="flex gap-[20px] items-center border-t border-white text-sm text-white border-solid pt-[12px]"
-                        >
-                          <span>Explore</span>
-                          <FiArrowUpRight className="text-[22px] text-white" />
-                        </Link>
-                      </Motiondiv>
-                    </div>
-                  </div>
+                <div className="overflow-hidden">
+                  <Motiondiv
+                    className="flex"
+                    initial={{ opacity: 0, x: -50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.6 }}
+                    viewport={{ once: true, amount: 0.5 }}
+                  >
+                    <Link
+                      href="/about-us"
+                      className="flex gap-[20px] items-center border-t border-white text-sm text-white border-solid pt-[12px]"
+                    >
+                      <span>Explore</span>
+                      <FiArrowUpRight className="text-[22px] text-white" />
+                    </Link>
+                  </Motiondiv>
                 </div>
               </div>
             </div>
           </div>
-        </SwiperSlide>
-      ))}
-    </Swiper>
+        </div>
+      </div>
+    </SwiperSlide>
+  ))}
+</Swiper>
  {/* <Swiper
          modules={[Autoplay, EffectFade, EffectCreative]} 
    
