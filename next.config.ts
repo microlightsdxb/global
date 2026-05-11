@@ -25,6 +25,15 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+       {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, stale-while-revalidate=59',
+          },
+        ],
+      },
     ];
   },
 
@@ -59,7 +68,7 @@ const nextConfig: NextConfig = {
   imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
 
   // ✅ cache optimization
-  minimumCacheTTL: 60,
+   minimumCacheTTL: 60 * 60 * 24 * 7,     // ✅ cache 7 days
 },
 
 
