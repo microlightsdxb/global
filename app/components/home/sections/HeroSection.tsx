@@ -110,9 +110,8 @@ const HeroSection = ({ data }: { data: Home }) => {
           alt={project.bannerAltTag}
           fill
           sizes="100vw"
-          // priority={index === 0}
-          fetchPriority="high" 
-          loading={index === 0 ? "eager" : "lazy"}
+          priority={index === 0} 
+          loading={index === 0 ? "eager" : "lazy"} 
         />
               </figure>
               <div className="h-full w-full -z-40 absolute bg-gradient-to-t from-black to-transparent opacity-70"></div>
