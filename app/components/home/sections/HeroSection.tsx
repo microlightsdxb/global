@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import { useEffect } from 'react'
 import React, { useRef, useState } from "react";
 
 /* import { motion } from "framer-motion"; */
@@ -22,29 +21,6 @@ const HeroSection = ({ data }: { data: Home }) => {
   const swiperRef = useRef<SwiperClass | null>(null);
   const [currentSlide, setCurrentSlide] = useState(1);
   const totalSlides = data.banners.length;
-
-
-
-  useEffect(() => {
-    const nextIndex = currentSlide % (data?.banners?.length ?? 0)
-    const nextImage = data?.banners?.[nextIndex]?.image
-    if (!nextImage) return
-
-    const link = document.createElement('link')
-    link.rel = 'preload'
-    link.as = 'image'
-    link.href = nextImage
-    link.fetchPriority = 'low'
-    document.head.appendChild(link)
-
-    return () => {
-      if (document.head.contains(link)) {
-        document.head.removeChild(link)
-      }
-    }
-  }, [currentSlide, data?.banners])
-
-
 
 // const firstBanner = data?.banners?.[0];
 
