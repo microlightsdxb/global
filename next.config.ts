@@ -3,7 +3,36 @@
 
 const nextConfig: NextConfig = {
   reactStrictMode: false,
-
+ experimental: {
+    optimizePackageImports: [
+      'framer-motion',
+      'swiper',
+      'react-icons',
+      'lucide-react',
+    ],
+  },
+  webpack(config) {
+    config.optimization.splitChunks = {
+      chunks: 'all',
+      maxInitialRequests: 25,
+      minSize: 20000,
+      cacheGroups: {
+        framerMotion: {
+          test: /[\\/]node_modules[\\/]framer-motion[\\/]/,
+          name: 'framer-motion',
+          chunks: 'all',
+          priority: 30,
+        },
+        swiper: {
+          test: /[\\/]node_modules[\\/]swiper[\\/]/,
+          name: 'swiper',
+          chunks: 'all',
+          priority: 20,
+        },
+      },
+    }
+    return config
+  },
   /* Cache headers */
   async headers() {
     return [
