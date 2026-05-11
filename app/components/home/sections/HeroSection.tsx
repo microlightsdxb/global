@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { useRef, useState } from "react";
-import dynamic from "next/dynamic";
+
 /* import { motion } from "framer-motion"; */
 // import c01web2 from "@/public/assets/img/home/slide1.jpg";
 // import c01web3 from "@/public/assets/img/home/secbnr.jpg";
@@ -14,7 +14,6 @@ import { Autoplay, EffectFade, EffectCreative } from "swiper/modules";
 import { Swiper as SwiperClass } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
-import { RiH1 } from "react-icons/ri";
 
 const HeroSection = ({ data }: { data: Home }) => {
   const sectionRef = useRef(null);
@@ -22,12 +21,7 @@ const HeroSection = ({ data }: { data: Home }) => {
   const swiperRef = useRef<SwiperClass | null>(null);
   const [currentSlide, setCurrentSlide] = useState(1);
   const totalSlides = data.banners.length;
-const Swiper = dynamic(() => import("swiper/react").then(m => m.Swiper), {
-  ssr: false,
-});
-const SwiperSlide = dynamic(() => import("swiper/react").then(m => m.SwiperSlide), {
-  ssr: false,
-});
+
 // const firstBanner = data?.banners?.[0];
 
   const [textVersion, setTextVersion] = useState(0);
@@ -99,10 +93,7 @@ const SwiperSlide = dynamic(() => import("swiper/react").then(m => m.SwiperSlide
   }}
   className="w-full h-full"
 >
-{data?.banners?.map((project, index) => {
-  if (index > 0) return null; // 👈 only first slide for initial render
-
-  return (
+  {data?.banners?.map((project, index) => (
     <SwiperSlide key={index}>
       <div className="slide h-full w-screen relative overflow-hidden text-white">
         <figure className="h-full w-full absolute -z-50">
@@ -113,8 +104,7 @@ const SwiperSlide = dynamic(() => import("swiper/react").then(m => m.SwiperSlide
             fill
             sizes="100vw"
             quality={75}
-            priority
-             fetchPriority="high"
+            priority={index === 0}
             loading={index === 0 ? "eager" : "lazy"}
           />
         </figure>
@@ -132,14 +122,15 @@ const SwiperSlide = dynamic(() => import("swiper/react").then(m => m.SwiperSlide
               >
                 <div className="overflow-hidden mb-[20px] lg:mb-[30px]">
                   {index === 0 ? (
-                    <h1 
-                      // initial={{ opacity: 0, x: -50 }}
-                      // animate={{ opacity: 1, x: 0 }}       // runs after paint
-                      // transition={{ duration: 0.6, delay: 0.3 }}  // small delay
+                    <MotionH1
+                      
+                      initial={{ opacity: 0, x: -50 }}
+                      animate={{ opacity: 1, x: 0 }}       // runs after paint
+                      transition={{ duration: 0.6, delay: 0.3 }}  // small delay
                       className="text-2xl text-white leading-none font-custom font-normal lg:w-[70%]"
                     >
                       {project.title}
-                    </h1>
+                    </MotionH1>
                   ) : (
                     <MotionP
                       initial={{ opacity: 0, x: -50 }}
@@ -188,8 +179,7 @@ const SwiperSlide = dynamic(() => import("swiper/react").then(m => m.SwiperSlide
         </div>
       </div>
     </SwiperSlide>
-  );
-})}
+  ))}
 </Swiper>
  {/* <Swiper
          modules={[Autoplay, EffectFade, EffectCreative]} 
