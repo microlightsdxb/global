@@ -70,7 +70,14 @@ const nextConfig: NextConfig = {
   // ✅ cache optimization
    minimumCacheTTL: 60 * 60 * 24 * 7,     // ✅ cache 7 days
 },
-
+  experimental: {
+    optimizeCss: true,          // ✅ removes unused CSS automatically
+    optimizePackageImports: [   // ✅ tree-shakes heavy packages
+      'framer-motion',
+      'swiper',
+      'react-icons',
+    ],
+  }, 
 
   /* Redirects */
   async redirects() {
