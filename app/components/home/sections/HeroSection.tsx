@@ -140,10 +140,11 @@ const HeroSection = ({ data }: { data: Home }) => {
                   fill
                   sizes="100vw"
                   quality={75}
-                  priority={index === 0} // Only first image is priority
-                  loading={index === 0 ? "eager" : "lazy"}
+                  // priority={index === 0} // Only first image is priority
+                  // loading={index === 0 ? "eager" : "lazy"}
+                  loading="lazy"
                   // Add fetchpriority for LCP image
-                  fetchPriority={index === 0 ? "high" : "auto"}
+                  // fetchPriority={index === 0 ? "high" : "auto"}
                   // Decode images asynchronously
                   decoding={index === 0 ? "sync" : "async"}
                   // Add blur placeholder for better perceived performance
