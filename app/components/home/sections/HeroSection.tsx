@@ -1,293 +1,132 @@
 "use client";
-import Image from "next/image";
-import React, { useRef, useState } from "react";
 
-/* import { motion } from "framer-motion"; */
-// import c01web2 from "@/public/assets/img/home/slide1.jpg";
-// import c01web3 from "@/public/assets/img/home/secbnr.jpg";
+import Image from "next/image";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { FiArrowUpRight } from "react-icons/fi";
-import {Motiondiv,MotionH1,MotionP} from "./MotionComp";
+import dynamic from "next/dynamic";
 import { Home } from "@/types/Home";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, EffectFade, EffectCreative } from "swiper/modules";
-import { Swiper as SwiperClass } from "swiper";
+
+// ✅ Dynamic Swiper
+const Swiper = dynamic(() =>
+  import("swiper/react").then((mod) => mod.Swiper),
+  { ssr: false }
+);
+
+const SwiperSlide = dynamic(() =>
+  import("swiper/react").then((mod) => mod.SwiperSlide),
+  { ssr: false }
+);
+
+// ✅ Import module
+import { Autoplay } from "swiper/modules";
 import "swiper/css";
-import "swiper/css/pagination";
 
 const HeroSection = ({ data }: { data: Home }) => {
-  const sectionRef = useRef(null);
-  const triggerRef = useRef(null);
-  const swiperRef = useRef<SwiperClass | null>(null);
+  const [mounted, setMounted] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(1);
-  const totalSlides = data.banners.length;
 
-// const firstBanner = data?.banners?.[0];
+  const firstBanner = data?.banners?.[0];
 
-  const [textVersion, setTextVersion] = useState(0);
-// const [mounted, setMounted] = useState(false);
-// useEffect(() => {
-//   setMounted(true);
-// }, []);
+  useEffect(() => {
+    requestAnimationFrame(() => {
+      setMounted(true);
+    });
+  }, []);
 
-// if (!mounted) return null;
   return (
-    <section
-      className="h-screen relative overflow-hidden bg-primary"
-      ref={triggerRef}
-      suppressHydrationWarning
-    >
-<div className="absolute bottom-[80px] lg:bottom-[150px] w-full ">
-        <div className="container flex justify-end">
-          <span className="text-[15px] text-white whitespace-nowrap font-light relative z-10">
-            <span className="font-medium "> {`0${currentSlide}`}</span> - {`0${totalSlides}`}
-          </span>
-        </div>
-      </div>
+    <section className="h-screen relative overflow-hidden bg-primary">
 
-      <div className="prject-sec h-full flex flex-wrap" style={{ width: `${data?.banners?.length * 100}vw` }} ref={sectionRef}>
-{/* <div className="absolute h-screen w-screen overflow-hidden text-white">
-  <Image
-    src={firstBanner.image}
-    alt={firstBanner.bannerAltTag}
-    fill
-    priority
-    className="object-cover"
-  />
-
-  <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
-
-  <div className="absolute bottom-[80px] lg:bottom-[150px] container">
-    <h1 className="text-2xl lg:w-[70%]">
-      {firstBanner.title}
-    </h1>
-    <p className="mt-4 text-lg">
-      {firstBanner.subTitle}
-    </p>
-  </div>
-</div> */}
-
-     <Swiper
-  modules={[Autoplay, EffectCreative]}   // ✅ remove EffectFade if unused
-  effect="creative"
-  creativeEffect={{
-    prev: { translate: [0, 0, 0] },
-    next: { translate: ["100%", 0, 0] }, // ✅ % not px
-  }}
-  autoplay={{
-    delay: 5000,
-    disableOnInteraction: false,
-  }}
-  slidesPerView={1}
-  spaceBetween={0}
-  loop
-  onSwiper={(swiper) => {
-    swiperRef.current = swiper
-  }}
-  // ✅ removed watchSlidesProgress
-  onSlideChange={(swiper) => {
-    React.startTransition(() => {          // ✅ batched, low priority
-      setCurrentSlide(swiper.realIndex + 1)
-      setTextVersion(v => v + 1)
-    })
-  }}
-  className="w-full h-full"
->
-  {data?.banners?.map((project, index) => (
-    <SwiperSlide key={index}>
-      <div className="slide h-full w-screen relative overflow-hidden text-white">
-        <figure className="h-full w-full absolute -z-50">
+      {/* ✅ First Slide (LCP optimized) */}
+      {!mounted && firstBanner && (
+        <div className="absolute h-screen w-screen overflow-hidden text-white">
           <Image
-            className="h-full w-full absolute object-cover object-center"
-            src={project.image}
-            alt={project.bannerAltTag}
+            src={firstBanner.image}
+            alt={firstBanner.bannerAltTag}
             fill
+            priority
+            fetchPriority="high"
+            quality={85}
             sizes="100vw"
-            quality={75}
-            priority={index === 0}
-            loading={index === 0 ? "eager" : "lazy"}
+            className="object-cover"
           />
-        </figure>
 
-        <div className="h-full w-full -z-40 absolute bg-gradient-to-t from-black to-transparent opacity-70" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70" />
 
-        <div className="absolute w-full h-full">
-          <div className="container h-full">
-            <div className="h-full relative">
-              <div
-                key={`${index}-${textVersion}`}
-                className={`title absolute bottom-[80px] lg:bottom-[150px] flex flex-col
-                  transition-opacity duration-500 ease-in-out
-                  ${currentSlide === index + 1 ? 'opacity-100' : 'opacity-0'}`}  // ✅ no inline style
-              >
-                <div className="overflow-hidden mb-[20px] lg:mb-[30px]">
-                  {index === 0 ? (
-                    <MotionH1
-                      
-                      initial={{ opacity: 0, x: -50 }}
-                      animate={{ opacity: 1, x: 0 }}       // runs after paint
-                      transition={{ duration: 0.6, delay: 0.3 }}  // small delay
-                      className="text-2xl text-white leading-none font-custom font-normal lg:w-[70%]"
-                    >
-                      {project.title}
-                    </MotionH1>
-                  ) : (
-                    <MotionP
-                      initial={{ opacity: 0, x: -50 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.6 }}
-                      viewport={{ once: true, amount: 0.5 }}
-                      className="text-2xl text-white leading-none font-custom font-normal lg:w-[70%]"
-                    >
-                      {project.title}
-                    </MotionP>
-                  )}
-                </div>
+          <div className="absolute bottom-[80px] lg:bottom-[150px] container">
+            <h1 className="text-2xl lg:w-[70%]">{firstBanner.title}</h1>
+            <p className="mt-4 text-lg">{firstBanner.subTitle}</p>
 
-                <div className="overflow-hidden mb-[30px] lg:mb-[50px]">
-                  <MotionP
-                    initial={{ opacity: 0, x: -50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, delay: 0.3 }}
-                    viewport={{ once: true, amount: 0.5 }}
-                    className="text-lg text-white leading-tight font-custom font-light"
-                  >
-                    {project.subTitle}
-                  </MotionP>
-                </div>
-
-                <div className="overflow-hidden">
-                  <Motiondiv
-                    className="flex"
-                    initial={{ opacity: 0, x: -50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, delay: 0.6 }}
-                    viewport={{ once: true, amount: 0.5 }}
-                  >
-                    <Link
-                      href="/about-us"
-                      className="flex gap-[20px] items-center border-t border-white text-sm text-white border-solid pt-[12px]"
-                    >
-                      <span>Explore</span>
-                      <FiArrowUpRight className="text-[22px] text-white" />
-                    </Link>
-                  </Motiondiv>
-                </div>
-              </div>
-            </div>
+            <Link
+              href="/about-us"
+              className="flex gap-[20px] items-center border-t border-white text-sm text-white pt-[12px] mt-4"
+            >
+              <span>Explore</span>
+              <FiArrowUpRight className="text-[22px]" />
+            </Link>
           </div>
         </div>
-      </div>
-    </SwiperSlide>
-  ))}
-</Swiper>
- {/* <Swiper
-         modules={[Autoplay, EffectFade, EffectCreative]} 
-   
-         effect="creative"
-         creativeEffect={{
-           prev: {
-             translate: [0, 0, 0],
-           },
-           next: {
-             translate: [200, 0, 0],
-           },
-         }}
-         autoplay={{ delay: 5000,
-        
-         disableOnInteraction: false, }}
-         slidesPerView={1}
-         spaceBetween={0}
-         loop
-         onSwiper={(swiper) => {
-           swiperRef.current = swiper;
-         }}
-        watchSlidesProgress
-         
-         onSlideChange={(swiper) => {
-           setCurrentSlide(swiper.realIndex + 1);
-           setTextVersion(v => v + 1);
-         }}
-        className="w-full h-full"
-      >
+      )}
 
-   {data?.banners?.map((project, index) => (
-          <SwiperSlide key={index}>
-            <div key={index} className="slide h-full w-screen relative overflow-hidden text-white">
-              <figure className="h-full w-full absolute -z-50">
-                
-        <Image
-          className="h-full w-full absolute object-cover object-center"
-          src={project.image}
-          alt={project.bannerAltTag}
-          fill
-          sizes="100vw"
-          priority={index === 0} 
-          loading={index === 0 ? "eager" : "lazy"} 
-        />
-              </figure>
-              <div className="h-full w-full -z-40 absolute bg-gradient-to-t from-black to-transparent opacity-70"></div>
+      {/* ✅ Swiper */}
+      {mounted && (
+        <Swiper
+          modules={[Autoplay]}
+          slidesPerView={1}
+          loop={data.banners.length > 1}
+          observer={true}
+          observeParents={true}
+          autoplay={
+            data.banners.length > 1
+              ? {
+                  delay: 4000,
+                  disableOnInteraction: false,
+                  pauseOnMouseEnter: false,
+                }
+              : false
+          }
+          onSlideChange={(swiper) => {
+            setCurrentSlide(swiper.realIndex + 1);
+          }}
+          className="w-full h-full"
+        >
+          {data?.banners?.map((project, index) => (
+            <SwiperSlide key={index}>
+              <div className="h-full w-screen relative text-white">
 
-              <div className="absolute w-full h-full">
-                <div className="container h-full">
-                  <div className="h-full relative">
-                    <div key={`${index}-${textVersion}`}
-                      className="title absolute bottom-[80px] lg:bottom-[150px] transition-all ease-in-out flex flex-col"
-style={{ opacity: currentSlide === index + 1 ? 1 : 0 }}
-                    >
-                      <div className="overflow-hidden mb-[20px] lg:mb-[30px]"  key={`${index}-${textVersion}`}>
-                        {index === 0 ?
-                        (<MotionH1 
-                          initial={{ opacity: 0, x: -50 }} 
-                        whileInView={{ opacity: 1, x: 0 }} 
-                        transition={{ duration: 0.6 }} 
-                        viewport={{ once: true, amount: 0.5 }}  
-                          className="text-2xl text-white leading-none font-custom font-normal lg:w-[70%]"
-                        >
-                          {project.title}
-                        </MotionH1> ):(
-                          <MotionP 
-                          initial={{ opacity: 0, x: -50 }} 
-                        whileInView={{ opacity: 1, x: 0 }} 
-                        transition={{ duration: 0.6 }} 
-                        viewport={{ once: true, amount: 0.5 }}  
-                          className="text-2xl text-white leading-none font-custom font-normal lg:w-[70%]"
-                        >
-                          {project.title}
-                        </MotionP>
-                        )
-                        }
-                      
+                <Image
+                  src={project.image}
+                  alt={project.bannerAltTag}
+                  fill
+                  sizes="100vw"
+                  className="object-cover"
+                />
 
-                      </div>
-                      <div className="overflow-hidden mb-[30px] lg:mb-[50px]">
-                        <MotionP initial={{ opacity: 0, x: -50 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.6, delay: 0.3 }}
-                          viewport={{ once: true, amount: 0.5 }} className="text-lg text-white leading-tight font-custom font-light">
-                          {project.subTitle}
-                        </MotionP>
-                      </div>
-                      <div className="overflow-hidden">
-                        <Motiondiv className="flex" initial={{ opacity: 0, x: -50 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.6, delay: 0.6 }}
-                          viewport={{ once: true, amount: 0.5 }}>
-                          <Link href={'/about-us'} className="flex gap-[20px] items-center border-t border-white text-sm text-white border-solid leaing-none pt-[12px]">
-                            <span>Explore</span> <FiArrowUpRight className="text-[22px] text-white" />
-                          </Link>
-                        </Motiondiv>
-                      </div>
-                    </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70" />
 
-                  </div>
+                <div className="absolute bottom-[80px] lg:bottom-[150px] container">
+                  <h2 className="text-2xl lg:w-[70%]">
+                    {project.title}
+                  </h2>
+
+                  <p className="mt-4 text-lg">
+                    {project.subTitle}
+                  </p>
+
+                  <Link
+                    href="/about-us"
+                    className="flex gap-[20px] items-center border-t border-white text-sm text-white pt-[12px] mt-4"
+                  >
+                    <span>Explore</span>
+                    <FiArrowUpRight className="text-[22px]" />
+                  </Link>
                 </div>
               </div>
-            </div>
-          </SwiperSlide>
-        ))}
-        </Swiper> */}
-      </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      )}
+
     </section>
   );
 };
