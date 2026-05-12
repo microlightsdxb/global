@@ -24,13 +24,13 @@ const Banner = ({ data }: { data: { data: {date:string, createdAt: string, categ
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true, amount: 0.5 }}>
-                <div className="">
+                <h1 className="text-2xl text-black leading-[1.18]">
                   {data?.data?.title.split("\n").map((item, index) => (
-                    <p key={index} className="text-2xl text-black leading-[1.18]">
+                    <span key={index} >
                       {item}
-                    </p>
+                    </span>
                   ))}
-                </div>
+                </h1>
             </motion.div>
           </div>
         </div>

@@ -28,15 +28,15 @@ export const menuItems: MenuItem[] = [
         children:[
         {
           title:"Indoor Lighting",
-          url:"/products"
+          url:"/lighting-products"
         },
         {
           title:"Outdoor Lighting",
-          url:"/products"
+          url:"/lighting-products"
         },
         {
           title:"Industrial Lighting",
-          url:"/products"
+          url:"/lighting-products"
         }
       ]
     },

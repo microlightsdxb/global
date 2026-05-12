@@ -12,7 +12,7 @@ const Banner = ({ }) => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true, amount: 0.5 }}>
-              <p className="text-2xl text-black">Blogs</p>
+              <h1 className="text-2xl text-black">Microlights Blog</h1>
             </motion.div>
           </div>
           <div className="w-full lg:w-1/2">

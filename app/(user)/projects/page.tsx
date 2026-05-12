@@ -13,6 +13,12 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: metadataTitle,
     description: metadataDescription,
+    alternates: {
+      canonical: `/projects`,  
+    }, robots: {
+      index: true,
+      follow: true, 
+    },
   };
 }
 

@@ -1,7 +1,8 @@
 "use client";
 import { contactSchema } from "@/app/(user)/schemas/contactShema";
 import { motion } from "motion/react";
-import React,{useRef,useState} from "react";
+import React, { useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { FiArrowUpRight } from "react-icons/fi";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -17,20 +18,20 @@ interface ContactFormProps {
 }
 
 export default function ContactForm() {
-
-  const { register, handleSubmit, formState: { errors,isSubmitting }, reset } = useForm<ContactFormProps>({ resolver: zodResolver(contactSchema) });
+  const router = useRouter();
+  const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<ContactFormProps>({ resolver: zodResolver(contactSchema) });
 
   const recaptcha = useRef<ReCAPTCHA>(null)
-        const [error,setError] = useState("")
+  const [error, setError] = useState("")
 
   const onSubmit = async (data: ContactFormProps) => {
     try {
       const captchaValue = recaptcha?.current?.getValue()
-                if (!captchaValue) {
-                  setError("Please verify yourself to continue")
-                  return;
-                }
-                setError("")
+      if (!captchaValue) {
+        setError("Please verify yourself to continue")
+        return;
+      }
+      setError("")
       const response = await fetch("/api/admin/contact/enquiry", {
         method: "POST",
         body: JSON.stringify(data)
@@ -40,6 +41,7 @@ export default function ContactForm() {
         toast.success(res.message)
         reset()
         recaptcha?.current?.reset()
+        router.push("/thankyou")
       } else {
         toast.error(res.message)
       }
@@ -114,9 +116,9 @@ export default function ContactForm() {
                   </div>
                 </div>
 
-                <ReCAPTCHA sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""} ref={recaptcha} className='mt-5'/>
-    
-        {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
+                <ReCAPTCHA sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ""} ref={recaptcha} className='mt-5' />
+
+                {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
 
                 {/* Send Button */}
                 <div

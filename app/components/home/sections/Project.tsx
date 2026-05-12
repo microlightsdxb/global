@@ -97,7 +97,7 @@ const RecentProjects = ({ data }: { data: Project }) => {
             >
               {data?.data?.slice(0, 5).map((project) => (
                 <SwiperSlide key={project._id}>
-                  <Link href={`/project-details/${project.slug}`} className="overflow-hidden" >
+                  <Link href={`/projects/${project.slug}`} className="overflow-hidden" >
                     <div className="hdrsc">
                       <div className="flex justify-between  border-b border-primary/10 pb-[14px] h-[60px]">
                         <h3 className="text-lg font-normal leading-none text-primary">
@@ -131,9 +131,24 @@ const RecentProjects = ({ data }: { data: Project }) => {
                           className="h-full w-full object-cover object-center   group-hover:scale-[1.1] transition-all ease-in-out duration-500"
                           src={project.thumbnail}
                           alt={project.name}
-                          width={950}
-                          height={950}
+                          width={600}
+                          height={350}
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          quality={65}
+                          loading="lazy"
                         />
+                        {/* <Image
+                          className="h-full w-full object-cover object-center group-hover:scale-[1.1] transition-transform ease-in-out duration-500"
+                          src={project.thumbnail}
+                          alt={project.name}
+                          width={600}
+                          height={350}
+                          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"  // ✅ correct sizes
+                          quality={65}                                                         // ✅ compression fix
+                          loading="lazy"                                                       // ✅ not LCP, lazy is correct
+                          placeholder="blur"                                                   // ✅ no layout shift
+                          blurDataURL="data:image/webp;base64,UklGRlQAAABXRUJQVlA4IEgAAADQAQCdASoBAAEAAkA4JYgCdAEO/gHOAAD++P/////3n/8pf/8A" // ✅ tiny blur placeholder
+                        /> */}
                       </motion.div>
                     </figure>
                   </Link>

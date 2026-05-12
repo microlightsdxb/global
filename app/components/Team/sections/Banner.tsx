@@ -56,7 +56,7 @@ const Banner = ({data}:{data:MdData}) => {
           </div>
         </motion.div>
         <motion.div variants={moveRight} initial="hidden" animate="show" className="lg:absolute  right-0  mb-5 lg:mb-0 w-full h-full top-0 lg:w-1/2">
-          <Image src={data?.mdImage} alt={data?.mdImageAlt} className="lg:absolute  right-0 bottom-0" height={1000} width={1000}></Image>
+          <Image src={data?.mdImage} alt={data?.mdImageAlt} className="lg:absolute  right-0 bottom-0" height={1000} width={1000} fetchPriority="high" ></Image>
         </motion.div>
         </motion.div>
       </div>

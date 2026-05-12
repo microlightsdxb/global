@@ -69,8 +69,9 @@ const MobileNav = () => {
         <div className="container flex items-center justify-between">
           <div className="logo-sec">
           <Link href="/" onClick={()=>{setScrollToSection('')}}> <Image
-              src="/assets/img/logo.svg"
-              alt=""
+              src="/assets/img/logo.svg" 
+            alt="Lighting Solutions Dubai"
+            title="Microlights"
               className="h-[45px] w-auto"
               width={100}
               height={250}
@@ -79,7 +80,7 @@ const MobileNav = () => {
           </div>
           <div className="w-[30px] h-[30px]">
           <div
-            className="cursor-pointer bg-white rounded-full top-5 absolute"
+            className="cursor-pointer bg-white rounded-full top-6 absolute"
             onClick={handleMenuOpen}
           >
             <svg
@@ -240,10 +241,16 @@ const MobileNav = () => {
           <div className="mt-auto">
             <hr />
             <div className="flex space-x-4 mt-4">
+              <Link href="https://www.facebook.com/MicrolightsGroup" target="_blank">
               <FaFacebookF className="cursor-pointer w-6 h-6 hover:text-primary transition-all duration-500" />
+              </Link>
+              <Link href="https://www.linkedin.com/company/microlights/" target="_blank">
               <FaLinkedinIn className="cursor-pointer w-6 h-6 hover:text-primary transition-all duration-500" />
+              </Link>
+              <Link href="https://www.instagram.com/microlightsgroup/" target="_blank">
               <FaInstagram className="cursor-pointer w-6 h-6 hover:text-primary transition-all duration-500" />
-              <FaYoutube className="cursor-pointer w-6 h-6 hover:text-primary transition-all duration-500" />
+              </Link>
+              {/* <FaYoutube className="cursor-pointer w-6 h-6 hover:text-primary transition-all duration-500" /> */}
             </div>
           </div>
         </div>

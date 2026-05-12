@@ -335,3 +335,53 @@ body {
   padding-bottom: 28px;
   z-index: -1;
 }
+ 
+.circlelist {
+  padding-left: 20px; 
+}
+.circlelist li{ 
+  font-size: 14px !important;
+  line-height: 1.8;
+}
+ 
+.alnbase p{text-align: center; 
+    line-height: 1.3em;
+    margin: 2rem 0 0.5rem 0;
+    padding: 0;
+    text-shadow: 0 0 1rem #fefefe;} 
+    .innera a{color: #000000 !important;} 
+    .disklist {
+  list-style: none;
+  padding-left: 0;
+}
+
+ 
+.disklist li {
+  font-size: 16px;
+  list-style: none;
+  padding-left: 16px;
+  background: url("/assets/img/bullet2.png") no-repeat left center;
+  background-size: 10px 10px;
+}
+
+.circlelist li{
+  background-size: 8px 8px; }
+  @layer utilities {
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+  @keyframes float2 {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+   /* @keyframes colorShift {
+    0%   { color: hsla(0, 7%, 21%, 0.501); }
+    50%  { color: hsla(0, 97%, 42%, 0.501); }
+    100% { color: hsla(0, 97%, 42%, 0.501); }
+  } */
+}
+ 
+
+
+ 

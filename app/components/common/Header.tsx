@@ -44,10 +44,10 @@ const Header = () => {
           <Link href="/" onClick={()=>{setScrollToSection('')}}>
           <Image
             src="/assets/img/logo.svg"
-            alt="Logo"
-            className="h-[58px] w-auto"
-            width={100}
-            height={250}
+            alt="Lighting Solutions Dubai"
+            title="Microlights" 
+            width={220}
+            height={58}
           />
           </Link>
         </div>

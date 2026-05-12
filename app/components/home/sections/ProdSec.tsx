@@ -120,7 +120,7 @@ const ProdSec = ({data}:{data:{data:{_id:string,type: string, image: string, hov
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[40px]" 
       >
         {data?.data?.map((product: {_id: string, type: string, image: string, hoverImage: string}, index:number) => (
-          <Link key={product._id} onClick={()=>setType(product.type)} href={`/products`} className="relative last:before:hidden before:content-[] before:absolute before:h-full lg:before:w-[1px] lg:before:bg-primary/10 before:right-[-20px] ">
+          <Link key={product._id} onClick={()=>setType(product.type)} href={`/lighting-products`} className="relative last:before:hidden before:content-[] before:absolute before:h-full lg:before:w-[1px] lg:before:bg-primary/10 before:right-[-20px] ">
             <div  style={{
         height: `${refHeight}px`, 
       }}>
@@ -146,7 +146,7 @@ const ProdSec = ({data}:{data:{data:{_id:string,type: string, image: string, hov
                   className="absolute inset-0 w-full object-cover h-full opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100"
                 />
               </figure>
-              <h3 className="text-lg mb-[30px]">{product.type}</h3>
+              <h2 className="text-lg mb-[30px]">{product.type}</h2>
               <div className="flex">
                 <span className="border-t border-primary pt-[12px]">
                   <FiArrowUpRight className="ml-[40px] text-[22px] text-[#7D7D7D] transition-all ease-in-out duration-300 group-hover:ml-[30px] leading-none" />
