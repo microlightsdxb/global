@@ -5,29 +5,42 @@ import * as jose from "jose";
 export async function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname;
 
-  // Define protected routes
-  const isProtectedRoute = path.startsWith("/admin") && !path.includes("/admin/login");
+  let response = NextResponse.next();
+
+  // ---------- AUTH LOGIC ----------
+  const isLoginPage = path === "/admin/login";
+  const isProtectedRoute = path.startsWith("/admin") && !isLoginPage;
+
+  const token = request.cookies.get("adminToken")?.value || "";
+  const secret = new TextEncoder().encode(process.env.JWT_SECRET || "your-secret-key");
+
+  if (isLoginPage && token) {
+    try {
+      await jose.jwtVerify(token, secret);
+      response = NextResponse.redirect(new URL("/admin", request.url));
+      return response
+    } catch {}
+  }
 
   if (isProtectedRoute) {
-    const token = request.cookies.get("adminToken")?.value || "";
-
     if (!token) {
-      return NextResponse.redirect(new URL("/admin/login", request.url));
+      response = NextResponse.redirect(new URL("/admin/login", request.url));
+      return response
     }
 
     try {
-      const secret = new TextEncoder().encode(process.env.JWT_SECRET || "your-secret-key");
       await jose.jwtVerify(token, secret);
-      return NextResponse.next();
-    } catch (error) {
-      console.log(error);
-      return NextResponse.redirect(new URL("/admin/login", request.url));
+    } catch {
+      response = NextResponse.redirect(new URL("/admin/login", request.url));
+      return response
     }
   }
 
-  return NextResponse.next();
+  // ---------- DEFAULT ----------
+  return response
 }
 
+
 export const config = {
-  matcher: "/admin/:path*",
+  matcher: ["/api/:path*", "/admin/:path*"],
 };
