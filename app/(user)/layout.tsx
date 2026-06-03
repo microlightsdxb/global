@@ -7,7 +7,7 @@ import Header from "../components/common/Header";
 import Footer from "../components/common/Footer";
 /* import Header from "./componennts/common/Header"; */
 import { Toaster } from "@/components/ui/sonner"
-import parse from 'html-react-parser'
+// import parse from 'html-react-parser'
 import Script from 'next/script'
 
 const parkinSans = Parkinsans({
@@ -30,12 +30,13 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const tagResponse = await fetch(`${process.env.BASE_URL}/api/admin/tags`);
-  const tagData = await tagResponse.json();
+  // const tagResponse = await fetch(`${process.env.BASE_URL}/api/admin/tags`);
+  // const tagData = await tagResponse.json();
+
   return (
     <html lang="en">
       <head>
-        {parse(tagData.tag.headerScript)}
+        {/* {parse(tagData.tag.headerScript)} */}
         <Script
           id="data-layer-init"
           dangerouslySetInnerHTML={{
@@ -59,7 +60,7 @@ export default async function RootLayout({
             style={{ display: "none", visibility: "hidden" }}></iframe>
         </noscript>
 
-        {parse(tagData.tag.bodyScript)}
+        {/* {parse(tagData.tag.bodyScript)} */}
         <SmoothScroll />
         <Header />
         {children}
