@@ -9,6 +9,7 @@ import Footer from "../components/common/Footer";
 import { Toaster } from "@/components/ui/sonner"
 import parse from 'html-react-parser'
 import Script from 'next/script'
+import HeadInjector from "../components/common/HeadInjector";
 
 const parkinSans = Parkinsans({
   variable: "--font-parkin-sans",
@@ -36,7 +37,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <head>
-        {parse(tagData.tag.headerScript)}
+        {/* {parse(tagData.tag.headerScript)} */}
         <Script
           id="data-layer-init"
           dangerouslySetInnerHTML={{
@@ -60,7 +61,8 @@ export default async function RootLayout({
             style={{ display: "none", visibility: "hidden" }}></iframe>
         </noscript>
 
-        {parse(tagData.tag.bodyScript)}
+        {/* {parse(tagData.tag.bodyScript)} */}
+        <HeadInjector html={tagData.tag.headerScript} />
         <SmoothScroll />
         <Header />
         {children}
