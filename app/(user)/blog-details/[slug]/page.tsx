@@ -1,6 +1,7 @@
 import Index from "../../../components/BlogDetails/Index";
 import type { Metadata } from "next";
 import Script from "next/script";
+import { notFound } from "next/navigation";
 
 // ✅ FAQ data keyed by slug — add more slugs here as needed
 const FAQ_SCHEMAS: Record<string, { name: string; text: string }[]> = {
@@ -112,6 +113,10 @@ export default async function Home({
     }
     : null;
 
+
+if(!data.data) return notFound()
+
+
   return (
     <>
       {/* Article schema — always present */}
@@ -130,7 +135,7 @@ export default async function Home({
         />
       )}
 
-      <Index />
+      <Index data={data}/>
     </>
   );
 }
