@@ -237,10 +237,9 @@ const ProjectForm = ({ editMode }: { editMode?: boolean }) => {
                 </div>
                 <div>
                 <Label className=''>Description</Label>
-                    <Controller name="description" control={control} rules={{ required: "Description is required" }} render={({ field }) => {
+                    <Controller name="description" control={control} render={({ field }) => {
                         return <ReactQuill theme="snow" value={field.value} onChange={field.onChange} />
                     }} />
-                    {errors.description && <p className='text-red-500'>{errors.description.message}</p>}
                 </div>
 
                 <div>
