@@ -390,7 +390,7 @@ body {
    @apply font-light pt-10;
  }
  .blog-content img {
-   @apply max-h-[500px] object-contain w-auto;
+   @apply max-h-[600px] object-contain !w-auto;
  }
 
  .blog-content p {
