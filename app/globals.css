@@ -389,6 +389,9 @@ body {
  .blog-content {
    @apply font-light pt-10;
  }
+ .blog-content img {
+   @apply max-h-[500px] object-contain w-auto;
+ }
 
  .blog-content p {
    @apply mb-4 leading-7;
