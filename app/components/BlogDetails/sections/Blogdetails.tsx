@@ -55,13 +55,13 @@ const Blogdetails: React.FC<FrameworkSectionProps> = ({ data, recentBlogData }) 
             <div className="lg:w-4/6 xl:w-7/9">
               <div>
                 <div>
-                  <figure className="w-full   overflow-hidden ">
+                  <figure className="w-full overflow-hidden ">
                     <Image
                       src={data?.data?.bannerImage}
                       alt={data?.data?.imageAlt}
-                      className=" w-full   object-cover"
-                      width={500}
-                      height={500}
+                      className="w-full object-cover"
+                      width={1600}
+                      height={851}
                     />
                   </figure>
                 </div>
