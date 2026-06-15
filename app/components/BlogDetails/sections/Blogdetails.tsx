@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { assets } from "@/public/assets/assets";
-import {categories} from "../data/dataBox"
+import { categories } from "../data/dataBox"
 import Bloglist from "./Bloglist";
 import parse from "html-react-parser";
 import { motion } from "framer-motion";
@@ -11,27 +11,27 @@ import { FaFacebookF } from "react-icons/fa6";
 import { FaXTwitter } from "react-icons/fa6";
 
 interface FrameworkItem {
-  data:{
-    _id:string,
-    title:string,
+  data: {
+    _id: string,
+    title: string,
     image: string,
-    bannerImage:string,
-    imageAlt:string,
-    content:string,
-    category:string,
+    bannerImage: string,
+    imageAlt: string,
+    content: string,
+    category: string,
     createdAt: string,
   }
 }
 
 interface RecentBlogItem {
-    _id:string,
-    title:string,
-    image:string,
-    imageAlt:string,
-    category:string,
-    createdAt:string,
-    slug: string;
-  }
+  _id: string,
+  title: string,
+  image: string,
+  imageAlt: string,
+  category: string,
+  createdAt: string,
+  slug: string;
+}
 
 interface FrameworkSectionProps {
   data: FrameworkItem;
@@ -53,23 +53,21 @@ const Blogdetails: React.FC<FrameworkSectionProps> = ({ data, recentBlogData }) 
         <div className="container">
           <div className="lg:flex gap-5 lg:gap-10 xl:gap-[70px]">
             <div className="lg:w-4/6 xl:w-7/9">
-
-          <div>
               <div>
-                <figure className="w-full   overflow-hidden ">
-                  <Image
-                    src={data?.data?.bannerImage}
-                    alt={data?.data?.imageAlt}
-                    className=" w-full   object-cover"
-                    width={500}
-                    height={500}
-                  />
-                </figure>
-              </div>
-                <div className="font-[300] mt-2 md:mt-4 lg:mt-12 pt-4 leading-[1.7]">
-
-              {parse(data?.data?.content || "")}
-
+                <div>
+                  <figure className="w-full   overflow-hidden ">
+                    <Image
+                      src={data?.data?.bannerImage}
+                      alt={data?.data?.imageAlt}
+                      className=" w-full   object-cover"
+                      width={500}
+                      height={500}
+                    />
+                  </figure>
+                </div>
+                {/* <div className="font-[300] mt-2 md:mt-4 lg:mt-12 pt-4 leading-[1.7]"> */}
+                <div className="blog-content">
+                  {parse(data?.data?.content || "")}
                 </div>
               </div>
 
@@ -112,7 +110,7 @@ const Blogdetails: React.FC<FrameworkSectionProps> = ({ data, recentBlogData }) 
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <FaFacebookF className="text-white"/>
+                    <FaFacebookF className="text-white" />
                   </motion.div>
                   </Link>
 
@@ -121,7 +119,7 @@ const Blogdetails: React.FC<FrameworkSectionProps> = ({ data, recentBlogData }) 
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <FaXTwitter className="text-white"/>
+                    <FaXTwitter className="text-white" />
                   </motion.div>
                   </Link>
 

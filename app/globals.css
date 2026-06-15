@@ -384,4 +384,72 @@ body {
  
 
 
- 
+ /* Global css for blog */
+
+ .blog-content {
+   @apply font-light pt-10;
+ }
+
+ .blog-content p {
+   @apply mb-4 leading-7;
+ }
+
+ .blog-content h2 {
+   @apply text-lg leading-none mt-5 mb-5 text-primary ;
+ }
+
+ .blog-content h3 {
+   @apply mb-4 text-black font-semibold text-base leading-snug;
+ }
+
+ .blog-content a {
+   @apply transition-colors;
+ }
+
+ .blog-content strong {
+   @apply font-semibold;
+ }
+
+ .blog-content em {
+   @apply italic;
+ }
+
+ .blog-content ul {
+   @apply list-disc pl-6 mb-6;
+ }
+
+ .blog-content ul li+li {
+   @apply mt-3;
+ }
+
+ .blog-content img {
+   @apply w-full h-auto my-6 rounded-lg;
+ }
+
+ .blog-content table {
+   @apply w-full border border-gray-200 text-sm text-left my-6 border-collapse;
+ }
+
+ .blog-content thead {
+   @apply bg-gray-100;
+ }
+
+ .blog-content th {
+   @apply px-4 py-3 border-b border-gray-200 font-semibold text-gray-700;
+ }
+
+ .blog-content td {
+   @apply px-4 py-3 border-b border-gray-200;
+ }
+
+ .blog-content tbody tr:hover {
+   @apply bg-gray-50;
+ }
+
+ .blog-content tbody tr td:first-child {
+   @apply font-medium text-gray-800;
+ }
+
+ .blog-content tbody tr td:not(:first-child) {
+   @apply text-gray-600;
+ }
