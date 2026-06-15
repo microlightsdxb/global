@@ -392,7 +392,9 @@ body {
  .blog-content img {
    @apply max-h-[600px] object-contain !w-auto;
  }
-
+.list-no-style{
+  @apply !list-none !pl-0;
+}
  .blog-content p {
    @apply mb-4 leading-7;
  }
