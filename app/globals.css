@@ -385,7 +385,9 @@ body {
 
 
  /* Global css for blog */
-
+.blog-content a{
+  @apply underline text-primary font-medium;
+}
  .blog-content {
    @apply font-light pt-10;
  }
@@ -400,7 +402,7 @@ body {
  }
 
  .blog-content h2 {
-   @apply text-lg leading-none mt-5 mb-5 text-primary ;
+   @apply text-lg leading-none mt-8 mb-5 text-primary ;
  }
 
  .blog-content h3 {
