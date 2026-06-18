@@ -1,6 +1,7 @@
 import Index from "../../../components/BlogDetails/Index";
 import type { Metadata } from "next";
 import Script from "next/script";
+import { notFound } from "next/navigation";
 
 // ✅ FAQ data keyed by slug — add more slugs here as needed
 const FAQ_SCHEMAS: Record<string, { name: string; text: string }[]> = {
@@ -20,6 +21,24 @@ const FAQ_SCHEMAS: Record<string, { name: string; text: string }[]> = {
     {
       name: "What factors affect the industrial lighting systems?",
       text: "Performance is influenced by layout planning, fixture quality, environmental conditions, and maintenance schedules. Poorly planned layouts can result in uneven illumination, while low-quality fixtures shorten system lifespan. In UAE facilities specifically, heat, dust, and humidity are additional variables that must be addressed through appropriate industrial LED lighting UAE specifications. Regular maintenance and proper system design are essential to maintain consistent lighting output.",
+    },
+  ],
+  "lighting-solutions-uae-architects-interior-designers": [
+    {
+      name: "What are lighting solutions in the UAE?  ",
+      text: "Lighting solutions encompass the design, planning, and implementation of lighting systems developed to meet the architectural, functional, and regulatory requirements of a specific project or building type.",
+    },
+    {
+      name: "Why are lighting consultants important in UAE projects?",
+      text: "Lighting consultants bring specialist knowledge of design methodology, local compliance requirements, energy performance standards, and product specification that generalist teams often lack. Their involvement typically results in better outcomes at lower long-term cost. ",
+    },
+    {
+      name: "What are the latest lighting trends in the UAE?  ",
+      text: "Smart and automated systems, sustainable lighting solutions, human-centric design, and BIM integration are among the most significant trends shaping the sector in 2025 and 2026. ",
+    },
+    {
+      name: "How do I choose a lighting design company in the UAE? ",
+      text: "Evaluate UAE-specific experience, portfolio breadth, technical and creative capability, and the company's approach to collaboration with wider project teams. References from comparable projects are the most reliable basis for comparison. ",
     },
   ],
 };
@@ -112,6 +131,10 @@ export default async function Home({
     }
     : null;
 
+
+if(!data.data) return notFound()
+
+
   return (
     <>
       {/* Article schema — always present */}
@@ -130,7 +153,7 @@ export default async function Home({
         />
       )}
 
-      <Index />
+      <Index data={data}/>
     </>
   );
 }
