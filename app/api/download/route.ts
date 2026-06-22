@@ -3,7 +3,7 @@ import { join } from "path";
 import { readFile } from "fs/promises";
 
 export async function GET() {
-  const filePath = join(process.cwd(), "public/assets/Microlights-Brochure-2026.pdf");
+  const filePath = join(process.cwd(), "public/assets/Microlights_Brocehure_2026-27.pdf");
   const file = await readFile(filePath); // Buffer
 
   // Convert Buffer → Uint8Array so TS accepts it
@@ -11,7 +11,7 @@ export async function GET() {
 
   return new NextResponse(blob, {
     headers: {
-      "Content-Disposition": 'attachment; filename="Microlights-Brochure-2026.pdf"',
+      "Content-Disposition": 'attachment; filename="Microlights_Brocehure_2026-27.pdf"',
     },
   });
 }
