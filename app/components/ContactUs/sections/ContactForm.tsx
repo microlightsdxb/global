@@ -53,65 +53,65 @@ export default function ContactForm() {
 
   return (
     <section  >
-      <div className="container">
+      <div className="">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.5 }}
           viewport={{ once: true }}
         >
-          <div className=" border-b border-black pb-100">
-            <div className="bg-black text-white py-16 px-4 md:px-16">
-              <h2 className="text-3xl md:text-lg  mb-6 lg:mb-10">Reach Out</h2>
+          <div className="">
+            <div className="bg-black text-white p-5 md:p-12.5">
+              <h2 className="text-3xl md:text-lg  mb-6 lg:mb-12.5">Reach Out</h2>
 
               <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 gap-6 xl:gap-12.5">
                   <div className="relative">
-                    <label className="text-[#ffffff50] block mb-2">Name</label>
+                    <label className="text-white/50 block mb-2">Name</label>
                     <input
                       type="text"
                       {...register("name")}
-                      className="w-full bg-black border-b border-[#ffffff50] focus:outline-none focus:border-white  text-white"
+                      className="w-full bg-black border-b border-[#595959] focus:outline-none focus:border-white  text-white"
                     />
                     {errors.name && <p className="text-red-500">{errors.name.message}</p>}
                   </div>
                   <div className="relative">
-                    <label className="text-[#ffffff50] block mb-2">Phone</label>
+                    <label className="text-white/50 block mb-2">Phone</label>
                     <input
                       type="text"
                       {...register("phone")}
-                      className="w-full bg-black border-b border-[#ffffff50] focus:outline-none focus:border-white  text-white"
+                      className="w-full bg-black border-b border-[#595959] focus:outline-none focus:border-white  text-white"
                     />
                     {errors.phone && <p className="text-red-500">{errors.phone.message}</p>}
                   </div>
                   <div className="relative">
-                    <label className="text-[#ffffff50] block mb-2">Email</label>
+                    <label className="text-white/50 block mb-2">Email</label>
                     <input
                       type="email"
                       {...register("email")}
-                      className="w-full bg-black border-b border-[#ffffff50] focus:outline-none focus:border-white  text-white"
+                      className="w-full bg-black border-b border-[#595959] focus:outline-none focus:border-white  text-white"
                     />
                     {errors.email && <p className="text-red-500">{errors.email.message}</p>}
                   </div>
                 </div>
 
-                <div>
+                <div className="mt-6 xl:mt-12.5">
                   <div className="relative">
-                    <label className="text-[#ffffff50] block mb-2">Company</label>
+                    <label className="text-white/50 block mb-2">Company</label>
                     <input
                       type="text"
                       {...register("company")}
-                      className="w-full bg-black border-b border-[#ffffff50] focus:outline-none focus:border-white  text-white"
+                      className="w-full bg-black border-b border-[#595959] focus:outline-none focus:border-white  text-white"
                     />
                     {errors.company && <p className="text-red-500">{errors.company.message}</p>}
                   </div>
                 </div>
                 {/* Message Field */}
-                <div className="">
+                <div className="mt-6 xl:mt-12.5">
 
                   <div className="relative">
-                    <label className="text-[#ffffff50] block mb-2">Message</label>
-                    <textarea {...register("message")} className="w-full bg-black border-b border-[#ffffff50] focus:outline-none focus:border-white  text-white h-24 md:h-35 resize-none"></textarea>
+                    <label className="text-white/50 block mb-2">Message</label>
+                    <textarea {...register("message")} className="w-full bg-black border-b border-[#595959] focus:outline-none focus:border-white  text-white h-22 resize-none"></textarea>
                     {errors.message && <p className="text-red-500">{errors.message.message}</p>}
                   </div>
                 </div>
@@ -123,15 +123,15 @@ export default function ContactForm() {
                 {/* Send Button */}
                 <div
 
-                  className="flex justify-end items-center gap-2   mt-6 md:mt-[81px] transition duration-300"
+                  className="flex justify-start items-center gap-2 mt-6 md:mt-10 transition duration-300"
                 >
                   <div className="flex">
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="flex gap-[20px] items-center border-t border-white text-sm text-white border-solid leaing-none pt-[12px] cursor-pointer"
+                      className="flex gap-[20px] items-center justify-between border-t border-white text-sm group text-white border-solid leaing-none pt-[12px] cursor-pointer min-w-[134px]"
                     >
-                      Send <FiArrowUpRight className="text-[22px] text-white" />
+                      Send <FiArrowUpRight className="text-[22px] text-white group-hover:rotate-45 transition-all duration-300" />
                     </button>
                   </div>
                 </div>

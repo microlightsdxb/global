@@ -122,8 +122,8 @@ const Index = () => {
   return (
     <>
       <div className="headerpadding"> </div>
-      <Filter industryData={industryData} locationData={locationData} setIndustrySelected={setIndustrySelected} setLocationSelected={setLocationSelected} selectedLocations={selectedLocations} setSelectedLocations={setSelectedLocations}/>
-      <ProjectList data={projects} setNewVisible={setNewVisible} newVisible={newVisible} limit={limit} buttonVisible={buttonVisible} setButtonVisible={setButtonVisible}/>
+      <Filter industryData={{ ...industryData, industrySelected }} locationData={locationData} setIndustrySelected={setIndustrySelected} setLocationSelected={setLocationSelected} selectedLocations={selectedLocations} setSelectedLocations={setSelectedLocations}/>
+      <ProjectList data={projects} setNewVisible={setNewVisible} newVisible={newVisible} limit={limit} buttonVisible={buttonVisible} setButtonVisible={setButtonVisible} industrySelected={industrySelected}/>
     </>
   );
 };

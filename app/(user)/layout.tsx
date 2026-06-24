@@ -5,11 +5,11 @@ import "../globals.css";
 import SmoothScroll from "../components/common/SmoothScroll";
 import Header from "../components/common/Header";
 import Footer from "../components/common/Footer";
-/* import Header from "./componennts/common/Header"; */
 import { Toaster } from "@/components/ui/sonner"
 import parse from 'html-react-parser'
 import Script from 'next/script'
 import HeadInjector from "../components/common/HeadInjector";
+import FloatingIcons from "../components/ui/FloatingIcons";
 
 const parkinSans = Parkinsans({
   variable: "--font-parkin-sans",
@@ -68,6 +68,7 @@ export default async function RootLayout({
         {children}
         <Toaster />
         <Footer />
+        <FloatingIcons />
       </body>
     </html>
   );

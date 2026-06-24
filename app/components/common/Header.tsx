@@ -8,6 +8,8 @@ import { HoveredLink, Menu, MenuItem } from "../ui/navbar-menu";
 import { menuItems } from "./menuItems";
 import MobileNav from "./MobileNav";
 import { useStore } from "@/app/store/productType";
+import ArrowButton from "./ArrowButton";
+import { usePathname } from "next/navigation";
 
 // Define the type for menu items
 type MenuItemType = {
@@ -18,37 +20,49 @@ type MenuItemType = {
 
 const Header = () => {
   const [active, setActive] = useState<string | null>(null);
-  const [services, setServices] = useState<{name:string,slug:string}[]>([]);
-  const setType = useStore((state)=>state.setType)
-  const setScrollToSection = useStore((state)=>state.setScrollToSection)
+  const [services, setServices] = useState<{ name: string; slug: string }[]>(
+    [],
+  );
+  const setType = useStore((state) => state.setType);
+  const setScrollToSection = useStore((state) => state.setScrollToSection);
+  const pathname = usePathname();
+  const isHome = pathname === "/";
 
-  useEffect(()=>{
-    const fetchServices = async() =>{
+  useEffect(() => {
+    const fetchServices = async () => {
       try {
-        const response = await fetch(`/api/admin/service`)
-        const data = await response.json()
-        setServices(data.data)
+        const response = await fetch(`/api/admin/service`);
+        const data = await response.json();
+        setServices(data.data);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
-    }
-    fetchServices()
-  },[])
+    };
+    fetchServices();
+  }, []);
 
   return (
-    <header className="lg:py-[22px] fixed w-full z-10 bg-white shadow-xs">
+    <header
+      style={{ backgroundColor: isHome ? "#ffffff" : "#F8F8F8" }}
+      className="lg:py-[22px] fixed w-full z-10"
+    >
       <MobileNav />
       <div className="container-fluid left-spacing pr-[47px] lg:flex items-center justify-between gap-20 hidden">
         {/* Logo Section */}
         <div className="logo-sec">
-          <Link href="/" onClick={()=>{setScrollToSection('')}}>
-          <Image
-            src="/assets/img/logo.svg"
-            alt="Lighting Solutions Dubai"
-            title="Microlights" 
-            width={220}
-            height={58}
-          />
+          <Link
+            href="/"
+            onClick={() => {
+              setScrollToSection("");
+            }}
+          >
+            <Image
+              src="/assets/img/logo.svg"
+              alt="Lighting Solutions Dubai"
+              title="Microlights"
+              width={220}
+              height={58}
+            />
           </Link>
         </div>
 
@@ -65,28 +79,34 @@ const Header = () => {
                 nomenu={!menuItem.children?.length} // If no submenu, set `nomenu=true`
               >
                 {/* Render submenus only if `children` exist */}
-                {menuItem.title == "Services" && services.map((service: {name:string,slug:string}, subIndex) => (
-                  <HoveredLink href={`/services/${service.slug}`} key={subIndex}>
-                    <div className="hover:bg-black/5 pl-3 pr-[80px] py-2 rounded-[8px] transition-transform duration-300 hover:scale-105 flex justify-between items-center">
-                      <p className="m-0 p-0 text-[16px]">
-                        {service.name}
-                      </p>
-                    </div>
-                  </HoveredLink>
-                ))}
+                {menuItem.title == "Services" &&
+                  services.map(
+                    (service: { name: string; slug: string }, subIndex) => (
+                      <HoveredLink
+                        href={`/services/${service.slug}`}
+                        key={subIndex}
+                      >
+                        <div className="hover:bg-black/5 pl-3 pr-[80px] py-2 rounded-[8px] transition-transform duration-300 hover:scale-105 flex justify-between items-center">
+                          <p className="m-0 p-0 text-[16px]">{service.name}</p>
+                        </div>
+                      </HoveredLink>
+                    ),
+                  )}
                 {menuItem.title !== "Services" && menuItem.children?.length ? (
                   <div className="grid grid-cols-1">
                     {menuItem.children.map((item, subIndex) => (
-                      <HoveredLink href={item.url} key={subIndex} onClick={() => {
-                        setType(item.title.split(" ")[0]);
-                        if (item.title === "Our Testimonials") {
-                          setScrollToSection("testimonials");
-                        }
-                      }}>
+                      <HoveredLink
+                        href={item.url}
+                        key={subIndex}
+                        onClick={() => {
+                          setType(item.title.split(" ")[0]);
+                          if (item.title === "Our Testimonials") {
+                            setScrollToSection("testimonials");
+                          }
+                        }}
+                      >
                         <div className="hover:bg-black/5 pl-3 pr-[80px] py-2 rounded-[8px] transition-transform duration-300 hover:scale-105 flex justify-between items-center">
-                          <p className="m-0 p-0 text-[16px]">
-                            {item.title}
-                          </p>
+                          <p className="m-0 p-0 text-[16px]">{item.title}</p>
                         </div>
                       </HoveredLink>
                     ))}
@@ -97,17 +117,18 @@ const Header = () => {
           </Menu>
 
           {/* Contact Button */}
-          <div className="rghtsd">
-          <Link
-  href="/contact-us"
-  className="flex gap-[20px] items-center border-t border-primary text-sm text-primary border-solid leading-none pt-[12px]   transition-colors duration-300 group"
->
-  <span className="transition-transform duration-300 group-hover:translate-x-1">
-    Contact
-  </span>
-  <FiArrowUpRight className="text-[22px] text-[#7D7D7D] transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1" />
-</Link>
-          </div>
+          {/* <div className="rghtsd">
+            <Link
+              href="/contact-us"
+              className="flex gap-[20px] items-center border-t border-primary text-sm text-primary border-solid leading-none pt-[12px]   transition-colors duration-300 group"
+            >
+              <span className="transition-transform duration-300 group-hover:translate-x-1">
+                Contact
+              </span>
+              <FiArrowUpRight className="text-[22px] text-[#7D7D7D] transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1" />
+            </Link>
+          </div> */}
+          <ArrowButton title="Contact" href="/contact-us" />
         </div>
       </div>
     </header>

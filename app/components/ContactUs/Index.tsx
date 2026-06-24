@@ -20,7 +20,7 @@ const Index = () => {
       <div className="headerpadding"> </div>
       <Banner data={banner.data} />
       <Address data={data}/>
-      <ContactForm />
+      {/* <ContactForm /> */}
     </>
   );
 };

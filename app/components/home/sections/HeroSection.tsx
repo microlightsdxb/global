@@ -9,6 +9,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectCreative } from "swiper/modules";
 import { Swiper as SwiperClass } from "swiper";
 import "swiper/css"; 
+import ArrowButton from "../../common/ArrowButton";
 
 const HeroSection = ({ data }: { data: Home }) => {
   const sectionRef = useRef(null);
@@ -95,9 +96,19 @@ const HeroSection = ({ data }: { data: Home }) => {
     >
       <div className="absolute bottom-[80px] lg:bottom-[150px] w-full z-20">
         <div className="container flex justify-end">
-          <span className="text-[15px] text-white whitespace-nowrap font-light relative z-10">
-            <span className="font-medium">0{currentSlide}</span> - 0{totalSlides}
-          </span>
+<div className="flex items-center gap-[10px]">
+  {Array.from({ length: totalSlides }).map((_, i) => (
+    <span
+      key={i}
+      onClick={() => swiperRef.current?.slideToLoop(i)}
+      className={`relative block h-[3px] cursor-pointer transition-all duration-300 before:absolute before:content-[''] before:left-0 before:right-0 before:-top-[10px] before:bottom-[-10px] ${
+        i === currentSlide - 1
+          ? "w-[46px] bg-white"
+          : "w-[15px] bg-white/40"
+      }`}
+    />
+  ))}
+</div>
         </div>
       </div>
 
@@ -208,13 +219,14 @@ const HeroSection = ({ data }: { data: Home }) => {
                           transition={{ duration: 0.6, delay: 0.6 }}
                           viewport={{ once: true, amount: 0.5 }}
                         >
-                          <Link
+                          {/* <Link
                             href="/about-us"
                             className="flex gap-[20px] items-center border-t border-white text-sm text-white border-solid pt-[12px]"
                           >
                             <span>Explore</span>
                             <FiArrowUpRight className="text-[22px] text-white" />
-                          </Link>
+                          </Link> */}
+                          <ArrowButton href="/contact-us" title="Talk With Us" variant={2} />
                         </Motiondiv>
                       </div>
                     </div>

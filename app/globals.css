@@ -170,7 +170,7 @@
   @apply duration-500 transition-all ease-in-out
 }
 .tsmnls .swiper-pagination {
-  @apply relative text-left mt-[3rem];
+  @apply relative text-right mt-[40px];
 
 }
 .tsmnls .swiper-pagination span.swiper-pagination-bullet {
