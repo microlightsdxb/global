@@ -43,9 +43,11 @@ const Index = ({
   return (
     <div>
       <HeroSection data={homeData} />
+       <AboutSec data={homeData} />
+        <IndustriesServed data={homeData} />
       <ProdSec data={typeData} />
-      <IndustriesServed data={homeData} />
-      <AboutSec data={homeData} />
+     
+     <div className="container"><hr className="my-0 h-[1px]"></hr></div>
       {/* <ProcessTimeline data={homeData} /> */}
       <RecentProjects data={projectData} />
       <Testimonials data={homeData} />
