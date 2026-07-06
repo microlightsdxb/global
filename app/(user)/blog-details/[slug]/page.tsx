@@ -41,6 +41,25 @@ const FAQ_SCHEMAS: Record<string, { name: string; text: string }[]> = {
       text: "Evaluate UAE-specific experience, portfolio breadth, technical and creative capability, and the company's approach to collaboration with wider project teams. References from comparable projects are the most reliable basis for comparison. ",
     },
   ],
+  "architectural-lighting-design-uae-projects": [
+    {
+      name: "What is the difference between lighting design and architectural lighting design?",
+      text: "General lighting design addresses illumination requirements. Architectural lighting design integrates light as a deliberate design element, coordinated with the architecture, interiors, and building systems to enhance the spatial experience and long-term performance of the project.",
+    },
+    {
+      name: "How does architectural lighting design impact user experience?",
+      text: "Light shapes how people perceive and move through a space, how comfortable they feel, and the overall impression the environment creates. Spaces with considered lighting feel coherent and purposeful. Those without it rarely do, regardless of how well other design elements have been executed.",
+    },
+    {
+      name: "Is architectural lighting design important for small projects or only large developments? ",
+      text: "The principles apply at every scale. A poorly lit small space is often more noticeable than a poorly lit large one. Even modest residential or commercial projects benefit from structured lighting planning, particularly where energy performance and quality of finish matter to the client.",
+    },
+    {
+      name: "Can poor lighting design affect energy consumption?",
+      text: "Directly and measurably. Over-specified systems, inefficient fixture selection, and the absence of lighting controls all contribute to unnecessary energy use. A professionally designed system, built around energy performance as a core objective, consistently delivers lower consumption and more manageable operating costs over its lifetime.",
+    },
+  ],
+  
 };
 
 async function getBlogData(slug: string) {
