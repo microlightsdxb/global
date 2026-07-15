@@ -59,6 +59,36 @@ const FAQ_SCHEMAS: Record<string, { name: string; text: string }[]> = {
       text: "Directly and measurably. Over-specified systems, inefficient fixture selection, and the absence of lighting controls all contribute to unnecessary energy use. A professionally designed system, built around energy performance as a core objective, consistently delivers lower consumption and more manageable operating costs over its lifetime.",
     },
   ],
+  "lighting-trends-2026-uae": [
+    {
+      name: "What are the biggest lighting trends in 2026?",
+      text: "Smart automation, human-centric design, sustainable LED systems, AI integration, and architectural lighting design as a defining element of luxury spaces are the key trends shaping the sector this year.",
+    },
+    {
+      name: "Why are smart lighting solutions becoming popular in Dubai?",
+      text: "Smart lighting solutions deliver significant energy savings, greater user flexibility, and integration with wider building management platforms, aligning directly with both operational efficiency objectives and premium experience expectations.",
+    },
+    {
+      name: "What makes sustainable lighting solutions important in the UAE?",
+      text: "Rising energy costs, green building certification requirements, and national sustainability targets all drive demand for sustainable lighting solutions UAE projects must deliver to meet regulatory and client expectations.",
+    },
+    {
+      name: "How does architectural lighting design improve luxury spaces?",
+      text: "Architectural lighting design transforms light from a background utility into a deliberate design element that enhances textures, defines spatial hierarchy, and creates a visual identity that elevates the overall quality of the environment.",
+    },
+    {
+      name: "What is human-centric lighting?",
+      text: "Human-centric lighting refers to indoor lighting solutions UAE designers specify to support occupants' natural circadian rhythms by varying colour temperature and intensity across the day, improving comfort, wellbeing, and productivity.",
+    },
+    {
+      name: "How do lighting consultants support modern projects?",
+      text: "Lighting consultancy Dubai services provide technical design expertise, energy performance analysis, cross-discipline coordination, and commissioning support, ensuring that the final outcome matches the original design intent.",
+    },
+    {
+      name: "What are the benefits of indoor and outdoor lighting solutions UAE?",
+      text: "Indoor lighting solutions UAE projects deliver improved comfort, energy efficiency, and compliance with green building standards. Outdoor lighting solutions UAE developers specify enhance architectural identity, extend the usability of exterior spaces, and are built to perform reliably under the region's demanding environmental conditions.",
+    },
+  ],
   
 };
 
