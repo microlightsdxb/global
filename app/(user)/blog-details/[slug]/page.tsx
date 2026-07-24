@@ -89,6 +89,24 @@ const FAQ_SCHEMAS: Record<string, { name: string; text: string }[]> = {
       text: "Indoor lighting solutions UAE projects deliver improved comfort, energy efficiency, and compliance with green building standards. Outdoor lighting solutions UAE developers specify enhance architectural identity, extend the usability of exterior spaces, and are built to perform reliably under the region's demanding environmental conditions.",
     },
   ],
+  "why-lighting-project-management-matters": [
+    {
+      name: "What is lighting project management?",
+      text: "Lighting project management is the structured process of planning, coordinating, and overseeing all stages of a lighting project, from initial design through procurement and installation to final commissioning and handover.",
+    },
+    {
+      name: "What does a lighting project manager do?",
+      text: "A lighting project manager is responsible for aligning design intent with on-site execution, coordinating between all project stakeholders, managing timelines and budgets, and ensuring that quality standards are maintained throughout the project lifecycle.",
+    },
+    {
+      name: "What are the key responsibilities in lighting project management?",
+      text: "Core responsibilities include project planning and scheduling, procurement coordination, contractor management, on-site supervision, quality control, risk identification, and progress reporting throughout each stage of the project.",
+    },
+    {
+      name: "When should you involve a lighting project manager in a project?",
+      text: "The earlier the better. Involving a lighting project manager at the planning stage, rather than during or after design, allows risks to be identified early, timelines to be set realistically, and the full scope of coordination to be established before construction begins.",
+    },
+  ],
   
 };
 
