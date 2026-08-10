@@ -65,7 +65,7 @@ const Conceptual = ({ data }: { data: Service }) => {
                       </div>
                     </motion.div>
                     <div className="min-w-[38px] min-h-[25px] hidden md:block">
-                      <Image src={assets.arrright} alt="" width={38} height={25} />
+                      <Image src={assets.arrright} alt="Navigation arrow" width={38} height={25} />
                     </div>
                   </motion.div>
                 ))}

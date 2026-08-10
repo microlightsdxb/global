@@ -193,7 +193,7 @@ const Filter = ({ industryData, locationData, setIndustrySelected, setLocationSe
                   className="flex gap-[20px] items-center text-white border-t border-white text-sm   border-solid leading-none pt-[12px] cursor-pointer group" onClick={handleClear}
                 >
                   Clear{" "}
-                  <Image src={assets.iconback} alt="" className="text-[22px] text-[#7D7D7D] group-hover:scale-125 transition-all ease-in-out duration-500"></Image>
+                  <Image src={assets.iconback} alt="Back to previous section" className="text-[22px] text-[#7D7D7D] group-hover:scale-125 transition-all ease-in-out duration-500"></Image>
                 </button>
               </div>
             </div>
