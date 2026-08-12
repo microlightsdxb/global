@@ -30,7 +30,7 @@ const Certifications: React.FC<FrameworkSectionProps> = ({
               key={item.title} variants={moveUp} className="p-5 md:p-10 border-r border-[#00000015] last:border-r-0">
               <div className="flex gap-5 h-20 w-20">
                 {item.images.map((image) => (
-                  <Image src={image} alt={item.title} key={image} width={80} height={80} className="object-cover h-full w-full" />
+                  <Image src={image.image} alt={image.imageAlt} key={image.image} width={80} height={80} className="object-cover h-full w-full" />
                 ))}
               </div>
               <div className="border-t   mt-10 "></div>

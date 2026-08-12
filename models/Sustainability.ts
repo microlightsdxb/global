@@ -35,7 +35,10 @@ const sustainabilitySchema = new mongoose.Schema({
         {
             title:String,
             description:String,
-            images:[String]
+            images:[{
+                image:String,
+                imageAlt:String
+            }]
         }
     ],
     goals:{
