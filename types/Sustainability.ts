@@ -15,7 +15,10 @@ export type Sustainability = {
         certifications:[{
             title:string,
             description:string,
-            images:string[]
+            images:{
+                image:string,
+                imageAlt:string
+            }[]
         }],
         goals:{
             title:string,

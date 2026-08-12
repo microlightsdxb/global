@@ -43,10 +43,10 @@ interface SustainabilityData {
     sectionTwoImage: string;
     secondSectionTitle: string;
     secondSectionDescription: string;
-    goalsTitle:string;
-    goalsDescription:string;
-    outroTitle:string;
-    outroDescription:string;
+    goalsTitle: string;
+    goalsDescription: string;
+    outroTitle: string;
+    outroDescription: string;
     metaTitle: string;
     metaDescription: string;
 }
@@ -58,8 +58,8 @@ interface Items {
     title: string;
     description: string;
     bottomIcon: string;
-    images:string[]
-    image:string;
+    images: { image: string; imageAlt: string }[];
+    image: string;
 }
 
 
@@ -73,13 +73,13 @@ export default function Sustainability() {
     const [certificationList, setCertificationList] = useState<Items[]>();
     const [certificationTitle, setCertificationTitle] = useState("")
     const [certificationDescription, setCertificationDescription] = useState("")
-    const [images,setImages] = useState<string[]>([])
-    const [goalsList,setGoalsList] = useState<Items[]>([])
-    const [goalTitle,setGoalTitle] = useState("")
-    const [goalDescription,setGoalDescription] = useState("")
-    const [goalImage,setGoalImage] = useState("")
-    const [goalIcon,setGoalIcon] = useState("")
-    const [iconAlt,setIconAlt] = useState("")
+    const [images, setImages] = useState<{ image: string; imageAlt: string }[]>([])
+    const [goalsList, setGoalsList] = useState<Items[]>([])
+    const [goalTitle, setGoalTitle] = useState("")
+    const [goalDescription, setGoalDescription] = useState("")
+    const [goalImage, setGoalImage] = useState("")
+    const [goalIcon, setGoalIcon] = useState("")
+    const [iconAlt, setIconAlt] = useState("")
     const [goalIconAlt, setGoalIconAlt] = useState("")
 
 
@@ -147,8 +147,8 @@ export default function Sustainability() {
             const response = await fetch("/api/admin/sustainability/goal");
             if (response.ok) {
                 const data = await response.json();
-                setValue("goalsTitle",data.data.title)
-                setValue("goalsDescription",data.data.description)
+                setValue("goalsTitle", data.data.title)
+                setValue("goalsDescription", data.data.description)
                 setGoalsList(data.data.items);
             } else {
                 const data = await response.json();
@@ -272,11 +272,11 @@ export default function Sustainability() {
         }
     }
 
-    const handleAddImages = async(id:string) => {
+    const handleAddImages = async (id: string) => {
         try {
             const response = await fetch(`/api/admin/sustainability/certification/images?id=${id}`, {
                 method: "POST",
-                body:JSON.stringify({images})
+                body: JSON.stringify({ images })
             });
             if (response.ok) {
                 const data = await response.json();
@@ -291,11 +291,11 @@ export default function Sustainability() {
         }
     }
 
-    const handleAddGoal = async () =>{
+    const handleAddGoal = async () => {
         try {
             const response = await fetch(`/api/admin/sustainability/goal`, {
                 method: "PATCH",
-                body:JSON.stringify({goalTitle,goalDescription,goalImage,goalIconAlt,goalIcon})
+                body: JSON.stringify({ goalTitle, goalDescription, goalImage, goalIconAlt, goalIcon })
             });
             if (response.ok) {
                 const data = await response.json();
@@ -310,11 +310,11 @@ export default function Sustainability() {
         }
     }
 
-    const handleEditGoalItem = async (id:string) =>{
+    const handleEditGoalItem = async (id: string) => {
         try {
             const response = await fetch(`/api/admin/sustainability/goal?id=${id}`, {
                 method: "PATCH",
-                body:JSON.stringify({goalTitle,goalDescription,goalImage,goalIconAlt,goalIcon})
+                body: JSON.stringify({ goalTitle, goalDescription, goalImage, goalIconAlt, goalIcon })
             });
             if (response.ok) {
                 const data = await response.json();
@@ -329,7 +329,7 @@ export default function Sustainability() {
         }
     }
 
-    const handleDeleteGoalItem = async (id:string) =>{
+    const handleDeleteGoalItem = async (id: string) => {
         try {
             const response = await fetch(`/api/admin/sustainability/goal?id=${id}`, {
                 method: "DELETE",
@@ -420,7 +420,7 @@ export default function Sustainability() {
     }
 
 
-    const submitGoalSection = async (data:SustainabilityData) =>{
+    const submitGoalSection = async (data: SustainabilityData) => {
         try {
             const formData = new FormData();
             formData.append("goalsTitle", data.goalsTitle);
@@ -441,7 +441,7 @@ export default function Sustainability() {
         }
     }
 
-    const submitOutroSection = async(data:SustainabilityData) =>{
+    const submitOutroSection = async (data: SustainabilityData) => {
         try {
             const formData = new FormData();
             formData.append("outroTitle", data.outroTitle);
@@ -463,7 +463,7 @@ export default function Sustainability() {
         }
     }
 
-    const submitMetaSection = async() => {
+    const submitMetaSection = async () => {
         try {
             const response = await fetch("/api/admin/sustainability/meta", {
                 method: "POST",
@@ -489,21 +489,21 @@ export default function Sustainability() {
         <div className="grid grid-cols-1 gap-5">
 
             <div className="h-fit w-full p-5 shadow-md border-gray-300 rounded-md mt-5 bg-white">
-                                        <div className="flex justify-between border-b-2 pb-2">
-                                            <Label className="text-sm font-bold">Meta Section</Label>
-                                            <Button onClick={submitMetaSection}>Save</Button>
-                                        </div>
-                                        <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
-                                            <div className="flex flex-col gap-1">
-                                                <Label>Meta title</Label>
-                                                <Input type="text" {...register("metaTitle")} />
-                                            </div>
-                                            <div className="flex flex-col gap-1">
-                                                <Label>Meta Description</Label>
-                                                <Input type="text" {...register("metaDescription")} />
-                                            </div>
-                                        </div>
-                                    </div>
+                <div className="flex justify-between border-b-2 pb-2">
+                    <Label className="text-sm font-bold">Meta Section</Label>
+                    <Button onClick={submitMetaSection}>Save</Button>
+                </div>
+                <div className="mt-2 grid grid-cols-1 gap-2  h-fit">
+                    <div className="flex flex-col gap-1">
+                        <Label>Meta title</Label>
+                        <Input type="text" {...register("metaTitle")} />
+                    </div>
+                    <div className="flex flex-col gap-1">
+                        <Label>Meta Description</Label>
+                        <Input type="text" {...register("metaDescription")} />
+                    </div>
+                </div>
+            </div>
 
             <form className="h-full w-full p-5 shadow-md border-gray-300 rounded-md bg-white" onSubmit={handleSubmit(submitIntroSection)}>
                 <div className="flex justify-between border-b-2 pb-2">
@@ -523,7 +523,7 @@ export default function Sustainability() {
                     </div>
                     <div className="flex flex-col gap-1">
                         <Label className="">Image</Label>
-                        <ImageUploader onChange={(url) => setValue("image", url)} value={watch("image")}/>
+                        <ImageUploader onChange={(url) => setValue("image", url)} value={watch("image")} />
                     </div>
                     <div className="flex flex-col gap-1">
                         <Label className="">Alt Tag</Label>
@@ -557,7 +557,7 @@ export default function Sustainability() {
                                     <div className="flex flex-col gap-4 overflow-y-auto max-h-[500px]">
                                         <div>
                                             <Label>Icon</Label>
-                                            <ImageUploader onChange={(url) => setIcon(url)} value={icon} isLogo/>
+                                            <ImageUploader onChange={(url) => setIcon(url)} value={icon} isLogo />
                                         </div>
                                         <div>
                                             <Label>Alt Tag</Label>
@@ -600,7 +600,7 @@ export default function Sustainability() {
                                             <div className="flex flex-col gap-4 overflow-y-auto max-h-[500px]">
                                                 <div>
                                                     <Label>Icon</Label>
-                                                    <ImageUploader onChange={(url) => setIcon(url)} value={icon} isLogo/>
+                                                    <ImageUploader onChange={(url) => setIcon(url)} value={icon} isLogo />
                                                 </div>
                                                 <div>
                                                     <Label>Alt Tag</Label>
@@ -690,20 +690,39 @@ export default function Sustainability() {
 
                                     </Dialog>
 
-                                    
+
                                     <Sheet>
-                                        <SheetTrigger><BsImages className=" cursor-pointer text-black" onClick={()=>{setImages(item.images);}}/></SheetTrigger>
+                                        <SheetTrigger><BsImages className="cursor-pointer text-black" onClick={() => { setImages(item.images); }} /></SheetTrigger>
                                         <SheetContent>
                                             <SheetHeader>
-                                                <SheetTitle className="flex gap-2 items-center">Add Images<FaPlusCircle onClick={()=>{setImages([...images,""])}}/></SheetTitle>
+                                                <SheetTitle className="flex gap-2 items-center">
+                                                    Add Images
+                                                    <FaPlusCircle onClick={() => { setImages([...images, { image: "", imageAlt: "" }]) }} />
+                                                </SheetTitle>
                                                 <div className="flex flex-col gap-3 h-[500px] overflow-y-auto p-1">
-                                                    {images.map((_,index)=>(
-                                                        <ImageUploader value={images[index]} onChange={(url)=>images[index]=url} removeIcon={images[index]==""} handleRemovePlaceHolder={()=>setImages(images.filter((_,itemIndex)=>index!==itemIndex))} key={index}/>
+                                                    {images.map((item, index) => (
+                                                        <div key={index} className="flex flex-col gap-2 border-b pb-3">
+                                                            <ImageUploader
+                                                                value={item.image}
+                                                                onChange={(url) => setImages(images.map((img, i) => i === index ? { ...img, image: url } : img))}
+                                                                removeIcon={item.image === ""}
+                                                                handleRemovePlaceHolder={() => setImages(images.filter((_, itemIndex) => index !== itemIndex))}
+                                                            />
+                                                            <div className="flex flex-col gap-2">
+                                                                <Label>Alt Tag</Label>
+                                                                <Input
+                                                                    type="text"
+                                                                    placeholder="Alt Tag"
+                                                                    value={item.imageAlt}
+                                                                    onChange={(e) => setImages(images.map((img, i) => i === index ? { ...img, imageAlt: e.target.value } : img))}
+                                                                />
+                                                            </div>
+                                                        </div>
                                                     ))}
                                                 </div>
                                             </SheetHeader>
                                             <SheetFooter className="mb-5">
-                                                <SheetClose className="bg-black p-2 text-white" onClick={()=>handleAddImages(item._id)}>Save</SheetClose>
+                                                <SheetClose className="bg-black p-2 text-white" onClick={() => handleAddImages(item._id)}>Save</SheetClose>
                                             </SheetFooter>
                                         </SheetContent>
                                     </Sheet>
@@ -754,7 +773,7 @@ export default function Sustainability() {
                                         </div>
                                         <div>
                                             <Label>Icon</Label>
-                                            <ImageUploader onChange={(url) => setGoalIcon(url)} value={goalIcon} isLogo/>
+                                            <ImageUploader onChange={(url) => setGoalIcon(url)} value={goalIcon} isLogo />
                                         </div>
                                     </div>
                                 </DialogHeader>
@@ -790,16 +809,16 @@ export default function Sustainability() {
                                                     <ImageUploader onChange={(url) => setGoalImage(url)} value={goalImage} />
                                                 </div>
                                                 <div>
-                                            <Label>Alt Tag</Label>
-                                            <Input type="text" placeholder="Alt Tag" value={goalIconAlt} onChange={(e) => setGoalIconAlt(e.target.value)} />
-                                        </div>
+                                                    <Label>Alt Tag</Label>
+                                                    <Input type="text" placeholder="Alt Tag" value={goalIconAlt} onChange={(e) => setGoalIconAlt(e.target.value)} />
+                                                </div>
                                                 <div>
                                                     <Label>Title</Label>
                                                     <Input type="text" placeholder="Title" value={goalTitle} onChange={(e) => setGoalTitle(e.target.value)} />
                                                 </div>
                                                 <div className="">
                                                     <Label>Icon</Label>
-                                                    <ImageUploader onChange={(url) => setGoalIcon(url)} value={goalIcon} isLogoInBlack/>
+                                                    <ImageUploader onChange={(url) => setGoalIcon(url)} value={goalIcon} isLogoInBlack />
                                                 </div>
                                             </div>
                                         </DialogHeader>
