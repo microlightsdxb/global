@@ -107,7 +107,33 @@ const FAQ_SCHEMAS: Record<string, { name: string; text: string }[]> = {
       text: "The earlier the better. Involving a lighting project manager at the planning stage, rather than during or after design, allows risks to be identified early, timelines to be set realistically, and the full scope of coordination to be established before construction begins.",
     },
   ],
-  
+  "why-businesses-need-lighting-solutions-provider-uae": [
+    {
+      name: "What does a lighting solutions company actually do?",
+      text: "A professional lighting solutions company covers strategy, design, product specification, smart controls integration, energy optimisation, installation coordination, commissioning, and ongoing maintenance planning. It is a full-service engagement, not simply the supply of fixtures, and the scope of involvement typically spans the entire project lifecycle from initial brief to post-handover support.",
+    },
+    {
+      name: "Why should a business hire a professional provider instead of a general contractor?",
+      text: "A specialist lighting provider brings technical depth in photometrics, compliance, controls, and energy performance that general contractors do not carry as a core competency. The result is better-specified products, fewer installation problems, and a lighting environment that performs as designed rather than requiring correction after handover. "
+    },
+    {
+      name: "How do I know if a lighting provider is compliant with UAE regulations?",
+      text: "Confirm that products meet UAE.S 5015 minimum energy efficiency standards and carry ESMA energy labelling. Ask the provider for evidence of DEWA-compliant installations on comparable projects and verify that they are familiar with any green building requirements applicable to your development.."
+    },
+    {
+      name: "Is it worth paying more for an experienced lighting provider?",
+      text: "Yes, consistently. When energy savings, fixture lifespan, reduced maintenance, and the avoided cost of rework are factored into the total, an experienced provider with properly specified products typically costs less over the life of a project than a cheaper alternative that underdelivers on performance or compliance."
+    },
+    {
+      name: "What industries need lighting solutions in the UAE?",
+      text: "Retail, F&B, hospitality, commercial offices, residential and mixed-use developments, healthcare facilities, and industrial and warehousing environments all depend on professional lighting for compliance, safety, energy cost control, and the quality of experience they deliver to customers, guests, patients, and employees."
+    },
+    {
+      name: "Are LED lighting solutions suitable for commercial buildings?",
+      text: "LED is the standard specification for commercial projects across the UAE, offering measurable energy savings, longer fixture lifespans, and direct alignment with ESG commitments and green building certification requirements. Most UAE regulatory frameworks either mandate or strongly incentivise LED adoption across commercial and public developments."
+    }
+  ],
+
 };
 
 async function getBlogData(slug: string) {
