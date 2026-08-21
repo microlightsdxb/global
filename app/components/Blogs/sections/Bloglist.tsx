@@ -29,9 +29,9 @@ interface FrameworkSectionProps {
 const Bloglist: React.FC<FrameworkSectionProps> = ({ data, categories }) => {
   const [activeTab, setActiveTab] = useState("View All");
 
-  useEffect(() => {
-    console.log(data?.data, categories?.data);
-  }, [data, categories]);
+  // useEffect(() => {
+  //   console.log(data?.data, categories?.data);
+  // }, [data, categories]);
 
   const filteredData = (
     activeTab === "View All"
@@ -45,9 +45,9 @@ const Bloglist: React.FC<FrameworkSectionProps> = ({ data, categories }) => {
       return dateB - dateA;
     });
 
-  useEffect(() => {
-    console.log(filteredData);
-  }, [filteredData]);
+  // useEffect(() => {
+  //   console.log(filteredData);
+  // }, [filteredData]);
 
   return (
     <>
