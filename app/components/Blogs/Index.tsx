@@ -10,9 +10,9 @@ const Index = () => {
   const { data:blogData } = useSWR(`/api/admin/blog`, fetcher)
   const { data:categoryData } = useSWR(`/api/admin/category`, fetcher)
 
-  useEffect(()=>{
-    console.log(blogData?.data,categoryData?.data)
-  },[blogData,categoryData])
+  // useEffect(()=>{
+  //   console.log(blogData?.data,categoryData?.data)
+  // },[blogData,categoryData])
   return (
     <>
       <div className="headerpadding"> </div>
