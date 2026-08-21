@@ -45,9 +45,9 @@ const Bloglist: React.FC<FrameworkSectionProps> = ({ data, categories }) => {
       return dateB - dateA;
     });
 
-  useEffect(() => {
-    console.log(filteredData);
-  }, [filteredData]);
+  // useEffect(() => {
+  //   console.log(filteredData);
+  // }, [filteredData]);
 
   return (
     <>
