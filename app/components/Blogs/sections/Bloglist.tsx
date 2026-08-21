@@ -33,10 +33,17 @@ const Bloglist: React.FC<FrameworkSectionProps> = ({ data, categories }) => {
     console.log(data?.data, categories?.data);
   }, [data, categories]);
 
-  const filteredData =
+  const filteredData = (
     activeTab === "View All"
       ? data?.data
-      : data?.data?.filter((member) => member.category === activeTab) || [];
+      : data?.data?.filter((member) => member.category === activeTab) || []
+  )
+    ?.slice()
+    .sort((a, b) => {
+      const dateA = new Date(a.date ? a.date : a.createdAt).getTime();
+      const dateB = new Date(b.date ? b.date : b.createdAt).getTime();
+      return dateB - dateA;
+    });
 
   useEffect(() => {
     console.log(filteredData);
@@ -150,32 +157,19 @@ const Bloglist: React.FC<FrameworkSectionProps> = ({ data, categories }) => {
             ))}
           </motion.div> */}
 
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 team-grid gap-x-5 lg:gap-x-10"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 team-grid gap-x-5 lg:gap-x-10">
             {filteredData?.map((member, index) => (
               <Link
                 key={index}
                 href={`/blog-details/${member.slug}`}
                 className="teammem "
               >
-                <motion.div
-                  key={index}
-                  className="teammem mt-10 lg:mt-20 xl:mt-20 hover:scale-[1.03] transition-all duration-500"
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.012 }}
-                  viewport={{ once: true }}
-                >
+                <div className="teammem mt-10 lg:mt-20 xl:mt-20 hover:scale-[1.03] transition-all duration-500">
                   <motion.div
                     className="evecont"
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5, delay: index * 0.012 }}
+                    transition={{ duration: 0.5, delay: index * 0.015 }}
                     viewport={{ once: true }}
                   >
                     <div className="relative w-full h-[270px] sm:h-[300px] 3xl:h-[370px]">
@@ -208,10 +202,10 @@ const Bloglist: React.FC<FrameworkSectionProps> = ({ data, categories }) => {
                       </p>
                     </div>
                   </motion.div>
-                </motion.div>
+                </div>
               </Link>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
       <div className="container">
