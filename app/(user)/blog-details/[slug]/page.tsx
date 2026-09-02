@@ -133,7 +133,28 @@ const FAQ_SCHEMAS: Record<string, { name: string; text: string }[]> = {
       text: "LED is the standard specification for commercial projects across the UAE, offering measurable energy savings, longer fixture lifespans, and direct alignment with ESG commitments and green building certification requirements. Most UAE regulatory frameworks either mandate or strongly incentivise LED adoption across commercial and public developments."
     }
   ],
-
+  "how-weather-effects-outdoor-lighting-uae": [
+    {
+      name: "What weather conditions affect outdoor lighting the most in the UAE?",
+      text: "Sustained extreme heat, airborne dust and sand, and coastal humidity are the three primary stressors for outdoor lighting systems in the UAE. Heat accelerates driver degradation and lumen depreciation. Dust can infiltrate poorly sealed housings and reduce light output, while humidity and salt-laden coastal air can cause corrosion and condensation-related failures. Fixtures specified without accounting for all three conditions may underperform their rated lifespans in the UAE environment."
+    },
+    {
+      name: "What IP rating is best for outdoor lighting in the UAE?",
+      text: "IP65 is the recommended minimum for most UAE outdoor applications, providing full dust protection and resistance to low-pressure water jets. For exposed locations, coastal projects, and areas subject to high-pressure cleaning, IP66 or IP67 provides more appropriate protection. Ground-recessed and poolside fixtures should be specified at IP67 or above. The right rating depends on the specific exposure level and use of each location within the project."
+    },
+    {
+      name: "Can extreme heat reduce the lifespan of outdoor LED lighting?",
+      text: "Yes, significantly. LED drivers are particularly sensitive to heat, and sustained operating temperatures above manufacturer assumptions can accelerate component degradation, reduce electrical efficiency, and shorten the point at which fixtures reach the end of their useful life. Proper thermal management through heat sink design, fixture placement, and, where necessary, remote driver housing can help mitigate this, but heat remains one of the most significant factors affecting LED lifespan in the UAE climate."
+    },
+    {
+      name: "What materials are best for weatherproof outdoor lighting fixtures?",
+      text: "Powder-coated or marine-grade aluminium housings, tempered glass lenses, UV-stabilised polycarbonate where plastic is required, and stainless-steel fixings and hardware provide a strong combination of durability against heat, UV, dust, and moisture exposure. Each material addresses specific environmental challenges, and the right combination depends on the site location, exposure level, and aesthetic requirements of the installation."
+    },
+    {
+      name: "Does humidity affect outdoor lighting performance in coastal areas like Dubai?",
+      text: "Yes. Salt-laden coastal air accelerates corrosion on connectors, fixings, and external hardware, while day-to-night temperature variations can create condensation inside fixture housings. Coastal projects in Dubai and Abu Dhabi require fixtures specified with marine-grade materials, appropriate IP ratings, and breather valves or fully sealed housings to manage these conditions effectively throughout the installation's operational life."
+    }
+  ],
 };
 
 async function getBlogData(slug: string) {
