@@ -155,6 +155,40 @@ const FAQ_SCHEMAS: Record<string, { name: string; text: string }[]> = {
       text: "Yes. Salt-laden coastal air accelerates corrosion on connectors, fixings, and external hardware, while day-to-night temperature variations can create condensation inside fixture housings. Coastal projects in Dubai and Abu Dhabi require fixtures specified with marine-grade materials, appropriate IP ratings, and breather valves or fully sealed housings to manage these conditions effectively throughout the installation's operational life."
     }
   ],
+  "indoor-lighting-mistakes-dubai": [
+    {
+      name: "What is the 3-lighting rule?",
+      text: "The 3-lighting rule combines ambient, task, and accent lighting in every room instead of relying on a single source. It creates depth, flexibility, and comfort that one fixture alone cannot provide, and it is the foundation of every well-considered interior lighting scheme."
+    },
+    {
+      name: "What is the 5'7\" lighting rule?",
+      text: "The 5'7\" rule suggests centering wall-mounted fixtures at approximately eye level, around 5 feet 7 inches from the floor, for balanced and flattering light. It is a practical guideline that should be adjusted based on ceiling height and the specific function of the room."
+    },
+    {
+      name: "What is bad lighting called?",
+      text: "Harsh, unbalanced, or uncomfortable lighting is commonly referred to as glare or visual discomfort lighting. It is typically caused by undiffused bulbs, excessive brightness, or light reflecting off hard and glossy surfaces that are common in Dubai interiors."
+    },
+    {
+      name: "What are common failures for light fixtures?",
+      text: "Common failures include flickering from loose connections or dimmer incompatibility, premature bulb burnout, LED driver failure, and corrosion in humid environments. In Dubai, heat and humidity make these failures significantly more frequent in low-quality components than in milder climates."
+    },
+    {
+      name: "What are common interior design mistakes to avoid?",
+      text: "Beyond lighting, common mistakes include poor furniture scale for the room, ignoring natural light and traffic flow, and inconsistent colour temperature across connected spaces. Lighting mistakes are among the most common and most fixable issues in Dubai home interiors."
+    },
+    {
+      name: "What is the 3-5-7 rule in interior design?",
+      text: "The 3-5-7 rule places fixtures at three height bands: around 30 inches for task lighting, 50 inches for ambient wall lighting, and 70 inches for accent or decorative fixtures. Used alongside the 3-lighting rule, it creates visual balance and spatial depth across a room."
+    },
+    {
+      name: "How can I fix harsh overhead lighting in a Dubai villa?",
+      text: "Add diffusers or shades to reduce direct glare, introduce layered ambient, task, and accent lighting rather than relying on the overhead fixture alone, and install a dimmer for brightness control across different times of day and different uses of the space."
+    },
+    {
+      name: "Where can I find indoor lighting consultants in Dubai?",
+      text: "Microlights offers indoor lighting consultation across Dubai and the UAE, covering room-by-room lighting plans, fixture selection, and energy efficiency assessments for residential and commercial projects of every scale."
+    }
+  ],
 };
 
 async function getBlogData(slug: string) {
