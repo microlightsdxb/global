@@ -189,6 +189,32 @@ const FAQ_SCHEMAS: Record<string, { name: string; text: string }[]> = {
       text: "Microlights offers indoor lighting consultation across Dubai and the UAE, covering room-by-room lighting plans, fixture selection, and energy efficiency assessments for residential and commercial projects of every scale."
     }
   ],
+  "lighting-design-dubai-before-concept-stage": [
+    {
+      name: "When should a lighting designer be appointed on a Dubai project?",
+      text: "A lighting designer should be appointed at concept stage, before ceiling layouts, MEP coordination, and power distribution are fixed. Involvement at this stage allows the designer to influence the decisions that determine what is possible later. Appointing a lighting designer after concept freeze significantly limits the scope and increases the likelihood of compromises at handover."
+    },
+    {
+      name: "What is the difference between a lighting designer and a lighting supplier?",
+      text: "A lighting designer plans how light will function within a space: the layout, the control strategy, the lux levels, the colour temperature, and the relationship between natural and artificial sources. A lighting supplier provides the products that deliver the design. Microlights provides both, with an in-house design team working alongside the supply and project management function. The two roles are complementary but not interchangeable."
+    },
+    {
+      name: "How long does lighting design take for a commercial fit-out in the UAE?",
+      text: "The timeline depends on the project scale, the number of zones, and the complexity of the control strategy. Smaller fit-outs with straightforward briefs move faster than large multi-zone or mixed-use developments. The client review and approval process between stages is typically the most significant variable. Contact the Microlights design team for an estimated timeline based on your specific project scope."
+    },
+    {
+      name: "What information should I give a lighting designer at the start?",
+      text: "The most useful starting information is the project brief, the floor plan with ceiling heights, the interior design concept and material palette, the applicable compliance framework, the budget range, and the programme. If the MEP consultant has already issued preliminary drawings, sharing these at the start avoids duplication of effort and helps the designer identify ceiling and power constraints early."
+    },
+    {
+      name: "Which colour temperature is best for retail and restaurants?",
+      text: "For retail, a colour temperature between 3000K and 4000K with a CRI of 90 or above is generally recommended to render product colours accurately under artificial light. For restaurants and F&B environments, warmer tones between 2700K and 3000K with dimmable controls suit the day to evening transition most formats require. These are general guidelines. The right choice for a specific project depends on the brand, the interior palette, and the operational pattern of the space."
+    },
+    {
+      name: "Do lighting products in the UAE need certification?",
+      text: "Yes. Products installed in the UAE must meet MoIAT energy efficiency requirements. For projects pursuing green building certification under Al Sa'fat, Estidama, or LEED, there are additional lighting performance requirements that affect product selection and system design. Specifying products that carry the appropriate certification protects the project at the approval stage and the client post-handover."
+    }
+  ],
 };
 
 async function getBlogData(slug: string) {
