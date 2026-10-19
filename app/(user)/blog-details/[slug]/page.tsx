@@ -215,6 +215,32 @@ const FAQ_SCHEMAS: Record<string, { name: string; text: string }[]> = {
       text: "Yes. Products installed in the UAE must meet MoIAT energy efficiency requirements. For projects pursuing green building certification under Al Sa'fat, Estidama, or LEED, there are additional lighting performance requirements that affect product selection and system design. Specifying products that carry the appropriate certification protects the project at the approval stage and the client post-handover."
     }
   ],
+  "bespoke-lighting-solutions-vs-off-the-shelf-products": [
+    {
+      name: "What are bespoke lighting solutions?",
+      text: "Bespoke lighting solutions are lighting systems designed around the specific spatial, technical, and aesthetic requirements of a project rather than selected from a standard catalogue. The process covers fixture specification, light level calculations, control strategy, and coordination with the architecture and interior design. The starting point is the brief, not a product brochure."
+    },
+    {
+      name: "Is bespoke lighting more expensive than off-the-shelf lighting?",
+      text: "The upfront cost per fixture is typically higher for bespoke specification. However, the total cost across the life of the installation, accounting for energy consumption, maintenance intervals, and replacement frequency, generally favours bespoke on projects in demanding conditions or where lighting quality directly affects commercial performance. The relevant comparison is lifetime cost, not unit price."
+    },
+    {
+      name: "Does bespoke lighting mean every fitting is custom-made?",
+      text: "Not necessarily. A bespoke lighting solution means that every specification decision is made around the requirements of the project rather than adapted from a standard range. Some fixtures within a bespoke scheme may be drawn from an existing product range; others may be manufactured specifically for the project. The defining characteristic is that the design leads the product selection, not the other way around."
+    },
+    {
+      name: "Which spaces benefit most from bespoke lighting?",
+      text: "Retail stores, restaurants, hotel lobbies, hospitality venues, luxury residential developments, and architecturally prominent commercial interiors benefit most from bespoke specification. Any environment where lighting directly affects customer experience, brand perception, or product presentation, and where the installation needs to perform reliably across a long operational life, is a strong candidate for a bespoke approach."
+    },
+    {
+      name: "What is the difference between custom lighting design and off-the-shelf lighting?",
+      text: "Custom lighting design is the process of developing a lighting strategy around the specific requirements of a space, covering layout, specifications, controls, and performance targets. Off-the-shelf lighting is the selection of products from a standard range to meet general illumination requirements. The difference is between designing for the space and selecting for availability."
+    },
+    {
+      name: "How do I choose a lighting design company in the UAE?",
+      text: "Look for a company with a verifiable portfolio of completed projects in your sector, an in-house design team rather than a reseller model, demonstrated technical expertise in lux calculations and controls, and end-to-end capability from concept through to installation and post-handover support. Experience with UAE-specific conditions, including climate, compliance requirements, and project timelines, is an important differentiator in this market."
+    }
+  ],
 };
 
 async function getBlogData(slug: string) {
