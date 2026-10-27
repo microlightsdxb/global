@@ -52,6 +52,7 @@
   --text-lg: clamp(1.5rem, 3vw, 1.875rem); /* 24px - 30px */
   --text-sm: clamp(1rem, 2vw, 1.125rem); /* 16px - 18px */
   --text-xs: clamp(0.875rem, 1.8vw, 1.0625rem); /* 14px - 17px */
+  --text-22: clamp(18px, 1.9vw + 3px, 22px);
   --text-25: clamp(1.2rem, 3vw, 1.563rem);
   --text-40: clamp(1.8rem, 3vw, 2.5rem);
 
@@ -406,7 +407,7 @@ body {
  }
 
  .blog-content h3 {
-   @apply mb-4 text-black font-semibold text-base leading-snug;
+   @apply mb-4 text-black font-medium text-22 leading-snug;
  }
 
  .blog-content a {

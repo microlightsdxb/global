@@ -24,44 +24,44 @@ export default function ContentArea() {
             <h2 className="text-lg font-semibold mt-6 mb-2">2. Submission of Information and Privacy Policy</h2>
             <p className="mb-4">Any information submitted voluntarily to Microlights via the contact form on the Website shall be deemed and remain the property of Microlights, who shall only use the information in accordance with any obligations of confidentiality or privacy relating to the submitted information as agreed by Microlights, or specifically set forth on the Website in its Privacy Policy and Cookies Policy, or as otherwise specifically agreed or required by law. Please refer to the Website Privacy Policy and Cookies Policy for more details which can be found at <a href="https://www.microlights.com" className="text-blue-600 underline">https://www.microlights.com</a>.</p>
             <h2 className="text-lg font-semibold mt-6 mb-2">3. Intellectual Property</h2>
-            <p className="mb-4">3.1 All Intellectual Property Rights in the Content and materials displayed and included on the Website, are either the sole property of Microlights and/ or its affiliates, or are licensed for use by Microlights and are protected to the fullest extent by applicable trademark, copyright and database laws, and all such rights are reserved. By using the Website and its Content, Microlights does not grant you any copyright, design, trademark or other Intellectual Property Rights relating to the Content, including any software, HTML or other codes contained within the Website. You are permitted to use the Content only as expressly authorised by Microlights. Any reproduction or redistribution of the Content is prohibited and may result in civil and criminal penalties...</p>
+            <p className="mb-4">3.1 All Intellectual Property Rights in the Content and materials displayed and included on the Website, are either the sole property of Microlights and/ or its affiliates, or are licensed for use by Microlights and are protected to the fullest extent by applicable trademark, copyright and database laws, and all such rights are reserved. By using the Website and its Content, Microlights does not grant you any copyright, design, trademark or other Intellectual Property Rights relating to the Content, including any software, HTML or other codes contained within the Website. You are permitted to use the Content only as expressly authorised by Microlights. Any reproduction or redistribution of the Content is prohibited and may result in civil and criminal penalties.</p>
 
-            <p className="mb-4">3.2 The use and registration of the Microlights name and logo is exclusively reserved to us...</p>
+            <p className="mb-4">3.2 The use and registration of the Microlights name and logo is exclusively reserved to us.</p>
 
             <h2 className="text-lg font-semibold mt-6 mb-2">4. Use of Information and Materials and No Warranty</h2>
-            <p className="mb-4">4.1 As mentioned above, the information and materials contained on the Website, these Terms and Conditions and descriptions that appear, are subject to change...</p>
-            <p className="mb-4">4.2 To the full extent permitted by law, we do not warrant the accuracy, validity, currency, adequacy or completeness of the Content...</p>
+            <p className="mb-4">4.1 As mentioned above, the information and materials contained on the Website, these Terms and Conditions and descriptions that appear, are subject to change.</p>
+            <p className="mb-4">4.2 To the full extent permitted by law, we do not warrant the accuracy, validity, currency, adequacy or completeness of the Content.</p>
 
             <h2 className="text-lg font-semibold mt-6 mb-2">5. Links to Third Party Websites</h2>
-            <p className="mb-4">5.1 The Website may contain hyperlinks to websites operated by third parties...</p>
-            <p className="mb-4">5.2 We are not liable for any harm or damages related to the purchase or use of goods...</p>
+            <p className="mb-4">5.1 The Website may contain hyperlinks to websites operated by third parties.</p>
+            <p className="mb-4">5.2 We are not liable for any harm or damages related to the purchase or use of goods.</p>
 
             <h2 className="text-lg font-semibold mt-6 mb-2">6. Exclusion of Liability</h2>
-            <p className="mb-4">In no event will we be liable for any damages, including without limitation, direct or indirect...</p>
+            <p className="mb-4">In no event will we be liable for any damages, including without limitation, direct or indirect.</p>
 
             <h2 className="text-lg font-semibold mt-6 mb-2">7. Indemnity</h2>
-            <p className="mb-4">As a user of the Website, you agree to indemnify us from and against all liabilities...</p>
+            <p className="mb-4">As a user of the Website, you agree to indemnify us from and against all liabilities.</p>
 
             <h2 className="text-lg font-semibold mt-6 mb-2">8. Limitations on Use</h2>
-            <p className="mb-4">As a user of this Website, you agree to not abuse the Website in anyway...</p>
+            <p className="mb-4">As a user of this Website, you agree to not abuse the Website in anyway.</p>
 
             <h2 className="text-lg font-semibold mt-6 mb-2">9. Amendment</h2>
-            <p className="mb-4">These Terms and Conditions are subject to change and can be modified at any time without notice...</p>
+            <p className="mb-4">These Terms and Conditions are subject to change and can be modified at any time without notice.</p>
 
             <h2 className="text-lg font-semibold mt-6 mb-2">10. Legal Disclaimer</h2>
-            <p className="mb-4">We reserve the right to disclose your personal identifiable information when we believe that disclosure is necessary...</p>
+            <p className="mb-4">We reserve the right to disclose your personal identifiable information when we believe that disclosure is necessary.</p>
 
             <h2 className="text-lg font-semibold mt-6 mb-2">11. Governing Law and Dispute Resolution</h2>
-            <p className="mb-4">By accessing the Website, you agree and understand that these Terms and Conditions shall be governed by and construed in accordance with the laws of the Dubai International Financial Centre (“DIFC”)...</p>
+            <p className="mb-4">By accessing the Website, you agree and understand that these Terms and Conditions shall be governed by and construed in accordance with the laws of the Dubai International Financial Centre (“DIFC”).</p>
 
             <h2 className="text-lg font-semibold mt-6 mb-2">12. Waiver</h2>
-            <p className="mb-4">No term, condition, right obligation or breach of these Terms and Conditions shall be waived...</p>
+            <p className="mb-4">No term, condition, right obligation or breach of these Terms and Conditions shall be waived.</p>
 
             <h2 className="text-lg font-semibold mt-6 mb-2">13. Illegality</h2>
-            <p className="mb-4">If any provision of these Website Terms and Conditions are held to be illegal or unenforceable...</p>
+            <p className="mb-4">If any provision of these Website Terms and Conditions are held to be illegal or unenforceable.</p>
 
             <h2 className="text-lg font-semibold mt-6 mb-2">14. Language</h2>
-            <p className="mb-4">These Website Terms and Conditions are published in English and Arabic...</p>
+            <p className="mb-4">These Website Terms and Conditions are published in English and Arabic.</p>
 
             <h2 className="text-lg font-semibold mt-6 mb-2">15. Contact Information</h2>
             <p className="">Questions about these Terms and Conditions should be sent to us at  &nbsp;

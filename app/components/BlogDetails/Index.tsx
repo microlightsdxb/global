@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from "react";
+import React, { useMemo } from "react";
 import Banner from "./sections/Banner";
 import Blogdetails from "./sections/Blogdetails";
 import useSWR from "swr";
@@ -9,12 +9,14 @@ import { BlogResponse } from "@/types/Blog";
 
 const Index = ({data}:{data:BlogResponse}) => {
   const fetcher = (...args: Parameters<typeof fetch>) => fetch(...args).then(res => res.json())
-  const { data: recentBlogs } = useSWR(`/api/admin/blog`, fetcher)
-  const [recentBlogData, setRecentBlogData] = useState([])
+  const { data: recentBlogs } = useSWR(`/api/admin/blog/list`, fetcher)
 
-  useEffect(() => {
-    setRecentBlogData(recentBlogs?.data.sort((a: { createdAt: number }, b: { createdAt: number }) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()).slice(0, 3))
-  }, [recentBlogs])
+  const recentBlogData = useMemo(() => {
+    if (!recentBlogs?.data) return [];
+    return [...recentBlogs.data]
+      .sort((a: { createdAt: number }, b: { createdAt: number }) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+      .slice(0, 3);
+  }, [recentBlogs]);
 
   return (
     <>

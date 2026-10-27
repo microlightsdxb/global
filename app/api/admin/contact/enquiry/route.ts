@@ -2,14 +2,14 @@ import connectDB from "@/lib/mongodb"
 import Enquiry from "@/models/Enquiry"
 import { NextRequest, NextResponse } from "next/server"
 import { verifyAdmin } from "@/lib/verifyAdmin"
-import { checkLimit } from "@/lib/checkLimit";
+// import { checkLimit } from "@/lib/checkLimit";
 
 export async function POST(req:NextRequest){
     try {
-        const limitResponse = await checkLimit(req)
-        if(!limitResponse.success){
-            return NextResponse.json({message:"Too many requests. Please try again later."},{status:429})
-        }
+        // const limitResponse = await checkLimit(req)
+        // if(!limitResponse.success){
+        //     return NextResponse.json({message:"Too many requests. Please try again later."},{status:429})
+        // }
         await connectDB()
         const {name,phone,email,message,company} = await req.json()
         const enquiry = await Enquiry.create({name,phone,email,message,company})

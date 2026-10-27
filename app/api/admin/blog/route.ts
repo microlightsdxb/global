@@ -54,7 +54,7 @@ export async function GET(req:NextRequest) {
         const id = searchParams.get("id");
         const slug = searchParams.get("slug");
         if(slug){
-            const blog = await Blog.findOne({slug});
+            const blog = await Blog.findOne({slug}).lean();
             if(blog){
                 return NextResponse.json({message: "Blog fetched successfully",data: blog},{status: 200});
             }else{

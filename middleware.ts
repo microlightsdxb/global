@@ -12,7 +12,7 @@ export async function middleware(request: NextRequest) {
   const isProtectedRoute = path.startsWith("/admin") && !isLoginPage;
 
   const token = request.cookies.get("adminToken")?.value || "";
-  const secret = new TextEncoder().encode(process.env.JWT_SECRET || "your-secret-key");
+  const secret = new TextEncoder().encode(process.env.JWT_SECRET);
 
   if (isLoginPage && token) {
     try {
