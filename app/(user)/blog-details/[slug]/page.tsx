@@ -241,6 +241,28 @@ const FAQ_SCHEMAS: Record<string, { name: string; text: string }[]> = {
       text: "Look for a company with a verifiable portfolio of completed projects in your sector, an in-house design team rather than a reseller model, demonstrated technical expertise in lux calculations and controls, and end-to-end capability from concept through to installation and post-handover support. Experience with UAE-specific conditions, including climate, compliance requirements, and project timelines, is an important differentiator in this market."
     }
   ],
+  "outdoor-lighting-hotels-resorts-uae": [
+    {
+      name: "What colour temperature works best for resort outdoor lighting?",
+      text: "Warm colour temperatures between 2700K and 3000K suit most outdoor zones in a hotel or resort, including landscape, pathways, pool surrounds, and dining areas, with facades and canopies extending to 3500K where the architecture benefits from a crisper tone. Consistency across zones is as important as the specific temperature chosen: mixing warm and cool sources across the same property creates a visually fragmented appearance that is immediately noticeable after dark."
+    },
+    {
+      name: "How do you light a hotel pool safely?",
+      text: "IP68-rated underwater LED fixtures running on a safety extra-low voltage (SELV) supply provide the safest and most reliable pool illumination. Perimeter deck lighting should be positioned at low angles to minimise glare across the water surface and provide adequate illumination for wet surfaces without creating direct glare for swimmers. Light levels on pool edges and steps should meet the minimum requirements specified for the project jurisdiction."
+    },
+    {
+      name: "Which outdoor fixtures last in the UAE’s coastal climate?",
+      text: "Marine-grade or powder-coated aluminium housings, stainless steel fixings, IP65 ingress protection as a minimum (IP66 for exposed facades and IP67 or above for ground-recessed and poolside fittings), and LED drivers specified for high-ambient-temperature operation provide the best combination of durability in UAE coastal conditions. Standard outdoor products rated for temperate climates degrade significantly faster under sustained heat, salt air, and humidity."
+    },
+    {
+      name: "How can hotels reduce outdoor lighting energy costs?",
+      text: "Astronomical scheduling, time-based dimming after peak hours, LED retrofit of older installations, and occupancy-linked controls in lower-traffic outdoor areas all deliver measurable reductions in outdoor lighting energy consumption. Smart control systems that allow different scenes across the evening avoid the energy waste of maintaining full output levels throughout the night."
+    },
+    {
+      name: "When should a lighting designer be involved in a hotel project?",
+      text: "A lighting designer should be involved before the landscape and hardscape are finalised, ideally at concept stage alongside the architect and interior designer. Early involvement allows pathway and feature lighting to be integrated into the ground plane and planting rather than applied over a completed landscape, which produces better results and avoids the surface-mounted compromises that late involvement typically forces."
+    }
+  ],
 };
 
 async function getBlogData(slug: string) {
