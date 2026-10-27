@@ -155,6 +155,92 @@ const FAQ_SCHEMAS: Record<string, { name: string; text: string }[]> = {
       text: "Yes. Salt-laden coastal air accelerates corrosion on connectors, fixings, and external hardware, while day-to-night temperature variations can create condensation inside fixture housings. Coastal projects in Dubai and Abu Dhabi require fixtures specified with marine-grade materials, appropriate IP ratings, and breather valves or fully sealed housings to manage these conditions effectively throughout the installation's operational life."
     }
   ],
+  "indoor-lighting-mistakes-dubai": [
+    {
+      name: "What is the 3-lighting rule?",
+      text: "The 3-lighting rule combines ambient, task, and accent lighting in every room instead of relying on a single source. It creates depth, flexibility, and comfort that one fixture alone cannot provide, and it is the foundation of every well-considered interior lighting scheme."
+    },
+    {
+      name: "What is the 5'7\" lighting rule?",
+      text: "The 5'7\" rule suggests centering wall-mounted fixtures at approximately eye level, around 5 feet 7 inches from the floor, for balanced and flattering light. It is a practical guideline that should be adjusted based on ceiling height and the specific function of the room."
+    },
+    {
+      name: "What is bad lighting called?",
+      text: "Harsh, unbalanced, or uncomfortable lighting is commonly referred to as glare or visual discomfort lighting. It is typically caused by undiffused bulbs, excessive brightness, or light reflecting off hard and glossy surfaces that are common in Dubai interiors."
+    },
+    {
+      name: "What are common failures for light fixtures?",
+      text: "Common failures include flickering from loose connections or dimmer incompatibility, premature bulb burnout, LED driver failure, and corrosion in humid environments. In Dubai, heat and humidity make these failures significantly more frequent in low-quality components than in milder climates."
+    },
+    {
+      name: "What are common interior design mistakes to avoid?",
+      text: "Beyond lighting, common mistakes include poor furniture scale for the room, ignoring natural light and traffic flow, and inconsistent colour temperature across connected spaces. Lighting mistakes are among the most common and most fixable issues in Dubai home interiors."
+    },
+    {
+      name: "What is the 3-5-7 rule in interior design?",
+      text: "The 3-5-7 rule places fixtures at three height bands: around 30 inches for task lighting, 50 inches for ambient wall lighting, and 70 inches for accent or decorative fixtures. Used alongside the 3-lighting rule, it creates visual balance and spatial depth across a room."
+    },
+    {
+      name: "How can I fix harsh overhead lighting in a Dubai villa?",
+      text: "Add diffusers or shades to reduce direct glare, introduce layered ambient, task, and accent lighting rather than relying on the overhead fixture alone, and install a dimmer for brightness control across different times of day and different uses of the space."
+    },
+    {
+      name: "Where can I find indoor lighting consultants in Dubai?",
+      text: "Microlights offers indoor lighting consultation across Dubai and the UAE, covering room-by-room lighting plans, fixture selection, and energy efficiency assessments for residential and commercial projects of every scale."
+    }
+  ],
+  "lighting-design-dubai-before-concept-stage": [
+    {
+      name: "When should a lighting designer be appointed on a Dubai project?",
+      text: "A lighting designer should be appointed at concept stage, before ceiling layouts, MEP coordination, and power distribution are fixed. Involvement at this stage allows the designer to influence the decisions that determine what is possible later. Appointing a lighting designer after concept freeze significantly limits the scope and increases the likelihood of compromises at handover."
+    },
+    {
+      name: "What is the difference between a lighting designer and a lighting supplier?",
+      text: "A lighting designer plans how light will function within a space: the layout, the control strategy, the lux levels, the colour temperature, and the relationship between natural and artificial sources. A lighting supplier provides the products that deliver the design. Microlights provides both, with an in-house design team working alongside the supply and project management function. The two roles are complementary but not interchangeable."
+    },
+    {
+      name: "How long does lighting design take for a commercial fit-out in the UAE?",
+      text: "The timeline depends on the project scale, the number of zones, and the complexity of the control strategy. Smaller fit-outs with straightforward briefs move faster than large multi-zone or mixed-use developments. The client review and approval process between stages is typically the most significant variable. Contact the Microlights design team for an estimated timeline based on your specific project scope."
+    },
+    {
+      name: "What information should I give a lighting designer at the start?",
+      text: "The most useful starting information is the project brief, the floor plan with ceiling heights, the interior design concept and material palette, the applicable compliance framework, the budget range, and the programme. If the MEP consultant has already issued preliminary drawings, sharing these at the start avoids duplication of effort and helps the designer identify ceiling and power constraints early."
+    },
+    {
+      name: "Which colour temperature is best for retail and restaurants?",
+      text: "For retail, a colour temperature between 3000K and 4000K with a CRI of 90 or above is generally recommended to render product colours accurately under artificial light. For restaurants and F&B environments, warmer tones between 2700K and 3000K with dimmable controls suit the day to evening transition most formats require. These are general guidelines. The right choice for a specific project depends on the brand, the interior palette, and the operational pattern of the space."
+    },
+    {
+      name: "Do lighting products in the UAE need certification?",
+      text: "Yes. Products installed in the UAE must meet MoIAT energy efficiency requirements. For projects pursuing green building certification under Al Sa'fat, Estidama, or LEED, there are additional lighting performance requirements that affect product selection and system design. Specifying products that carry the appropriate certification protects the project at the approval stage and the client post-handover."
+    }
+  ],
+  "bespoke-lighting-solutions-vs-off-the-shelf-products": [
+    {
+      name: "What are bespoke lighting solutions?",
+      text: "Bespoke lighting solutions are lighting systems designed around the specific spatial, technical, and aesthetic requirements of a project rather than selected from a standard catalogue. The process covers fixture specification, light level calculations, control strategy, and coordination with the architecture and interior design. The starting point is the brief, not a product brochure."
+    },
+    {
+      name: "Is bespoke lighting more expensive than off-the-shelf lighting?",
+      text: "The upfront cost per fixture is typically higher for bespoke specification. However, the total cost across the life of the installation, accounting for energy consumption, maintenance intervals, and replacement frequency, generally favours bespoke on projects in demanding conditions or where lighting quality directly affects commercial performance. The relevant comparison is lifetime cost, not unit price."
+    },
+    {
+      name: "Does bespoke lighting mean every fitting is custom-made?",
+      text: "Not necessarily. A bespoke lighting solution means that every specification decision is made around the requirements of the project rather than adapted from a standard range. Some fixtures within a bespoke scheme may be drawn from an existing product range; others may be manufactured specifically for the project. The defining characteristic is that the design leads the product selection, not the other way around."
+    },
+    {
+      name: "Which spaces benefit most from bespoke lighting?",
+      text: "Retail stores, restaurants, hotel lobbies, hospitality venues, luxury residential developments, and architecturally prominent commercial interiors benefit most from bespoke specification. Any environment where lighting directly affects customer experience, brand perception, or product presentation, and where the installation needs to perform reliably across a long operational life, is a strong candidate for a bespoke approach."
+    },
+    {
+      name: "What is the difference between custom lighting design and off-the-shelf lighting?",
+      text: "Custom lighting design is the process of developing a lighting strategy around the specific requirements of a space, covering layout, specifications, controls, and performance targets. Off-the-shelf lighting is the selection of products from a standard range to meet general illumination requirements. The difference is between designing for the space and selecting for availability."
+    },
+    {
+      name: "How do I choose a lighting design company in the UAE?",
+      text: "Look for a company with a verifiable portfolio of completed projects in your sector, an in-house design team rather than a reseller model, demonstrated technical expertise in lux calculations and controls, and end-to-end capability from concept through to installation and post-handover support. Experience with UAE-specific conditions, including climate, compliance requirements, and project timelines, is an important differentiator in this market."
+    }
+  ],
 };
 
 async function getBlogData(slug: string) {

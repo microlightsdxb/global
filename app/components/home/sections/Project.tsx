@@ -57,10 +57,10 @@ const RecentProjects = ({ data }: { data: Project }) => {
               viewport={{ once: false, amount: 0.5 }}>Recent Projects</motion.h2>
           </div>
           <div className="relative flex">
-            <button ref={prevRef} className=" bg-[#949494]  w-[50px] h-[50px] text-center flex items-center justify-center hover:opacity-60 cursor-pointer transition-500" >
+            <button ref={prevRef} className=" bg-[#949494]  w-[50px] h-[50px] text-center flex items-center justify-center hover:opacity-60 cursor-pointer transition-500 [&.swiper-button-disabled]:cursor-not-allowed [&.swiper-button-disabled]:hover:opacity-100" >
               <BsChevronLeft className="text-white" size={20} />
             </button>
-            <button ref={nextRef} className=" bg-[#7D7D7D] w-[50px] h-[50px] text-center flex items-center justify-center  hover:opacity-60 cursor-pointer transition-500" >
+            <button ref={nextRef} className=" bg-[#7D7D7D] w-[50px] h-[50px] text-center flex items-center justify-center  hover:opacity-60 cursor-pointer transition-500 [&.swiper-button-disabled]:cursor-not-allowed [&.swiper-button-disabled]:hover:opacity-100" >
               <BsChevronRight className="text-white" size={20} />
             </button>
           </div>
@@ -75,6 +75,7 @@ const RecentProjects = ({ data }: { data: Project }) => {
             <Swiper
               modules={[Navigation]}
               slidesPerView={1}
+              speed={800}
               spaceBetween={40}
               onBeforeInit={(swiper) => {
                 if (
@@ -99,8 +100,8 @@ const RecentProjects = ({ data }: { data: Project }) => {
                 <SwiperSlide key={project._id}>
                   <Link href={`/projects/${project.slug}`} className="overflow-hidden" >
                     <div className="hdrsc">
-                      <div className="flex justify-between  border-b border-primary/10 pb-[14px] h-[60px]">
-                        <h3 className="text-lg font-normal leading-none text-primary">
+                      <div className="flex justify-between gap-[10px] border-b border-primary/10 pb-6 min-h-[60px]">
+                        <h3 className="text-lg font-normal leading-tight text-primary line-clamp-2">
                           {project.name}
                         </h3>
                         <div className="flex">
