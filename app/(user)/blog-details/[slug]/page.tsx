@@ -264,6 +264,7 @@ const FAQ_SCHEMAS: Record<string, { name: string; text: string }[]> = {
     }
   ],
 };
+const BASE_URL = "https://www.microlights.com";
 
 async function getBlogData(slug: string) {
   const response = await fetch(
@@ -288,7 +289,7 @@ export async function generateMetadata({
     title: metadataTitle,
     description: metadataDescription,
     alternates: {
-      canonical: `/blog-details/${slug}`,
+      canonical: `${BASE_URL}/blog-details/${slug}`,
     },
     robots: {
       index: true,
