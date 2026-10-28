@@ -22,13 +22,13 @@ const Details: React.FC<FrameworkSectionProps> = ({
     <section className="pt-100 ">
       <div className="container">
         <div className="pb-5 md:pb-8 lg:pb-[77px] border-b border-[#000000]">
-          <motion.h2 className="text-2xl text-black  leading-[1.3]"
+          <motion.h1 className="text-2xl text-black  leading-[1.3]"
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true, amount: 0.5 }}>
             {data?.data.name}
-          </motion.h2>
+          </motion.h1>
         </div>
         <motion.div
           className="lg:flex items-center pt-8 pb-9"
