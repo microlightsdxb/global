@@ -263,6 +263,28 @@ const FAQ_SCHEMAS: Record<string, { name: string; text: string }[]> = {
       text: "A lighting designer should be involved before the landscape and hardscape are finalised, ideally at concept stage alongside the architect and interior designer. Early involvement allows pathway and feature lighting to be integrated into the ground plane and planting rather than applied over a completed landscape, which produces better results and avoids the surface-mounted compromises that late involvement typically forces."
     }
   ],
+  "outdoor-lighting-regulations-dubai": [
+    {
+      name: "Do I need approval for outdoor or facade lighting in Dubai?",
+      text: "Yes, in most cases. Facade lighting, illuminated signage, and externally visible architectural lighting on commercial and mixed-use developments in Dubai typically require approval as part of the building permit process with Dubai Municipality and, where applicable, the relevant master developer. Dynamic or media facade lighting is subject to additional controls. Confirm the specific requirements for your project type and location at the start of the design process."
+    },
+    {
+      name: "What does Al Sa'fat require for external lighting?",
+      text: "Al Sa'fat requires that external lighting uses energy-efficient light sources, operates under automatic controls such as timers, photocells, or dimming systems, and stays within limits on external lighting energy use. Silver Sa'fa has been the minimum standard for all new buildings in Dubai since October 2020. The specific credits and thresholds applicable to a project depend on its classification and the rating level being targeted. Confirm current requirements against the Dubai Municipality Al Sa'fat documentation before finalising the lighting specification."
+    },
+    {
+      name: "Are there light pollution rules in Dubai?",
+      text: "Dubai's outdoor lighting guidance addresses glare control, light spill onto neighbouring properties, and the prevention of sky glow through upward-directed light. Shielded, downward-facing fixtures and controlled beam angles are the standard design response. Coastal sites with proximity to beach areas may have additional constraints related to marine wildlife sensitivity, particularly on beachfront resort and residential developments."
+    },
+    {
+      name: "Who approves emergency lighting on outdoor escape routes?",
+      text: "Emergency and exit lighting on external escape routes is subject to the UAE Fire and Life Safety Code, administered by Dubai Civil Defence. The specific requirements depend on the building classification, occupancy, and the configuration of escape routes. Dubai Civil Defence approval should be sought during the design stage, with the emergency lighting design submitted as part of the fire and life safety documentation package."
+    },
+    {
+      name: "How can a lighting consultant help with compliance?",
+      text: "A lighting consultant familiar with Dubai's regulatory framework identifies the applicable authority requirements at concept stage, prepares the photometric calculations and documentation needed for submission, and ensures that product specifications meet IP, certification, and energy efficiency standards before procurement begins. Early involvement consistently reduces approval delays and avoids the redesign costs that result from compliance requirements being identified after the scheme is developed."
+    }
+  ],
 };
 const BASE_URL = "https://www.microlights.com";
 
