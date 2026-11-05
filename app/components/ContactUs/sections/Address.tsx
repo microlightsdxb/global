@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { moveUp } from "../../scrollanims";
 // import parse from "html-react-parser";
@@ -24,12 +24,6 @@ interface AddressProps {
 
 const Address = ({ data }: { data: AddressProps }) => {
 
-  const [activeTab, setActiveTab] = useState(0);
-
-  useEffect(() => {
-    console.log(activeTab)
-  }, [activeTab])
-
   return (
     <section className="pt-10 md:pt-20 lg:pt-30 pb-100 ">
       <div className="container">
@@ -51,21 +45,8 @@ const Address = ({ data }: { data: AddressProps }) => {
             transition={{ duration: 0.5, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            <div className="flex gap-3 md:gap-10 border-b mb-7 md:mb-6 lg:mb-[60px]">
-              {data?.data?.map((tab: { region: string }, index: number) => (
-                <div
-                  key={index}
-                  className={`p-[10px] pl-0 pb-2 md:pb-[20px] cursor-pointer relative top-[2px] text-black ${activeTab === index ? "border-b-3 border-black" : ""
-                    }`}
-                  onClick={() => setActiveTab(index)}
-                >
-                  <p>{tab.region}</p>
-                </div>
-              ))}
-            </div>
-
             <div className="grid grid-cols-1 md:grid-cols-2 gap-[40px]">
-              {data?.data[activeTab]?.area.map((location: { _id: string, name: string, type: string, address: string, telephone: string, mobile: string, email: string, mapIframe: string }) => (
+              {data?.data?.flatMap((region) => region.area).map((location: { _id: string, name: string, type: string, address: string, telephone: string, mobile: string, email: string, mapIframe: string }) => (
                 <motion.div variants={moveUp} key={location._id} className="flex flex-col justify-between">
                   <div>
                   <div className="mb-5">
