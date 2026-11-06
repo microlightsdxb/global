@@ -28,14 +28,15 @@ const BoxButton = React.forwardRef<HTMLButtonElement, BoxButtonProps>((props, re
       ? "border-black bg-black text-white hover:bg-white hover:text-black"
       : "border-white bg-white text-black hover:bg-black hover:text-white";
 
-  const sizing = fullWidth ? "w-full justify-between" : "w-fit hover:gap-[72px]";
-
+  // Spacing as variables so the hover gap can grow by exactly what the side padding loses (keeps the width fixed)
   const box =
     size === "large"
-      ? "max-h-[117px] gap-[124px] px-[33px] pt-[37px] pb-[38px] text-subtitle-2"
-      : "max-h-[57px] gap-[20px] px-[30px] pt-[15px] pb-[16px] text-description";
+      ? "[--bx:clamp(20px,calc(33*100vw/1920),33px)] [--bg:clamp(24px,calc(124*100vw/1920),124px)] max-h-[clamp(84px,calc(117*100vw/1920),117px)] pt-[clamp(23px,calc(37*100vw/1920),37px)] pb-[clamp(24px,calc(38*100vw/1920),38px)] text-subtitle-2"
+      : "[--bx:clamp(20px,calc(30*100vw/1920),30px)] [--bg:clamp(14px,calc(20*100vw/1920),20px)] max-h-[clamp(44px,calc(57*100vw/1920),57px)] pt-[clamp(11px,calc(15*100vw/1920),15px)] pb-[clamp(12px,calc(16*100vw/1920),16px)] text-description";
 
-  const classes = `group inline-flex ${sizing} ${box} items-center border-t transition-[color,background-color,border-color,padding,gap] duration-300 ease-out hover:px-[4px] ${toneClasses} ${className}`;
+  const sizing = fullWidth ? "w-full justify-between" : "w-fit hover:gap-[calc(var(--bg)+2*(var(--bx)-4px))]";
+
+  const classes = `group inline-flex ${box} ${sizing} items-center gap-(--bg) px-(--bx) border-t transition-[color,background-color,border-color,padding,gap] duration-300 ease-out hover:px-[4px] ${toneClasses} ${className}`;
 
   const content = (
     <>
