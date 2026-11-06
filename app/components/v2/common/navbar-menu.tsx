@@ -35,10 +35,10 @@ export const MenuItem = ({
   nomenu?:boolean;
 }) => {
   return (
-    <div onMouseEnter={() => (nomenu ? setActive(null) : setActive(item))} className="relative ">
+    <div onMouseEnter={() => (nomenu ? setActive(null) : setActive(item))} className="nav-item group/item relative">
       <Link href={url}><motion.p
         transition={{ duration: 0.3 }}
-        className="cursor-pointer text-black hover:opacity-[0.9] text-nav !mb-0"
+        className="cursor-pointer text-black text-nav !mb-0 transition-opacity duration-300 group-has-[.nav-item:hover]/nav:opacity-50 group-hover/item:!opacity-100"
         onClick={()=> item === "Products" ? localStorage.setItem("type","") : null}
       >
         {item}
@@ -81,7 +81,7 @@ export const Menu = ({
   return (
     <nav
       onMouseLeave={() => setActive(null)}
-      className="relative rounded-full border border-transparent text-black bg-transparent shadow-input flex justify-center px-0 py-4 gap-[clamp(16px,calc(40*100vw/1920),40px)]"
+      className="group/nav relative rounded-full border border-transparent text-black bg-transparent shadow-input flex justify-center px-0 py-4 gap-[clamp(16px,calc(40*100vw/1920),40px)]"
     >
       {children}
     </nav>
