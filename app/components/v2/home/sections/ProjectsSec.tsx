@@ -74,7 +74,7 @@ const ProjectsSec = ({ data }: { data: ProjectsData }) => {
               <div data-reveal="card">
               <Link href={project.href} className="group block">
                 <div data-reveal="content" className="flex items-start justify-between gap-[20px]">
-                  <h3 className="text-subtitle text-black whitespace-pre-line line-clamp-2 min-h-[2lh] !mb-0">{project.title}</h3>
+                  <h3 className="text-subtitle text-black whitespace-pre-line line-clamp-2 !mb-0">{project.title}</h3>
                   <ArrowButton as="span" tone="dark" className="shrink-0" />
                 </div>
 
@@ -91,7 +91,6 @@ const ProjectsSec = ({ data }: { data: ProjectsData }) => {
                     src={project.image}
                     alt={project.alt}
                     fill
-                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 90vw"
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 pointer-events-none"
                   />
                   </div>
