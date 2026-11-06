@@ -29,7 +29,7 @@ const Footer = () => {
       <div className="container">
         <div className="grid grid-cols-1 gap-[40px] sm:grid-cols-2 xl:flex xl:gap-0">
           {/* Brand */}
-          <Reveal className="xl:flex-1 xl:min-w-0">
+          <Reveal className="xl:flex-1 xl:min-w-0 xl:pr-[clamp(24px,calc(40*100vw/1920),40px)]">
             <Link href="/" aria-label="Microlights home">
               <Image src="/assets/img/logo.svg" alt="Lighting Solutions Dubai" title="Microlights" width={220} height={58} className="pointer-events-none w-[clamp(160px,calc(160px+(100vw-375px)*60/1545),220px)] h-auto" />
             </Link>
@@ -45,7 +45,7 @@ const Footer = () => {
           </Reveal>
 
           {/* Quick Links */}
-          <Reveal delay={REVEAL_STAGGER} className="xl:w-[220px] xl:shrink-0">
+          <Reveal delay={REVEAL_STAGGER} className="xl:w-[calc(220*100vw/1920)] xl:min-w-fit xl:max-w-[220px] xl:shrink-0">
             <p className="text-subtitle-2 text-black !mb-0">Quick Links</p>
             <ul className="mt-[30px]">
               {footerData.quickLinks.map((link) => (
@@ -59,7 +59,7 @@ const Footer = () => {
           </Reveal>
 
           {/* Products */}
-          <Reveal delay={REVEAL_STAGGER * 2} className="xl:w-[220px] xl:shrink-0 xl:ml-[30px]">
+          <Reveal delay={REVEAL_STAGGER * 2} className="xl:w-[calc(220*100vw/1920)] xl:min-w-fit xl:max-w-[220px] xl:shrink-0 xl:ml-[clamp(24px,calc(30*100vw/1920),30px)]">
             <p className="text-subtitle-2 text-black !mb-0">Products</p>
             <ul className="mt-[30px]">
               {footerData.products.map((link) => (
@@ -73,7 +73,7 @@ const Footer = () => {
           </Reveal>
 
           {/* Socials & brochure */}
-          <Reveal delay={REVEAL_STAGGER * 3} className="flex flex-col justify-between gap-[40px] xl:w-[clamp(360px,calc(521*100vw/1920),521px)] xl:shrink-0 xl:ml-[20px]">
+          <Reveal delay={REVEAL_STAGGER * 3} className="flex flex-col justify-between gap-[40px] xl:w-[clamp(360px,calc(521*100vw/1920),521px)] xl:shrink-0 xl:ml-[clamp(16px,calc(20*100vw/1920),20px)]">
             <BrochureDownloadModal brochureUrl="/api/download">
               <BoxButton
                 label="Download Brochure"
