@@ -9,11 +9,10 @@ import MobileNav from "./MobileNav";
 import BoxButton from "./BoxButton";
 import { useStore } from "@/app/store/productType";
 
-// Define the type for menu items
 type MenuItemType = {
   title: string;
   url: string;
-  children?: { title: string; url: string }[]; // `children` is optional
+  children?: { title: string; url: string }[];
 };
 
 const Header = () => {
@@ -35,12 +34,12 @@ const Header = () => {
     fetchServices()
   },[])
 
-  // Hide on scroll down, show on scroll up, always shown near the top of the page.
+  // Hide on scroll down, show on scroll up
   const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
-    const TOP_ZONE = 80; // px from the top where the header is always visible
-    const MIN_DELTA = 6; // ignore tiny scroll jitter
+    const TOP_ZONE = 80;
+    const MIN_DELTA = 6;
     let lastY = window.scrollY;
     let ticking = false;
 
@@ -69,20 +68,18 @@ const Header = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Keep the header in view while a dropdown menu is open.
   const isHidden = hidden && !active;
 
   return (
     <header
-      // Only apply a translate while hidden: any transform on the header would make
-      // MobileNav's fixed drawer position relative to the header instead of the screen.
+      // Translate only while hidden — a transform would break MobileNav's fixed drawer
       className={`lg:py-[22px] fixed top-0 w-full z-50 bg-white shadow-xs transition-[translate] duration-500 ease-in-out ${
         isHidden ? "-translate-y-full" : ""
       }`}
     >
       <MobileNav />
       <div className="container-fluid left-spacing pr-[47px] lg:flex items-center justify-between gap-20 hidden">
-        {/* Logo Section */}
+        {/* Logo */}
         <div className="logo-sec">
           <Link href="/" onClick={()=>{setScrollToSection('')}}>
           <Image
@@ -95,7 +92,7 @@ const Header = () => {
           </Link>
         </div>
 
-        {/* Navigation Menu */}
+        {/* Navigation */}
         <div className="flex items-center gap-[60px]">
           <Menu setActive={setActive}>
             {menuItems.map((menuItem: MenuItemType, index) => (
@@ -105,9 +102,8 @@ const Header = () => {
                 active={active}
                 url={menuItem.url}
                 item={menuItem.title}
-                nomenu={!menuItem.children?.length} // If no submenu, set `nomenu=true`
+                nomenu={!menuItem.children?.length}
               >
-                {/* Render submenus only if `children` exist */}
                 {menuItem.title == "Services" && services.map((service: {name:string,slug:string}, subIndex) => (
                   <HoveredLink href={`/services/${service.slug}`} key={subIndex}>
                     <div className="hover:bg-black/5 pl-3 pr-[80px] py-2 rounded-[8px] transition-transform duration-300 hover:scale-105 flex justify-between items-center">
@@ -139,7 +135,7 @@ const Header = () => {
             ))}
           </Menu>
 
-          {/* Contact Button */}
+          {/* Contact */}
           <BoxButton href="/contact-us" label="Contact" tone="dark" />
         </div>
       </div>

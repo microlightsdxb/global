@@ -1,4 +1,3 @@
-// v2 copy of app/components/ui/navbar-menu.tsx — nav text uses .text-nav (v2.css), 40px item gap.
 "use client";
 import React from "react";
 import { motion } from "motion/react";
@@ -54,11 +53,11 @@ export const MenuItem = ({
             <div className="absolute top-[calc(100%_+_.2rem)] left-1/2 transform -translate-x-1/2 pt-4">
               <motion.div
                 transition={transition}
-                layoutId="active" // layoutId ensures smooth animation
+                layoutId="active"
                 className="bg-white dark:bg-black backdrop-blur-sm rounded-2xl overflow-hidden border border-black/[0.2] dark:border-white/[0.2] shadow-xl"
               >
                 <motion.div
-                  layout // layout ensures smooth animation
+                  layout
                   className="w-max h-full p-4"
                 >
                   {children}
@@ -81,7 +80,7 @@ export const Menu = ({
 }) => {
   return (
     <nav
-      onMouseLeave={() => setActive(null)} // resets the state
+      onMouseLeave={() => setActive(null)}
       className="relative rounded-full border border-transparent text-black bg-transparent shadow-input flex justify-center px-0 py-4 gap-[clamp(16px,2.083vw,40px)]"
     >
       {children}

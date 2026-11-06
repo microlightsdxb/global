@@ -5,14 +5,13 @@ import Link from "next/link";
 import React, { useState } from "react";
 import type { Sector, SectorsData } from "@/app/(v2)/v2/home/data";
 
-// 16×16 arrow shown beside the active sector — public/assets/img/icons/sector_arrow_home.svg
 const SmallArrow = () => (
   <Image
     src="/assets/img/icons/sector_arrow_home.svg"
     alt=""
     width={16}
     height={16}
-    unoptimized // SVG — skip the image optimizer, which rejects SVGs
+    unoptimized
     className="block w-[16px] h-[16px] max-w-none shrink-0"
   />
 );
@@ -28,20 +27,16 @@ const SectorItem = ({
 }) => {
   const inner = (
     <>
-      {/* Icon 50×50 — full white when active, 60% when not */}
       <Image
         src={sector.icon}
         alt=""
         width={50}
         height={50}
-        unoptimized // SVG — skip the image optimizer, which rejects SVGs
+        unoptimized
         className={`w-[clamp(36px,2.604vw,50px)] h-[clamp(36px,2.604vw,50px)] shrink-0 transition-opacity duration-300 ${
           isActive ? "opacity-100" : "opacity-60"
         }`}
       />
-      {/* 40px icon → title, 30px title → arrow.
-          The arrow is absolutely positioned so it doesn't widen the grid column
-          (it's hidden on inactive items, so it shouldn't reserve space). */}
       <span
         className={`relative ml-[clamp(20px,2.083vw,40px)] text-subtitle whitespace-nowrap transition-colors duration-300 ${
           isActive ? "text-white" : "text-white/60"
@@ -81,7 +76,7 @@ const SectorsSec = ({ data }: { data: SectorsData }) => {
 
   return (
     <section className="relative flex flex-col overflow-hidden bg-black lg:block">
-      {/* Background image + gradient (behind the left side) */}
+      {/* Background */}
       {data.bgImage && (
         <Image src={data.bgImage} alt="" fill sizes="100vw" className="object-cover object-left" />
       )}
@@ -90,8 +85,7 @@ const SectorsSec = ({ data }: { data: SectorsData }) => {
         style={{ background: "linear-gradient(181.44deg, rgba(0, 0, 0, 0) 31.4%, #000000 78.41%)" }}
       />
 
-      {/* Right image — 850×914 at 1920, flush to the right edge and full section height.
-          On mobile it stacks under the content. */}
+      {/* Image */}
       <div className="relative aspect-[850/914] lg:absolute lg:inset-y-0 lg:right-0 lg:w-[44.27vw] lg:aspect-auto order-last">
         {sectors.map((sector, index) => (
           <Image
@@ -107,8 +101,7 @@ const SectorsSec = ({ data }: { data: SectorsData }) => {
         ))}
       </div>
 
-      {/* Left content — sits in the container, stops a 130px gap short of the image.
-          Section is at least as tall as the image (914 / 1920 = 47.6vw). */}
+      {/* Content */}
       <div className="container relative">
         <div className="section-spacing flex flex-col justify-between gap-[60px] lg:min-h-[47.6vw] lg:max-w-[calc(55.73vw-(100vw-100%)/2-var(--space-130))]">
           <div>

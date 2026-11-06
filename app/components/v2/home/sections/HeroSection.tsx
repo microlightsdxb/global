@@ -10,8 +10,8 @@ import { Swiper as SwiperClass } from "swiper";
 import "swiper/css";
 import "swiper/css/effect-fade";
 
-const AUTOPLAY_DELAY = 6000; // time each slide stays on screen (ms)
-const FADE_SPEED = 1400; // cross-fade duration between slides (ms)
+const AUTOPLAY_DELAY = 6000;
+const FADE_SPEED = 1400;
 
 const HeroSection = ({ data }: { data: HeroData }) => {
   const swiperRef = useRef<SwiperClass | null>(null);
@@ -24,7 +24,7 @@ const HeroSection = ({ data }: { data: HeroData }) => {
 
   return (
     <section className="h-screen relative overflow-hidden bg-black">
-      {/* Background slider — images only, cross-fade */}
+      {/* Background slider */}
       <Swiper
         modules={[Autoplay, EffectFade]}
         effect="fade"
@@ -47,7 +47,6 @@ const HeroSection = ({ data }: { data: HeroData }) => {
               alt={banner.alt || "Microlights"}
               fill
               sizes="100vw"
-              quality={80}
               priority={index === 0}
               fetchPriority={index === 0 ? "high" : "auto"}
               className="object-cover object-center"
@@ -56,9 +55,9 @@ const HeroSection = ({ data }: { data: HeroData }) => {
         ))}
       </Swiper>
 
-      {/* Overlay — 50% black tint plus a fade to solid black toward the bottom */}
+      {/* Overlay */}
       <div
-        className="absolute inset-0 z-10 pointer-events-none opacity-70"
+        className="absolute inset-0 z-10 pointer-events-none opacity-55"
         style={{
           background:
             "linear-gradient(180deg, rgba(0, 0, 0, 0) 32.19%, #000000 86.13%), linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))",
@@ -68,7 +67,7 @@ const HeroSection = ({ data }: { data: HeroData }) => {
       {/* Content */}
       <div className="absolute inset-x-0 bottom-0 section-bottom-spacing z-20">
         <div className="container flex items-end justify-between gap-8">
-          {/* Text — fades in on every slide change */}
+          {/* Text */}
           <div className="min-h-[220px] lg:min-h-[260px] flex flex-col justify-end">
             <AnimatePresence mode="wait">
               <motion.div
@@ -92,9 +91,7 @@ const HeroSection = ({ data }: { data: HeroData }) => {
             <ArrowButton href={data.cta.href} label={data.cta.label} className="mt-[40px]" />
           </div>
 
-          {/* Pagination — active line 46px white, others 15px white/40; width and colour ease between states.
-              The 3px line is the button; a ::before extends the click area 12px above/below
-              and 5px left/right (half the 10px gap, so neighbouring areas meet without overlapping). */}
+          {/* Pagination */}
           {banners.length > 1 && (
             <div className="flex items-center gap-[10px] pb-[6px]">
               {banners.map((_, index) => {

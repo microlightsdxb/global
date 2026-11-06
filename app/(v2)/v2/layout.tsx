@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./v2.css";
 
-// Applies to every page under /v2 — keeps the whole v2 section out of search results.
 export const metadata: Metadata = {
   robots: {
     index: false,

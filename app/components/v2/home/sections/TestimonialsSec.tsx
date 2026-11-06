@@ -22,7 +22,7 @@ const TestimonialsSec = ({ data }: { data: TestimonialsData }) => {
   return (
     <section className="section-spacing">
       <div className="container flex flex-col gap-[50px] lg:flex-row lg:justify-between">
-        {/* Left — title, description, slider nav pinned to the bottom */}
+        {/* Heading */}
         <div className="flex flex-col justify-between gap-[40px] lg:max-w-[470px]">
           <div>
             <h2 className="section-title text-black">{data.title}</h2>
@@ -36,19 +36,18 @@ const TestimonialsSec = ({ data }: { data: TestimonialsData }) => {
           )}
         </div>
 
-        {/* Right — quote mark (98) + 70px gap + 740px content = 908px at 1920 */}
+        {/* Slider */}
         <div className="flex gap-[24px] md:gap-[70px] min-w-0 lg:w-[908px] lg:max-w-[60%]">
           <Image
             src="/assets/img/icons/quote.svg"
             alt=""
             width={98}
             height={89}
-            unoptimized // SVG — skip the image optimizer, which rejects SVGs
+            unoptimized
             className="hidden md:block w-[clamp(60px,5.104vw,98px)] h-auto self-start shrink-0"
           />
 
           <div className="min-w-0 flex-1">
-            {/* One bar per testimonial — active dark, others light; each is clickable */}
             {hasMany && (
               <div className="flex gap-(--space-60)">
                 {testimonials.map((_, index) => {

@@ -33,7 +33,7 @@ const MobileNav = () => {
       fetchServices()
     },[])
   const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
-  const [menuOpen, setMenuOpen] = useState(false); // State for menu visibility
+  const [menuOpen, setMenuOpen] = useState(false);
   const pathRef = useRef(null);
   const actualPath =
     "456.851,0 245,212.564 33.149,0 0.708,32.337 212.669,245.004 0.708,457.678 33.149,490 245,277.443 456.851,490 489.292,457.678 277.331,245.004 489.292,32.337 ";
@@ -44,9 +44,9 @@ const MobileNav = () => {
     if (pathRef.current) {
       gsap.to(pathRef.current, {
         attr: { points: finalPath },
-        duration: 0.5, // Adjust duration for smooth animation
+        duration: 0.5,
         onComplete: () => {
-          setTimeout(() => setMenuOpen(false)); // Shorter delay for better UX
+          setTimeout(() => setMenuOpen(false));
         },
       });
     }
@@ -105,7 +105,7 @@ const MobileNav = () => {
       {menuOpen && (
         <div
           className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm"
-          onClick={() => setMenuOpen(false)} // Clicking outside closes menu
+          onClick={() => setMenuOpen(false)}
         ></div>
       )}
 

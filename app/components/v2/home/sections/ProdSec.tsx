@@ -17,7 +17,7 @@ const ProdSec = ({ content, data }: { content: ProductsData; data: { data: Produ
   return (
     <section className="section-spacing">
       <div className="container">
-        {/* Heading row — title + description left, "View all" right */}
+        {/* Heading */}
         <div className="flex flex-col gap-[30px] md:flex-row md:items-start md:justify-between">
           <div className="max-w-[560px]">
             <h2 className="section-title text-black">{content.title}</h2>
@@ -26,7 +26,7 @@ const ProdSec = ({ content, data }: { content: ProductsData; data: { data: Produ
           <ArrowButton href={content.cta.href} label={content.cta.label} tone="dark" className="shrink-0 md:mr-[42px]" />
         </div>
 
-        {/* Cards — divider line between columns sits in the middle of the 40px gap */}
+        {/* Cards */}
         <div className="mt-[50px] grid grid-cols-1 gap-[40px] md:grid-cols-2 lg:grid-cols-3">
           {products.map((product) => (
             <Link

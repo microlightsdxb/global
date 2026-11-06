@@ -5,15 +5,12 @@ import ArrowButton from "@/app/components/v2/common/ArrowButton";
 import type { AboutData } from "@/app/(v2)/v2/home/data";
 import type { Home } from "@/types/Home";
 
-// `content` = static copy (title, image, stat labels, CTA); `data` = CMS home data.
 const AboutSec = ({ content, data }: { content: AboutData; data: Home }) => {
   return (
     <section>
-      {/* Bottom line spans the container width, not the full screen */}
       <div className="container">
-        {/* 780 : 610 split at 1920 with a 130px gap */}
         <div className="section-spacing border-b border-black/20 grid grid-cols-1 gap-y-[40px] lg:grid-cols-[minmax(0,780fr)_minmax(0,610fr)] lg:gap-x-(--space-130) lg:items-center">
-          {/* Image — 780×882 at 1920 */}
+          {/* Image */}
           <figure className="relative aspect-[780/882] overflow-hidden">
             <Image
               src={content.image}
@@ -40,14 +37,13 @@ const AboutSec = ({ content, data }: { content: AboutData; data: Home }) => {
               <h3 className="text-subtitle-2 text-[#7D7D7D]">{data.aboutTitle}</h3>
             )}
 
-            {/* CMS rich text — each <p> becomes a flex item, spaced by the gap */}
             {data?.aboutDescription && (
               <div className="mt-[clamp(16px,1.302vw,25px)] flex flex-col gap-[clamp(16px,1.302vw,25px)] text-description text-[#555555] [&_p]:!mb-0">
                 {parse(data.aboutDescription)}
               </div>
             )}
 
-            {/* Stats — numbers from the CMS, suffix + label static */}
+            {/* Stats */}
             <div className="mt-[clamp(32px,2.865vw,55px)] flex divide-x divide-[#D9D9D9]">
               {content.stats.map((stat) => (
                 <div key={stat.key} className="px-[clamp(16px,1.927vw,37px)] first:pl-0 last:pr-0">

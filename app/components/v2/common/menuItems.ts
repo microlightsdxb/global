@@ -1,8 +1,7 @@
-// v2 copy of app/components/common/menuItems.ts — edit here for the v2 header only.
 export type MenuItem = {
   title: string;
   url: string;
-  children?: MenuItem[]; // Make 'children' optional
+  children?: MenuItem[];
 };
 export const menuItems: MenuItem[] = [
     {
