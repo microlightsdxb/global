@@ -64,7 +64,7 @@ const HeroSection = ({ data }: { data: HeroData }) => {
 
       {/* Overlay */}
       <div
-        className="absolute inset-0 z-10 pointer-events-none opacity-55"
+        className="absolute inset-0 z-10 pointer-events-none opacity-70"
         style={{
           background:
             "linear-gradient(180deg, rgba(0, 0, 0, 0) 32.19%, #000000 86.13%), linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))",
