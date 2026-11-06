@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
 import type { Sector, SectorsData } from "@/app/(v2)/v2/home/data";
 
 const SmallArrow = () => (
@@ -12,7 +13,7 @@ const SmallArrow = () => (
     width={16}
     height={16}
     unoptimized
-    className="block w-[16px] h-[16px] max-w-none shrink-0"
+    className="block w-[16px] h-[16px] max-w-none shrink-0 pointer-events-none"
   />
 );
 
@@ -33,7 +34,7 @@ const SectorItem = ({
         width={50}
         height={50}
         unoptimized
-        className={`w-[clamp(36px,2.604vw,50px)] h-[clamp(36px,2.604vw,50px)] shrink-0 transition-opacity duration-300 ${
+        className={`pointer-events-none w-[clamp(36px,2.604vw,50px)] h-[clamp(36px,2.604vw,50px)] shrink-0 transition-opacity duration-300 ${
           isActive ? "opacity-100" : "opacity-60"
         }`}
       />
@@ -68,16 +69,58 @@ const SectorItem = ({
   );
 };
 
+// Outgoing image is clipped away from the left edge; GSAP tweens --edge (0 → 100)
+const WIPE_CLIP = "inset(0 0 0 calc(var(--edge) * 1%))";
+
 const SectorsSec = ({ data }: { data: SectorsData }) => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [prevIndex, setPrevIndex] = useState<number | null>(null);
+  const imagesRef = useRef<(HTMLImageElement | null)[]>([]);
+  const shownRef = useRef(0);
   const sectors = data?.sectors ?? [];
 
-  const activate = (index: number) => {
-    if (index === activeIndex) return;
-    setPrevIndex(activeIndex);
-    setActiveIndex(index);
-  };
+  const activate = (index: number) => setActiveIndex(index);
+
+  // Wipes that are still running stay on top of the new one, so fast hovers stack instead of jumping
+  useEffect(() => {
+    const images = imagesRef.current;
+    const outgoing = images[shownRef.current];
+    const incoming = images[activeIndex];
+    if (shownRef.current === activeIndex || !outgoing || !incoming) return;
+    shownRef.current = activeIndex;
+
+    gsap.killTweensOf(incoming);
+    images.forEach((image) => {
+      if (!image || image === outgoing || image === incoming) return;
+      if (gsap.isTweening(image)) gsap.set(image, { zIndex: Number(image.style.zIndex) + 1 });
+      else gsap.set(image, { visibility: "hidden", zIndex: 0 });
+    });
+    gsap.set(incoming, { visibility: "visible", zIndex: 0 });
+    incoming.style.clipPath = "";
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      gsap.set(outgoing, { visibility: "hidden" });
+      return;
+    }
+
+    gsap.fromTo(incoming, { scale: 1.06 }, { scale: 1, duration: 1.2, ease: "power3.out" });
+
+    // clip-path set directly — GSAP can't parse the var() inside it
+    gsap.set(outgoing, { zIndex: 1 });
+    outgoing.style.clipPath = WIPE_CLIP;
+    gsap.fromTo(
+      outgoing,
+      { "--edge": 0 },
+      {
+        "--edge": 100,
+        duration: 0.9,
+        ease: "power3.inOut",
+        onComplete: () => {
+          gsap.set(outgoing, { visibility: "hidden", zIndex: 0 });
+          outgoing.style.clipPath = "";
+        },
+      }
+    );
+  }, [activeIndex]);
 
   if (!sectors.length) return null;
 
@@ -85,7 +128,7 @@ const SectorsSec = ({ data }: { data: SectorsData }) => {
     <section className="relative flex flex-col overflow-hidden bg-black lg:block">
       {/* Background */}
       {data.bgImage && (
-        <Image src={data.bgImage} alt="" fill sizes="100vw" className="object-cover object-left" />
+        <Image src={data.bgImage} alt="" fill sizes="100vw" className="object-cover object-left pointer-events-none" />
       )}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -94,26 +137,21 @@ const SectorsSec = ({ data }: { data: SectorsData }) => {
 
       {/* Image */}
       <div className="relative overflow-hidden aspect-[850/914] lg:absolute lg:inset-y-0 lg:right-0 lg:w-[44.27vw] lg:aspect-auto order-last">
-        {sectors.map((sector, index) => {
-          const state =
-            index === activeIndex
-              ? prevIndex === null
-                ? "z-10"
-                : "z-10 v2-reveal-in"
-              : index === prevIndex
-                ? "z-20 v2-wipe-out"
-                : "z-0 opacity-0";
-          return (
-            <Image
-              key={index}
-              src={sector.image}
-              alt={sector.alt}
-              fill
-              sizes="(min-width: 1024px) 45vw, 100vw"
-              className={`object-cover ${state}`}
-            />
-          );
-        })}
+        {sectors.map((sector, index) => (
+          <Image
+            key={index}
+            ref={(el) => {
+              imagesRef.current[index] = el;
+            }}
+            src={sector.image}
+            alt={sector.alt}
+            fill
+            loading="eager"
+            sizes="(min-width: 1024px) 45vw, 100vw"
+            onLoad={(e) => e.currentTarget.decode?.().catch(() => {})}
+            className={`pointer-events-none object-cover ${index === 0 ? "" : "invisible"}`}
+          />
+        ))}
       </div>
 
       {/* Content */}

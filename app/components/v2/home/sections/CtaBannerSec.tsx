@@ -6,7 +6,7 @@ import type { CtaBannerData } from "@/app/(v2)/v2/home/data";
 const CtaBannerSec = ({ data }: { data: CtaBannerData }) => {
   return (
     <section className="relative overflow-hidden bg-black">
-      <Image src={data.bgImage} alt="" fill sizes="100vw" className="object-cover object-center" />
+      <Image src={data.bgImage} alt="" fill sizes="100vw" className="object-cover object-center pointer-events-none" />
 
       <div
         className="absolute inset-0 pointer-events-none"

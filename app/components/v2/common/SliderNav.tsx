@@ -8,7 +8,7 @@ const Chevron = ({ flip = false }: { flip?: boolean }) => (
     width={20}
     height={20}
     unoptimized
-    className={`block w-[clamp(16px,1.042vw,20px)] h-[clamp(16px,1.042vw,20px)] max-w-none ${flip ? "rotate-180" : ""}`}
+    className={`pointer-events-none block w-[clamp(16px,1.042vw,20px)] h-[clamp(16px,1.042vw,20px)] max-w-none ${flip ? "rotate-180" : ""}`}
   />
 );
 

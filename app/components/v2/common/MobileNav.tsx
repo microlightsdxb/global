@@ -72,7 +72,7 @@ const MobileNav = () => {
               src="/assets/img/logo.svg" 
             alt="Lighting Solutions Dubai"
             title="Microlights"
-              className="h-[45px] w-auto"
+              className="h-[45px] w-auto pointer-events-none"
               width={100}
               height={250}
             />
@@ -147,7 +147,7 @@ const MobileNav = () => {
                 alt="Crest Logo"
                 width={80}
                 height={50}
-                className="h-[50px] w-auto"
+                className="h-[50px] w-auto pointer-events-none"
               />
             </Link>
           </div>

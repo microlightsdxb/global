@@ -40,7 +40,7 @@ const BoxButton = React.forwardRef<HTMLButtonElement, BoxButtonProps>((props, re
           width={16}
           height={16}
           unoptimized
-          className="block w-[16px] h-[16px] max-w-none shrink-0 transition-transform duration-300 ease-out group-hover:rotate-45"
+          className="block w-[16px] h-[16px] max-w-none shrink-0 transition-transform duration-300 ease-out group-hover:rotate-45 pointer-events-none"
         />
       )}
     </>
