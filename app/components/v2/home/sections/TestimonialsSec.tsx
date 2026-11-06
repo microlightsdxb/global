@@ -8,6 +8,7 @@ import type { Swiper as SwiperClass } from "swiper";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import SliderNav from "@/app/components/v2/common/SliderNav";
+import Reveal, { REVEAL_STAGGER } from "@/app/components/v2/common/Reveal";
 import type { TestimonialsData } from "@/app/(v2)/v2/home/data";
 
 const TestimonialsSec = ({ data }: { data: TestimonialsData }) => {
@@ -25,26 +26,32 @@ const TestimonialsSec = ({ data }: { data: TestimonialsData }) => {
         {/* Heading */}
         <div className="flex flex-col justify-between gap-[40px] lg:max-w-[470px]">
           <div>
-            <h2 className="section-title text-black">{data.title}</h2>
-            <p className="mt-[30px] text-description text-[#555555] !mb-0">{data.description}</p>
+            <Reveal>
+              <h2 className="section-title text-black">{data.title}</h2>
+            </Reveal>
+            <Reveal delay={REVEAL_STAGGER}>
+              <p className="mt-[30px] text-description text-[#555555] !mb-0">{data.description}</p>
+            </Reveal>
           </div>
           {hasMany && (
-            <SliderNav
-              onPrev={() => swiperRef.current?.slidePrev()}
-              onNext={() => swiperRef.current?.slideNext()}
-            />
+            <Reveal delay={REVEAL_STAGGER * 2}>
+              <SliderNav
+                onPrev={() => swiperRef.current?.slidePrev()}
+                onNext={() => swiperRef.current?.slideNext()}
+              />
+            </Reveal>
           )}
         </div>
 
         {/* Slider */}
-        <div className="flex gap-[24px] md:gap-[70px] min-w-0 lg:w-[908px] lg:max-w-[60%]">
+        <Reveal delay={REVEAL_STAGGER} className="flex gap-[24px] md:gap-[70px] min-w-0 lg:w-[908px] lg:max-w-[60%]">
           <Image
             src="/assets/img/icons/quote.svg"
             alt=""
             width={98}
             height={89}
             unoptimized
-            className="hidden md:block w-[clamp(60px,5.104vw,98px)] h-auto self-start shrink-0 pointer-events-none"
+            className="hidden md:block w-[clamp(60px,calc(98*100vw/1920),98px)] h-auto self-start shrink-0 pointer-events-none"
           />
 
           <div className="min-w-0 flex-1">
@@ -93,7 +100,7 @@ const TestimonialsSec = ({ data }: { data: TestimonialsData }) => {
               ))}
             </Swiper>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

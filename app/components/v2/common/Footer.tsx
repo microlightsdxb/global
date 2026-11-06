@@ -6,6 +6,7 @@ import React from "react";
 import { useStore } from "@/app/store/productType";
 import BrochureDownloadModal from "@/app/components/common/BrochureDownloadModal";
 import BoxButton from "./BoxButton";
+import Reveal, { REVEAL_STAGGER } from "./Reveal";
 import { footerData } from "./footerData";
 
 const ContactLink = ({ href, label, icon }: { href: string; label: string; icon: string }) => (
@@ -24,13 +25,13 @@ const Footer = () => {
   const { contacts } = footerData;
 
   return (
-    <footer className="bg-white pt-(--section-space) pb-[42px]">
+    <footer className="bg-white pt-[clamp(68px,calc(135*100vw/1920),135px)] pb-[42px]">
       <div className="container">
         <div className="grid grid-cols-1 gap-[40px] sm:grid-cols-2 xl:flex xl:gap-0">
           {/* Brand */}
-          <div className="xl:flex-1 xl:min-w-0">
+          <Reveal className="xl:flex-1 xl:min-w-0">
             <Link href="/" aria-label="Microlights home">
-              <Image src="/assets/img/logo.svg" alt="Lighting Solutions Dubai" title="Microlights" width={220} height={58} className="pointer-events-none" />
+              <Image src="/assets/img/logo.svg" alt="Lighting Solutions Dubai" title="Microlights" width={220} height={58} className="pointer-events-none w-[clamp(160px,calc(160px+(100vw-375px)*60/1545),220px)] h-auto" />
             </Link>
             <p className="mt-[30px] max-w-[360px] text-footer text-[#7D7D7D] !mb-0">{footerData.description}</p>
 
@@ -41,10 +42,10 @@ const Footer = () => {
               </div>
               <ContactLink href={contacts.email.href} label={contacts.email.label} icon="/assets/img/icons/footer/contact/mail.svg" />
             </div>
-          </div>
+          </Reveal>
 
           {/* Quick Links */}
-          <div className="mt-[15px] xl:w-[220px] xl:shrink-0">
+          <Reveal delay={REVEAL_STAGGER} className="xl:w-[220px] xl:shrink-0">
             <p className="text-subtitle-2 text-black !mb-0">Quick Links</p>
             <ul className="mt-[30px]">
               {footerData.quickLinks.map((link) => (
@@ -55,10 +56,10 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-          </div>
+          </Reveal>
 
           {/* Products */}
-          <div className="mt-[15px] xl:w-[220px] xl:shrink-0 xl:ml-[40px]">
+          <Reveal delay={REVEAL_STAGGER * 2} className="xl:w-[220px] xl:shrink-0 xl:ml-[30px]">
             <p className="text-subtitle-2 text-black !mb-0">Products</p>
             <ul className="mt-[30px]">
               {footerData.products.map((link) => (
@@ -69,11 +70,21 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-          </div>
+          </Reveal>
 
           {/* Socials & brochure */}
-          <div className="mt-[15px] flex flex-col justify-between gap-[40px] xl:w-[276px] xl:shrink-0 xl:ml-[clamp(40px,5.9375vw,114px)]">
-            <div className="flex gap-[8px]">
+          <Reveal delay={REVEAL_STAGGER * 3} className="flex flex-col justify-between gap-[40px] xl:w-[clamp(360px,calc(521*100vw/1920),521px)] xl:shrink-0 xl:ml-[20px]">
+            <BrochureDownloadModal brochureUrl="/api/download">
+              <BoxButton
+                label="Download Brochure"
+                tone="dark"
+                icon={<Image src="/assets/img/icons/download.svg" alt="" width={40} height={40} unoptimized className="block w-[40px] h-[40px] max-w-none shrink-0 pointer-events-none transition-[filter] duration-300 group-hover:brightness-0" />}
+                fullWidth
+                size="large"
+              />
+            </BrochureDownloadModal>
+
+            <div className="flex gap-[8px] xl:justify-end">
               {footerData.socials.map((social) => {
                 const isPlaceholder = social.href === "#";
                 return (
@@ -96,20 +107,11 @@ const Footer = () => {
                 );
               })}
             </div>
-
-            <BrochureDownloadModal brochureUrl="/api/download">
-              <BoxButton
-                label="Download Brochure"
-                tone="dark"
-                icon={<Image src="/assets/img/icons/download.svg" alt="" width={20} height={20} unoptimized className="block w-[20px] h-[20px] max-w-none shrink-0 pointer-events-none" />}
-                fullWidth
-              />
-            </BrochureDownloadModal>
-          </div>
+          </Reveal>
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-(--section-space) border-t border-black/35 pt-[34px] flex flex-col gap-[20px] xl:flex-row xl:items-center xl:gap-0">
+        <Reveal className="mt-[clamp(52px,calc(105*100vw/1920),105px)] border-t border-black/35 pt-[34px] flex flex-col gap-[20px] xl:flex-row xl:items-center xl:gap-0">
           <p className="text-[13px] leading-[2.46153846] tracking-normal text-black/50 opacity-50 !mb-0">
             {footerData.copyright} |{" "}
             <a href="https://www.globalsurf.ae/" target="_blank" rel="noopener noreferrer" className="transition-colors duration-300 hover:text-black/60">
@@ -130,7 +132,7 @@ const Footer = () => {
 
           {/* Certifications */}
           <Image src="/assets/img/icons/fticons.svg" alt="CE, RoHS and CB certified" width={220} height={30} unoptimized className="xl:ml-auto h-[30px] w-auto pointer-events-none" />
-        </div>
+        </Reveal>
       </div>
     </footer>
   );

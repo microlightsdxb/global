@@ -7,6 +7,8 @@ type BaseProps = {
   tone?: "light" | "dark";
   icon?: React.ReactNode;
   fullWidth?: boolean;
+  /** "large": 117px tall block (px 33 / py 38, 124px gap, text-subtitle-2), e.g. the footer brochure */
+  size?: "default" | "large";
   className?: string;
 };
 
@@ -19,7 +21,7 @@ type ButtonProps = BaseProps &
 export type BoxButtonProps = LinkProps | ButtonProps;
 
 const BoxButton = React.forwardRef<HTMLButtonElement, BoxButtonProps>((props, ref) => {
-  const { label, tone = "light", icon, fullWidth = false, className = "" } = props;
+  const { label, tone = "light", icon, fullWidth = false, size = "default", className = "" } = props;
 
   const toneClasses =
     tone === "dark"
@@ -28,11 +30,16 @@ const BoxButton = React.forwardRef<HTMLButtonElement, BoxButtonProps>((props, re
 
   const sizing = fullWidth ? "w-full justify-between" : "w-fit hover:gap-[72px]";
 
-  const classes = `group inline-flex ${sizing} max-h-[57px] items-center gap-[20px] border-t px-[30px] pt-[15px] pb-[16px] text-description transition-[color,background-color,border-color,padding,gap] duration-300 ease-out hover:px-[4px] ${toneClasses} ${className}`;
+  const box =
+    size === "large"
+      ? "max-h-[117px] gap-[124px] px-[33px] pt-[37px] pb-[38px] text-subtitle-2"
+      : "max-h-[57px] gap-[20px] px-[30px] pt-[15px] pb-[16px] text-description";
+
+  const classes = `group inline-flex ${sizing} ${box} items-center border-t transition-[color,background-color,border-color,padding,gap] duration-300 ease-out hover:px-[4px] ${toneClasses} ${className}`;
 
   const content = (
     <>
-      <span className="whitespace-nowrap">{label}</span>
+      <span className="whitespace-nowrap !tracking-[-0.01em]">{label}</span>
       {icon ?? (
         <Image
           src="/assets/img/icons/btn-common-arrow.svg"
@@ -55,7 +62,7 @@ const BoxButton = React.forwardRef<HTMLButtonElement, BoxButtonProps>((props, re
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { label: _l, tone: _t, icon: _i, fullWidth: _f, className: _c, href: _h, type, ...rest } = props;
+  const { label: _l, tone: _t, icon: _i, fullWidth: _f, size: _s, className: _c, href: _h, type, ...rest } = props;
 
   return (
     <button ref={ref} type={type ?? "button"} {...rest} className={`${classes} cursor-pointer`}>

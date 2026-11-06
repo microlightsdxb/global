@@ -92,7 +92,7 @@ const Header = () => {
             title="Microlights" 
             width={220}
             height={58}
-            className="pointer-events-none"
+            className="pointer-events-none w-[clamp(180px,calc(180px+(100vw-1024px)*40/896),220px)] h-auto"
           />
           </Link>
         </div>
