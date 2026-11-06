@@ -3,14 +3,16 @@
 import React from 'react'
 
 import HeroSection from './sections/HeroSection'
-import RecentProjects from './sections/Project'
-import Testimonials from './sections/Testimonials'
+import ProjectsSec from './sections/ProjectsSec'
 import ProdSec from './sections/ProdSec'
 
 import AboutSec from './sections/AboutSec'
-import IndustriesServed from './sections/IndustriesServed'
+import SectorsSec from './sections/SectorsSec'
 import { Home } from '@/types/Home'
-import { heroData } from '@/app/(user)/v2/home/data'
+import { heroData, aboutData, productsData, sectorsData, projectsData, whatWeDoData, ctaBannerData, testimonialsData } from '@/app/(v2)/v2/home/data'
+import TestimonialsSec from './sections/TestimonialsSec'
+import CtaBannerSec from './sections/CtaBannerSec'
+import WhatWeDoSec from './sections/WhatWeDoSec'
 
 
 type typeData = {
@@ -39,12 +41,14 @@ const IndexV2 = ({ homeData,typeData,projectData }: { homeData: Home,typeData:ty
   return (
     <div>
       <HeroSection data={heroData} />
-      <ProdSec data={typeData} />
-      <IndustriesServed data={homeData} />
-      <AboutSec data={homeData} />
+      <AboutSec content={aboutData} data={homeData} />
+      <ProdSec content={productsData} data={typeData} />
+      <SectorsSec data={sectorsData} />
       {/* <ProcessTimeline data={homeData} /> */}
-      <RecentProjects data={projectData} />
-      <Testimonials data={homeData} />
+      <ProjectsSec data={projectsData} />
+      <WhatWeDoSec data={whatWeDoData} />
+      <TestimonialsSec data={testimonialsData} />
+      <CtaBannerSec data={ctaBannerData} />
     </div>
   )
 }

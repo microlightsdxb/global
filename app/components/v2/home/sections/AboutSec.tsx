@@ -1,127 +1,71 @@
-"use client";
-/* import Image from "next/image"; */
-import Link from "next/link";
-import React from "react";
-import { FiArrowUpRight } from "react-icons/fi";
-import { useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion"
 import Image from "next/image";
-import parse from 'html-react-parser';
-import { Home } from "@/types/Home";
+import React from "react";
+import parse from "html-react-parser";
+import ArrowButton from "@/app/components/v2/common/ArrowButton";
+import type { AboutData } from "@/app/(v2)/v2/home/data";
+import type { Home } from "@/types/Home";
 
-type CounterProps = {
-  end: number;
-  label: string;
-  index: number;
-};
-
-const Counter: React.FC<CounterProps> = ({ end, label ,index }) => {
-  const [count, setCount] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.5 }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!isVisible) return;
-
-    let start = 0;
-    const duration = 2000;
-    const stepTime = Math.abs(Math.floor(duration / end));
-    const timer = setInterval(() => {
-      start += 1;
-      setCount(start);
-      if (start === end) clearInterval(timer);
-    }, stepTime);
-    return () => clearInterval(timer);
-  }, [isVisible, end]);
-
+// `content` = static copy (title, image, stat labels, CTA); `data` = CMS home data.
+const AboutSec = ({ content, data }: { content: AboutData; data: Home }) => {
   return (
-    <div
-      ref={ref}
-      className="text-left not-last:border-r not-last:border-[#7D7D7D] w-full pr-2"
-    >
-      <p className="text-lg font-normal text-primary leading-none">
-        {index === 0 ? `${count}+` : `${count}'s`}
-      </p>
-      <p className="text-gray-600 text-[14px]">{label}</p>
-    </div>
-  );
-};
-
-const AboutSec = ({ data }: { data: Home }) => {
-  return (
-    <section className="pb-[60px] lg:pb-[0px] pt-[60px] lg:pt-[90px] 2xl:pt-[120px] ">
+    <section>
+      {/* Bottom line spans the container width, not the full screen */}
       <div className="container">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-[40px]">
-          <div>
-            <div className="overflow-hidden mb-[30px] lg:mb-[50px] 2xl:mb-[100px]">
-              <motion.h2 initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true, amount: 0.5 }} className="text-xl text-primary ">
+        {/* 780 : 610 split at 1920 with a 130px gap */}
+        <div className="section-spacing border-b border-black/20 grid grid-cols-1 gap-y-[40px] lg:grid-cols-[minmax(0,780fr)_minmax(0,610fr)] lg:gap-x-(--space-130) lg:items-center">
+          {/* Image — 780×882 at 1920 */}
+          <figure className="relative aspect-[780/882] overflow-hidden">
+            <Image
+              src={content.image}
+              alt={data?.aboutImageAltTag || content.title}
+              fill
+              className="object-cover object-center"
+            />
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background:
+                  "linear-gradient(210.63deg, rgba(153, 116, 89, 0) 36.27%, rgba(153, 116, 89, 0.5) 103.4%)",
+              }}
+            />
+          </figure>
 
-                About Microlights
-              </motion.h2>
+          {/* Content */}
+          <div>
+            <h2 className="section-title text-black">{content.title}</h2>
+
+            <hr className="my-[40px] border-[#E2E8F0]" />
+
+            {data?.aboutTitle && (
+              <h3 className="text-subtitle-2 text-[#7D7D7D]">{data.aboutTitle}</h3>
+            )}
+
+            {/* CMS rich text — each <p> becomes a flex item, spaced by the gap */}
+            {data?.aboutDescription && (
+              <div className="mt-[clamp(16px,1.302vw,25px)] flex flex-col gap-[clamp(16px,1.302vw,25px)] text-description text-[#555555] [&_p]:!mb-0">
+                {parse(data.aboutDescription)}
+              </div>
+            )}
+
+            {/* Stats — numbers from the CMS, suffix + label static */}
+            <div className="mt-[clamp(32px,2.865vw,55px)] flex divide-x divide-[#D9D9D9]">
+              {content.stats.map((stat) => (
+                <div key={stat.key} className="px-[clamp(16px,1.927vw,37px)] first:pl-0 last:pr-0">
+                  <p className="text-subtitle-3 text-black !mb-0">
+                    {data?.[stat.key] ?? 0}
+                    {stat.suffix}
+                  </p>
+                  <p className="mt-[6px] text-description-2 text-[#4A5565] !mb-0">{stat.label}</p>
+                </div>
+              ))}
             </div>
-            <motion.figure className="h-[250px] lg:h-[750px] overflow-hidden relative" initial={{ opacity: 0, y: -50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true, amount: 0.5 }}>
-              <Image
-                src={data?.aboutImage}
-                className="absolute w-full h-full  object-center object-cover"
-                alt={data?.aboutImageAltTag}
-                width={900}
-                height={600}
-              />
-            </motion.figure>
+
+            <ArrowButton
+              href={content.cta.href}
+              label={content.cta.label}
+              tone="dark" className="mt-[50px]"
+            />
           </div>
-          <motion.div className="pl-[0px] 2xl:pl-[90px]" initial={{ opacity: 0, y: -50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true, amount: 0.5 }}>
-            <h3 className="text-lg text-[#7D7D7D]">
-              {data?.aboutTitle}
-            </h3>
-            <hr className="mt-[30px] mb-[30px] lg:xl-[50px] 2xl:mb-[80px]" />
-            <div>
-              {parse(data?.aboutDescription || "")}
-            </div>
-            <div className="flex mt-[30px] 2xl:mt-[50px]">
-              <Link
-                href={"/about-us"}
-                className="flex gap-[20px] items-center border-t border-primary text-sm text-primary border-solid leaing-none pt-[12px] cursor-pointer group"
-              >
-                Read More{" "}
-                <FiArrowUpRight className="text-[22px] text-[#7D7D7D] group-hover:scale-125 transition-all ease-in-out duration-500 " />
-              </Link>
-            </div>
-            <div className="grid grid-cols-3 justify-center gap-[15px] lg:gap-[30px] text-center mt-[30px]  md:mt-[20px] xl:mt-[80px]">
-              <Counter end={data?.years} label="Years of Expertise" index={0} />
-              <Counter end={data?.projects} label="of Projects Completed" index={1} />
-              <Counter end={data?.clients} label="of Happy Clients" index={2} />
-            </div>
-          </motion.div>
         </div>
       </div>
     </section>

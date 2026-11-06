@@ -1,10 +1,9 @@
 "use client";
 import Image from "next/image";
 import React, { useRef, useState } from "react";
-import Link from "next/link";
-import { FiArrowUpRight } from "react-icons/fi";
+import ArrowButton from "@/app/components/v2/common/ArrowButton";
 import { AnimatePresence, motion } from "framer-motion";
-import type { HeroData } from "@/app/(user)/v2/home/data";
+import type { HeroData } from "@/app/(v2)/v2/home/data";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade } from "swiper/modules";
 import { Swiper as SwiperClass } from "swiper";
@@ -67,7 +66,7 @@ const HeroSection = ({ data }: { data: HeroData }) => {
       />
 
       {/* Content */}
-      <div className="absolute inset-x-0 bottom-[70px] lg:bottom-[110px] z-20">
+      <div className="absolute inset-x-0 bottom-0 section-bottom-spacing z-20">
         <div className="container flex items-end justify-between gap-8">
           {/* Text — fades in on every slide change */}
           <div className="min-h-[220px] lg:min-h-[260px] flex flex-col justify-end">
@@ -79,30 +78,23 @@ const HeroSection = ({ data }: { data: HeroData }) => {
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
               >
-                <h1 className="text-2xl text-white leading-[1.1] font-custom font-light whitespace-pre-line">
+                <h1 className="heroTitle text-white whitespace-pre-line">
                   {activeBanner?.title}
                 </h1>
                 {activeBanner?.subTitle && (
-                  <p className="mt-[14px] lg:mt-[18px] text-22 text-white/90 leading-snug font-custom font-light">
+                  <p className="mt-[30px] text-subtitle !leading-[1.6] text-white">
                     {activeBanner.subTitle}
                   </p>
                 )}
               </motion.div>
             </AnimatePresence>
 
-            <Link
-              href={data.cta.href}
-              className="group mt-[40px] lg:mt-[60px] inline-flex w-fit flex-col gap-[12px] text-white"
-            >
-              <span className="block h-px w-[60px] bg-white/70 transition-all duration-500 group-hover:w-full group-hover:bg-white" />
-              <span className="flex items-center gap-[18px] text-xs font-light">
-                {data.cta.label}
-                <FiArrowUpRight className="text-[18px] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </span>
-            </Link>
+            <ArrowButton href={data.cta.href} label={data.cta.label} className="mt-[40px]" />
           </div>
 
-          {/* Pagination — line bullets, active one fills over the autoplay delay */}
+          {/* Pagination — active line 46px white, others 15px white/40; width and colour ease between states.
+              The 3px line is the button; a ::before extends the click area 12px above/below
+              and 5px left/right (half the 10px gap, so neighbouring areas meet without overlapping). */}
           {banners.length > 1 && (
             <div className="flex items-center gap-[10px] pb-[6px]">
               {banners.map((_, index) => {
@@ -114,20 +106,10 @@ const HeroSection = ({ data }: { data: HeroData }) => {
                     aria-label={`Go to slide ${index + 1}`}
                     aria-current={isActive}
                     onClick={() => swiperRef.current?.slideToLoop(index)}
-                    className={`relative h-[2px] overflow-hidden bg-white/35 transition-all duration-500 cursor-pointer ${
-                      isActive ? "w-[48px]" : "w-[24px] hover:bg-white/60"
+                    className={`relative h-[3px] cursor-pointer transition-[width,background-color] duration-500 ease-in-out before:absolute before:-inset-y-[12px] before:-inset-x-[5px] before:content-[''] ${
+                      isActive ? "w-[46px] bg-white" : "w-[15px] bg-white/40 hover:bg-white/70"
                     }`}
-                  >
-                    {isActive && (
-                      <motion.span
-                        key={activeIndex}
-                        className="absolute inset-y-0 left-0 bg-white"
-                        initial={{ width: "0%" }}
-                        animate={{ width: "100%" }}
-                        transition={{ duration: (AUTOPLAY_DELAY + FADE_SPEED) / 1000, ease: "linear" }}
-                      />
-                    )}
-                  </button>
+                  />
                 );
               })}
             </div>

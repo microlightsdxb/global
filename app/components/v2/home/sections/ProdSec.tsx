@@ -1,166 +1,68 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react';
-import {motion} from 'framer-motion'
 import Image from "next/image";
-import { FiArrowUpRight } from "react-icons/fi";
 import Link from "next/link";
+import ArrowButton from "@/app/components/v2/common/ArrowButton";
 import { useStore } from "@/app/store/productType";
-const slideVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: { delay: i * 0.2, duration: 0.6, ease: "easeOut" },
-    }),
-  };
+import type { ProductsData } from "@/app/(v2)/v2/home/data";
 
-const ProdSec = ({data}:{data:{data:{_id:string,type: string, image: string, hoverImage: string}[]}}) => {
-  const setType = useStore((state)=>state.setType);
+type ProductType = { _id: string; type: string; image: string; hoverImage: string };
 
-    const serrefhtRef = useRef<HTMLDivElement | null>(null); 
-    const [refHeight, setRefHeight] = useState(0);
-  
-    useEffect(() => {
-      if (!data) return;
-    
-      const updateSpacing = () => {
-        const element = serrefhtRef.current;
-        if (element) {
-          const height = element.offsetHeight ;
-          setRefHeight(height);
-        }
-      };
-    
-      const timer = setTimeout(() => {
-        updateSpacing();
-        window.addEventListener('resize', updateSpacing); 
-      }, 1000);   
-    
-      return () => {
-        clearTimeout(timer);
-        window.removeEventListener('resize', updateSpacing);
-      };
-    
-    }, [data]);
-    
-    
-  
-    
+const ProdSec = ({ content, data }: { content: ProductsData; data: { data: ProductType[] } }) => {
+  const setType = useStore((state) => state.setType);
+  const products = data?.data ?? [];
+
+  if (!products.length) return null;
+
   return (
-    // <section className="section-spacing h-[280vh] md:h-[230vh] lg:h-[100vh] 2xl:h-[110vh]">
-    //   <div className="container">
-    //     <div className="overflow-hidden">
-    //       <h2
-    //       initial={{ opacity: 0, x: -50 }}
-    //       whileInView={{ opacity: 1, x: 0 }}
-    //       transition={{ duration: 0.6 }}
-    //       viewport={{ once: true, amount: 0.5 }}
-    //       className="text-xl leading-none mb-[50px] text-primary">
-    //         Products
-    //       </h2>
-    //     </div>
-    //     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[40px]"
-    //     >
-    //       {data?.data?.map((product: {_id: string, type: string, image: string, hoverImage: string}, i: number) => (
-    //         <Link key={product._id} onClick={()=>setType(product.type)} href={`/products`} className="relative last:before:hidden before:content-[] before:absolute before:h-full before:w-[1px] before:bg-primary/10 before:right-[-20px] ">
-    //           <div
-    //             className="prditm group cursor-pointer"
-    //             initial="hidden"
-    //             whileInView="visible"
-    //             viewport={{ once: true, amount: 0.5 }}
-    //             variants={slideVariants}
-    //             custom={i}
-    //           >
-    //             <figure className="relative border border-black/10 mb-[35px] overflow-hidden">
-    //               <Image
-    //                 src={product.image}
-    //                 alt={product.type}
-    //                 width={600}
-    //                 height={500}
-    //                 className="w-full transition-opacity duration-500 ease-in-out group-hover:opacity-0"
-    //               />
-    //               <Image
-    //                 src={product.hoverImage}
-    //                 alt={`Hover ${product.type}`}
-    //                 width={600}
-    //                 height={500}
-    //                 className="absolute inset-0 w-full opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100"
-    //               />
-    //             </figure>
-    //             <h3 className="text-lg mb-[30px]">{product.type}</h3>
-    //             <div className="flex">
-    //               <span className="border-t border-primary pt-[12px]">
-    //                 <FiArrowUpRight className="ml-[40px] text-[22px] text-[#7D7D7D] transition-all ease-in-out duration-300 group-hover:ml-[30px] leading-none" />
-    //               </span>
-    //             </div>
-    //           </div>
-    //         </Link>
-    //       ))}
-    //     </div>
-    //   </div>
-    // </section> 
-    <section 
-      className="section-spacing relative    "
-     
-    >
-      <div  className="refht  "  >
-    <div className="container" >
-      <div className="overflow-hidden">
-        <motion.h2 
-         initial={{ opacity: 0, x: -50 }}
-               whileInView={{ opacity: 1, x: 0 }}
-               transition={{ duration: 0.6 }}
-               viewport={{ once: true, amount: 0.5 }}
-        className="text-xl leading-none mb-[50px] text-primary">
-          Products
-        </motion.h2>
-      </div>
-      <div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[40px]" 
-      >
-        {data?.data?.map((product: {_id: string, type: string, image: string, hoverImage: string}, index:number) => (
-          <Link key={product._id} onClick={()=>setType(product.type)} href={`/lighting-products`} className="relative last:before:hidden before:content-[] before:absolute before:h-full lg:before:w-[1px] lg:before:bg-primary/10 before:right-[-20px] ">
-            <div  style={{
-        height: `${refHeight}px`, 
-      }}>
-            <motion.div
-              className="prditm group cursor-pointer" ref={serrefhtRef}
-              initial="hidden"
-                          whileInView="visible"
-                          viewport={{ once: true, amount: 0.5 }}
-                          variants={slideVariants}
-                          custom={index}
+    <section className="section-spacing">
+      <div className="container">
+        {/* Heading row — title + description left, "View all" right */}
+        <div className="flex flex-col gap-[30px] md:flex-row md:items-start md:justify-between">
+          <div className="max-w-[560px]">
+            <h2 className="section-title text-black">{content.title}</h2>
+            <p className="mt-[30px] text-description text-[#555555] !mb-0">{content.description}</p>
+          </div>
+          <ArrowButton href={content.cta.href} label={content.cta.label} tone="dark" className="shrink-0 md:mr-[42px]" />
+        </div>
+
+        {/* Cards — divider line between columns sits in the middle of the 40px gap */}
+        <div className="mt-[50px] grid grid-cols-1 gap-[40px] md:grid-cols-2 lg:grid-cols-3">
+          {products.map((product) => (
+            <Link
+              key={product._id}
+              href="/lighting-products"
+              onClick={() => setType(product.type)}
+              className="group relative lg:[&:not(:nth-child(3n))]:after:absolute lg:[&:not(:nth-child(3n))]:after:top-0 lg:[&:not(:nth-child(3n))]:after:right-[-20px] lg:[&:not(:nth-child(3n))]:after:h-full lg:[&:not(:nth-child(3n))]:after:w-px lg:[&:not(:nth-child(3n))]:after:bg-black/10 lg:[&:not(:nth-child(3n))]:after:content-['']"
             >
-              <figure className="relative border h-[320px] lg:h-[380px] 2xl:h-[520px] border-black/10 mb-[35px] overflow-hidden">
+              <figure className="relative aspect-[480/526] overflow-hidden border border-black/10 bg-white">
                 <Image
                   src={product.image}
-                  alt={product.type} 
+                  alt={product.type}
                   fill
-                  className="w-full   object-cover h-full transition-opacity duration-500 ease-in-out group-hover:opacity-0"
+                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                  className="object-cover transition-opacity duration-500 ease-in-out group-hover:opacity-0"
                 />
-                <Image
-                  src={product.hoverImage}
-                  alt={`Hover ${product.type}`} 
-                  fill
-                  className="absolute inset-0 w-full object-cover h-full opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100"
-                />
+                {product.hoverImage && (
+                  <Image
+                    src={product.hoverImage}
+                    alt=""
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                    className="object-cover opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100"
+                  />
+                )}
               </figure>
-              <h2 className="text-lg mb-[30px]">{product.type}</h2>
-              <div className="flex">
-                <span className="border-t border-primary pt-[12px]">
-                  <FiArrowUpRight className="ml-[40px] text-[22px] text-[#7D7D7D] transition-all ease-in-out duration-300 group-hover:ml-[30px] leading-none" />
-                </span>
+
+              <div className="mt-[40px] flex items-start justify-between gap-[20px]">
+                <h3 className="text-subtitle-3 text-black !mb-0">{product.type}</h3>
+                <ArrowButton as="span" tone="dark" />
               </div>
-            </motion.div>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          ))}
+        </div>
       </div>
-      </div>
-    </div>
-    </div>
-  </section>
+    </section>
   );
 };
 

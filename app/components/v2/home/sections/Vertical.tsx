@@ -84,8 +84,8 @@ const VerticalSec = () => {
                             <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-70"></div>
                         </figure>
                         <div className="mt-6 text-center">
-                            <h1 className="text-2xl font-custom font-normal">{project.title}</h1>
-                            <p className="text-lg font-custom font-light mt-2">{project.subtitle}</p>
+                            <h1 className="text-2xl font-normal">{project.title}</h1>
+                            <p className="text-lg mt-2">{project.subtitle}</p>
                             <div className="mt-4">
                                 <Link href={'/'} className="flex justify-center gap-2 items-center border-t border-white text-sm text-white pt-2">
                                     Explore <FiArrowUpRight className="text-[22px] text-white" />
