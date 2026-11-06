@@ -70,7 +70,14 @@ const SectorItem = ({
 
 const SectorsSec = ({ data }: { data: SectorsData }) => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [prevIndex, setPrevIndex] = useState<number | null>(null);
   const sectors = data?.sectors ?? [];
+
+  const activate = (index: number) => {
+    if (index === activeIndex) return;
+    setPrevIndex(activeIndex);
+    setActiveIndex(index);
+  };
 
   if (!sectors.length) return null;
 
@@ -86,19 +93,27 @@ const SectorsSec = ({ data }: { data: SectorsData }) => {
       />
 
       {/* Image */}
-      <div className="relative aspect-[850/914] lg:absolute lg:inset-y-0 lg:right-0 lg:w-[44.27vw] lg:aspect-auto order-last">
-        {sectors.map((sector, index) => (
-          <Image
-            key={index}
-            src={sector.image}
-            alt={sector.alt}
-            fill
-            sizes="(min-width: 1024px) 45vw, 100vw"
-            className={`object-cover transition-opacity duration-500 ease-in-out ${
-              index === activeIndex ? "opacity-100" : "opacity-0"
-            }`}
-          />
-        ))}
+      <div className="relative overflow-hidden aspect-[850/914] lg:absolute lg:inset-y-0 lg:right-0 lg:w-[44.27vw] lg:aspect-auto order-last">
+        {sectors.map((sector, index) => {
+          const state =
+            index === activeIndex
+              ? prevIndex === null
+                ? "z-10"
+                : "z-10 v2-reveal-in"
+              : index === prevIndex
+                ? "z-20 v2-wipe-out"
+                : "z-0 opacity-0";
+          return (
+            <Image
+              key={index}
+              src={sector.image}
+              alt={sector.alt}
+              fill
+              sizes="(min-width: 1024px) 45vw, 100vw"
+              className={`object-cover ${state}`}
+            />
+          );
+        })}
       </div>
 
       {/* Content */}
@@ -115,7 +130,7 @@ const SectorsSec = ({ data }: { data: SectorsData }) => {
                 key={sector.title}
                 sector={sector}
                 isActive={index === activeIndex}
-                onActivate={() => setActiveIndex(index)}
+                onActivate={() => activate(index)}
               />
             ))}
           </div>

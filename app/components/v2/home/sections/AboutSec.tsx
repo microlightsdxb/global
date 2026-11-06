@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import parse from "html-react-parser";
 import ArrowButton from "@/app/components/v2/common/ArrowButton";
+import Counter from "@/app/components/v2/common/Counter";
 import type { AboutData } from "@/app/(v2)/v2/home/data";
 import type { Home } from "@/types/Home";
 
@@ -44,14 +45,13 @@ const AboutSec = ({ content, data }: { content: AboutData; data: Home }) => {
             )}
 
             {/* Stats */}
-            <div className="mt-[clamp(32px,2.865vw,55px)] flex divide-x divide-[#D9D9D9]">
+            <div className="mt-[clamp(32px,2.865vw,55px)] flex justify-between">
               {content.stats.map((stat) => (
-                <div key={stat.key} className="px-[clamp(16px,1.927vw,37px)] first:pl-0 last:pr-0">
+                <div key={stat.key} className="[&:not(:first-child)]:border-l [&:not(:first-child)]:border-[#7D7D7D] [&:not(:first-child)]:pl-[40px]">
                   <p className="text-subtitle-3 text-black !mb-0">
-                    {data?.[stat.key] ?? 0}
-                    {stat.suffix}
+                    <Counter value={`${data?.[stat.key] ?? 0}${stat.suffix}`} />
                   </p>
-                  <p className="mt-[6px] text-description-2 text-[#4A5565] !mb-0">{stat.label}</p>
+                  <p className="mt-[12px] text-description-2 text-[#4A5565] !mb-0">{stat.label}</p>
                 </div>
               ))}
             </div>
