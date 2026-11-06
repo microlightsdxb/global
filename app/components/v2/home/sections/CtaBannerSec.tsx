@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import BoxButton from "@/app/components/v2/common/BoxButton";
+import Reveal, { REVEAL_STAGGER } from "@/app/components/v2/common/Reveal";
 import type { CtaBannerData } from "@/app/(v2)/v2/home/data";
 
 const CtaBannerSec = ({ data }: { data: CtaBannerData }) => {
@@ -17,9 +18,15 @@ const CtaBannerSec = ({ data }: { data: CtaBannerData }) => {
       />
 
       <div className="container relative section-spacing">
-        <h2 className="section-title text-white">{data.title}</h2>
-        <p className="mt-[30px] max-w-[700px] text-description text-[#B8B8B8] !mb-0">{data.description}</p>
-        <BoxButton href={data.cta.href} label={data.cta.label} className="mt-[50px]" />
+        <Reveal>
+          <h2 className="section-title text-white">{data.title}</h2>
+        </Reveal>
+        <Reveal delay={REVEAL_STAGGER}>
+          <p className="mt-[30px] max-w-[700px] text-description text-[#B8B8B8] !mb-0">{data.description}</p>
+        </Reveal>
+        <Reveal delay={REVEAL_STAGGER * 2} className="mt-[50px]">
+          <BoxButton href={data.cta.href} label={data.cta.label} />
+        </Reveal>
       </div>
     </section>
   );

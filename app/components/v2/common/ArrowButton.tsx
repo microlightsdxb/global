@@ -3,7 +3,7 @@ import React from "react";
 
 export const ArrowIcon = ({
   className = "",
-  sizeClass = "w-[clamp(18px,1.146vw,22px)] h-[clamp(18px,1.146vw,22px)]",
+  sizeClass = "w-[clamp(18px,calc(22*100vw/1920),22px)] h-[clamp(18px,calc(22*100vw/1920),22px)]",
 }: {
   className?: string;
   sizeClass?: string;
@@ -41,7 +41,7 @@ const ArrowButton = (props: ArrowButtonProps) => {
   const { label, ariaLabel, tone = "light", className = "" } = props;
 
   const classes = `group inline-flex w-fit flex-col ${tone === "dark" ? "text-black" : "text-white"} ${
-    label ? "gap-[13px]" : "gap-[11px] min-w-[clamp(32px,2.2396vw,43px)] min-h-[clamp(34px,2.3438vw,45px)]"
+    label ? "gap-[13px]" : "gap-[11px] min-w-[clamp(32px,calc(43*100vw/1920),43px)] min-h-[clamp(34px,calc(45*100vw/1920),45px)]"
   } ${className}`;
 
   const content = (

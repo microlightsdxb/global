@@ -5,6 +5,7 @@ import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import type { Sector, SectorsData } from "@/app/(v2)/v2/home/data";
+import Reveal, { REVEAL_STAGGER } from "@/app/components/v2/common/Reveal";
 
 const SmallArrow = () => (
   <Image
@@ -34,12 +35,12 @@ const SectorItem = ({
         width={50}
         height={50}
         unoptimized
-        className={`pointer-events-none w-[clamp(36px,2.604vw,50px)] h-[clamp(36px,2.604vw,50px)] shrink-0 transition-opacity duration-300 ${
+        className={`pointer-events-none w-[clamp(36px,calc(50*100vw/1920),50px)] h-[clamp(36px,calc(50*100vw/1920),50px)] shrink-0 transition-opacity duration-300 ${
           isActive ? "opacity-100" : "opacity-60"
         }`}
       />
       <span
-        className={`relative ml-[clamp(20px,2.083vw,40px)] text-subtitle whitespace-nowrap transition-colors duration-300 ${
+        className={`relative ml-[clamp(20px,calc(40*100vw/1920),40px)] text-subtitle whitespace-nowrap transition-colors duration-300 ${
           isActive ? "text-white" : "text-white/60"
         }`}
       >
@@ -136,7 +137,7 @@ const SectorsSec = ({ data }: { data: SectorsData }) => {
       />
 
       {/* Image */}
-      <div className="relative overflow-hidden aspect-[850/914] lg:absolute lg:inset-y-0 lg:right-0 lg:w-[44.27vw] lg:aspect-auto order-last">
+      <div className="relative overflow-hidden aspect-[850/914] lg:absolute lg:inset-y-0 lg:right-0 lg:w-[calc(850*100vw/1920)] lg:aspect-auto order-last">
         {sectors.map((sector, index) => (
           <Image
             key={index}
@@ -147,7 +148,6 @@ const SectorsSec = ({ data }: { data: SectorsData }) => {
             alt={sector.alt}
             fill
             loading="eager"
-            sizes="(min-width: 1024px) 45vw, 100vw"
             onLoad={(e) => e.currentTarget.decode?.().catch(() => {})}
             className={`pointer-events-none object-cover ${index === 0 ? "" : "invisible"}`}
           />
@@ -156,20 +156,25 @@ const SectorsSec = ({ data }: { data: SectorsData }) => {
 
       {/* Content */}
       <div className="container relative">
-        <div className="section-spacing flex flex-col justify-between gap-[60px] lg:min-h-[47.6vw] lg:max-w-[calc(55.73vw-(100vw-100%)/2-var(--space-130))]">
+        <div className="section-spacing flex flex-col justify-between gap-[60px] lg:min-h-[calc(914*100vw/1920)] lg:max-w-[calc(1070*100vw/1920-(100vw-100%)/2-var(--space-130))]">
           <div>
-            <h2 className="heroTitle text-white whitespace-pre-line">{data.title}</h2>
-            <p className="mt-[30px] max-w-[695px] text-description text-[#B8B8B8] !mb-0">{data.description}</p>
+            <Reveal>
+              <h2 className="heroTitle text-white whitespace-pre-line">{data.title}</h2>
+            </Reveal>
+            <Reveal delay={REVEAL_STAGGER}>
+              <p className="mt-[30px] max-w-[695px] text-description text-[#B8B8B8] !mb-0">{data.description}</p>
+            </Reveal>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-[auto_auto] justify-start gap-x-[95px] gap-y-[50px]">
             {sectors.map((sector, index) => (
-              <SectorItem
-                key={sector.title}
-                sector={sector}
-                isActive={index === activeIndex}
-                onActivate={() => activate(index)}
-              />
+              <Reveal key={sector.title} delay={index * REVEAL_STAGGER}>
+                <SectorItem
+                  sector={sector}
+                  isActive={index === activeIndex}
+                  onActivate={() => activate(index)}
+                />
+              </Reveal>
             ))}
           </div>
         </div>

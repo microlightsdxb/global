@@ -95,37 +95,37 @@ export const sectorsData: SectorsData = {
   sectors: [
     {
       title: "Retail / Fashion",
-      icon: `${SECTORS_DIR}/icons/retail.svg`,
+      icon: `${SECTORS_DIR}/icons/animated/retail.svg`,
       image: `${SECTORS_DIR}/right/Fashion.jpg`,
       alt: "Luxury retail store with display tables and ceiling cove lighting",
     },
     {
       title: "Hospitality",
-      icon: `${SECTORS_DIR}/icons/hospitality.svg`,
+      icon: `${SECTORS_DIR}/icons/animated/hospitality.svg`,
       image: `${SECTORS_DIR}/right/Hospitality.jpg`,
       alt: "Hospitality interior lighting",
     },
     {
       title: "Commercial",
-      icon: `${SECTORS_DIR}/icons/commercial.svg`,
+      icon: `${SECTORS_DIR}/icons/animated/commercial.svg`,
       image: `${SECTORS_DIR}/right/Commercial.jpg`,
       alt: "Commercial interior lighting",
     },
     {
       title: "Residential",
-      icon: `${SECTORS_DIR}/icons/residential.svg`,
+      icon: `${SECTORS_DIR}/icons/animated/residential.svg`,
       image: `${SECTORS_DIR}/right/Residential.jpg`,
       alt: "Residential interior lighting",
     },
     {
       title: "Industrial & Warehouse",
-      icon: `${SECTORS_DIR}/icons/industry.svg`,
+      icon: `${SECTORS_DIR}/icons/animated/industry.svg`,
       image: `${SECTORS_DIR}/right/Industrial-&-Warehouse.jpg`,
       alt: "Industrial and warehouse lighting",
     },
     {
       title: "Healthcare",
-      icon: `${SECTORS_DIR}/icons/healthcare.svg`,
+      icon: `${SECTORS_DIR}/icons/animated/healthcare.svg`,
       image: `${SECTORS_DIR}/right/Healthcare.jpg`,
       alt: "Healthcare facility lighting",
     },

@@ -2,10 +2,10 @@
 
 /* Spacing */
 :root {
-  --section-space: clamp(60px, 6.25vw, 120px);
-  --space-60: clamp(32px, 3.125vw, 60px);
-  --space-66: clamp(36px, 3.4375vw, 66px);
-  --space-130: clamp(40px, 6.771vw, 130px);
+  --section-space: clamp(60px, calc(120 * 100vw / 1920), 120px); /* 60px → 120px at 1920 */
+  --space-60: clamp(32px, calc(60 * 100vw / 1920), 60px); /* 32px → 60px at 1920 */
+  --space-66: clamp(36px, calc(66 * 100vw / 1920), 66px); /* 36px → 66px at 1920 */
+  --space-130: clamp(40px, calc(130 * 100vw / 1920), 130px); /* 40px → 130px at 1920 */
 }
 
 @layer components {
@@ -24,55 +24,55 @@
 
   /* Typography */
   .heroTitle {
-    font-size: clamp(32px, 2.865vw, 55px);
+    font-size: clamp(32px, calc(55 * 100vw / 1920), 55px); /* 32px → 55px at 1920 */
     line-height: 1.2727272727;
     letter-spacing: -0.01em;
   }
 
   .section-title {
-    font-size: clamp(30px, 2.604vw, 50px);
+    font-size: clamp(30px, calc(50 * 100vw / 1920), 50px); /* 30px → 50px at 1920 */
     line-height: 1.4;
     letter-spacing: -0.01em;
   }
 
   .text-subtitle {
-    font-size: clamp(18px, 1.302vw, 25px);
+    font-size: clamp(18px, calc(25 * 100vw / 1920), 25px); /* 18px → 25px at 1920 */
     line-height: 1.4;
     letter-spacing: -0.01em;
   }
 
   .text-subtitle-2 {
-    font-size: clamp(20px, 1.5625vw, 30px);
+    font-size: clamp(20px, calc(30 * 100vw / 1920), 30px); /* 20px → 30px at 1920 */
     line-height: 1.4;
     letter-spacing: normal;
   }
 
   .text-subtitle-3 {
-    font-size: clamp(20px, 1.5625vw, 30px);
+    font-size: clamp(20px, calc(30 * 100vw / 1920), 30px); /* 20px → 30px at 1920 */
     line-height: 1;
     letter-spacing: normal;
   }
 
   .text-description {
-    font-size: clamp(15px, 0.9375vw, 18px);
+    font-size: clamp(15px, calc(18 * 100vw / 1920), 18px); /* 15px → 18px at 1920 */
     line-height: 1.42833333;
     letter-spacing: normal;
   }
 
   .text-description-2 {
-    font-size: clamp(12px, 0.729vw, 14px);
+    font-size: clamp(12px, calc(14 * 100vw / 1920), 14px); /* 12px → 14px at 1920 */
     line-height: 1.42857143;
     letter-spacing: normal;
   }
 
   .text-nav {
-    font-size: clamp(14px, 0.885vw, 17px);
+    font-size: clamp(14px, calc(17 * 100vw / 1920), 17px); /* 14px → 17px at 1920 */
     line-height: 1.47058824;
     letter-spacing: -0.01em;
   }
 
   .text-footer {
-    font-size: clamp(14px, 0.885vw, 17px);
+    font-size: clamp(14px, calc(17 * 100vw / 1920), 17px); /* 14px → 17px at 1920 */
     line-height: 1.76470588;
     letter-spacing: -0.01em;
   }

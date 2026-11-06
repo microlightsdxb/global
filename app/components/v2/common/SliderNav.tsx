@@ -8,7 +8,7 @@ const Chevron = ({ flip = false }: { flip?: boolean }) => (
     width={20}
     height={20}
     unoptimized
-    className={`pointer-events-none block w-[clamp(16px,1.042vw,20px)] h-[clamp(16px,1.042vw,20px)] max-w-none ${flip ? "rotate-180" : ""}`}
+    className={`pointer-events-none block w-[clamp(16px,calc(20*100vw/1920),20px)] h-[clamp(16px,calc(20*100vw/1920),20px)] max-w-none ${flip ? "rotate-180" : ""}`}
   />
 );
 
@@ -22,7 +22,7 @@ export type SliderNavProps = {
 
 const SliderNav = ({ onPrev, onNext, prevDisabled = false, nextDisabled = false, className = "" }: SliderNavProps) => {
   const button =
-    "flex items-center justify-center w-[clamp(40px,2.604vw,50px)] h-[clamp(40px,2.604vw,50px)] cursor-pointer disabled:cursor-not-allowed";
+    "flex items-center justify-center w-[clamp(40px,calc(50*100vw/1920),50px)] h-[clamp(40px,calc(50*100vw/1920),50px)] cursor-pointer disabled:cursor-not-allowed";
 
   return (
     <div className={`flex ${className}`}>

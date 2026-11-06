@@ -1,0 +1,9 @@
+<svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+<style>.s{fill:none;stroke:#fff;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}.d{stroke-dasharray:1;stroke-dashoffset:1}@keyframes k0{0%{stroke-dashoffset:1;animation-timing-function:cubic-bezier(0.65, 0, 0.35, 1)}25.000%,100%{stroke-dashoffset:0}}.d0{animation:k0 4.80s linear infinite}@keyframes k1{0%{stroke-dashoffset:1}4.167%{stroke-dashoffset:1;animation-timing-function:cubic-bezier(0.65, 0, 0.35, 1)}29.167%,100%{stroke-dashoffset:0}}.d1{animation:k1 4.80s linear infinite}@keyframes k2{0%{stroke-dashoffset:1}8.333%{stroke-dashoffset:1;animation-timing-function:cubic-bezier(0.65, 0, 0.35, 1)}33.333%,100%{stroke-dashoffset:0}}.d2{animation:k2 4.80s linear infinite}@keyframes k3{0%{stroke-dashoffset:1}12.500%{stroke-dashoffset:1;animation-timing-function:cubic-bezier(0.65, 0, 0.35, 1)}37.500%,100%{stroke-dashoffset:0}}.d3{animation:k3 4.80s linear infinite}@media (prefers-reduced-motion:reduce){.d{animation:none!important;stroke-dashoffset:0}}</style>
+<path class="s" d="M19.3359 37.3047L5.95488 31.4029C3.84023 30.4703 1.46484 32.0188 1.46484 34.3299V34.33C1.46484 35.4617 2.06289 36.5093 3.0375 37.0847L18.7572 46.3652C21.1635 47.7858 23.9066 48.5352 26.7009 48.5352H48.5352V34.5703"/>
+<path class="s" d="M34.2773 40.2344H22.2656C20.6477 40.2344 19.3359 38.9227 19.3359 37.3047C19.3359 35.6867 20.6477 34.375 22.2656 34.375H29.9805L31.4688 33.1756C36.4824 29.1355 44.3024 29.6852 48.5352 34.375"/>
+<path class="s d d0" pathLength="1" d="M44.043 22.9492H5.95703"/>
+<path class="s d d1" pathLength="1" d="M8.39844 22.9492C8.39844 13.7805 15.8312 6.34766 25 6.34766C34.1688 6.34766 41.6016 13.7805 41.6016 22.9492"/>
+<path class="s d d2" pathLength="1" d="M25 6.34766V1.46484"/>
+<path class="s d d3" pathLength="1" d="M22.5586 1.46484H27.4414"/>
+</svg>
