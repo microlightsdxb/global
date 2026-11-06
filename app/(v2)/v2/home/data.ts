@@ -155,7 +155,7 @@ export const projectsData: ProjectsData = {
     "With completed projects across the Middle East, Europe and Asia our portfolio reflects a trusted regional presence spanning retail, hospitality, F&B, and commercial sectors.",
   projects: [
     {
-      title: "Bateel UAE\nRestaurant Interior",
+      title: "Bateel \nRestaurant Interior",
       industry: "F&B",
       scope: "Interior Lighting",
       image: "/assets/img/v2/home/projects/1.jpg",
@@ -163,7 +163,7 @@ export const projectsData: ProjectsData = {
       href: "/projects",
     },
     {
-      title: "Boots UAE\nRetail Interior Lighting Project",
+      title: "Boots \nRetail Interior Lighting Project",
       industry: "Retail",
       scope: "Interior Lighting",
       image: "/assets/img/v2/home/projects/2.jpg",
@@ -171,7 +171,7 @@ export const projectsData: ProjectsData = {
       href: "/projects",
     },
     {
-      title: "McDonald’s GCC\nRestaurant Interior",
+      title: "McDonald’s \nRestaurant Interior",
       industry: "F&B",
       scope: "Interior Lighting",
       image: "/assets/img/v2/home/projects/3.jpg",
