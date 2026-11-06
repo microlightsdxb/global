@@ -115,12 +115,12 @@ const BannerSe = () => {
                                     <div className="h-full relative">
                                         <div className="title absolute bottom-[150px] transition-all ease-in-out flex flex-col">
                                             <div className="overflow-hidden mb-[30px]">
-                                                <h1 className="text-2xl text-white leading-none font-custom font-normal w-[70%] ">
+                                                <h1 className="text-2xl text-white leading-none font-normal w-[70%] ">
                                                     {project.title}
                                                 </h1>
                                             </div>
                                             <div className="overflow-hidden mb-[50px]">
-                                                <p className="text-lg text-white leading-tight font-custom font-light">
+                                                <p className="text-lg text-white leading-tight">
                                                     {project.subtitle}
                                                 </p>
                                             </div>

@@ -78,11 +78,11 @@ const HeroSection = ({ data }: { data: HeroData }) => {
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
               >
-                <h1 className="heroTitle text-white font-custom whitespace-pre-line">
+                <h1 className="heroTitle text-white whitespace-pre-line">
                   {activeBanner?.title}
                 </h1>
                 {activeBanner?.subTitle && (
-                  <p className="mt-[30px] text-subtitle !leading-[1.6] text-white font-custom">
+                  <p className="mt-[30px] text-subtitle !leading-[1.6] text-white">
                     {activeBanner.subTitle}
                   </p>
                 )}

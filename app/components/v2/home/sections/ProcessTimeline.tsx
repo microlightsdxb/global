@@ -82,8 +82,8 @@ const ProcessTimeline: React.FC<{ data: Home }> = ({ data }) => {
                 className={`w-[20%] lg:w-[28%]  h-[120px] lg:h-[150px] text-left relative before:absolute before:content-[] before:h-[1px] before:w-[200%] before:bg-white after:absolute after:content-[] after:h-[20px] after:w-[20px] after:bg-white after:rounded-full ${index % 2 === 0 ? "before:bottom-0 after:bottom-[-10px]" : "mt-[119px] lg:mt-[149px] top-0 pt-[50px] before:top-0 after:top-[-10px]"
                   }`}
               >
-                <h4 className="text-xl font-light opacity-30 leading-none mb-[20px]">{"0" + (index + 1)}</h4>
-                <h3 className="text-lg mt-2 font-light leading-none">{step.title}</h3>
+                <h4 className="text-xl opacity-30 leading-none mb-[20px]">{"0" + (index + 1)}</h4>
+                <h3 className="text-lg mt-2 leading-none">{step.title}</h3>
               </div>
             ))}
           </div>
