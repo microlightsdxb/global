@@ -44,7 +44,7 @@ const TestimonialsSec = ({ data }: { data: TestimonialsData }) => {
             width={98}
             height={89}
             unoptimized
-            className="hidden md:block w-[clamp(60px,5.104vw,98px)] h-auto self-start shrink-0"
+            className="hidden md:block w-[clamp(60px,5.104vw,98px)] h-auto self-start shrink-0 pointer-events-none"
           />
 
           <div className="min-w-0 flex-1">

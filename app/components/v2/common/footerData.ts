@@ -8,6 +8,11 @@ export const footerData = {
     mobile: { label: "+971 56 171 3002", href: "tel:+971561713002" },
     email: { label: "info@microlightsgroup.ae", href: "mailto:info@microlightsgroup.ae" },
   },
+  floating: {
+    phone: { label: "Call us", href: "tel:+97143285488" },
+    // TODO: confirm the WhatsApp number (uses the mobile number for now)
+    whatsapp: { label: "Chat on WhatsApp", href: "https://wa.me/971561713002" },
+  },
   quickLinks: [
     { label: "About Microlights", href: "/about-us" },
     { label: "Sustainability", href: "/sustainability" },

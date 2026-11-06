@@ -17,7 +17,7 @@ const AboutSec = ({ content, data }: { content: AboutData; data: Home }) => {
               src={content.image}
               alt={data?.aboutImageAltTag || content.title}
               fill
-              className="object-cover object-center"
+              className="object-cover object-center pointer-events-none"
             />
             <div
               className="absolute inset-0 pointer-events-none"

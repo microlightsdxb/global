@@ -42,7 +42,7 @@ const ProdSec = ({ content, data }: { content: ProductsData; data: { data: Produ
                   fill
                   loading="eager"
                   sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                  className="object-cover"
+                  className="object-cover pointer-events-none"
                 />
                 {product.hoverImage && (
                   <Image
@@ -53,7 +53,7 @@ const ProdSec = ({ content, data }: { content: ProductsData; data: { data: Produ
                     sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                     // Decode as soon as it loads, so the first hover doesn't stutter
                     onLoad={(e) => e.currentTarget.decode?.().catch(() => {})}
-                    className="object-cover [clip-path:inset(0_0_100%_0)] transition-[clip-path] duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] group-hover:[clip-path:inset(0_0_0_0)] motion-reduce:transition-none"
+                    className="object-cover [clip-path:inset(0_0_100%_0)] transition-[clip-path] duration-500 ease-[cubic-bezier(0.65,0,0.35,1)] group-hover:[clip-path:inset(0_0_0_0)] motion-reduce:transition-none pointer-events-none"
                   />
                 )}
               </figure>

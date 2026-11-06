@@ -14,7 +14,7 @@ const ServiceCard = ({ service }: { service: ServiceItem }) => {
           alt={service.alt}
           fill
           sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-          className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+          className="object-cover transition-transform duration-700 ease-out group-hover:scale-105 pointer-events-none"
         />
       </figure>
 
@@ -44,7 +44,7 @@ const WhatWeDoSec = ({ data }: { data: WhatWeDoData }) => {
   return (
     <section className="relative overflow-hidden bg-black">
       {/* Background */}
-      <Image src={data.bgImage} alt="" fill sizes="100vw" className="object-cover object-top" />
+      <Image src={data.bgImage} alt="" fill sizes="100vw" className="object-cover object-top pointer-events-none" />
 
       <div className="container relative section-spacing">
         <h2 className="section-title text-white">{data.title}</h2>

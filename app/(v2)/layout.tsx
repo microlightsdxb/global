@@ -7,6 +7,7 @@ import { Toaster } from "@/components/ui/sonner";
 import Script from "next/script";
 import HeadInjector from "../components/common/HeadInjector";
 import Header from "../components/v2/common/Header";
+import FloatingContact from "../components/v2/common/FloatingContact";
 
 const parkinSans = Parkinsans({
   variable: "--font-parkin-sans",
@@ -61,6 +62,7 @@ export default async function V2GroupLayout({
         {children}
         <Toaster />
         <Footer />
+        <FloatingContact />
       </body>
     </>
   );

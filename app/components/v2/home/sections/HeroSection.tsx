@@ -12,6 +12,13 @@ import "swiper/css/effect-fade";
 
 const AUTOPLAY_DELAY = 6000;
 const FADE_SPEED = 1400;
+const EASE = [0.25, 0.1, 0.25, 1] as const;
+const STAGGER = 0.15;
+
+const riseIn = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } },
+};
 
 const HeroSection = ({ data }: { data: HeroData }) => {
   const swiperRef = useRef<SwiperClass | null>(null);
@@ -49,7 +56,7 @@ const HeroSection = ({ data }: { data: HeroData }) => {
               sizes="100vw"
               priority={index === 0}
               fetchPriority={index === 0 ? "high" : "auto"}
-              className="object-cover object-center"
+              className="object-cover object-center pointer-events-none"
             />
           </SwiperSlide>
         ))}
@@ -70,30 +77,47 @@ const HeroSection = ({ data }: { data: HeroData }) => {
           {/* Text */}
           <div className="min-h-[220px] lg:min-h-[260px] flex flex-col justify-end">
             <AnimatePresence mode="wait">
+              {/* Each title line, then the subtitle, rises in one after another */}
               <motion.div
                 key={activeIndex}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+                initial="hidden"
+                animate="show"
+                exit={{ opacity: 0, y: -10, transition: { duration: 0.4 } }}
+                variants={{ show: { transition: { staggerChildren: STAGGER } } }}
               >
-                <h1 className="heroTitle text-white whitespace-pre-line">
-                  {activeBanner?.title}
+                <h1 className="heroTitle text-white">
+                  {(activeBanner?.title ?? "").split("\n").map((line, i) => (
+                    <motion.span key={i} className="block" variants={riseIn}>
+                      {line}
+                    </motion.span>
+                  ))}
                 </h1>
                 {activeBanner?.subTitle && (
-                  <p className="mt-[30px] text-subtitle !leading-[1.6] text-white">
+                  <motion.p className="mt-[30px] text-subtitle !leading-[1.6] text-white" variants={riseIn}>
                     {activeBanner.subTitle}
-                  </p>
+                  </motion.p>
                 )}
               </motion.div>
             </AnimatePresence>
 
-            <ArrowButton href={data.cta.href} label={data.cta.label} className="mt-[40px]" />
+            <motion.div
+              className="mt-[40px]"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: STAGGER * 3, ease: EASE }}
+            >
+              <ArrowButton href={data.cta.href} label={data.cta.label} />
+            </motion.div>
           </div>
 
           {/* Pagination */}
           {banners.length > 1 && (
-            <div className="flex items-center gap-[10px] pb-[6px]">
+            <motion.div
+              className="flex items-center gap-[10px] pb-[6px]"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: STAGGER * 4, ease: EASE }}
+            >
               {banners.map((_, index) => {
                 const isActive = index === activeIndex;
                 return (
@@ -109,7 +133,7 @@ const HeroSection = ({ data }: { data: HeroData }) => {
                   />
                 );
               })}
-            </div>
+            </motion.div>
           )}
         </div>
       </div>

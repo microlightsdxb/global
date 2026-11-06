@@ -11,7 +11,7 @@ import { footerData } from "./footerData";
 const ContactLink = ({ href, label, icon }: { href: string; label: string; icon: string }) => (
   <a href={href} className="flex items-center gap-[8px] text-footer text-[#7D7D7D] transition-colors duration-300 hover:text-black">
     <span className="flex items-center justify-center w-[30px] h-[30px] shrink-0 rounded-full bg-black">
-      <Image src={icon} alt="" width={20} height={20} unoptimized className="block w-[20px] h-[20px] max-w-none" />
+      <Image src={icon} alt="" width={20} height={20} unoptimized className="block w-[20px] h-[20px] max-w-none pointer-events-none" />
     </span>
     {label}
   </a>
@@ -30,7 +30,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="xl:flex-1 xl:min-w-0">
             <Link href="/" aria-label="Microlights home">
-              <Image src="/assets/img/logo.svg" alt="Lighting Solutions Dubai" title="Microlights" width={220} height={58} />
+              <Image src="/assets/img/logo.svg" alt="Lighting Solutions Dubai" title="Microlights" width={220} height={58} className="pointer-events-none" />
             </Link>
             <p className="mt-[30px] max-w-[360px] text-footer text-[#7D7D7D] !mb-0">{footerData.description}</p>
 
@@ -90,7 +90,7 @@ const Footer = () => {
                       width={15}
                       height={15}
                       unoptimized
-                      className="h-[15px] w-auto transition-transform duration-300 ease-out group-hover:scale-110"
+                      className="h-[15px] w-auto transition-transform duration-300 ease-out group-hover:scale-110 pointer-events-none"
                     />
                   </a>
                 );
@@ -101,7 +101,7 @@ const Footer = () => {
               <BoxButton
                 label="Download Brochure"
                 tone="dark"
-                icon={<Image src="/assets/img/icons/download.svg" alt="" width={20} height={20} unoptimized className="block w-[20px] h-[20px] max-w-none shrink-0" />}
+                icon={<Image src="/assets/img/icons/download.svg" alt="" width={20} height={20} unoptimized className="block w-[20px] h-[20px] max-w-none shrink-0 pointer-events-none" />}
                 fullWidth
               />
             </BrochureDownloadModal>
@@ -129,7 +129,7 @@ const Footer = () => {
           </div>
 
           {/* Certifications */}
-          <Image src="/assets/img/icons/fticons.svg" alt="CE, RoHS and CB certified" width={220} height={30} unoptimized className="xl:ml-auto h-[30px] w-auto" />
+          <Image src="/assets/img/icons/fticons.svg" alt="CE, RoHS and CB certified" width={220} height={30} unoptimized className="xl:ml-auto h-[30px] w-auto pointer-events-none" />
         </div>
       </div>
     </footer>

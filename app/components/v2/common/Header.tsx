@@ -37,6 +37,10 @@ const Header = () => {
   // Hide on scroll down, show on scroll up
   const [hidden, setHidden] = useState(false);
 
+  // Entrance starts on mount, in the same pass as the hero title's motion
+  const [entered, setEntered] = useState(false);
+  useEffect(() => setEntered(true), []);
+
   useEffect(() => {
     const TOP_ZONE = 80;
     const MIN_DELTA = 6;
@@ -73,7 +77,7 @@ const Header = () => {
   return (
     <header
       // Translate only while hidden — a transform would break MobileNav's fixed drawer
-      className={`lg:py-[22px] fixed top-0 w-full z-50 bg-white shadow-xs transition-[translate] duration-500 ease-in-out ${
+      className={`${entered ? "v2-header-in" : "v2-header-pre"} lg:py-[22px] fixed top-0 w-full z-50 bg-white shadow-xs transition-[translate] duration-500 ease-in-out ${
         isHidden ? "-translate-y-full" : ""
       }`}
     >
@@ -88,6 +92,7 @@ const Header = () => {
             title="Microlights" 
             width={220}
             height={58}
+            className="pointer-events-none"
           />
           </Link>
         </div>
