@@ -1,7 +1,7 @@
-// Static content for the v2 homepage. Edit here — not wired to the CMS.
 
+// Hero
 export type HeroSlide = {
-  title: string; // use "\n" for a manual line break
+  title: string;
   subTitle: string;
   image: string;
   alt: string;
@@ -36,12 +36,10 @@ export const heroData: HeroData = {
   cta: { label: "Talk With Us", href: "/contact-us" },
 };
 
-// Static parts of the About section. Subtitle, description, image alt and the stat
-// numbers come from the CMS (/api/admin/home → aboutTitle, aboutDescription,
-// aboutImageAltTag, years / projects / clients).
+// About
 export type AboutData = {
   title: string;
-  image: string; // kept local — the CMS aboutImage is still the previous design's photo
+  image: string;
   stats: { key: "years" | "projects" | "clients"; suffix: string; label: string }[];
   cta: { label: string; href: string };
 };
@@ -57,7 +55,7 @@ export const aboutData: AboutData = {
   cta: { label: "About MicroLights", href: "/about-us" },
 };
 
-// Section copy only — the product cards come from the CMS (/api/admin/product/type).
+// Products
 export type ProductsData = {
   title: string;
   description: string;
@@ -71,18 +69,19 @@ export const productsData: ProductsData = {
   cta: { label: "View all products", href: "/lighting-products" },
 };
 
+// Sectors
 export type Sector = {
   title: string;
-  icon: string; // 50×50 white SVG
-  image: string; // right-hand image shown while this sector is active
+  icon: string;
+  image: string;
   alt: string;
-  href?: string; // optional — the sector becomes a link when set
+  href?: string;
 };
 
 export type SectorsData = {
-  title: string; // use "\n" for a manual line break
+  title: string;
   description: string;
-  bgImage?: string; // abstract background behind the left side (under the gradient)
+  bgImage?: string;
   sectors: Sector[];
 };
 
@@ -133,8 +132,9 @@ export const sectorsData: SectorsData = {
   ],
 };
 
+// Projects
 export type ProjectItem = {
-  title: string; // use "\n" for a manual line break
+  title: string;
   industry: string;
   scope: string;
   image: string;
@@ -182,12 +182,13 @@ export const projectsData: ProjectsData = {
   cta: { label: "View all projects", href: "/projects" },
 };
 
+// What We Do
 export type ServiceItem = {
   title: string;
   description: string;
   image: string;
   alt: string;
-  href?: string; // optional — the card becomes a link when set
+  href?: string;
 };
 
 export type WhatWeDoData = {
@@ -217,14 +218,12 @@ export const whatWeDoData: WhatWeDoData = {
       description: "In-house production of custom luminaires.",
       image: `${WHAT_WE_DO_DIR}/items/2.jpg`,
       alt: "Team reviewing luminaire designs in a studio",
-      // No service page yet — add an href when one exists
     },
     {
       title: "Lighting Supply",
       description: "Bulk and project-based supply, fulfilled direct.",
       image: `${WHAT_WE_DO_DIR}/items/3.jpg`,
       alt: "Restaurant dining room with a crystal chandelier and lit screens",
-      // No service page yet — add an href when one exists
     },
     {
       title: "Project Management",
@@ -236,6 +235,7 @@ export const whatWeDoData: WhatWeDoData = {
   ],
 };
 
+// CTA banner
 export type CtaBannerData = {
   title: string;
   description: string;
@@ -251,8 +251,9 @@ export const ctaBannerData: CtaBannerData = {
   cta: { label: "Talk To Us", href: "/contact-us" },
 };
 
+// Testimonials
 export type Testimonial = {
-  quote: string; // short headline quote (no quote marks — added in the component)
+  quote: string;
   body: string;
   name: string;
   role: string;
@@ -264,8 +265,6 @@ export type TestimonialsData = {
   testimonials: Testimonial[];
 };
 
-// First item is the Figma copy. The others use opening sentences, word for word,
-// from the CMS testimonials (/api/admin/home → testimonials).
 export const testimonialsData: TestimonialsData = {
   title: "Testimonials",
   description: "Hear how our lighting solutions have helped bring projects to life.",

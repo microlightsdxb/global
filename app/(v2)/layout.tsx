@@ -1,10 +1,8 @@
-// Layout for the v2 redesign. Mirrors app/(user)/layout.tsx so the live site
-// is untouched, but swaps in the v2 header.
 import type { Metadata } from "next";
 import { Parkinsans } from "next/font/google";
 import "../globals.css";
 import SmoothScroll from "../components/common/SmoothScroll";
-import Footer from "../components/common/Footer";
+import Footer from "../components/v2/common/Footer";
 import { Toaster } from "@/components/ui/sonner";
 import Script from "next/script";
 import HeadInjector from "../components/common/HeadInjector";

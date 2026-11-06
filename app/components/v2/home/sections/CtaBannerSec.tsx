@@ -8,7 +8,6 @@ const CtaBannerSec = ({ data }: { data: CtaBannerData }) => {
     <section className="relative overflow-hidden bg-black">
       <Image src={data.bgImage} alt="" fill sizes="100vw" className="object-cover object-center" />
 
-      {/* Left-to-right fade to black for text legibility, plus a 20% black tint overall */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{

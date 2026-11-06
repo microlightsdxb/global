@@ -7,7 +7,7 @@ import type { ServiceItem, WhatWeDoData } from "@/app/(v2)/v2/home/data";
 const ServiceCard = ({ service }: { service: ServiceItem }) => {
   const inner = (
     <>
-      {/* Image — 365×275 at 1920 */}
+      {/* Image */}
       <figure className="relative aspect-[365/275] overflow-hidden">
         <Image
           src={service.image}
@@ -21,7 +21,6 @@ const ServiceCard = ({ service }: { service: ServiceItem }) => {
       <h3 className="mt-[30px] text-subtitle text-white !mb-0">{service.title}</h3>
       <p className="mt-[25px] text-description text-[#B8B8B8] !mb-0">{service.description}</p>
 
-      {/* Arrow is dimmed until the card is hovered */}
       <ArrowButton
         as="span"
         className="mt-[40px] opacity-40 transition-opacity duration-300 group-hover:opacity-100"
@@ -44,7 +43,7 @@ const WhatWeDoSec = ({ data }: { data: WhatWeDoData }) => {
 
   return (
     <section className="relative overflow-hidden bg-black">
-      {/* Background image over the black base */}
+      {/* Background */}
       <Image src={data.bgImage} alt="" fill sizes="100vw" className="object-cover object-top" />
 
       <div className="container relative section-spacing">

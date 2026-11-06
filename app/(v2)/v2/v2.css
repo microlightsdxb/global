@@ -1,21 +1,15 @@
-/* Styles scoped to the v2 redesign. Imported only by app/(v2)/v2/layout.tsx. */
+/* v2 styles */
 
-/* 120px at 1920 (120 / 1920 = 6.25vw), scaling down to 60px */
+/* Spacing */
 :root {
   --section-space: clamp(60px, 6.25vw, 120px);
-
-  /* Spacing tokens — value hits at 1920. Use with Tailwind's var shorthand, e.g. gap-(--space-130) */
-  --space-60: clamp(32px, 3.125vw, 60px); /* 60 / 1920 = 3.125vw */
-  --space-66: clamp(36px, 3.4375vw, 66px); /* 66 / 1920 = 3.4375vw */
-  --space-130: clamp(40px, 6.771vw, 130px); /* 130 / 1920 = 6.771vw */
+  --space-60: clamp(32px, 3.125vw, 60px);
+  --space-66: clamp(36px, 3.4375vw, 66px);
+  --space-130: clamp(40px, 6.771vw, 130px);
 }
 
-/* In the components layer so Tailwind utilities can still override when needed. */
 @layer components {
-  /* Scoped to .v2-layout (the wrapper in app/(v2)/v2/layout.tsx) because globals.css also
-     defines .section-spacing for the live site. Next.js keeps a route's CSS loaded after
-     client-side navigation, so an unscoped rule here would leak onto live pages; the extra
-     class also makes the v2 rule win over the global one regardless of stylesheet order. */
+  /* Section spacing (scoped to .v2-layout so it can't override the live .section-spacing) */
   .v2-layout .section-spacing {
     padding-block: var(--section-space);
   }
@@ -28,59 +22,58 @@
     padding-bottom: var(--section-space);
   }
 
-  /* 55px at 1920 (55 / 1920 = 2.865vw), scaling down to 32px */
+  /* Typography */
   .heroTitle {
     font-size: clamp(32px, 2.865vw, 55px);
-    line-height: 1.2727272727; /* 70px at 55px */
-    letter-spacing: -0.01em; /* Figma -1% */
+    line-height: 1.2727272727;
+    letter-spacing: -0.01em;
   }
 
-  /* Section headings — 50px at 1920 (50 / 1920 = 2.604vw), scaling down to 30px */
   .section-title {
     font-size: clamp(30px, 2.604vw, 50px);
-    line-height: 1.4; /* 70px at 50px */
-    letter-spacing: -0.01em; /* Figma -1% */
+    line-height: 1.4;
+    letter-spacing: -0.01em;
   }
 
-  /* 25px at 1920 (25 / 1920 = 1.302vw), scaling down to 18px */
   .text-subtitle {
     font-size: clamp(18px, 1.302vw, 25px);
-    line-height: 1.4; /* 35px at 25px */
-    letter-spacing: -0.01em; /* Figma -1% */
+    line-height: 1.4;
+    letter-spacing: -0.01em;
   }
 
-  /* 30px at 1920 (30 / 1920 = 1.5625vw), scaling down to 20px */
   .text-subtitle-2 {
     font-size: clamp(20px, 1.5625vw, 30px);
-    line-height: 1.4; /* 42px at 30px */
+    line-height: 1.4;
     letter-spacing: normal;
   }
 
-  /* 30px at 1920 (30 / 1920 = 1.5625vw), scaling down to 20px — tight leading, e.g. stat numbers */
   .text-subtitle-3 {
     font-size: clamp(20px, 1.5625vw, 30px);
     line-height: 1;
     letter-spacing: normal;
   }
 
-  /* 18px at 1920 (18 / 1920 = 0.9375vw), scaling down to 15px */
   .text-description {
     font-size: clamp(15px, 0.9375vw, 18px);
     line-height: 1.42833333;
     letter-spacing: normal;
   }
 
-  /* Header nav items — 17px at 1920 (17 / 1920 = 0.885vw), scaling down to 14px */
-  .text-nav {
-    font-size: clamp(14px, 0.885vw, 17px);
-    line-height: 1.47058824; /* 25px at 17px */
-    letter-spacing: -0.01em; /* Figma -1% */
-  }
-
-  /* 14px at 1920 (14 / 1920 = 0.729vw), scaling down to 12px */
   .text-description-2 {
     font-size: clamp(12px, 0.729vw, 14px);
-    line-height: 1.42857143; /* 20px at 14px */
+    line-height: 1.42857143;
     letter-spacing: normal;
+  }
+
+  .text-nav {
+    font-size: clamp(14px, 0.885vw, 17px);
+    line-height: 1.47058824;
+    letter-spacing: -0.01em;
+  }
+
+  .text-footer {
+    font-size: clamp(14px, 0.885vw, 17px);
+    line-height: 1.76470588;
+    letter-spacing: -0.01em;
   }
 }

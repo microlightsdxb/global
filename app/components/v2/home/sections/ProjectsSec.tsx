@@ -26,7 +26,7 @@ const ProjectsSec = ({ data }: { data: ProjectsData }) => {
   return (
     <section className="section-spacing">
       <div className="container">
-        {/* Heading row — title + description left, slider nav right (bottom-aligned) */}
+        {/* Heading */}
         <div className="flex flex-col gap-[30px] md:flex-row md:items-end md:justify-between">
           <div className="max-w-[560px]">
             <h2 className="section-title text-black">{data.title}</h2>
@@ -60,7 +60,6 @@ const ProjectsSec = ({ data }: { data: ProjectsData }) => {
           {projects.map((project, index) => (
             <SwiperSlide key={index}>
               <Link href={project.href} className="group block">
-                {/* Title (2 lines) with icon-only arrow on the right */}
                 <div className="flex items-start justify-between gap-[20px]">
                   <h3 className="text-subtitle text-black whitespace-pre-line line-clamp-2 min-h-[2lh] !mb-0">{project.title}</h3>
                   <ArrowButton as="span" tone="dark" className="shrink-0" />
@@ -72,7 +71,7 @@ const ProjectsSec = ({ data }: { data: ProjectsData }) => {
                   Scope: {project.scope}
                 </p>
 
-                {/* Image — 480×350 at 1920 */}
+                {/* Image */}
                 <figure className="relative mt-[25px] aspect-[480/350] overflow-hidden">
                   <Image
                     src={project.image}
