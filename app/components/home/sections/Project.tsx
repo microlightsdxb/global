@@ -11,6 +11,7 @@ import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 /* import { ChevronLeft, ChevronRight } from "lucide-react"; */
 import { motion } from 'framer-motion';
 import Link from "next/link";
+import { projectData } from "../Index";
 
 /* const slideVariant = {
   hidden: { opacity: 0, y: 50 },
@@ -24,27 +25,27 @@ import Link from "next/link";
 
 
 
-interface Project {
-  data: {
-    _id: string,
-    name: string,
-    client: string,
-    location: string,
-    thumbnail: string,
-    slug: string
-  }[]
-}
+// export interface Project {
+//   data: {
+//     _id: string,
+//     name: string,
+//     client: string,
+//     location: string,
+//     thumbnail: string,
+//     slug: string
+//   }[]
+// }
 
 
 
-const RecentProjects = ({ data }: { data: Project }) => {
+const RecentProjects = ({ data }: { data: projectData[] }) => {
   const prevRef = useRef<HTMLButtonElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
 
 
-  useEffect(() => {
-    console.log(data)
-  }, [data])
+  // useEffect(() => {
+  //   console.log(data)
+  // }, [data])
 
   return (
     <section className="section-spacing">
@@ -96,7 +97,7 @@ const RecentProjects = ({ data }: { data: Project }) => {
               }}
               className=""
             >
-              {data?.data?.slice(0, 5).map((project) => (
+              {data?.slice(0, 5).map((project) => (
                 <SwiperSlide key={project._id}>
                   <Link href={`/projects/${project.slug}`} className="overflow-hidden" >
                     <div className="hdrsc">
