@@ -44,7 +44,7 @@ const Index = ({
   typeData: typeData;
   projectData: projectData[];
 }) => {
-  console.log("projectData", projectData);
+ 
 
   const projectsData: ProjectsData = {
     title: "Our Projects",
