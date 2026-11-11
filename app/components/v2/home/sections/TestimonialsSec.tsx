@@ -45,14 +45,14 @@ const TestimonialsSec = ({ data }: { data: TestimonialsData }) => {
 
         {/* Slider */}
         <Reveal delay={REVEAL_STAGGER} className="flex gap-[24px] md:gap-[70px] min-w-0 lg:w-[908px] lg:max-w-[60%]">
-          <Image
+          {/* <Image
             src="/assets/img/icons/quote.svg"
             alt=""
             width={98}
             height={89}
             unoptimized
             className="hidden md:block w-[clamp(60px,calc(98*100vw/1920),98px)] h-auto self-start shrink-0 pointer-events-none"
-          />
+          /> */}
 
           <div className="min-w-0 flex-1">
             {hasMany && (

@@ -26,12 +26,12 @@ export const heroData: HeroData = {
       image: "/assets/img/v2/home/hero/3.jpg",
       alt: "Café counter with pendant and cove lighting",
     },
-    {
-      title: "Lighting That Elevates\nEvery Space",
-      subTitle: "Smart & Sustainable Lighting Solutions",
-      image: "/assets/img/v2/home/hero/1.jpg",
-      alt: "Retail store with illuminated shelving and display lighting",
-    },
+    // {
+    //   title: "Lighting That Elevates\nEvery Space",
+    //   subTitle: "Smart & Sustainable Lighting Solutions",
+    //   image: "/assets/img/v2/home/hero/1.jpg",
+    //   alt: "Retail store with illuminated shelving and display lighting",
+    // },
   ],
   cta: { label: "Talk With Us", href: "/contact-us" },
 };
@@ -100,7 +100,7 @@ export const sectorsData: SectorsData = {
       alt: "Luxury retail store with display tables and ceiling cove lighting",
     },
     {
-      title: "Hospitality",
+      title: "F&B and Hospitality",
       icon: `${SECTORS_DIR}/icons/animated/hospitality.svg`,
       image: `${SECTORS_DIR}/right/Hospitality.jpg`,
       alt: "Hospitality interior lighting",

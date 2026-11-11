@@ -31,7 +31,7 @@ export default async function Home() {
     const projectData = await projectResponse.json();
 
     return (
-      <Index homeData={data.data} typeData={typeData} projectData={projectData} />
+      <Index homeData={data.data} typeData={typeData} projectData={projectData.data} />
     );
   } catch (error) {
     console.log(error)
