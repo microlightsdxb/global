@@ -78,7 +78,8 @@ const Filter = ({ industryData, locationData, setIndustrySelected, setLocationSe
           transition={{ duration: 0.6 }}
           viewport={{ once: true, amount: 0.5 }}>
           <h1 className="text-2xl text-black mb-[15px] md:mb-[28px] leading-[1.3]">
-            Lighting Projects Portfolio Across the UAE
+            {/* Lighting Projects Portfolio Across the UAE */}
+            lighting projects
           </h1>
         </motion.div>
         </div>
