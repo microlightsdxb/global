@@ -1,7 +1,7 @@
 import Index from "../../../components/ProjectDetails/Index";
 import type { Metadata } from "next";
 
-const SITE_URL = process.env.BASE_URL;
+const SITE_URL = "https://www.microlights.com";
 
 export async function generateMetadata({params}: {params: Promise<{slug: string}>}): Promise<Metadata> {
   const slug = (await params).slug;
