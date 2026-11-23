@@ -1,0 +1,5 @@
+<svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+<style>.s{fill:none;stroke:#fff;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}.d{stroke-dasharray:1;stroke-dashoffset:1}@keyframes k0{0%{stroke-dashoffset:1;animation-timing-function:cubic-bezier(0.65, 0, 0.35, 1)}28.571%,100%{stroke-dashoffset:0}}.d0{animation:k0 4.20s linear infinite}@media (prefers-reduced-motion:reduce){.d{animation:none!important;stroke-dashoffset:0}}</style>
+<path class="s" d="M3.49729 18.8375L25.1036 2.7635C25.4368 2.51561 25.8947 2.52113 26.2218 2.77698L46.7571 18.8371C46.9805 19.0118 47.111 19.2797 47.111 19.5633V47.5156C47.111 48.0248 46.6983 48.4375 46.1892 48.4375L4.04755 48.4375C3.53841 48.4375 3.12567 48.0247 3.12567 47.5156V19.5771C3.12567 19.2857 3.26347 19.0114 3.49729 18.8375Z"/>
+<path class="s d d0" pathLength="1" d="M17.7876 48.4375V26.4448H32.4494V48.4375"/>
+</svg>

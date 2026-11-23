@@ -22,6 +22,7 @@ interface FrameworkItem {
  
 interface FrameworkSectionProps {
   data: FrameworkItem[];
+  loading: boolean;
   setNewVisible: Dispatch<SetStateAction<number>>;
   newVisible: number;
   limit: number
@@ -31,6 +32,7 @@ interface FrameworkSectionProps {
  
 const ProjectList: React.FC<FrameworkSectionProps> = ({
   data,
+  loading,
   setNewVisible,
   newVisible,
   limit,
@@ -54,7 +56,11 @@ const ProjectList: React.FC<FrameworkSectionProps> = ({
   return (
     <section className=" ">
       <div className="container">
-{(data || []).length === 0 ? (
+{loading ? (
+  <p className="text-center text-lg text-black leading-[1.4]">
+    Projects loading...
+  </p>
+) : (data || []).length === 0 ? (
   <p className="text-center text-lg text-black leading-[1.4]">
     No projects found
   </p>

@@ -23,7 +23,7 @@ interface FrameworkItem {
 const Index = () => {
 
   const fetcher = (...args: Parameters<typeof fetch>) => fetch(...args).then(res => res.json())
-  const { data } = useSWR(`/api/admin/project`, fetcher)
+  const { data, isLoading } = useSWR(`/api/admin/project`, fetcher)
   const {data: industryData} = useSWR(`/api/admin/industry`, fetcher)
   const {data: locationData} = useSWR(`/api/admin/location`, fetcher)
   const [projects, setProjects] = useState<FrameworkItem[]>([])
@@ -123,7 +123,7 @@ const Index = () => {
     <>
       <div className="headerpadding"> </div>
       <Filter industryData={industryData} locationData={locationData} setIndustrySelected={setIndustrySelected} setLocationSelected={setLocationSelected} selectedLocations={selectedLocations} setSelectedLocations={setSelectedLocations}/>
-      <ProjectList data={projects} setNewVisible={setNewVisible} newVisible={newVisible} limit={limit} buttonVisible={buttonVisible} setButtonVisible={setButtonVisible}/>
+      <ProjectList data={projects} loading={isLoading} setNewVisible={setNewVisible} newVisible={newVisible} limit={limit} buttonVisible={buttonVisible} setButtonVisible={setButtonVisible}/>
     </>
   );
 };

@@ -19,7 +19,7 @@ const HeroSection = ({ data }: { data: Home }) => {
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const [textVersion, setTextVersion] = useState(0);
   
-  const totalSlides = data.banners.length;
+  const totalSlides = data?.banners.length;
   const firstBanner = data?.banners?.[0];
 
   // Wait for client-side mounting

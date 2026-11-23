@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import { Parkinsans } from "next/font/google"; // Import ParkinSans
 import "../globals.css";
+import "../(v2)/v2/v2.css";
 import SmoothScroll from "../components/common/SmoothScroll";
 import Header from "../components/common/Header";
 import Footer from "../components/common/Footer";
@@ -56,7 +57,7 @@ export default async function RootLayout({
             width="0"
             style={{ display: "none", visibility: "hidden" }}></iframe>
         </noscript>
-        <HeadInjector html={tagData.tag.headerScript} />
+        {/* <HeadInjector html={tagData.tag.headerScript} /> */}
         <SmoothScroll />
         <Header />
         {children}

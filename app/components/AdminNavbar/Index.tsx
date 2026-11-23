@@ -1,7 +1,7 @@
 "use client"
 
 import ClientSideLink from '@/app/(admin)/admin/client-side-link';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     HomeIcon,
     NewspaperIcon,
@@ -20,8 +20,6 @@ const AdminNavbar = () => {
     const [openLink, setOpenLink] = useState<string | null>(null);
     const pathname = usePathname();
 
-    console.log(pathname);
-
     const navItems = [
         { name: "Home", href: "/admin/home", icon: HomeIcon },
         { name: "About", href: "/admin/about", icon: InformationCircleIcon },
@@ -36,6 +34,15 @@ const AdminNavbar = () => {
         { name: "Settings", href: "/admin/settings", icon: BsGear },
       ];
 
+    // Keep the group containing the current page expanded.
+    useEffect(() => {
+        const group = navItems.find((item) =>
+            item.children?.some((child) => pathname === child.href || pathname.startsWith(child.href + "/"))
+        );
+        if (group) setOpenLink(group.href);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [pathname]);
+
   return (
     navItems.map((item) => {
         const Icon = item.icon;
@@ -44,7 +51,7 @@ const AdminNavbar = () => {
             key={item.href}
             href={item.href}
             name={item.name}
-            icon={<Icon className="h-5 w-5" />}
+            icon={<Icon />}
             isOpen={openLink === item.href}
             setOpenLink={setOpenLink}
             pathname={pathname}

@@ -1,0 +1,109 @@
+/* v2 styles */
+
+/* Spacing */
+:root {
+  --section-space: clamp(60px, calc(120 * 100vw / 1920), 120px); /* 60px → 120px at 1920 */
+  --space-60: clamp(32px, calc(60 * 100vw / 1920), 60px); /* 32px → 60px at 1920 */
+  --space-66: clamp(36px, calc(66 * 100vw / 1920), 66px); /* 36px → 66px at 1920 */
+  --space-130: clamp(40px, calc(130 * 100vw / 1920), 130px); /* 40px → 130px at 1920 */
+}
+
+@layer components {
+  /* Section spacing (scoped to .v2-layout so it can't override the live .section-spacing) */
+  .v2-layout .section-spacing {
+    padding-block: var(--section-space);
+  }
+
+  .v2-layout .section-top-spacing {
+    padding-top: var(--section-space);
+  }
+
+  .v2-layout .section-bottom-spacing {
+    padding-bottom: var(--section-space);
+  }
+
+  /* Typography */
+  .heroTitle {
+    font-size: clamp(32px, calc(55 * 100vw / 1920), 55px); /* 32px → 55px at 1920 */
+    line-height: 1.2727272727;
+    letter-spacing: -0.01em;
+  }
+
+  .section-title {
+    font-size: clamp(30px, calc(50 * 100vw / 1920), 50px); /* 30px → 50px at 1920 */
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+  }
+
+  .text-subtitle {
+    font-size: clamp(18px, calc(25 * 100vw / 1920), 25px); /* 18px → 25px at 1920 */
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+  }
+
+  .text-subtitle-2 {
+    font-size: clamp(20px, calc(30 * 100vw / 1920), 30px); /* 20px → 30px at 1920 */
+    line-height: 1.4;
+    letter-spacing: normal;
+  }
+
+  .text-subtitle-3 {
+    font-size: clamp(20px, calc(30 * 100vw / 1920), 30px); /* 20px → 30px at 1920 */
+    line-height: 1;
+    letter-spacing: normal;
+  }
+
+  .text-description {
+    font-size: clamp(15px, calc(18 * 100vw / 1920), 18px); /* 15px → 18px at 1920 */
+    line-height: 1.42833333;
+    letter-spacing: normal;
+  }
+
+  .text-description-2 {
+    font-size: clamp(12px, calc(14 * 100vw / 1920), 14px); /* 12px → 14px at 1920 */
+    line-height: 1.42857143;
+    letter-spacing: normal;
+  }
+
+  .text-nav {
+    font-size: clamp(14px, calc(17 * 100vw / 1920), 17px); /* 14px → 17px at 1920 */
+    line-height: 1.47058824;
+    letter-spacing: -0.01em;
+  }
+
+  .text-footer {
+    font-size: clamp(14px, calc(17 * 100vw / 1920), 17px); /* 14px → 17px at 1920 */
+    line-height: 1.76470588;
+    letter-spacing: -0.01em;
+  }
+}
+
+/* Header entrance */
+@keyframes v2-header-in {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* "backwards" (not "both") so no transform remains afterwards — a lingering transform would break MobileNav's fixed drawer */
+.v2-header-in {
+  animation: v2-header-in 700ms cubic-bezier(0.25, 0.1, 0.25, 1) backwards;
+}
+
+/* Held above the screen until the entrance starts */
+.v2-header-pre {
+  transform: translateY(-100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v2-header-in {
+    animation: none;
+  }
+
+  .v2-header-pre {
+    transform: none;
+  }
+}
