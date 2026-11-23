@@ -16,8 +16,8 @@ interface Option {
 
 
 const Filter = ({ industryData, locationData, setIndustrySelected, setLocationSelected, selectedLocations, setSelectedLocations }: {
-  industryData: { data: { name: string }[], setIndustrySelected: (name: string) => void, industrySelected: string },
-  locationData: { data: { name: string }[], setLocationSelected: (name: string) => void, locationSelected: string },
+  industryData: { data: { name: string }[] },
+  locationData: { data: { name: string }[] },
   setIndustrySelected: (name: string) => void, setLocationSelected: (name: string) => void,
   setSelectedLocations: Dispatch<SetStateAction<string[]>>,
   selectedLocations: string[]
@@ -73,10 +73,9 @@ const Filter = ({ industryData, locationData, setIndustrySelected, setLocationSe
     <section className="py-100">
       <div className="container">
         <div><motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true, amount: 0.5 }}>
+          initial={{ opacity: 0, x: -15 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.3 }}>
           <h1 className="text-2xl text-black mb-[15px] md:mb-[28px] leading-[1.3]">
             {/* Lighting Projects Portfolio Across the UAE */}
             lighting projects
@@ -84,10 +83,10 @@ const Filter = ({ industryData, locationData, setIndustrySelected, setLocationSe
         </motion.div>
         </div>
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true, amount: 0.5 }}>
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+        >
           <div className="block md:flex bg-black/85 p-6 md:p-10 pt-5 items-center">
             <div className="w-full md:w-4/5">
               <div className="grid grid-cols-1 ">

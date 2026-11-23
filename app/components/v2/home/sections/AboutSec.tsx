@@ -8,6 +8,7 @@ import type { AboutData } from "@/app/(v2)/v2/home/data";
 import type { Home } from "@/types/Home";
 
 const AboutSec = ({ content, data }: { content: AboutData; data: Home }) => {
+
   return (
     <section>
       <div className="container">
