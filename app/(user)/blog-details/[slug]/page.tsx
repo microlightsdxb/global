@@ -285,6 +285,31 @@ const FAQ_SCHEMAS: Record<string, { name: string; text: string }[]> = {
       text: "A lighting consultant familiar with Dubai's regulatory framework identifies the applicable authority requirements at concept stage, prepares the photometric calculations and documentation needed for submission, and ensures that product specifications meet IP, certification, and energy efficiency standards before procurement begins. Early involvement consistently reduces approval delays and avoids the redesign costs that result from compliance requirements being identified after the scheme is developed."
     }
   ],
+  "custom-lighting-design-dubai": [
+    {
+      name: "What is custom lighting design?",
+      text: "Custom lighting design plans the lighting around one specific space, its use, and its brand, then selects fittings to match. It covers layout, light levels, colour temperature, fittings, and dimming, and can use standard, adapted, or bespoke fittings."
+    },
+    {
+      name: "How much does custom lighting design cost in Dubai?",
+      text: "There is no fixed price. Cost depends on the size of the space, the number of custom fittings, product quality, controls, number of sites, and installation support. A quotation after the design stage sets out the scope clearly."
+    },
+    {
+      name: "Is bespoke lighting more expensive than custom lighting?",
+      text: "Often, because bespoke fittings are designed and made for one project. Custom design using standard or adapted fittings usually costs less. The right choice depends on how much the design needs to be unique."
+    },
+    {
+      name: "Can custom outdoor lighting handle the UAE climate?",
+      text: "Yes, when specified correctly. Fittings rated IP65 or higher, with finishes and drivers suited to heat, dust, and humidity, perform reliably. Exposed and coastal sites benefit from higher ratings."
+      },  {
+      name: "Do small shops or restaurants need custom lighting design?",
+      text: "Not always. Small or simple spaces can work well with standard products. Custom design is most valuable where lighting shapes product presentation, food appearance, or brand atmosphere."
+    },
+    {
+      name: "How do I choose a custom lighting company in Dubai?",
+      text: "Look for in-house designers, a relevant portfolio, a site survey, a clear quotation, project management through to completion, and support after the project."
+    }
+  ],
 };
 const BASE_URL = "https://www.microlights.com";
 
