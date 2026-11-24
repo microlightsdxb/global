@@ -25,6 +25,11 @@ export interface ProjectMetadata {
   };
 }
 
+interface ProjectMetadataRecord {
+  metaTitle?: string;
+  metaDescription?: string;
+}
+
 export const getProjectListingData = unstable_cache(
   async () => {
     await connectDB();
@@ -65,9 +70,20 @@ export const getProjectMetadata = unstable_cache(
     await connectDB();
     const projectMeta = await ProjectMeta.findOne({})
       .select("metaTitle metaDescription -_id")
-      .lean();
+      .lean<ProjectMetadataRecord>();
 
-    return projectMeta ? { projectMeta } : {};
+    const projectMetaRecord = Array.isArray(projectMeta)
+      ? projectMeta[0]
+      : projectMeta;
+
+    if (!projectMetaRecord) return {};
+
+    return {
+      projectMeta: {
+        metaTitle: projectMetaRecord.metaTitle,
+        metaDescription: projectMetaRecord.metaDescription,
+      },
+    };
   },
   ["project-listing-metadata"],
   { revalidate: 60 },
