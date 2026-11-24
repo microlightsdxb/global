@@ -102,7 +102,7 @@ export const sectorsData: SectorsData = {
     {
       title: "F&B and Hospitality",
       icon: `${SECTORS_DIR}/icons/animated/hospitality.svg`,
-      image: `${SECTORS_DIR}/right/Hospitality.jpg`,
+      image: `${SECTORS_DIR}/right/Commercial1.jpg`,
       alt: "Hospitality interior lighting",
     },
     {
@@ -216,7 +216,7 @@ export const whatWeDoData: WhatWeDoData = {
     {
       title: "Lighting Manufacturing",
       description: "In-house production of custom luminaires.",
-      image: `${WHAT_WE_DO_DIR}/items/2.jpg`,
+      image: `${WHAT_WE_DO_DIR}/items/Lighting-Manufacturing.jpg`,
       alt: "Team reviewing luminaire designs in a studio",
     },
     {

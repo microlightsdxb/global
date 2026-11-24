@@ -1,10 +1,12 @@
 import Index from "../../components/Projects/Index";
 import type { Metadata } from "next";
-
+import {
+  getProjectListingData,
+  getProjectMetadata,
+} from "@/app/lib/services/service.projects";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const response = await fetch(`${process.env.BASE_URL}/api/admin/project/meta`, { next: { revalidate: 60 } });
-  const data = await response.json();
+  const data = await getProjectMetadata();
 
   const metadataTitle = data?.projectMeta?.metaTitle || "Microlights";
   const metadataDescription =
@@ -14,20 +16,23 @@ export async function generateMetadata(): Promise<Metadata> {
     title: metadataTitle,
     description: metadataDescription,
     alternates: {
-      canonical: `/projects`,  
-    }, robots: {
+      canonical: `/projects`,
+    },
+    robots: {
       index: true,
-      follow: true, 
+      follow: true,
     },
   };
 }
 
+export default async function Home() {
+  const { projects, industries, locations } = await getProjectListingData();
 
-
-export default function Home() {
   return (
-    <>
-    <Index/>
-    </>
+    <Index
+      projectData={projects}
+      industryData={{ data: industries }}
+      locationData={{ data: locations }}
+    />
   );
 }
