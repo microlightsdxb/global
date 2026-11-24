@@ -28,9 +28,13 @@ const Filter = ({
   setSelectedLocations,
 }: FilterProps) => {
   const [selectedIndustry, setSelectedIndustry] = useState<Option | null>(null);
-  const industryOptions = [
+  const industryOptions = industryData.data.map(({ name }) => ({
+    value: name,
+    label: name,
+  }));
+  const mobileIndustryOptions = [
     { value: "", label: "All projects" },
-    ...industryData.data.map(({ name }) => ({ value: name, label: name })),
+    ...industryOptions,
   ];
   const hasActiveFilters = Boolean(selectedIndustry) || selectedLocations.length > 0;
 
@@ -76,7 +80,7 @@ const Filter = ({
           <div className="flex items-center gap-4 bg-black/85 px-4 py-2 text-white md:hidden">
             <div className="min-w-0 flex-1">
               <Select
-                options={industryOptions}
+                options={mobileIndustryOptions}
                 value={selectedIndustry}
                 onChange={handleIndustryChange}
                 isSearchable
