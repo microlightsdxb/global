@@ -6,6 +6,7 @@ import { FiArrowUpRight } from "react-icons/fi";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import type { Project } from "@/app/lib/services/service.projects";
+import ArrowButton from "../../v2/common/ArrowButton";
 
 const projectCardEase = [0.22, 1, 0.36, 1] as const;
 
@@ -34,7 +35,7 @@ const ProjectList: React.FC<FrameworkSectionProps> = ({
                 {data?.map((project, index) => (
                   <motion.div
                     key={project.slug}
-                    className="group"
+                    className="group mb-10 md:mb-12 lg:mb-15"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{
@@ -45,7 +46,29 @@ const ProjectList: React.FC<FrameworkSectionProps> = ({
                     viewport={{ once: true, amount: 0.2 }}
                   >
                     <Link href={`/projects/${project.slug}`}>
-                      <div className="mb-10 ">
+                      <div
+                        data-reveal="content"
+                        className="flex items-start justify-between gap-[20px]"
+                      >
+                        <h3 className="text-subtitle text-black whitespace-pre-line line-clamp-2 !mb-0">
+                          {project.name}
+                        </h3>
+                        <ArrowButton
+                          as="span"
+                          tone="dark"
+                          className="shrink-0"
+                        />
+                      </div>
+
+                      <p
+                        data-reveal="content"
+                        className="text-description-2 text-[#4A5565] !mb-0"
+                      >
+                        Industry: {project.industry}
+                        <span className="mx-[10px]">|</span>
+                        Scope: {project.scope}
+                      </p>
+                      <div className="mt-[16px] lg:mt-[25px]">
                         <figure className="h-[325px] md:h-[380px] lg:h-[425px] xl:h-[475px] w-full overflow-hidden">
                           <motion.div className="h-full w-full">
                             <Image
@@ -58,7 +81,7 @@ const ProjectList: React.FC<FrameworkSectionProps> = ({
                           </motion.div>
                         </figure>
                       </div>
-                      <div className="flex items-center justify-between border-b border-[#00000010] pb-3">
+                      {/* <div className="flex items-center justify-between border-b border-[#00000010] pb-3">
                         <h2 className="text-lg text-black leading-[1.4]">
                           {project.name}
                         </h2>
@@ -80,7 +103,7 @@ const ProjectList: React.FC<FrameworkSectionProps> = ({
                           <span className="mx-[10px]">|</span>
                           Scope: {project.scope}
                         </p>
-                      </div>
+                      </div> */}
                     </Link>
                   </motion.div>
                 ))}
