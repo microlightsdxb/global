@@ -1,6 +1,8 @@
 import Index from "../../../components/ProjectDetails/Index";
 import type { Metadata } from "next";
 
+const SITE_URL = "https://www.microlights.com";
+
 export async function generateMetadata({params}: {params: Promise<{slug: string}>}): Promise<Metadata> {
   const slug = (await params).slug;
   const response = await fetch(`${process.env.BASE_URL}/api/admin/project?slug=${slug}`, { next: { revalidate: 60 } });
@@ -10,14 +12,18 @@ export async function generateMetadata({params}: {params: Promise<{slug: string}
   const metadataDescription =
     data?.data?.metaDescription || "Microlights";
 
+  // Self-referencing canonical: each project page points to its own absolute URL
+  const canonicalUrl = `${SITE_URL}/projects/${encodeURIComponent(slug)}`;
+
   return {
     title: metadataTitle,
     description: metadataDescription,
-     alternates: {
-      canonical: `/projects/${slug}`,  
-    }, robots: {
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    robots: {
       index: true,
-      follow: true, 
+      follow: true,
     },
   };
 }
