@@ -2,13 +2,10 @@
 import React from "react";
 
 import Image from "next/image";
-import { FiArrowUpRight } from "react-icons/fi";
 import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import type { Project } from "@/app/lib/services/service.projects";
 import ArrowButton from "../../v2/common/ArrowButton";
-
-const projectCardEase = [0.22, 1, 0.36, 1] as const;
 
 interface FrameworkSectionProps {
   data: Project[];
@@ -30,58 +27,54 @@ const ProjectList: React.FC<FrameworkSectionProps> = ({
           </p>
         ) : (
           <>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-[40px]">
-              <AnimatePresence>
-                {data?.map((project, index) => (
-                  <motion.div
-                    key={project.slug}
-                    className="group mb-10 md:mb-12 lg:mb-15"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{
-                      duration: 0.6,
-                      delay: (index % 8) * 0.04,
-                      ease: projectCardEase,
-                    }}
-                    viewport={{ once: true, amount: 0.2 }}
-                  >
-                    <Link href={`/projects/${project.slug}`}>
-                      <div
-                        data-reveal="content"
-                        className="flex items-start justify-between gap-[20px]"
-                      >
-                        <h3 className="text-subtitle text-black whitespace-pre-line line-clamp-2 !mb-0">
-                          {project.name}
-                        </h3>
-                        <ArrowButton
-                          as="span"
-                          tone="dark"
-                          className="shrink-0"
-                        />
-                      </div>
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-2 gap-x-[40px]"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+            >
+              {data?.map((project) => (
+                <div
+                  key={project.slug}
+                  className="group mb-10 md:mb-12 lg:mb-15"
+                >
+                  <Link href={`/projects/${project.slug}`}>
+                    <div
+                      data-reveal="content"
+                      className="flex items-start justify-between gap-[20px]"
+                    >
+                      <h3 className="text-subtitle text-black whitespace-pre-line line-clamp-2 !mb-0">
+                        {project.name}
+                      </h3>
+                      <ArrowButton
+                        as="span"
+                        tone="dark"
+                        className="shrink-0"
+                      />
+                    </div>
 
-                      <p
-                        data-reveal="content"
-                        className="text-description-2 text-[#4A5565] !mb-0"
-                      >
-                        Industry: {project.industry}
-                        <span className="mx-[10px]">|</span>
-                        Scope: {project.scope}
-                      </p>
-                      <div className="mt-[16px] lg:mt-[25px]">
-                        <figure className="h-[325px] md:h-[380px] lg:h-[425px] xl:h-[475px] w-full overflow-hidden">
-                          <motion.div className="h-full w-full">
-                            <Image
-                              className="h-full w-full object-cover object-center   group-hover:scale-[1.1] transition-all ease-in-out duration-500"
-                              src={project.thumbnail}
-                              alt={project.thumbnailAlt}
-                              width={950}
-                              height={950}
-                            />
-                          </motion.div>
-                        </figure>
-                      </div>
-                      {/* <div className="flex items-center justify-between border-b border-[#00000010] pb-3">
+                    <p
+                      data-reveal="content"
+                      className="text-description-2 text-[#4A5565] !mb-0"
+                    >
+                      Industry: {project.industry}
+                      <span className="mx-[10px]">|</span>
+                      Scope: {project.scope}
+                    </p>
+                    <div className="mt-[16px] lg:mt-[25px]">
+                      <figure className="h-[325px] md:h-[380px] lg:h-[425px] xl:h-[475px] w-full overflow-hidden">
+                        <div className="h-full w-full">
+                          <Image
+                            className="h-full w-full object-cover object-center   group-hover:scale-[1.1] transition-all ease-in-out duration-500"
+                            src={project.thumbnail}
+                            alt={project.thumbnailAlt}
+                            width={950}
+                            height={950}
+                          />
+                        </div>
+                      </figure>
+                    </div>
+                    {/* <div className="flex items-center justify-between border-b border-[#00000010] pb-3">
                         <h2 className="text-lg text-black leading-[1.4]">
                           {project.name}
                         </h2>
@@ -103,12 +96,11 @@ const ProjectList: React.FC<FrameworkSectionProps> = ({
                           <span className="mx-[10px]">|</span>
                           Scope: {project.scope}
                         </p>
-                      </div> */}
-                    </Link>
-                  </motion.div>
-                ))}
-              </AnimatePresence>
-            </div>
+                    </div> */}
+                  </Link>
+                </div>
+              ))}
+            </motion.div>
             {hasMore && (
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
