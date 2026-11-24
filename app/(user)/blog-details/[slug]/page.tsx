@@ -310,6 +310,35 @@ const FAQ_SCHEMAS: Record<string, { name: string; text: string }[]> = {
       text: "Look for in-house designers, a relevant portfolio, a site survey, a clear quotation, project management through to completion, and support after the project."
     }
   ],
+  "restaurant-lighting-design-dubai": [
+    {
+      name: "What is the best lighting for a restaurant?",
+      text: " A combination of ambient, accent, task, and decorative layers, with warm colour temperatures, high CRI, and dimming. Relying on ceiling downlights alone rarely gives the depth or atmosphere guests expect."
+    },
+    {
+      name: "What colour temperature is best for restaurant lighting?",
+      text: "Fine dining and bars suit 2200K to 2700K. Casual dining and cafes suit 2700K to 3000K. Quick-service restaurants typically use 3000K to 4000K. Keep one colour temperature per zone."
+    },
+    {
+      name: "How bright should restaurant lighting be?",
+      text: "It depends on the zone. Dining areas are kept lower and dimmable for comfort and mood, while bars, counters, and service points are brighter. Kitchens need bright, even light, with EN 12464-1 recommending 500 lux."
+    },
+    {
+      name: "How high should pendant lights hang over restaurant tables?",
+      text: "Around 75 to 90 cm above the table. This keeps the fitting visible as part of the design without blocking guests’ sightlines or causing glare."
+    }, {
+      name: "What lighting is needed in a restaurant kitchen?",
+      text: "Bright, even light for food preparation and safety, around 500 lux per EN 12464-1, using moisture- and grease-resistant fittings that are easy to clean."
+    },
+    {
+      name: "How do I choose restaurant lighting suppliers in Dubai?",
+      text: "Look for design, supply, and installation under one team, F&B project experience, and support after opening. A partner with multi-outlet experience suits franchise rollouts."
+    },
+    {
+      name: "What are the key elements of effective restaurant lighting design?",
+      text: "Zone-based planning, layered lighting, warm colour temperature, CRI of 90 or above, dimming and scenes, and careful glare control."
+    }
+  ],
 };
 const BASE_URL = "https://www.microlights.com";
 
