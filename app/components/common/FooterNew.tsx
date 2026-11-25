@@ -121,7 +121,7 @@ const Footer = () => {
         </div>
         <div className="border-t pt-[30px] text-primary/50 text-center mt-6 md:mt-10 text-[14px] flex xl:flex-row flex-col justify-between">
           <div className="flex flex-col lg:flex-row gap-4 items-center lg:justify-between xl:justify-start">
-            <p style={{ marginBottom: "0px" }}>&copy;2026 Lighting Solutions Dubai - microlights.com. All rights reserved. | <span className="text-primary/35 text-[14px] ">by</span> <a className="text-primary/35 text-[14px] transition-all ease-in-out duration-500 hover:text-black/60" href="https://www.globalsurf.ae/" target="_blank">Global Surf </a> </p>
+            <p style={{ marginBottom: "0px" }}>&copy;2026 Lighting Solutions - microlights.com. All rights reserved. | <span className="text-primary/35 text-[14px] ">by</span> <a className="text-primary/35 text-[14px] transition-all ease-in-out duration-500 hover:text-black/60" href="https://www.globalsurf.ae/" target="_blank">Global Surf </a> </p>
             <div className="flex space-x-2 items-center  justify-center">
               <Link href="/privacy-policy" className=" border-r pr-2 last:border-r-0 last:pr-0 transition-all ease-in-out duration-500 hover:text-black">Privacy Policy</Link>
               <Link href="/terms-and-conditions" className=" border-r pr-4 last:border-r-0 last:pr-0 transition-all ease-in-out duration-500 hover:text-black">Terms & Conditions</Link>
