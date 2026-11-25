@@ -1,34 +1,15 @@
-import Index from "../components/AboutUs/Index";
 import type { Metadata } from "next";
+import Footer from "@/app/components/v2/common/Footer";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const response = await fetch(`${process.env.BASE_URL}/api/admin/about`, { next: { revalidate: 60 } });
-  const data = await response.json(); 
-  const metadataTitle = data?.data?.metaTitle || "Microlights";
-  const metadataDescription =
-    data?.data?.metaDescription || "Microlights";
+export const metadata: Metadata = {
+  title: "Footer Test - Microlights",
+  description: "Preview of the Microlights footer.",
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
-  return {
-    title: metadataTitle,
-    description: metadataDescription, 
-    robots: {
-      index: false,
-      follow: false, 
-    },
-  };
-}
-
-
-export default async function Home() {
-  try {
-    const response = await fetch(`${process.env.BASE_URL}/api/admin/about`, { next: { revalidate: 60 } });
-    const data = await response.json();
-    return (
-      <>
-      <Index data={data?.data} />
-      </>
-    );
-  } catch (error) {
-    console.log(error)
-  }
+export default function FooterTestPage() {
+  return <Footer />;
 }
