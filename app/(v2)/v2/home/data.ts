@@ -222,7 +222,7 @@ export const whatWeDoData: WhatWeDoData = {
     {
       title: "Lighting Supply",
       description: "Bulk and project-based supply, fulfilled direct.",
-      image: `${WHAT_WE_DO_DIR}/items/3.jpg`,
+      image: `${WHAT_WE_DO_DIR}/items/Lighting-Supply.jpg`,
       alt: "Restaurant dining room with a crystal chandelier and lit screens",
     },
     {
