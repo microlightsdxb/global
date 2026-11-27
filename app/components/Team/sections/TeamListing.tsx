@@ -34,19 +34,19 @@ const TeamListing: React.FC<FrameworkSectionProps> = ({ data }) => {
                       key={index}
                       className="teammem teamsepaftr border-b-2 pb-7 hover:border-[#000]  transition-all duration-500 mb-10 md:mb-15 lg:mb-20"
                     >
-                      <div className="teamover">
+                      <div className="teamover relative aspect-[3/4] overflow-hidden">
                         {member?.image && member?.image != "" ? <Image
                           src={member?.image}
                           alt={member?.imageAlt}
                           width={300}
                           height={300}
-                          className="w-full h-auto"
+                          className="h-full w-full object-cover"
                         /> : <Image
                         src="/assets/img/team/xc 1.png"
                         alt="placeholder"
                         width={300}
                         height={300}
-                        className="w-full h-auto "
+                        className="h-full w-full object-cover"
                         />}
                       </div>
                       <p className="text-lg text-black leading-[1.4] mt-5 mb-2">
